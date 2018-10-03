@@ -1,0 +1,44 @@
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATconexionSAP\TATconexionSAP\bin\Debug\TATconexionSAP.exe.config
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATconexionSAP\TATconexionSAP\bin\Debug\TATconexionSAP.exe
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATconexionSAP\TATconexionSAP\bin\Debug\TATconexionSAP.pdb
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATconexionSAP\TATconexionSAP\bin\Debug\EntityFramework.dll
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATconexionSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATconexionSAP\TATconexionSAP\bin\Debug\EntityFramework.xml
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATconexionSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATconexionSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csprojResolveAssemblyReference.cache
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATconexionSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csproj.CoreCompileInputs.cache
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATconexionSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csproj.CopyComplete
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATconexionSAP\TATconexionSAP\obj\Debug\TATconexionSAP.exe
+C:\Users\SF-0013\Documents\Visual Studio 2017\Projects\TATconexionSAP\TATconexionSAP\obj\Debug\TATconexionSAP.pdb
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATconexionSAP\TATconexionSAP\bin\Debug\TATconexionSAP.exe.config
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATconexionSAP\TATconexionSAP\bin\Debug\TATconexionSAP.exe
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATconexionSAP\TATconexionSAP\bin\Debug\TATconexionSAP.pdb
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATconexionSAP\TATconexionSAP\bin\Debug\EntityFramework.dll
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATconexionSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATconexionSAP\TATconexionSAP\bin\Debug\EntityFramework.xml
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATconexionSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATconexionSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csprojResolveAssemblyReference.cache
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATconexionSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csproj.CoreCompileInputs.cache
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATconexionSAP\TATconexionSAP\obj\Debug\TATconexionSAP.exe
+C:\Users\SF-0022\Documents\TAT001_Catálogos\TATconexionSAP\TATconexionSAP\obj\Debug\TATconexionSAP.pdb
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\TATconexionSAP.exe.config
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\TATconexionSAP.exe
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\TATconexionSAP.pdb
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.dll
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.xml
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csproj.CoreCompileInputs.cache
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.exe
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.pdb
+F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\bin\Debug\TATconexionSAP.exe.config
+F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.exe
+F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.pdb
+F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\bin\Debug\TATconexionSAP.exe
+F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\bin\Debug\TATconexionSAP.pdb
+F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.dll
+F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlServer.dll
+F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.xml
+F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\bin\Debug\EntityFramework.SqlServer.xml
+F:\RSG\Visual\Kelloggs\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csprojResolveAssemblyReference.cache
+C:\Users\SF-0022\Documents\GitHub\TATConSAP\TATconexionSAP\obj\Debug\TATconexionSAP.csprojResolveAssemblyReference.cache

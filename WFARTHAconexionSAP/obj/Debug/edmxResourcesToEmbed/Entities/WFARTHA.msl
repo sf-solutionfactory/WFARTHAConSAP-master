@@ -1,0 +1,855 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WFARTHAModelStoreContainer" CdmEntityContainer="WFARTHAEntities">
+    <EntitySetMapping Name="ACCIONs">
+      <EntityTypeMapping TypeName="WFARTHAModel.ACCION">
+        <MappingFragment StoreEntitySet="ACCION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCCRIPCION" ColumnName="DESCCRIPCION" />
+          <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="APPSETTINGs">
+      <EntityTypeMapping TypeName="WFARTHAModel.APPSETTING">
+        <MappingFragment StoreEntitySet="APPSETTING">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CAMPOS">
+      <EntityTypeMapping TypeName="WFARTHAModel.CAMPOS">
+        <MappingFragment StoreEntitySet="CAMPOS">
+          <ScalarProperty Name="PAGINA_ID" ColumnName="PAGINA_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CARPETAs">
+      <EntityTypeMapping TypeName="WFARTHAModel.CARPETA">
+        <MappingFragment StoreEntitySet="CARPETA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="TITULO" ColumnName="TITULO" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CARPETATs">
+      <EntityTypeMapping TypeName="WFARTHAModel.CARPETAT">
+        <MappingFragment StoreEntitySet="CARPETAT">
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONCEPTOes">
+      <EntityTypeMapping TypeName="WFARTHAModel.CONCEPTO">
+        <MappingFragment StoreEntitySet="CONCEPTO">
+          <ScalarProperty Name="ID_CONCEPTO" ColumnName="ID_CONCEPTO" />
+          <ScalarProperty Name="DESC_CONCEPTO" ColumnName="DESC_CONCEPTO" />
+          <ScalarProperty Name="TIPO_CONCEPTO" ColumnName="TIPO_CONCEPTO" />
+          <ScalarProperty Name="TIPO_IMPUTACION" ColumnName="TIPO_IMPUTACION" />
+          <ScalarProperty Name="ID_PRESUPUESTO" ColumnName="ID_PRESUPUESTO" />
+          <ScalarProperty Name="TIPO_PRESUPUESTO" ColumnName="TIPO_PRESUPUESTO" />
+          <ScalarProperty Name="CUENTA" ColumnName="CUENTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONMAILs">
+      <EntityTypeMapping TypeName="WFARTHAModel.CONMAIL">
+        <MappingFragment StoreEntitySet="CONMAIL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="HOST" ColumnName="HOST" />
+          <ScalarProperty Name="PORT" ColumnName="PORT" />
+          <ScalarProperty Name="SSL" ColumnName="SSL" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+          <ScalarProperty Name="PASS" ColumnName="PASS" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DELEGARs">
+      <EntityTypeMapping TypeName="WFARTHAModel.DELEGAR">
+        <MappingFragment StoreEntitySet="DELEGAR">
+          <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+          <ScalarProperty Name="USUARIOD_ID" ColumnName="USUARIOD_ID" />
+          <ScalarProperty Name="FECHAI" ColumnName="FECHAI" />
+          <ScalarProperty Name="FECHAF" ColumnName="FECHAF" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_AGENTEC">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_AGENTEC">
+        <MappingFragment StoreEntitySet="DET_AGENTEC">
+          <ScalarProperty Name="USUARIOC_ID" ColumnName="USUARIOC_ID" />
+          <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="USUARIOA_ID" ColumnName="USUARIOA_ID" />
+          <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+          <ScalarProperty Name="PRESUPUESTO" ColumnName="PRESUPUESTO" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_AGENTECA">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_AGENTECA">
+        <MappingFragment StoreEntitySet="DET_AGENTECA">
+          <ScalarProperty Name="ID_RUTA_AGENTE" ColumnName="ID_RUTA_AGENTE" />
+          <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+          <ScalarProperty Name="STEP_FASE" ColumnName="STEP_FASE" />
+          <ScalarProperty Name="STEP_ACCION" ColumnName="STEP_ACCION" />
+          <ScalarProperty Name="LIM_SUP" ColumnName="LIM_SUP" />
+          <ScalarProperty Name="AGENTE_SIG" ColumnName="AGENTE_SIG" />
+          <ScalarProperty Name="OVERRIDE" ColumnName="OVERRIDE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_APROB">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_APROB">
+        <MappingFragment StoreEntitySet="DET_APROB">
+          <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+          <ScalarProperty Name="ID_SOCIEDAD" ColumnName="ID_SOCIEDAD" />
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="STEP_FASE" ColumnName="STEP_FASE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_SOCIEDAD">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_SOCIEDAD">
+        <MappingFragment StoreEntitySet="DET_SOCIEDAD">
+          <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
+          <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+          <ScalarProperty Name="TIPOPRE" ColumnName="TIPOPRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_TIPODOC">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_TIPODOC">
+        <MappingFragment StoreEntitySet="DET_TIPODOC">
+          <ScalarProperty Name="TIPO_SOL" ColumnName="TIPO_SOL" />
+          <ScalarProperty Name="BLART" ColumnName="BLART" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_TIPOPRESUPUESTO">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_TIPOPRESUPUESTO">
+        <MappingFragment StoreEntitySet="DET_TIPOPRESUPUESTO">
+          <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
+          <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+          <ScalarProperty Name="TIPOPRE" ColumnName="TIPOPRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTOes">
+      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTO">
+        <MappingFragment StoreEntitySet="DOCUMENTO">
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="NUM_PRE" ColumnName="NUM_PRE" />
+          <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />
+          <ScalarProperty Name="TALL_ID" ColumnName="TALL_ID" />
+          <ScalarProperty Name="SOCIEDAD_ID" ColumnName="SOCIEDAD_ID" />
+          <ScalarProperty Name="CANTIDAD_EV" ColumnName="CANTIDAD_EV" />
+          <ScalarProperty Name="USUARIOC_ID" ColumnName="USUARIOC_ID" />
+          <ScalarProperty Name="USUARIOD_ID" ColumnName="USUARIOD_ID" />
+          <ScalarProperty Name="FECHAD" ColumnName="FECHAD" />
+          <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
+          <ScalarProperty Name="HORAC" ColumnName="HORAC" />
+          <ScalarProperty Name="FECHAC_PLAN" ColumnName="FECHAC_PLAN" />
+          <ScalarProperty Name="FECHAC_USER" ColumnName="FECHAC_USER" />
+          <ScalarProperty Name="HORAC_USER" ColumnName="HORAC_USER" />
+          <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+          <ScalarProperty Name="ESTATUS_C" ColumnName="ESTATUS_C" />
+          <ScalarProperty Name="ESTATUS_SAP" ColumnName="ESTATUS_SAP" />
+          <ScalarProperty Name="ESTATUS_WF" ColumnName="ESTATUS_WF" />
+          <ScalarProperty Name="DOCUMENTO_REF" ColumnName="DOCUMENTO_REF" />
+          <ScalarProperty Name="CONCEPTO" ColumnName="CONCEPTO" />
+          <ScalarProperty Name="NOTAS" ColumnName="NOTAS" />
+          <ScalarProperty Name="MONTO_DOC_MD" ColumnName="MONTO_DOC_MD" />
+          <ScalarProperty Name="MONTO_FIJO_MD" ColumnName="MONTO_FIJO_MD" />
+          <ScalarProperty Name="MONTO_BASE_GS_PCT_MD" ColumnName="MONTO_BASE_GS_PCT_MD" />
+          <ScalarProperty Name="MONTO_BASE_NS_PCT_MD" ColumnName="MONTO_BASE_NS_PCT_MD" />
+          <ScalarProperty Name="MONTO_DOC_ML" ColumnName="MONTO_DOC_ML" />
+          <ScalarProperty Name="MONTO_FIJO_ML" ColumnName="MONTO_FIJO_ML" />
+          <ScalarProperty Name="MONTO_BASE_GS_PCT_ML" ColumnName="MONTO_BASE_GS_PCT_ML" />
+          <ScalarProperty Name="MONTO_BASE_NS_PCT_ML" ColumnName="MONTO_BASE_NS_PCT_ML" />
+          <ScalarProperty Name="MONTO_DOC_ML2" ColumnName="MONTO_DOC_ML2" />
+          <ScalarProperty Name="MONTO_FIJO_ML2" ColumnName="MONTO_FIJO_ML2" />
+          <ScalarProperty Name="MONTO_BASE_GS_PCT_ML2" ColumnName="MONTO_BASE_GS_PCT_ML2" />
+          <ScalarProperty Name="MONTO_BASE_NS_PCT_ML2" ColumnName="MONTO_BASE_NS_PCT_ML2" />
+          <ScalarProperty Name="PORC_ADICIONAL" ColumnName="PORC_ADICIONAL" />
+          <ScalarProperty Name="IMPUESTO" ColumnName="IMPUESTO" />
+          <ScalarProperty Name="ESTATUS_EXT" ColumnName="ESTATUS_EXT" />
+          <ScalarProperty Name="PAYER_ID" ColumnName="PAYER_ID" />
+          <ScalarProperty Name="MONEDA_ID" ColumnName="MONEDA_ID" />
+          <ScalarProperty Name="MONEDAL_ID" ColumnName="MONEDAL_ID" />
+          <ScalarProperty Name="MONEDAL2_ID" ColumnName="MONEDAL2_ID" />
+          <ScalarProperty Name="TIPO_CAMBIO" ColumnName="TIPO_CAMBIO" />
+          <ScalarProperty Name="TIPO_CAMBIOL" ColumnName="TIPO_CAMBIOL" />
+          <ScalarProperty Name="TIPO_CAMBIOL2" ColumnName="TIPO_CAMBIOL2" />
+          <ScalarProperty Name="NO_FACTURA" ColumnName="NO_FACTURA" />
+          <ScalarProperty Name="FECHAD_SOPORTE" ColumnName="FECHAD_SOPORTE" />
+          <ScalarProperty Name="METODO_PAGO" ColumnName="METODO_PAGO" />
+          <ScalarProperty Name="NO_PROVEEDOR" ColumnName="NO_PROVEEDOR" />
+          <ScalarProperty Name="PASO_ACTUAL" ColumnName="PASO_ACTUAL" />
+          <ScalarProperty Name="AGENTE_ACTUAL" ColumnName="AGENTE_ACTUAL" />
+          <ScalarProperty Name="FECHA_PASO_ACTUAL" ColumnName="FECHA_PASO_ACTUAL" />
+          <ScalarProperty Name="PUESTO_ID" ColumnName="PUESTO_ID" />
+          <ScalarProperty Name="GALL_ID" ColumnName="GALL_ID" />
+          <ScalarProperty Name="CONCEPTO_ID" ColumnName="CONCEPTO_ID" />
+          <ScalarProperty Name="DOCUMENTO_SAP" ColumnName="DOCUMENTO_SAP" />
+          <ScalarProperty Name="FECHACON" ColumnName="FECHACON" />
+          <ScalarProperty Name="FECHA_BASE" ColumnName="FECHA_BASE" />
+          <ScalarProperty Name="REFERENCIA" ColumnName="REFERENCIA" />
+          <ScalarProperty Name="CONDICIONES" ColumnName="CONDICIONES" />
+          <ScalarProperty Name="TEXTO_POS" ColumnName="TEXTO_POS" />
+          <ScalarProperty Name="ASIGNACION_POS" ColumnName="ASIGNACION_POS" />
+          <ScalarProperty Name="CLAVE_CTA" ColumnName="CLAVE_CTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTOAs">
+      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOA">
+        <MappingFragment StoreEntitySet="DOCUMENTOA">
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="POSD" ColumnName="POSD" />
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+          <ScalarProperty Name="DESC" ColumnName="DESC" />
+          <ScalarProperty Name="CLASE" ColumnName="CLASE" />
+          <ScalarProperty Name="STEP_WF" ColumnName="STEP_WF" />
+          <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+          <ScalarProperty Name="PATH" ColumnName="PATH" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTOPs">
+      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOP">
+        <MappingFragment StoreEntitySet="DOCUMENTOP">
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="ACCION" ColumnName="ACCION" />
+          <ScalarProperty Name="FACTURA" ColumnName="FACTURA" />
+          <ScalarProperty Name="TCONCEPTO" ColumnName="TCONCEPTO" />
+          <ScalarProperty Name="GRUPO" ColumnName="GRUPO" />
+          <ScalarProperty Name="CUENTA" ColumnName="CUENTA" />
+          <ScalarProperty Name="TIPOIMP" ColumnName="TIPOIMP" />
+          <ScalarProperty Name="IMPUTACION" ColumnName="IMPUTACION" />
+          <ScalarProperty Name="CCOSTO" ColumnName="CCOSTO" />
+          <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+          <ScalarProperty Name="MWSKZ" ColumnName="MWSKZ" />
+          <ScalarProperty Name="IVA" ColumnName="IVA" />
+          <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+          <ScalarProperty Name="TEXTO" ColumnName="TEXTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTOPREs">
+      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOPRE">
+        <MappingFragment StoreEntitySet="DOCUMENTOPRE">
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTORs">
+      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOR">
+        <MappingFragment StoreEntitySet="DOCUMENTOR">
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="WITHT" ColumnName="WITHT" />
+          <ScalarProperty Name="WT_WITHCD" ColumnName="WT_WITHCD" />
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="BIMPONIBLE" ColumnName="BIMPONIBLE" />
+          <ScalarProperty Name="IMPORTE_RET" ColumnName="IMPORTE_RET" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTORPs">
+      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTORP">
+        <MappingFragment StoreEntitySet="DOCUMENTORP">
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="WITHT" ColumnName="WITHT" />
+          <ScalarProperty Name="WT_WITHCD" ColumnName="WT_WITHCD" />
+          <ScalarProperty Name="BIMPONIBLE" ColumnName="BIMPONIBLE" />
+          <ScalarProperty Name="IMPORTE_RET" ColumnName="IMPORTE_RET" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTOSAPs">
+      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOSAP">
+        <MappingFragment StoreEntitySet="DOCUMENTOSAP">
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
+          <ScalarProperty Name="EJERCICIO" ColumnName="EJERCICIO" />
+          <ScalarProperty Name="CUENTA_C" ColumnName="CUENTA_C" />
+          <ScalarProperty Name="CUENTA_A" ColumnName="CUENTA_A" />
+          <ScalarProperty Name="REGISTRO_PR" ColumnName="REGISTRO_PR" />
+          <ScalarProperty Name="REGISTRO_NO" ColumnName="REGISTRO_NO" />
+          <ScalarProperty Name="REGISTRO_RE" ColumnName="REGISTRO_RE" />
+          <ScalarProperty Name="REGISTRO_AP" ColumnName="REGISTRO_AP" />
+          <ScalarProperty Name="BLART" ColumnName="BLART" />
+          <ScalarProperty Name="LIFNR" ColumnName="LIFNR" />
+          <ScalarProperty Name="KUNNR" ColumnName="KUNNR" />
+          <ScalarProperty Name="IMPORTE" ColumnName="IMPORTE" />
+          <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FLUJOes">
+      <EntityTypeMapping TypeName="WFARTHAModel.FLUJO">
+        <MappingFragment StoreEntitySet="FLUJO">
+          <ScalarProperty Name="WORKF_ID" ColumnName="WORKF_ID" />
+          <ScalarProperty Name="WF_VERSION" ColumnName="WF_VERSION" />
+          <ScalarProperty Name="WF_POS" ColumnName="WF_POS" />
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="DETPOS" ColumnName="DETPOS" />
+          <ScalarProperty Name="DETVER" ColumnName="DETVER" />
+          <ScalarProperty Name="LOOP" ColumnName="LOOP" />
+          <ScalarProperty Name="USUARIOA_ID" ColumnName="USUARIOA_ID" />
+          <ScalarProperty Name="USUARIOD_ID" ColumnName="USUARIOD_ID" />
+          <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+          <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
+          <ScalarProperty Name="FECHAM" ColumnName="FECHAM" />
+          <ScalarProperty Name="COMENTARIO" ColumnName="COMENTARIO" />
+          <ScalarProperty Name="ID_RUTA_A" ColumnName="ID_RUTA_A" />
+          <ScalarProperty Name="RUTA_VERSION" ColumnName="RUTA_VERSION" />
+          <ScalarProperty Name="STEP_AUTO" ColumnName="STEP_AUTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FORMATOes">
+      <EntityTypeMapping TypeName="WFARTHAModel.FORMATO">
+        <MappingFragment StoreEntitySet="FORMATO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MILES" ColumnName="MILES" />
+          <ScalarProperty Name="DECIMALES" ColumnName="DECIMALES" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMPUESTOes">
+      <EntityTypeMapping TypeName="WFARTHAModel.IMPUESTO">
+        <MappingFragment StoreEntitySet="IMPUESTO">
+          <ScalarProperty Name="MWSKZ" ColumnName="MWSKZ" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMPUESTOTs">
+      <EntityTypeMapping TypeName="WFARTHAModel.IMPUESTOT">
+        <MappingFragment StoreEntitySet="IMPUESTOT">
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="MWSKZ" ColumnName="MWSKZ" />
+          <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MIEMBROS">
+      <EntityTypeMapping TypeName="WFARTHAModel.MIEMBRO">
+        <MappingFragment StoreEntitySet="MIEMBROS">
+          <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+          <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MONEDAs">
+      <EntityTypeMapping TypeName="WFARTHAModel.MONEDA">
+        <MappingFragment StoreEntitySet="MONEDA">
+          <ScalarProperty Name="WAERS" ColumnName="WAERS" />
+          <ScalarProperty Name="ISOCD" ColumnName="ISOCD" />
+          <ScalarProperty Name="ALTWR" ColumnName="ALTWR" />
+          <ScalarProperty Name="LTEXT" ColumnName="LTEXT" />
+          <ScalarProperty Name="KTEXT" ColumnName="KTEXT" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAGINAs">
+      <EntityTypeMapping TypeName="WFARTHAModel.PAGINA">
+        <MappingFragment StoreEntitySet="PAGINA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="TITULO" ColumnName="TITULO" />
+          <ScalarProperty Name="CARPETA_ID" ColumnName="CARPETA_ID" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="MOSTRAR" ColumnName="MOSTRAR" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAGINATs">
+      <EntityTypeMapping TypeName="WFARTHAModel.PAGINAT">
+        <MappingFragment StoreEntitySet="PAGINAT">
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PERMISO_PAGINA">
+      <EntityTypeMapping TypeName="WFARTHAModel.PERMISO_PAGINA">
+        <MappingFragment StoreEntitySet="PERMISO_PAGINA">
+          <ScalarProperty Name="PAGINA_ID" ColumnName="PAGINA_ID" />
+          <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
+          <ScalarProperty Name="PERMISO" ColumnName="PERMISO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POSICIONs">
+      <EntityTypeMapping TypeName="WFARTHAModel.POSICION">
+        <MappingFragment StoreEntitySet="POSICION">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROVEEDORs">
+      <EntityTypeMapping TypeName="WFARTHAModel.PROVEEDOR">
+        <MappingFragment StoreEntitySet="PROVEEDOR">
+          <ScalarProperty Name="LIFNR" ColumnName="LIFNR" />
+          <ScalarProperty Name="LAND1" ColumnName="LAND1" />
+          <ScalarProperty Name="NAME1" ColumnName="NAME1" />
+          <ScalarProperty Name="NAME2" ColumnName="NAME2" />
+          <ScalarProperty Name="NAME3" ColumnName="NAME3" />
+          <ScalarProperty Name="NAME4" ColumnName="NAME4" />
+          <ScalarProperty Name="ORT01" ColumnName="ORT01" />
+          <ScalarProperty Name="ORT02" ColumnName="ORT02" />
+          <ScalarProperty Name="PFACH" ColumnName="PFACH" />
+          <ScalarProperty Name="PSTL2" ColumnName="PSTL2" />
+          <ScalarProperty Name="REGIO" ColumnName="REGIO" />
+          <ScalarProperty Name="STRAS" ColumnName="STRAS" />
+          <ScalarProperty Name="ADRNR" ColumnName="ADRNR" />
+          <ScalarProperty Name="STCD1" ColumnName="STCD1" />
+          <ScalarProperty Name="STCD2" ColumnName="STCD2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PROYECTOes">
+      <EntityTypeMapping TypeName="WFARTHAModel.PROYECTO">
+        <MappingFragment StoreEntitySet="PROYECTO">
+          <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
+          <ScalarProperty Name="NONBRE" ColumnName="NONBRE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PUESTOes">
+      <EntityTypeMapping TypeName="WFARTHAModel.PUESTO">
+        <MappingFragment StoreEntitySet="PUESTO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PUESTOTs">
+      <EntityTypeMapping TypeName="WFARTHAModel.PUESTOT">
+        <MappingFragment StoreEntitySet="PUESTOT">
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="PUESTO_ID" ColumnName="PUESTO_ID" />
+          <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RANGOes">
+      <EntityTypeMapping TypeName="WFARTHAModel.RANGO">
+        <MappingFragment StoreEntitySet="RANGO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="INICIO" ColumnName="INICIO" />
+          <ScalarProperty Name="FIN" ColumnName="FIN" />
+          <ScalarProperty Name="ACTUAL" ColumnName="ACTUAL" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RETENCIONs">
+      <EntityTypeMapping TypeName="WFARTHAModel.RETENCION">
+        <MappingFragment StoreEntitySet="RETENCION">
+          <ScalarProperty Name="WITHT" ColumnName="WITHT" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+          <ScalarProperty Name="WITHT_SUB" ColumnName="WITHT_SUB" />
+          <ScalarProperty Name="PORC" ColumnName="PORC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RETENCION_PROV">
+      <EntityTypeMapping TypeName="WFARTHAModel.RETENCION_PROV">
+        <MappingFragment StoreEntitySet="RETENCION_PROV">
+          <ScalarProperty Name="LIFNR" ColumnName="LIFNR" />
+          <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
+          <ScalarProperty Name="WITHT" ColumnName="WITHT" />
+          <ScalarProperty Name="WT_WITHCD" ColumnName="WT_WITHCD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RETENCIONTs">
+      <EntityTypeMapping TypeName="WFARTHAModel.RETENCIONT">
+        <MappingFragment StoreEntitySet="RETENCIONT">
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="WITHT" ColumnName="WITHT" />
+          <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLs">
+      <EntityTypeMapping TypeName="WFARTHAModel.ROL">
+        <MappingFragment StoreEntitySet="ROL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ROLTs">
+      <EntityTypeMapping TypeName="WFARTHAModel.ROLT">
+        <MappingFragment StoreEntitySet="ROLT">
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
+          <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SOCIEDADs">
+      <EntityTypeMapping TypeName="WFARTHAModel.SOCIEDAD">
+        <MappingFragment StoreEntitySet="SOCIEDAD">
+          <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
+          <ScalarProperty Name="BUTXT" ColumnName="BUTXT" />
+          <ScalarProperty Name="ORT01" ColumnName="ORT01" />
+          <ScalarProperty Name="SUBREGIO" ColumnName="SUBREGIO" />
+          <ScalarProperty Name="WAERS" ColumnName="WAERS" />
+          <ScalarProperty Name="SPRAS" ColumnName="SPRAS" />
+          <ScalarProperty Name="NAME1" ColumnName="NAME1" />
+          <ScalarProperty Name="KTOPL" ColumnName="KTOPL" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+          <ScalarProperty Name="REGION" ColumnName="REGION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SPRAS">
+      <EntityTypeMapping TypeName="WFARTHAModel.SPRA">
+        <MappingFragment StoreEntitySet="SPRAS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TEXTOes">
+      <EntityTypeMapping TypeName="WFARTHAModel.TEXTO">
+        <MappingFragment StoreEntitySet="TEXTO">
+          <ScalarProperty Name="PAGINA_ID" ColumnName="PAGINA_ID" />
+          <ScalarProperty Name="CAMPO_ID" ColumnName="CAMPO_ID" />
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="TEXTOS" ColumnName="TEXTOS" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPOPRESUPUESTOes">
+      <EntityTypeMapping TypeName="WFARTHAModel.TIPOPRESUPUESTO">
+        <MappingFragment StoreEntitySet="TIPOPRESUPUESTO">
+          <ScalarProperty Name="TIPOPRE" ColumnName="TIPOPRE" />
+          <ScalarProperty Name="DESC" ColumnName="DESC" />
+          <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPOPRESUPUESTOTs">
+      <EntityTypeMapping TypeName="WFARTHAModel.TIPOPRESUPUESTOT">
+        <MappingFragment StoreEntitySet="TIPOPRESUPUESTOT">
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="TIPOPRE" ColumnName="TIPOPRE" />
+          <ScalarProperty Name="TEXT30" ColumnName="TEXT30" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TSOLs">
+      <EntityTypeMapping TypeName="WFARTHAModel.TSOL">
+        <MappingFragment StoreEntitySet="TSOL">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="RANGO_ID" ColumnName="RANGO_ID" />
+          <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TSOLTs">
+      <EntityTypeMapping TypeName="WFARTHAModel.TSOLT">
+        <MappingFragment StoreEntitySet="TSOLT">
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />
+          <ScalarProperty Name="TXT020" ColumnName="TXT020" />
+          <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TSOPORTEs">
+      <EntityTypeMapping TypeName="WFARTHAModel.TSOPORTE">
+        <MappingFragment StoreEntitySet="TSOPORTE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TSOPORTETs">
+      <EntityTypeMapping TypeName="WFARTHAModel.TSOPORTET">
+        <MappingFragment StoreEntitySet="TSOPORTET">
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="TSOPORTE_ID" ColumnName="TSOPORTE_ID" />
+          <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIOs">
+      <EntityTypeMapping TypeName="WFARTHAModel.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PASS" ColumnName="PASS" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="APELLIDO_P" ColumnName="APELLIDO_P" />
+          <ScalarProperty Name="APELLIDO_M" ColumnName="APELLIDO_M" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+          <ScalarProperty Name="PUESTO_ID" ColumnName="PUESTO_ID" />
+          <ScalarProperty Name="MANAGER" ColumnName="MANAGER" />
+          <ScalarProperty Name="BACKUP_ID" ColumnName="BACKUP_ID" />
+          <ScalarProperty Name="BUNIT" ColumnName="BUNIT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WARNINGs">
+      <EntityTypeMapping TypeName="WFARTHAModel.WARNING">
+        <MappingFragment StoreEntitySet="WARNING">
+          <ScalarProperty Name="PAGINA_ID" ColumnName="PAGINA_ID" />
+          <ScalarProperty Name="CAMPO_ID" ColumnName="CAMPO_ID" />
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="WARNING1" ColumnName="WARNING" />
+          <ScalarProperty Name="POSICION" ColumnName="POSICION" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WORKFHs">
+      <EntityTypeMapping TypeName="WFARTHAModel.WORKFH">
+        <MappingFragment StoreEntitySet="WORKFH">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />
+          <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+          <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+          <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
+          <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
+          <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WORKFPs">
+      <EntityTypeMapping TypeName="WFARTHAModel.WORKFP">
+        <MappingFragment StoreEntitySet="WORKFP">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="AGENTE_ID" ColumnName="AGENTE_ID" />
+          <ScalarProperty Name="ACCION_ID" ColumnName="ACCION_ID" />
+          <ScalarProperty Name="NEXT_STEP" ColumnName="NEXT_STEP" />
+          <ScalarProperty Name="NS_ACCEPT" ColumnName="NS_ACCEPT" />
+          <ScalarProperty Name="NS_REJECT" ColumnName="NS_REJECT" />
+          <ScalarProperty Name="LOOPS" ColumnName="LOOPS" />
+          <ScalarProperty Name="CONDICION_ID" ColumnName="CONDICION_ID" />
+          <ScalarProperty Name="NS_CN_ACCEPT" ColumnName="NS_CN_ACCEPT" />
+          <ScalarProperty Name="NS_CN_REJECT" ColumnName="NS_CN_REJECT" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="EMAIL_TXT_ID" ColumnName="EMAIL_TXT_ID" />
+          <ScalarProperty Name="EMAIL_INN_ID" ColumnName="EMAIL_INN_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WORKFTs">
+      <EntityTypeMapping TypeName="WFARTHAModel.WORKFT">
+        <MappingFragment StoreEntitySet="WORKFT">
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="WF_ID" ColumnName="WF_ID" />
+          <ScalarProperty Name="WF_VERSION" ColumnName="WF_VERSION" />
+          <ScalarProperty Name="TXT20" ColumnName="TXT20" />
+          <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WORKFVs">
+      <EntityTypeMapping TypeName="WFARTHAModel.WORKFV">
+        <MappingFragment StoreEntitySet="WORKFV">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+          <ScalarProperty Name="FECHAI" ColumnName="FECHAI" />
+          <ScalarProperty Name="FECHAF" ColumnName="FECHAF" />
+          <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+          <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_AGENTECC">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_AGENTECC">
+        <MappingFragment StoreEntitySet="DET_AGENTECC">
+          <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+          <ScalarProperty Name="USUARIOC_ID" ColumnName="USUARIOC_ID" />
+          <ScalarProperty Name="ID_RUTA_AGENTE" ColumnName="ID_RUTA_AGENTE" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="USUARIOA_ID" ColumnName="USUARIOA_ID" />
+          <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_PEP">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_PEP">
+        <MappingFragment StoreEntitySet="DET_PEP">
+          <ScalarProperty Name="PSPNR" ColumnName="PSPNR" />
+          <ScalarProperty Name="POSID" ColumnName="POSID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="CONCEPTO" ColumnName="CONCEPTO" />
+          <ScalarProperty Name="TIPO_CONCEPTO" ColumnName="TIPO_CONCEPTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IIMPUESTOes">
+      <EntityTypeMapping TypeName="WFARTHAModel.IIMPUESTO">
+        <MappingFragment StoreEntitySet="IIMPUESTO">
+          <ScalarProperty Name="MWSKZ" ColumnName="MWSKZ" />
+          <ScalarProperty Name="KSCHL" ColumnName="KSCHL" />
+          <ScalarProperty Name="KBETR" ColumnName="KBETR" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CARPETAVs">
+      <EntityTypeMapping TypeName="WFARTHAModel.CARPETAV">
+        <MappingFragment StoreEntitySet="CARPETAV">
+          <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTOVs">
+      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOV">
+        <MappingFragment StoreEntitySet="DOCUMENTOV">
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />
+          <ScalarProperty Name="TALL_ID" ColumnName="TALL_ID" />
+          <ScalarProperty Name="SOCIEDAD_ID" ColumnName="SOCIEDAD_ID" />
+          <ScalarProperty Name="CANTIDAD_EV" ColumnName="CANTIDAD_EV" />
+          <ScalarProperty Name="USUARIOC_ID" ColumnName="USUARIOC_ID" />
+          <ScalarProperty Name="FECHAD" ColumnName="FECHAD" />
+          <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
+          <ScalarProperty Name="HORAC" ColumnName="HORAC" />
+          <ScalarProperty Name="FECHAC_PLAN" ColumnName="FECHAC_PLAN" />
+          <ScalarProperty Name="FECHAC_USER" ColumnName="FECHAC_USER" />
+          <ScalarProperty Name="HORAC_USER" ColumnName="HORAC_USER" />
+          <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+          <ScalarProperty Name="ESTATUS_C" ColumnName="ESTATUS_C" />
+          <ScalarProperty Name="ESTATUS_SAP" ColumnName="ESTATUS_SAP" />
+          <ScalarProperty Name="ESTATUS_WF" ColumnName="ESTATUS_WF" />
+          <ScalarProperty Name="DOCUMENTO_REF" ColumnName="DOCUMENTO_REF" />
+          <ScalarProperty Name="CONCEPTO" ColumnName="CONCEPTO" />
+          <ScalarProperty Name="NOTAS" ColumnName="NOTAS" />
+          <ScalarProperty Name="MONTO_DOC_MD" ColumnName="MONTO_DOC_MD" />
+          <ScalarProperty Name="MONTO_FIJO_MD" ColumnName="MONTO_FIJO_MD" />
+          <ScalarProperty Name="MONTO_BASE_GS_PCT_MD" ColumnName="MONTO_BASE_GS_PCT_MD" />
+          <ScalarProperty Name="MONTO_BASE_NS_PCT_MD" ColumnName="MONTO_BASE_NS_PCT_MD" />
+          <ScalarProperty Name="MONTO_DOC_ML" ColumnName="MONTO_DOC_ML" />
+          <ScalarProperty Name="MONTO_FIJO_ML" ColumnName="MONTO_FIJO_ML" />
+          <ScalarProperty Name="MONTO_BASE_GS_PCT_ML" ColumnName="MONTO_BASE_GS_PCT_ML" />
+          <ScalarProperty Name="MONTO_BASE_NS_PCT_ML" ColumnName="MONTO_BASE_NS_PCT_ML" />
+          <ScalarProperty Name="MONTO_DOC_ML2" ColumnName="MONTO_DOC_ML2" />
+          <ScalarProperty Name="MONTO_FIJO_ML2" ColumnName="MONTO_FIJO_ML2" />
+          <ScalarProperty Name="MONTO_BASE_GS_PCT_ML2" ColumnName="MONTO_BASE_GS_PCT_ML2" />
+          <ScalarProperty Name="MONTO_BASE_NS_PCT_ML2" ColumnName="MONTO_BASE_NS_PCT_ML2" />
+          <ScalarProperty Name="PORC_ADICIONAL" ColumnName="PORC_ADICIONAL" />
+          <ScalarProperty Name="IMPUESTO" ColumnName="IMPUESTO" />
+          <ScalarProperty Name="ESTATUS_EXT" ColumnName="ESTATUS_EXT" />
+          <ScalarProperty Name="PAYER_ID" ColumnName="PAYER_ID" />
+          <ScalarProperty Name="MONEDA_ID" ColumnName="MONEDA_ID" />
+          <ScalarProperty Name="MONEDAL_ID" ColumnName="MONEDAL_ID" />
+          <ScalarProperty Name="MONEDAL2_ID" ColumnName="MONEDAL2_ID" />
+          <ScalarProperty Name="TIPO_CAMBIO" ColumnName="TIPO_CAMBIO" />
+          <ScalarProperty Name="TIPO_CAMBIOL" ColumnName="TIPO_CAMBIOL" />
+          <ScalarProperty Name="TIPO_CAMBIOL2" ColumnName="TIPO_CAMBIOL2" />
+          <ScalarProperty Name="NO_FACTURA" ColumnName="NO_FACTURA" />
+          <ScalarProperty Name="FECHAD_SOPORTE" ColumnName="FECHAD_SOPORTE" />
+          <ScalarProperty Name="METODO_PAGO" ColumnName="METODO_PAGO" />
+          <ScalarProperty Name="NO_PROVEEDOR" ColumnName="NO_PROVEEDOR" />
+          <ScalarProperty Name="PASO_ACTUAL" ColumnName="PASO_ACTUAL" />
+          <ScalarProperty Name="AGENTE_ACTUAL" ColumnName="AGENTE_ACTUAL" />
+          <ScalarProperty Name="FECHA_PASO_ACTUAL" ColumnName="FECHA_PASO_ACTUAL" />
+          <ScalarProperty Name="USUARIOA_ID" ColumnName="USUARIOA_ID" />
+          <ScalarProperty Name="EXPR2" ColumnName="EXPR2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAGINAVs">
+      <EntityTypeMapping TypeName="WFARTHAModel.PAGINAV">
+        <MappingFragment StoreEntitySet="PAGINAV">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="PAGINA_ID" ColumnName="PAGINA_ID" />
+          <ScalarProperty Name="PAGINA_URL" ColumnName="PAGINA_URL" />
+          <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+          <ScalarProperty Name="CARPETA_ID" ColumnName="CARPETA_ID" />
+          <ScalarProperty Name="CARPETA_URL" ColumnName="CARPETA_URL" />
+          <ScalarProperty Name="ICON" ColumnName="ICON" />
+          <ScalarProperty Name="PERMISO" ColumnName="PERMISO" />
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="USUARIO_SPRAS" ColumnName="USUARIO_SPRAS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WARNINGVs">
+      <EntityTypeMapping TypeName="WFARTHAModel.WARNINGV">
+        <MappingFragment StoreEntitySet="WARNINGV">
+          <ScalarProperty Name="PAGINA_ID" ColumnName="PAGINA_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+          <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+          <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
+          <ScalarProperty Name="WARNING" ColumnName="WARNING" />
+          <ScalarProperty Name="POSICION" ColumnName="POSICION" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="DET_PROVEEDOR" TypeName="WFARTHAModel.DET_PROVEEDOR" StoreEntitySet="DET_PROVEEDOR">
+      <EndProperty Name="PROVEEDOR">
+        <ScalarProperty Name="LIFNR" ColumnName="ID_LIFNR" />
+      </EndProperty>
+      <EndProperty Name="SOCIEDAD">
+        <ScalarProperty Name="BUKRS" ColumnName="ID_BUKRS" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="DET_PROYECTO" TypeName="WFARTHAModel.DET_PROYECTO" StoreEntitySet="DET_PROYECTO">
+      <EndProperty Name="PROYECTO">
+        <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
+      </EndProperty>
+      <EndProperty Name="SOCIEDAD">
+        <ScalarProperty Name="BUKRS" ColumnName="ID_BUKRS" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

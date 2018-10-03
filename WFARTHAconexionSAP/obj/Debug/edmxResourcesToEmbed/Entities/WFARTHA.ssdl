@@ -1,0 +1,2216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WFARTHAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ACCION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DESCCRIPCION" Type="nvarchar" MaxLength="50" />
+    <Property Name="TIPO" Type="nchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="APPSETTING">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NOMBRE" Type="nvarchar" MaxLength="50" />
+    <Property Name="VALUE" Type="nvarchar" MaxLength="255" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CAMPOS">
+    <Key>
+      <PropertyRef Name="PAGINA_ID" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="PAGINA_ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="50" />
+    <Property Name="TIPO" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="CARPETA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="URL" Type="nvarchar" MaxLength="50" />
+    <Property Name="TITULO" Type="nvarchar" MaxLength="50" />
+    <Property Name="ICON" Type="nvarchar" MaxLength="20" />
+    <Property Name="ACTIVO" Type="bit" />
+  </EntityType>
+  <EntityType Name="CARPETAT">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CONCEPTO">
+    <Key>
+      <PropertyRef Name="ID_CONCEPTO" />
+      <PropertyRef Name="TIPO_CONCEPTO" />
+    </Key>
+    <Property Name="ID_CONCEPTO" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="DESC_CONCEPTO" Type="nvarchar" MaxLength="80" Nullable="false" />
+    <Property Name="TIPO_CONCEPTO" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="TIPO_IMPUTACION" Type="nchar" MaxLength="1" />
+    <Property Name="ID_PRESUPUESTO" Type="nchar" MaxLength="2" />
+    <Property Name="TIPO_PRESUPUESTO" Type="nchar" MaxLength="1" />
+    <Property Name="CUENTA" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="CONMAIL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="HOST" Type="nvarchar" MaxLength="100" />
+    <Property Name="PORT" Type="int" />
+    <Property Name="SSL" Type="bit" Nullable="false" />
+    <Property Name="MAIL" Type="nvarchar" MaxLength="100" />
+    <Property Name="PASS" Type="nvarchar" MaxLength="100" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DELEGAR">
+    <Key>
+      <PropertyRef Name="USUARIO_ID" />
+      <PropertyRef Name="USUARIOD_ID" />
+      <PropertyRef Name="FECHAI" />
+      <PropertyRef Name="FECHAF" />
+    </Key>
+    <Property Name="USUARIO_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="USUARIOD_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="FECHAI" Type="date" Nullable="false" />
+    <Property Name="FECHAF" Type="date" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DET_AGENTEC">
+    <Key>
+      <PropertyRef Name="USUARIOC_ID" />
+      <PropertyRef Name="VERSION" />
+      <PropertyRef Name="POS" />
+    </Key>
+    <Property Name="USUARIOC_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="VERSION" Type="int" Nullable="false" />
+    <Property Name="POS" Type="int" Nullable="false" />
+    <Property Name="USUARIOA_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="MONTO" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="PRESUPUESTO" Type="bit" Nullable="false" />
+    <Property Name="MAIL" Type="bit" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DET_AGENTECA">
+    <Key>
+      <PropertyRef Name="ID_RUTA_AGENTE" />
+      <PropertyRef Name="VERSION" />
+      <PropertyRef Name="STEP_FASE" />
+      <PropertyRef Name="STEP_ACCION" />
+      <PropertyRef Name="AGENTE_SIG" />
+    </Key>
+    <Property Name="ID_RUTA_AGENTE" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="VERSION" Type="int" Nullable="false" />
+    <Property Name="STEP_FASE" Type="int" Nullable="false" />
+    <Property Name="STEP_ACCION" Type="int" Nullable="false" />
+    <Property Name="LIM_SUP" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+    <Property Name="AGENTE_SIG" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="OVERRIDE" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PAGOS.dbo.DET_AGENTECC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DET_AGENTECC">
+    <Key>
+      <PropertyRef Name="VERSION" />
+      <PropertyRef Name="USUARIOC_ID" />
+      <PropertyRef Name="ID_RUTA_AGENTE" />
+      <PropertyRef Name="USUARIOA_ID" />
+      <PropertyRef Name="FECHAC" />
+    </Key>
+    <Property Name="VERSION" Type="int" Nullable="false" />
+    <Property Name="USUARIOC_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="ID_RUTA_AGENTE" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="nchar" MaxLength="40" />
+    <Property Name="USUARIOA_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="FECHAC" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DET_APROB">
+    <Key>
+      <PropertyRef Name="VERSION" />
+      <PropertyRef Name="ID_SOCIEDAD" />
+      <PropertyRef Name="ID_USUARIO" />
+    </Key>
+    <Property Name="VERSION" Type="int" Nullable="false" />
+    <Property Name="ID_SOCIEDAD" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="ID_USUARIO" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="STEP_FASE" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PAGOS.dbo.DET_PEP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DET_PEP">
+    <Key>
+      <PropertyRef Name="PSPNR" />
+      <PropertyRef Name="DESCRIPCION" />
+      <PropertyRef Name="CONCEPTO" />
+      <PropertyRef Name="TIPO_CONCEPTO" />
+    </Key>
+    <Property Name="PSPNR" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="POSID" Type="int" />
+    <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="CONCEPTO" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TIPO_CONCEPTO" Type="nvarchar" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DET_PROVEEDOR">
+    <Key>
+      <PropertyRef Name="ID_LIFNR" />
+      <PropertyRef Name="ID_BUKRS" />
+    </Key>
+    <Property Name="ID_LIFNR" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="ID_BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DET_PROYECTO">
+    <Key>
+      <PropertyRef Name="ID_PSPNR" />
+      <PropertyRef Name="ID_BUKRS" />
+    </Key>
+    <Property Name="ID_PSPNR" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ID_BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DET_SOCIEDAD">
+    <Key>
+      <PropertyRef Name="BUKRS" />
+      <PropertyRef Name="ID_USER" />
+    </Key>
+    <Property Name="BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="ID_USER" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="TIPOPRE" Type="varchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DET_TIPODOC">
+    <Key>
+      <PropertyRef Name="TIPO_SOL" />
+    </Key>
+    <Property Name="TIPO_SOL" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="BLART" Type="nchar" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DET_TIPOPRESUPUESTO">
+    <Key>
+      <PropertyRef Name="BUKRS" />
+      <PropertyRef Name="ID_USER" />
+    </Key>
+    <Property Name="BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="ID_USER" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="TIPOPRE" Type="varchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DOCUMENTO">
+    <Key>
+      <PropertyRef Name="NUM_DOC" />
+    </Key>
+    <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="NUM_PRE" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="TSOL_ID" Type="nvarchar" MaxLength="10" />
+    <Property Name="TALL_ID" Type="nvarchar" MaxLength="10" />
+    <Property Name="SOCIEDAD_ID" Type="nchar" MaxLength="4" />
+    <Property Name="CANTIDAD_EV" Type="decimal" Precision="3" Scale="0" />
+    <Property Name="USUARIOC_ID" Type="nvarchar" MaxLength="16" />
+    <Property Name="USUARIOD_ID" Type="nvarchar" MaxLength="16" />
+    <Property Name="FECHAD" Type="datetime" />
+    <Property Name="FECHAC" Type="datetime" />
+    <Property Name="HORAC" Type="time" Precision="7" />
+    <Property Name="FECHAC_PLAN" Type="date" />
+    <Property Name="FECHAC_USER" Type="date" />
+    <Property Name="HORAC_USER" Type="time" Precision="7" />
+    <Property Name="ESTATUS" Type="nchar" MaxLength="1" />
+    <Property Name="ESTATUS_C" Type="nchar" MaxLength="1" />
+    <Property Name="ESTATUS_SAP" Type="nchar" MaxLength="1" />
+    <Property Name="ESTATUS_WF" Type="nchar" MaxLength="1" />
+    <Property Name="DOCUMENTO_REF" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="CONCEPTO" Type="nvarchar" MaxLength="100" />
+    <Property Name="NOTAS" Type="nvarchar" MaxLength="255" />
+    <Property Name="MONTO_DOC_MD" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_FIJO_MD" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_BASE_GS_PCT_MD" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_BASE_NS_PCT_MD" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_DOC_ML" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_FIJO_ML" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_BASE_GS_PCT_ML" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_BASE_NS_PCT_ML" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_DOC_ML2" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_FIJO_ML2" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_BASE_GS_PCT_ML2" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_BASE_NS_PCT_ML2" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="PORC_ADICIONAL" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="IMPUESTO" Type="nchar" MaxLength="2" />
+    <Property Name="ESTATUS_EXT" Type="nchar" MaxLength="1" />
+    <Property Name="PAYER_ID" Type="nchar" MaxLength="10" />
+    <Property Name="MONEDA_ID" Type="nchar" MaxLength="3" />
+    <Property Name="MONEDAL_ID" Type="nchar" MaxLength="10" />
+    <Property Name="MONEDAL2_ID" Type="nchar" MaxLength="10" />
+    <Property Name="TIPO_CAMBIO" Type="decimal" Precision="10" Scale="6" />
+    <Property Name="TIPO_CAMBIOL" Type="decimal" Precision="10" Scale="6" />
+    <Property Name="TIPO_CAMBIOL2" Type="decimal" Precision="10" Scale="6" />
+    <Property Name="NO_FACTURA" Type="nvarchar" MaxLength="30" />
+    <Property Name="FECHAD_SOPORTE" Type="datetime" />
+    <Property Name="METODO_PAGO" Type="nchar" MaxLength="10" />
+    <Property Name="NO_PROVEEDOR" Type="nchar" MaxLength="10" />
+    <Property Name="PASO_ACTUAL" Type="int" />
+    <Property Name="AGENTE_ACTUAL" Type="nvarchar" MaxLength="16" />
+    <Property Name="FECHA_PASO_ACTUAL" Type="datetime" />
+    <Property Name="PUESTO_ID" Type="int" />
+    <Property Name="GALL_ID" Type="nvarchar" MaxLength="5" />
+    <Property Name="CONCEPTO_ID" Type="int" />
+    <Property Name="DOCUMENTO_SAP" Type="nvarchar" MaxLength="10" />
+    <Property Name="FECHACON" Type="datetime" />
+    <Property Name="FECHA_BASE" Type="datetime" />
+    <Property Name="REFERENCIA" Type="nchar" MaxLength="16" />
+    <Property Name="CONDICIONES" Type="nchar" MaxLength="4" />
+    <Property Name="TEXTO_POS" Type="nchar" MaxLength="50" />
+    <Property Name="ASIGNACION_POS" Type="nchar" MaxLength="18" />
+    <Property Name="CLAVE_CTA" Type="nchar" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="DOCUMENTOA">
+    <Key>
+      <PropertyRef Name="NUM_DOC" />
+      <PropertyRef Name="POSD" />
+      <PropertyRef Name="POS" />
+    </Key>
+    <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="POSD" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+    <Property Name="POS" Type="int" Nullable="false" />
+    <Property Name="TIPO" Type="nchar" MaxLength="4" />
+    <Property Name="DESC" Type="varchar" MaxLength="200" />
+    <Property Name="CLASE" Type="nchar" MaxLength="3" />
+    <Property Name="STEP_WF" Type="int" />
+    <Property Name="USUARIO_ID" Type="nvarchar" MaxLength="16" />
+    <Property Name="PATH" Type="nvarchar" MaxLength="500" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DOCUMENTOP">
+    <Key>
+      <PropertyRef Name="NUM_DOC" />
+      <PropertyRef Name="POS" />
+    </Key>
+    <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="POS" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+    <Property Name="ACCION" Type="nchar" MaxLength="1" Nullable="false" />
+    <Property Name="FACTURA" Type="nchar" MaxLength="10" />
+    <Property Name="TCONCEPTO" Type="nchar" MaxLength="2" />
+    <Property Name="GRUPO" Type="nchar" MaxLength="10" />
+    <Property Name="CUENTA" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TIPOIMP" Type="nchar" MaxLength="1" />
+    <Property Name="IMPUTACION" Type="nchar" MaxLength="30" />
+    <Property Name="CCOSTO" Type="nchar" MaxLength="20" />
+    <Property Name="MONTO" Type="decimal" Precision="13" Scale="5" Nullable="false" />
+    <Property Name="MWSKZ" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="IVA" Type="decimal" Precision="13" Scale="5" Nullable="false" />
+    <Property Name="TOTAL" Type="decimal" Precision="13" Scale="5" Nullable="false" />
+    <Property Name="TEXTO" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="DOCUMENTOPRE">
+    <Key>
+      <PropertyRef Name="NUM_DOC" />
+      <PropertyRef Name="POS" />
+    </Key>
+    <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="POS" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+    <Property Name="MESSAGE" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DOCUMENTOR">
+    <Key>
+      <PropertyRef Name="NUM_DOC" />
+      <PropertyRef Name="WITHT" />
+      <PropertyRef Name="WT_WITHCD" />
+    </Key>
+    <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="POS" Type="numeric" Precision="5" Scale="0" />
+    <Property Name="BIMPONIBLE" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="IMPORTE_RET" Type="decimal" Precision="13" Scale="2" />
+  </EntityType>
+  <EntityType Name="DOCUMENTORP">
+    <Key>
+      <PropertyRef Name="NUM_DOC" />
+      <PropertyRef Name="POS" />
+      <PropertyRef Name="WITHT" />
+      <PropertyRef Name="WT_WITHCD" />
+    </Key>
+    <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="POS" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+    <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="BIMPONIBLE" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="IMPORTE_RET" Type="decimal" Precision="13" Scale="2" />
+  </EntityType>
+  <EntityType Name="DOCUMENTOSAP">
+    <Key>
+      <PropertyRef Name="NUM_DOC" />
+    </Key>
+    <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="BUKRS" Type="nchar" MaxLength="4" />
+    <Property Name="EJERCICIO" Type="int" />
+    <Property Name="CUENTA_C" Type="nchar" MaxLength="10" />
+    <Property Name="CUENTA_A" Type="nchar" MaxLength="10" />
+    <Property Name="REGISTRO_PR" Type="nchar" MaxLength="10" />
+    <Property Name="REGISTRO_NO" Type="nchar" MaxLength="10" />
+    <Property Name="REGISTRO_RE" Type="nchar" MaxLength="10" />
+    <Property Name="REGISTRO_AP" Type="nchar" MaxLength="10" />
+    <Property Name="BLART" Type="nchar" MaxLength="2" />
+    <Property Name="LIFNR" Type="nchar" MaxLength="10" />
+    <Property Name="KUNNR" Type="nchar" MaxLength="10" />
+    <Property Name="IMPORTE" Type="decimal" Precision="13" Scale="5" />
+    <Property Name="DESCR" Type="nvarchar" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="FLUJO">
+    <Key>
+      <PropertyRef Name="WORKF_ID" />
+      <PropertyRef Name="WF_VERSION" />
+      <PropertyRef Name="WF_POS" />
+      <PropertyRef Name="NUM_DOC" />
+      <PropertyRef Name="POS" />
+      <PropertyRef Name="DETPOS" />
+    </Key>
+    <Property Name="WORKF_ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="WF_VERSION" Type="int" Nullable="false" />
+    <Property Name="WF_POS" Type="int" Nullable="false" />
+    <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="POS" Type="int" Nullable="false" />
+    <Property Name="DETPOS" Type="int" Nullable="false" />
+    <Property Name="DETVER" Type="int" />
+    <Property Name="LOOP" Type="int" />
+    <Property Name="USUARIOA_ID" Type="nvarchar" MaxLength="16" />
+    <Property Name="USUARIOD_ID" Type="nvarchar" MaxLength="16" />
+    <Property Name="ESTATUS" Type="nchar" MaxLength="1" />
+    <Property Name="FECHAC" Type="datetime" />
+    <Property Name="FECHAM" Type="datetime" />
+    <Property Name="COMENTARIO" Type="nvarchar" MaxLength="255" />
+    <Property Name="ID_RUTA_A" Type="nchar" MaxLength="10" />
+    <Property Name="RUTA_VERSION" Type="int" />
+    <Property Name="STEP_AUTO" Type="int" />
+  </EntityType>
+  <EntityType Name="FORMATO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="MILES" Type="nchar" MaxLength="1" Nullable="false" />
+    <Property Name="DECIMALES" Type="nchar" MaxLength="1" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="IIMPUESTO">
+    <Key>
+      <PropertyRef Name="MWSKZ" />
+      <PropertyRef Name="ACTIVO" />
+    </Key>
+    <Property Name="MWSKZ" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="KSCHL" Type="nchar" MaxLength="4" />
+    <Property Name="KBETR" Type="decimal" Precision="11" Scale="2" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IMPUESTO">
+    <Key>
+      <PropertyRef Name="MWSKZ" />
+    </Key>
+    <Property Name="MWSKZ" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IMPUESTOT">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="MWSKZ" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="MWSKZ" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MIEMBROS">
+    <Key>
+      <PropertyRef Name="USUARIO_ID" />
+      <PropertyRef Name="ROL_ID" />
+    </Key>
+    <Property Name="USUARIO_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="ROL_ID" Type="int" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" />
+  </EntityType>
+  <EntityType Name="MONEDA">
+    <Key>
+      <PropertyRef Name="WAERS" />
+    </Key>
+    <Property Name="WAERS" Type="nchar" MaxLength="3" Nullable="false" />
+    <Property Name="ISOCD" Type="nchar" MaxLength="3" />
+    <Property Name="ALTWR" Type="nchar" MaxLength="3" />
+    <Property Name="LTEXT" Type="nvarchar" MaxLength="50" />
+    <Property Name="KTEXT" Type="nvarchar" MaxLength="15" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PAGINA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="URL" Type="nvarchar" MaxLength="255" />
+    <Property Name="TITULO" Type="nvarchar" MaxLength="50" />
+    <Property Name="CARPETA_ID" Type="int" />
+    <Property Name="ICON" Type="nvarchar" MaxLength="20" />
+    <Property Name="MOSTRAR" Type="bit" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PAGINAT">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PERMISO_PAGINA">
+    <Key>
+      <PropertyRef Name="PAGINA_ID" />
+      <PropertyRef Name="ROL_ID" />
+    </Key>
+    <Property Name="PAGINA_ID" Type="int" Nullable="false" />
+    <Property Name="ROL_ID" Type="int" Nullable="false" />
+    <Property Name="PERMISO" Type="bit" />
+  </EntityType>
+  <EntityType Name="POSICION">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="PROVEEDOR">
+    <Key>
+      <PropertyRef Name="LIFNR" />
+    </Key>
+    <Property Name="LIFNR" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="LAND1" Type="nchar" MaxLength="3" />
+    <Property Name="NAME1" Type="nchar" MaxLength="35" />
+    <Property Name="NAME2" Type="nchar" MaxLength="35" />
+    <Property Name="NAME3" Type="nchar" MaxLength="35" />
+    <Property Name="NAME4" Type="nchar" MaxLength="35" />
+    <Property Name="ORT01" Type="nchar" MaxLength="35" />
+    <Property Name="ORT02" Type="nchar" MaxLength="35" />
+    <Property Name="PFACH" Type="nchar" MaxLength="10" />
+    <Property Name="PSTL2" Type="nchar" MaxLength="10" />
+    <Property Name="REGIO" Type="nchar" MaxLength="3" />
+    <Property Name="STRAS" Type="nchar" MaxLength="35" />
+    <Property Name="ADRNR" Type="nchar" MaxLength="10" />
+    <Property Name="STCD1" Type="nchar" MaxLength="16" />
+    <Property Name="STCD2" Type="nchar" MaxLength="11" />
+  </EntityType>
+  <EntityType Name="PROYECTO">
+    <Key>
+      <PropertyRef Name="ID_PSPNR" />
+    </Key>
+    <Property Name="ID_PSPNR" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="NONBRE" Type="nchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PUESTO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" />
+  </EntityType>
+  <EntityType Name="PUESTOT">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="PUESTO_ID" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="PUESTO_ID" Type="int" Nullable="false" />
+    <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="RANGO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="INICIO" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="FIN" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="ACTUAL" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RETENCION">
+    <Key>
+      <PropertyRef Name="WITHT" />
+    </Key>
+    <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="60" />
+    <Property Name="ESTATUS" Type="bit" Nullable="false" />
+    <Property Name="WITHT_SUB" Type="nchar" MaxLength="2" />
+    <Property Name="PORC" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RETENCION_PROV">
+    <Key>
+      <PropertyRef Name="LIFNR" />
+      <PropertyRef Name="BUKRS" />
+      <PropertyRef Name="WITHT" />
+    </Key>
+    <Property Name="LIFNR" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" />
+  </EntityType>
+  <EntityType Name="RETENCIONT">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="WITHT" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ROL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CLAVE" Type="nvarchar" MaxLength="10" />
+    <Property Name="NOMBRE" Type="nvarchar" MaxLength="50" />
+    <Property Name="ACTIVO" Type="bit" />
+  </EntityType>
+  <EntityType Name="ROLT">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="ROL_ID" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="ROL_ID" Type="int" Nullable="false" />
+    <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SOCIEDAD">
+    <Key>
+      <PropertyRef Name="BUKRS" />
+    </Key>
+    <Property Name="BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="BUTXT" Type="nvarchar" MaxLength="50" />
+    <Property Name="ORT01" Type="nvarchar" MaxLength="50" />
+    <Property Name="SUBREGIO" Type="nchar" MaxLength="6" />
+    <Property Name="WAERS" Type="nchar" MaxLength="3" />
+    <Property Name="SPRAS" Type="nchar" MaxLength="2" />
+    <Property Name="NAME1" Type="nvarchar" MaxLength="50" />
+    <Property Name="KTOPL" Type="nchar" MaxLength="10" />
+    <Property Name="ACTIVO" Type="bit" Nullable="false" />
+    <Property Name="REGION" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="SPRAS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="TEXTO">
+    <Key>
+      <PropertyRef Name="PAGINA_ID" />
+      <PropertyRef Name="CAMPO_ID" />
+      <PropertyRef Name="SPRAS_ID" />
+    </Key>
+    <Property Name="PAGINA_ID" Type="int" Nullable="false" />
+    <Property Name="CAMPO_ID" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="TEXTOS" Type="nvarchar" MaxLength="255" />
+    <Property Name="ACTIVO" Type="bit" />
+  </EntityType>
+  <EntityType Name="TIPOPRESUPUESTO">
+    <Key>
+      <PropertyRef Name="TIPOPRE" />
+    </Key>
+    <Property Name="TIPOPRE" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="DESC" Type="nvarchar" MaxLength="30" />
+    <Property Name="ESTATUS" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TIPOPRESUPUESTOT">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="TIPOPRE" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="TIPOPRE" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="TEXT30" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="TSOL">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="60" />
+    <Property Name="RANGO_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="ESTATUS" Type="nchar" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TSOLT">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="TSOL_ID" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="TSOL_ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TXT020" Type="nvarchar" MaxLength="20" />
+    <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TSOPORTE">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nchar" MaxLength="3" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="50" />
+    <Property Name="ACTIVO" Type="bit" />
+  </EntityType>
+  <EntityType Name="TSOPORTET">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="TSOPORTE_ID" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="TSOPORTE_ID" Type="nchar" MaxLength="3" Nullable="false" />
+    <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="PASS" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="NOMBRE" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="APELLIDO_P" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="APELLIDO_M" Type="nvarchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="ACTIVO" Type="bit" />
+    <Property Name="PUESTO_ID" Type="int" />
+    <Property Name="MANAGER" Type="nvarchar" MaxLength="16" />
+    <Property Name="BACKUP_ID" Type="nvarchar" MaxLength="16" />
+    <Property Name="BUNIT" Type="nchar" MaxLength="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WARNING">
+    <Key>
+      <PropertyRef Name="PAGINA_ID" />
+      <PropertyRef Name="CAMPO_ID" />
+      <PropertyRef Name="SPRAS_ID" />
+    </Key>
+    <Property Name="PAGINA_ID" Type="int" Nullable="false" />
+    <Property Name="CAMPO_ID" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="WARNING" Type="nvarchar" MaxLength="255" />
+    <Property Name="POSICION" Type="nvarchar" MaxLength="10" />
+    <Property Name="ACTIVO" Type="bit" />
+  </EntityType>
+  <EntityType Name="WORKFH">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="60" />
+    <Property Name="TSOL_ID" Type="nvarchar" MaxLength="10" />
+    <Property Name="ESTATUS" Type="bit" />
+    <Property Name="USUARIO_ID" Type="nvarchar" MaxLength="16" />
+    <Property Name="FECHAC" Type="datetime" />
+    <Property Name="BUKRS" Type="nchar" MaxLength="4" />
+    <Property Name="ROL_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="WORKFP">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="VERSION" />
+      <PropertyRef Name="POS" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="VERSION" Type="int" Nullable="false" />
+    <Property Name="POS" Type="int" Nullable="false" />
+    <Property Name="AGENTE_ID" Type="int" />
+    <Property Name="ACCION_ID" Type="int" />
+    <Property Name="NEXT_STEP" Type="int" />
+    <Property Name="NS_ACCEPT" Type="int" />
+    <Property Name="NS_REJECT" Type="int" />
+    <Property Name="LOOPS" Type="int" />
+    <Property Name="CONDICION_ID" Type="int" />
+    <Property Name="NS_CN_ACCEPT" Type="int" />
+    <Property Name="NS_CN_REJECT" Type="int" />
+    <Property Name="EMAIL" Type="nchar" MaxLength="1" />
+    <Property Name="EMAIL_TXT_ID" Type="int" />
+    <Property Name="EMAIL_INN_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="WORKFT">
+    <Key>
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="WF_ID" />
+      <PropertyRef Name="WF_VERSION" />
+    </Key>
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="WF_ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="WF_VERSION" Type="int" Nullable="false" />
+    <Property Name="TXT20" Type="nvarchar" MaxLength="20" />
+    <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="WORKFV">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="VERSION" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="VERSION" Type="int" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="60" />
+    <Property Name="ESTATUS" Type="bit" />
+    <Property Name="FECHAI" Type="date" />
+    <Property Name="FECHAF" Type="date" />
+    <Property Name="USUARIO_ID" Type="nvarchar" MaxLength="16" />
+    <Property Name="FECHAC" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PAGOS.dbo.CARPETAV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="CARPETAV">
+    <Key>
+      <PropertyRef Name="USUARIO_ID" />
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="USUARIO_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="URL" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+    <Property Name="ICON" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PAGOS.dbo.DOCUMENTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DOCUMENTOV">
+    <Key>
+      <PropertyRef Name="POS" />
+      <PropertyRef Name="NUM_DOC" />
+    </Key>
+    <Property Name="POS" Type="int" Nullable="false" />
+    <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="TSOL_ID" Type="nvarchar" MaxLength="10" />
+    <Property Name="TALL_ID" Type="nvarchar" MaxLength="10" />
+    <Property Name="SOCIEDAD_ID" Type="nchar" MaxLength="4" />
+    <Property Name="CANTIDAD_EV" Type="decimal" Precision="3" Scale="0" />
+    <Property Name="USUARIOC_ID" Type="nvarchar" MaxLength="16" />
+    <Property Name="FECHAD" Type="datetime" />
+    <Property Name="FECHAC" Type="datetime" />
+    <Property Name="HORAC" Type="time" Precision="7" />
+    <Property Name="FECHAC_PLAN" Type="date" />
+    <Property Name="FECHAC_USER" Type="date" />
+    <Property Name="HORAC_USER" Type="time" Precision="7" />
+    <Property Name="ESTATUS" Type="nchar" MaxLength="1" />
+    <Property Name="ESTATUS_C" Type="nchar" MaxLength="1" />
+    <Property Name="ESTATUS_SAP" Type="nchar" MaxLength="1" />
+    <Property Name="ESTATUS_WF" Type="nchar" MaxLength="1" />
+    <Property Name="DOCUMENTO_REF" Type="decimal" Precision="10" Scale="0" />
+    <Property Name="CONCEPTO" Type="nvarchar" MaxLength="100" />
+    <Property Name="NOTAS" Type="nvarchar" MaxLength="255" />
+    <Property Name="MONTO_DOC_MD" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_FIJO_MD" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_BASE_GS_PCT_MD" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_BASE_NS_PCT_MD" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_DOC_ML" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_FIJO_ML" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_BASE_GS_PCT_ML" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_BASE_NS_PCT_ML" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_DOC_ML2" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_FIJO_ML2" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_BASE_GS_PCT_ML2" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_BASE_NS_PCT_ML2" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="PORC_ADICIONAL" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="IMPUESTO" Type="nchar" MaxLength="2" />
+    <Property Name="ESTATUS_EXT" Type="nchar" MaxLength="1" />
+    <Property Name="PAYER_ID" Type="nchar" MaxLength="10" />
+    <Property Name="MONEDA_ID" Type="nchar" MaxLength="3" />
+    <Property Name="MONEDAL_ID" Type="nchar" MaxLength="10" />
+    <Property Name="MONEDAL2_ID" Type="nchar" MaxLength="10" />
+    <Property Name="TIPO_CAMBIO" Type="decimal" Precision="10" Scale="6" />
+    <Property Name="TIPO_CAMBIOL" Type="decimal" Precision="10" Scale="6" />
+    <Property Name="TIPO_CAMBIOL2" Type="decimal" Precision="10" Scale="6" />
+    <Property Name="NO_FACTURA" Type="nvarchar" MaxLength="30" />
+    <Property Name="FECHAD_SOPORTE" Type="datetime" />
+    <Property Name="METODO_PAGO" Type="nchar" MaxLength="10" />
+    <Property Name="NO_PROVEEDOR" Type="nchar" MaxLength="10" />
+    <Property Name="PASO_ACTUAL" Type="int" />
+    <Property Name="AGENTE_ACTUAL" Type="nvarchar" MaxLength="16" />
+    <Property Name="FECHA_PASO_ACTUAL" Type="datetime" />
+    <Property Name="USUARIOA_ID" Type="nvarchar" MaxLength="16" />
+    <Property Name="EXPR2" Type="nchar" MaxLength="1" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PAGOS.dbo.PAGINAV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PAGINAV">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="PAGINA_ID" />
+      <PropertyRef Name="CARPETA_ID" />
+      <PropertyRef Name="SPRAS_ID" />
+      <PropertyRef Name="USUARIO_SPRAS" />
+    </Key>
+    <Property Name="ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="PAGINA_ID" Type="int" Nullable="false" />
+    <Property Name="PAGINA_URL" Type="nvarchar" MaxLength="255" />
+    <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+    <Property Name="CARPETA_ID" Type="int" Nullable="false" />
+    <Property Name="CARPETA_URL" Type="nvarchar" MaxLength="50" />
+    <Property Name="ICON" Type="nvarchar" MaxLength="20" />
+    <Property Name="PERMISO" Type="bit" />
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="USUARIO_SPRAS" Type="nchar" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="WARNINGV">
+    <Key>
+      <PropertyRef Name="PAGINA_ID" />
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="SPRAS_ID" />
+    </Key>
+    <Property Name="PAGINA_ID" Type="int" Nullable="false" />
+    <Property Name="ID" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="50" />
+    <Property Name="TIPO" Type="nchar" MaxLength="10" />
+    <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="WARNING" Type="nvarchar" MaxLength="255" />
+    <Property Name="POSICION" Type="nvarchar" MaxLength="10" />
+    <Property Name="ACTIVO" Type="bit" />
+  </EntityType>
+  <Association Name="FK_CAMPOS_PAGINA">
+    <End Role="PAGINA" Type="Self.PAGINA" Multiplicity="1" />
+    <End Role="CAMPOS" Type="Self.CAMPOS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAGINA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CAMPOS">
+        <PropertyRef Name="PAGINA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARPETAT_CARPETA">
+    <End Role="CARPETA" Type="Self.CARPETA" Multiplicity="1" />
+    <End Role="CARPETAT" Type="Self.CARPETAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARPETA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CARPETAT">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CARPETAT_SPRAS">
+    <End Role="SPRAS" Type="Self.SPRAS" Multiplicity="1" />
+    <End Role="CARPETAT" Type="Self.CARPETAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRAS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CARPETAT">
+        <PropertyRef Name="SPRAS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DELEGAR_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="DELEGAR" Type="Self.DELEGAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DELEGAR">
+        <PropertyRef Name="USUARIO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DELEGAR_USUARIO1">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="DELEGAR" Type="Self.DELEGAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DELEGAR">
+        <PropertyRef Name="USUARIOD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_AGENTEC_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="DET_AGENTEC" Type="Self.DET_AGENTEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DET_AGENTEC">
+        <PropertyRef Name="USUARIOC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_AGENTEC_USUARIO1">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="DET_AGENTEC" Type="Self.DET_AGENTEC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DET_AGENTEC">
+        <PropertyRef Name="USUARIOA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_PROVEEDOR_PROYECTO">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+    <End Role="DET_PROVEEDOR" Type="Self.DET_PROVEEDOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="LIFNR" />
+      </Principal>
+      <Dependent Role="DET_PROVEEDOR">
+        <PropertyRef Name="ID_LIFNR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_PROVEEDOR_SOCIEDAD">
+    <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="1" />
+    <End Role="DET_PROVEEDOR" Type="Self.DET_PROVEEDOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOCIEDAD">
+        <PropertyRef Name="BUKRS" />
+      </Principal>
+      <Dependent Role="DET_PROVEEDOR">
+        <PropertyRef Name="ID_BUKRS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_PROYECTO_PROYECTO">
+    <End Role="PROYECTO" Type="Self.PROYECTO" Multiplicity="1" />
+    <End Role="DET_PROYECTO" Type="Self.DET_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROYECTO">
+        <PropertyRef Name="ID_PSPNR" />
+      </Principal>
+      <Dependent Role="DET_PROYECTO">
+        <PropertyRef Name="ID_PSPNR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_PROYECTO_SOCIEDAD">
+    <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="1" />
+    <End Role="DET_PROYECTO" Type="Self.DET_PROYECTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOCIEDAD">
+        <PropertyRef Name="BUKRS" />
+      </Principal>
+      <Dependent Role="DET_PROYECTO">
+        <PropertyRef Name="ID_BUKRS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_SOCIEDAD_SOCIEDAD">
+    <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="1" />
+    <End Role="DET_SOCIEDAD" Type="Self.DET_SOCIEDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOCIEDAD">
+        <PropertyRef Name="BUKRS" />
+      </Principal>
+      <Dependent Role="DET_SOCIEDAD">
+        <PropertyRef Name="BUKRS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_SOCIEDAD_TIPOPRESUPUESTO">
+    <End Role="TIPOPRESUPUESTO" Type="Self.TIPOPRESUPUESTO" Multiplicity="1" />
+    <End Role="DET_SOCIEDAD" Type="Self.DET_SOCIEDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPOPRESUPUESTO">
+        <PropertyRef Name="TIPOPRE" />
+      </Principal>
+      <Dependent Role="DET_SOCIEDAD">
+        <PropertyRef Name="TIPOPRE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_SOCIEDAD_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="DET_SOCIEDAD" Type="Self.DET_SOCIEDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DET_SOCIEDAD">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_TIPODOC_TSOL">
+    <End Role="TSOL" Type="Self.TSOL" Multiplicity="1" />
+    <End Role="DET_TIPODOC" Type="Self.DET_TIPODOC" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TSOL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DET_TIPODOC">
+        <PropertyRef Name="TIPO_SOL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_TIPOPRESUPUESTO_SOCIEDAD">
+    <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="1" />
+    <End Role="DET_TIPOPRESUPUESTO" Type="Self.DET_TIPOPRESUPUESTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOCIEDAD">
+        <PropertyRef Name="BUKRS" />
+      </Principal>
+      <Dependent Role="DET_TIPOPRESUPUESTO">
+        <PropertyRef Name="BUKRS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_TIPOPRESUPUESTO_TIPOPRESUPUESTO">
+    <End Role="TIPOPRESUPUESTO" Type="Self.TIPOPRESUPUESTO" Multiplicity="1" />
+    <End Role="DET_TIPOPRESUPUESTO" Type="Self.DET_TIPOPRESUPUESTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPOPRESUPUESTO">
+        <PropertyRef Name="TIPOPRE" />
+      </Principal>
+      <Dependent Role="DET_TIPOPRESUPUESTO">
+        <PropertyRef Name="TIPOPRE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_TIPOPRESUPUESTO_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="DET_TIPOPRESUPUESTO" Type="Self.DET_TIPOPRESUPUESTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DET_TIPOPRESUPUESTO">
+        <PropertyRef Name="ID_USER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTO_SOCIEDAD">
+    <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="0..1" />
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOCIEDAD">
+        <PropertyRef Name="BUKRS" />
+      </Principal>
+      <Dependent Role="DOCUMENTO">
+        <PropertyRef Name="SOCIEDAD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTO_TSOL">
+    <End Role="TSOL" Type="Self.TSOL" Multiplicity="0..1" />
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TSOL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DOCUMENTO">
+        <PropertyRef Name="TSOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTO_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DOCUMENTO">
+        <PropertyRef Name="USUARIOC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTOA_DOCUMENTOP">
+    <End Role="DOCUMENTOP" Type="Self.DOCUMENTOP" Multiplicity="1" />
+    <End Role="DOCUMENTOA" Type="Self.DOCUMENTOA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTOP">
+        <PropertyRef Name="NUM_DOC" />
+        <PropertyRef Name="POS" />
+      </Principal>
+      <Dependent Role="DOCUMENTOA">
+        <PropertyRef Name="NUM_DOC" />
+        <PropertyRef Name="POSD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTOA_TSOPORTE">
+    <End Role="TSOPORTE" Type="Self.TSOPORTE" Multiplicity="0..1" />
+    <End Role="DOCUMENTOA" Type="Self.DOCUMENTOA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TSOPORTE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DOCUMENTOA">
+        <PropertyRef Name="CLASE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTOP_DOCUMENTO">
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+    <End Role="DOCUMENTOP" Type="Self.DOCUMENTOP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTO">
+        <PropertyRef Name="NUM_DOC" />
+      </Principal>
+      <Dependent Role="DOCUMENTOP">
+        <PropertyRef Name="NUM_DOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTOP_IMPUESTO">
+    <End Role="IMPUESTO" Type="Self.IMPUESTO" Multiplicity="1" />
+    <End Role="DOCUMENTOP" Type="Self.DOCUMENTOP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMPUESTO">
+        <PropertyRef Name="MWSKZ" />
+      </Principal>
+      <Dependent Role="DOCUMENTOP">
+        <PropertyRef Name="MWSKZ" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTOPRE_DOCUMENTO">
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+    <End Role="DOCUMENTOPRE" Type="Self.DOCUMENTOPRE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTO">
+        <PropertyRef Name="NUM_DOC" />
+      </Principal>
+      <Dependent Role="DOCUMENTOPRE">
+        <PropertyRef Name="NUM_DOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTOR_DOCUMENTO">
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+    <End Role="DOCUMENTOR" Type="Self.DOCUMENTOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTO">
+        <PropertyRef Name="NUM_DOC" />
+      </Principal>
+      <Dependent Role="DOCUMENTOR">
+        <PropertyRef Name="NUM_DOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTORP_DOCUMENTOP">
+    <End Role="DOCUMENTOP" Type="Self.DOCUMENTOP" Multiplicity="1" />
+    <End Role="DOCUMENTORP" Type="Self.DOCUMENTORP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTOP">
+        <PropertyRef Name="NUM_DOC" />
+        <PropertyRef Name="POS" />
+      </Principal>
+      <Dependent Role="DOCUMENTORP">
+        <PropertyRef Name="NUM_DOC" />
+        <PropertyRef Name="POS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTORP_RETENCION">
+    <End Role="RETENCION" Type="Self.RETENCION" Multiplicity="1" />
+    <End Role="DOCUMENTORP" Type="Self.DOCUMENTORP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RETENCION">
+        <PropertyRef Name="WITHT" />
+      </Principal>
+      <Dependent Role="DOCUMENTORP">
+        <PropertyRef Name="WITHT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTOSAP_DOCUMENTO">
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+    <End Role="DOCUMENTOSAP" Type="Self.DOCUMENTOSAP" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTO">
+        <PropertyRef Name="NUM_DOC" />
+      </Principal>
+      <Dependent Role="DOCUMENTOSAP">
+        <PropertyRef Name="NUM_DOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FLUJO_DOCUMENTO">
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+    <End Role="FLUJO" Type="Self.FLUJO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTO">
+        <PropertyRef Name="NUM_DOC" />
+      </Principal>
+      <Dependent Role="FLUJO">
+        <PropertyRef Name="NUM_DOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FLUJO_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="FLUJO" Type="Self.FLUJO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FLUJO">
+        <PropertyRef Name="USUARIOA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FLUJO_USUARIO1">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="FLUJO" Type="Self.FLUJO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FLUJO">
+        <PropertyRef Name="USUARIOD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FLUJO_WORKFP">
+    <End Role="WORKFP" Type="Self.WORKFP" Multiplicity="1" />
+    <End Role="FLUJO" Type="Self.FLUJO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WORKFP">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="VERSION" />
+        <PropertyRef Name="POS" />
+      </Principal>
+      <Dependent Role="FLUJO">
+        <PropertyRef Name="WORKF_ID" />
+        <PropertyRef Name="WF_VERSION" />
+        <PropertyRef Name="WF_POS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IIMPUESTO_IMPUESTO">
+    <End Role="IMPUESTO" Type="Self.IMPUESTO" Multiplicity="1" />
+    <End Role="IIMPUESTO" Type="Self.IIMPUESTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMPUESTO">
+        <PropertyRef Name="MWSKZ" />
+      </Principal>
+      <Dependent Role="IIMPUESTO">
+        <PropertyRef Name="MWSKZ" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IMPUESTOT_IMPUESTO">
+    <End Role="IMPUESTO" Type="Self.IMPUESTO" Multiplicity="1" />
+    <End Role="IMPUESTOT" Type="Self.IMPUESTOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="IMPUESTO">
+        <PropertyRef Name="MWSKZ" />
+      </Principal>
+      <Dependent Role="IMPUESTOT">
+        <PropertyRef Name="MWSKZ" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_IMPUESTOT_SPRAS">
+    <End Role="SPRAS" Type="Self.SPRAS" Multiplicity="1" />
+    <End Role="IMPUESTOT" Type="Self.IMPUESTOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRAS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="IMPUESTOT">
+        <PropertyRef Name="SPRAS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MIEMBROS_ROL">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="MIEMBROS" Type="Self.MIEMBROS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MIEMBROS">
+        <PropertyRef Name="ROL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MIEMBROS_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="MIEMBROS" Type="Self.MIEMBROS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MIEMBROS">
+        <PropertyRef Name="USUARIO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PAGINA_CARPETA">
+    <End Role="CARPETA" Type="Self.CARPETA" Multiplicity="0..1" />
+    <End Role="PAGINA" Type="Self.PAGINA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CARPETA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PAGINA">
+        <PropertyRef Name="CARPETA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PAGINAT_PAGINA">
+    <End Role="PAGINA" Type="Self.PAGINA" Multiplicity="1" />
+    <End Role="PAGINAT" Type="Self.PAGINAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAGINA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PAGINAT">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PERMISO_PAGINA_PAGINA">
+    <End Role="PAGINA" Type="Self.PAGINA" Multiplicity="1" />
+    <End Role="PERMISO_PAGINA" Type="Self.PERMISO_PAGINA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PAGINA">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PERMISO_PAGINA">
+        <PropertyRef Name="PAGINA_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PUESTOT_PUESTO">
+    <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="1" />
+    <End Role="PUESTOT" Type="Self.PUESTOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PUESTO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PUESTOT">
+        <PropertyRef Name="PUESTO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PUESTOT_SPRAS">
+    <End Role="SPRAS" Type="Self.SPRAS" Multiplicity="1" />
+    <End Role="PUESTOT" Type="Self.PUESTOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRAS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PUESTOT">
+        <PropertyRef Name="SPRAS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RETENCION_PROV_PROVEEDOR">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+    <End Role="RETENCION_PROV" Type="Self.RETENCION_PROV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="LIFNR" />
+      </Principal>
+      <Dependent Role="RETENCION_PROV">
+        <PropertyRef Name="LIFNR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RETENCION_PROV_RETENCION">
+    <End Role="RETENCION" Type="Self.RETENCION" Multiplicity="1" />
+    <End Role="RETENCION_PROV" Type="Self.RETENCION_PROV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RETENCION">
+        <PropertyRef Name="WITHT" />
+      </Principal>
+      <Dependent Role="RETENCION_PROV">
+        <PropertyRef Name="WITHT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RETENCION_PROV_SOCIEDAD">
+    <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="1" />
+    <End Role="RETENCION_PROV" Type="Self.RETENCION_PROV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOCIEDAD">
+        <PropertyRef Name="BUKRS" />
+      </Principal>
+      <Dependent Role="RETENCION_PROV">
+        <PropertyRef Name="BUKRS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RETENCIONT_RETENCION">
+    <End Role="RETENCION" Type="Self.RETENCION" Multiplicity="1" />
+    <End Role="RETENCIONT" Type="Self.RETENCIONT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RETENCION">
+        <PropertyRef Name="WITHT" />
+      </Principal>
+      <Dependent Role="RETENCIONT">
+        <PropertyRef Name="WITHT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RETENCIONT_SPRAS">
+    <End Role="SPRAS" Type="Self.SPRAS" Multiplicity="1" />
+    <End Role="RETENCIONT" Type="Self.RETENCIONT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRAS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="RETENCIONT">
+        <PropertyRef Name="SPRAS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ROLT_ROL">
+    <End Role="ROL" Type="Self.ROL" Multiplicity="1" />
+    <End Role="ROLT" Type="Self.ROLT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ROLT">
+        <PropertyRef Name="ROL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SOCIEDAD_MONEDA">
+    <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="0..1" />
+    <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MONEDA">
+        <PropertyRef Name="WAERS" />
+      </Principal>
+      <Dependent Role="SOCIEDAD">
+        <PropertyRef Name="WAERS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TEXTO_CAMPOS">
+    <End Role="CAMPOS" Type="Self.CAMPOS" Multiplicity="1" />
+    <End Role="TEXTO" Type="Self.TEXTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAMPOS">
+        <PropertyRef Name="PAGINA_ID" />
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TEXTO">
+        <PropertyRef Name="PAGINA_ID" />
+        <PropertyRef Name="CAMPO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TEXTO_SPRAS">
+    <End Role="SPRAS" Type="Self.SPRAS" Multiplicity="1" />
+    <End Role="TEXTO" Type="Self.TEXTO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRAS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TEXTO">
+        <PropertyRef Name="SPRAS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPOPRESUPUESTOT_SPRAS">
+    <End Role="SPRAS" Type="Self.SPRAS" Multiplicity="1" />
+    <End Role="TIPOPRESUPUESTOT" Type="Self.TIPOPRESUPUESTOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRAS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TIPOPRESUPUESTOT">
+        <PropertyRef Name="SPRAS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TIPOPRESUPUESTOT_TIPOPRESUPUESTO">
+    <End Role="TIPOPRESUPUESTO" Type="Self.TIPOPRESUPUESTO" Multiplicity="1" />
+    <End Role="TIPOPRESUPUESTOT" Type="Self.TIPOPRESUPUESTOT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TIPOPRESUPUESTO">
+        <PropertyRef Name="TIPOPRE" />
+      </Principal>
+      <Dependent Role="TIPOPRESUPUESTOT">
+        <PropertyRef Name="TIPOPRE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TSOL_RANGO">
+    <End Role="RANGO" Type="Self.RANGO" Multiplicity="1" />
+    <End Role="TSOL" Type="Self.TSOL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RANGO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TSOL">
+        <PropertyRef Name="RANGO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TSOLT_TSOL">
+    <End Role="TSOL" Type="Self.TSOL" Multiplicity="1" />
+    <End Role="TSOLT" Type="Self.TSOLT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TSOL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TSOLT">
+        <PropertyRef Name="TSOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TSOPORTET_SPRAS">
+    <End Role="SPRAS" Type="Self.SPRAS" Multiplicity="1" />
+    <End Role="TSOPORTET" Type="Self.TSOPORTET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRAS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TSOPORTET">
+        <PropertyRef Name="SPRAS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TSOPORTET_TSOPORTE">
+    <End Role="TSOPORTE" Type="Self.TSOPORTE" Multiplicity="1" />
+    <End Role="TSOPORTET" Type="Self.TSOPORTET" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TSOPORTE">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TSOPORTET">
+        <PropertyRef Name="TSOPORTE_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_PUESTO">
+    <End Role="PUESTO" Type="Self.PUESTO" Multiplicity="0..1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PUESTO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="PUESTO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_SOCIEDAD">
+    <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOCIEDAD">
+        <PropertyRef Name="BUKRS" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="BUNIT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_SPRAS">
+    <End Role="SPRAS" Type="Self.SPRAS" Multiplicity="1" />
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRAS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USUARIO">
+        <PropertyRef Name="SPRAS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WARNING_CAMPOS">
+    <End Role="CAMPOS" Type="Self.CAMPOS" Multiplicity="1" />
+    <End Role="WARNING" Type="Self.WARNING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CAMPOS">
+        <PropertyRef Name="PAGINA_ID" />
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WARNING">
+        <PropertyRef Name="PAGINA_ID" />
+        <PropertyRef Name="CAMPO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WARNING_POSICION">
+    <End Role="POSICION" Type="Self.POSICION" Multiplicity="0..1" />
+    <End Role="WARNING" Type="Self.WARNING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="POSICION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WARNING">
+        <PropertyRef Name="POSICION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WARNING_SPRAS">
+    <End Role="SPRAS" Type="Self.SPRAS" Multiplicity="1" />
+    <End Role="WARNING" Type="Self.WARNING" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRAS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WARNING">
+        <PropertyRef Name="SPRAS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WORKFP_ACCION">
+    <End Role="ACCION" Type="Self.ACCION" Multiplicity="0..1" />
+    <End Role="WORKFP" Type="Self.WORKFP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ACCION">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WORKFP">
+        <PropertyRef Name="ACCION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WORKFP_TSOL">
+    <End Role="TSOL" Type="Self.TSOL" Multiplicity="0..1" />
+    <End Role="WORKFH" Type="Self.WORKFH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TSOL">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WORKFH">
+        <PropertyRef Name="TSOL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WORKFP_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="0..1" />
+    <End Role="WORKFH" Type="Self.WORKFH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WORKFH">
+        <PropertyRef Name="USUARIO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WORKFP_WORKFV">
+    <End Role="WORKFV" Type="Self.WORKFV" Multiplicity="1" />
+    <End Role="WORKFP" Type="Self.WORKFP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WORKFV">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="VERSION" />
+      </Principal>
+      <Dependent Role="WORKFP">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="VERSION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WORKFT_SPRAS">
+    <End Role="SPRAS" Type="Self.SPRAS" Multiplicity="1" />
+    <End Role="WORKFT" Type="Self.WORKFT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SPRAS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WORKFT">
+        <PropertyRef Name="SPRAS_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WORKFT_WORKFV">
+    <End Role="WORKFV" Type="Self.WORKFV" Multiplicity="1" />
+    <End Role="WORKFT" Type="Self.WORKFT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WORKFV">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="VERSION" />
+      </Principal>
+      <Dependent Role="WORKFT">
+        <PropertyRef Name="WF_ID" />
+        <PropertyRef Name="WF_VERSION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WORKV_WORKFH">
+    <End Role="WORKFH" Type="Self.WORKFH" Multiplicity="1" />
+    <End Role="WORKFV" Type="Self.WORKFV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WORKFH">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WORKFV">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WFARTHAModelStoreContainer">
+    <EntitySet Name="ACCION" EntityType="Self.ACCION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="APPSETTING" EntityType="Self.APPSETTING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CAMPOS" EntityType="Self.CAMPOS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CARPETA" EntityType="Self.CARPETA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CARPETAT" EntityType="Self.CARPETAT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONCEPTO" EntityType="Self.CONCEPTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CONMAIL" EntityType="Self.CONMAIL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DELEGAR" EntityType="Self.DELEGAR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DET_AGENTEC" EntityType="Self.DET_AGENTEC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DET_AGENTECA" EntityType="Self.DET_AGENTECA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DET_APROB" EntityType="Self.DET_APROB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DET_PROVEEDOR" EntityType="Self.DET_PROVEEDOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DET_PROYECTO" EntityType="Self.DET_PROYECTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DET_SOCIEDAD" EntityType="Self.DET_SOCIEDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DET_TIPODOC" EntityType="Self.DET_TIPODOC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DET_TIPOPRESUPUESTO" EntityType="Self.DET_TIPOPRESUPUESTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCUMENTO" EntityType="Self.DOCUMENTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCUMENTOA" EntityType="Self.DOCUMENTOA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCUMENTOP" EntityType="Self.DOCUMENTOP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCUMENTOPRE" EntityType="Self.DOCUMENTOPRE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCUMENTOR" EntityType="Self.DOCUMENTOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCUMENTORP" EntityType="Self.DOCUMENTORP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOCUMENTOSAP" EntityType="Self.DOCUMENTOSAP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FLUJO" EntityType="Self.FLUJO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FORMATO" EntityType="Self.FORMATO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMPUESTO" EntityType="Self.IMPUESTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMPUESTOT" EntityType="Self.IMPUESTOT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MIEMBROS" EntityType="Self.MIEMBROS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MONEDA" EntityType="Self.MONEDA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PAGINA" EntityType="Self.PAGINA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PAGINAT" EntityType="Self.PAGINAT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PERMISO_PAGINA" EntityType="Self.PERMISO_PAGINA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="POSICION" EntityType="Self.POSICION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROVEEDOR" EntityType="Self.PROVEEDOR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PROYECTO" EntityType="Self.PROYECTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PUESTO" EntityType="Self.PUESTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PUESTOT" EntityType="Self.PUESTOT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RANGO" EntityType="Self.RANGO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RETENCION" EntityType="Self.RETENCION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RETENCION_PROV" EntityType="Self.RETENCION_PROV" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RETENCIONT" EntityType="Self.RETENCIONT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROL" EntityType="Self.ROL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ROLT" EntityType="Self.ROLT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SOCIEDAD" EntityType="Self.SOCIEDAD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SPRAS" EntityType="Self.SPRAS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEXTO" EntityType="Self.TEXTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPOPRESUPUESTO" EntityType="Self.TIPOPRESUPUESTO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIPOPRESUPUESTOT" EntityType="Self.TIPOPRESUPUESTOT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TSOL" EntityType="Self.TSOL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TSOLT" EntityType="Self.TSOLT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TSOPORTE" EntityType="Self.TSOPORTE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TSOPORTET" EntityType="Self.TSOPORTET" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WARNING" EntityType="Self.WARNING" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WORKFH" EntityType="Self.WORKFH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WORKFP" EntityType="Self.WORKFP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WORKFT" EntityType="Self.WORKFT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WORKFV" EntityType="Self.WORKFV" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DET_AGENTECC" EntityType="Self.DET_AGENTECC" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DET_AGENTECC].[VERSION] AS [VERSION], 
+    [DET_AGENTECC].[USUARIOC_ID] AS [USUARIOC_ID], 
+    [DET_AGENTECC].[ID_RUTA_AGENTE] AS [ID_RUTA_AGENTE], 
+    [DET_AGENTECC].[DESCRIPCION] AS [DESCRIPCION], 
+    [DET_AGENTECC].[USUARIOA_ID] AS [USUARIOA_ID], 
+    [DET_AGENTECC].[FECHAC] AS [FECHAC]
+    FROM [dbo].[DET_AGENTECC] AS [DET_AGENTECC]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DET_PEP" EntityType="Self.DET_PEP" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DET_PEP].[PSPNR] AS [PSPNR], 
+    [DET_PEP].[POSID] AS [POSID], 
+    [DET_PEP].[DESCRIPCION] AS [DESCRIPCION], 
+    [DET_PEP].[CONCEPTO] AS [CONCEPTO], 
+    [DET_PEP].[TIPO_CONCEPTO] AS [TIPO_CONCEPTO]
+    FROM [dbo].[DET_PEP] AS [DET_PEP]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="IIMPUESTO" EntityType="Self.IIMPUESTO" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [IIMPUESTO].[MWSKZ] AS [MWSKZ], 
+    [IIMPUESTO].[KSCHL] AS [KSCHL], 
+    [IIMPUESTO].[KBETR] AS [KBETR], 
+    [IIMPUESTO].[ACTIVO] AS [ACTIVO]
+    FROM [dbo].[IIMPUESTO] AS [IIMPUESTO]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="CARPETAV" EntityType="Self.CARPETAV" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [CARPETAV].[USUARIO_ID] AS [USUARIO_ID], 
+    [CARPETAV].[ID] AS [ID], 
+    [CARPETAV].[URL] AS [URL], 
+    [CARPETAV].[TXT50] AS [TXT50], 
+    [CARPETAV].[ICON] AS [ICON]
+    FROM [dbo].[CARPETAV] AS [CARPETAV]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DOCUMENTOV" EntityType="Self.DOCUMENTOV" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DOCUMENTOV].[POS] AS [POS], 
+    [DOCUMENTOV].[NUM_DOC] AS [NUM_DOC], 
+    [DOCUMENTOV].[TSOL_ID] AS [TSOL_ID], 
+    [DOCUMENTOV].[TALL_ID] AS [TALL_ID], 
+    [DOCUMENTOV].[SOCIEDAD_ID] AS [SOCIEDAD_ID], 
+    [DOCUMENTOV].[CANTIDAD_EV] AS [CANTIDAD_EV], 
+    [DOCUMENTOV].[USUARIOC_ID] AS [USUARIOC_ID], 
+    [DOCUMENTOV].[FECHAD] AS [FECHAD], 
+    [DOCUMENTOV].[FECHAC] AS [FECHAC], 
+    [DOCUMENTOV].[HORAC] AS [HORAC], 
+    [DOCUMENTOV].[FECHAC_PLAN] AS [FECHAC_PLAN], 
+    [DOCUMENTOV].[FECHAC_USER] AS [FECHAC_USER], 
+    [DOCUMENTOV].[HORAC_USER] AS [HORAC_USER], 
+    [DOCUMENTOV].[ESTATUS] AS [ESTATUS], 
+    [DOCUMENTOV].[ESTATUS_C] AS [ESTATUS_C], 
+    [DOCUMENTOV].[ESTATUS_SAP] AS [ESTATUS_SAP], 
+    [DOCUMENTOV].[ESTATUS_WF] AS [ESTATUS_WF], 
+    [DOCUMENTOV].[DOCUMENTO_REF] AS [DOCUMENTO_REF], 
+    [DOCUMENTOV].[CONCEPTO] AS [CONCEPTO], 
+    [DOCUMENTOV].[NOTAS] AS [NOTAS], 
+    [DOCUMENTOV].[MONTO_DOC_MD] AS [MONTO_DOC_MD], 
+    [DOCUMENTOV].[MONTO_FIJO_MD] AS [MONTO_FIJO_MD], 
+    [DOCUMENTOV].[MONTO_BASE_GS_PCT_MD] AS [MONTO_BASE_GS_PCT_MD], 
+    [DOCUMENTOV].[MONTO_BASE_NS_PCT_MD] AS [MONTO_BASE_NS_PCT_MD], 
+    [DOCUMENTOV].[MONTO_DOC_ML] AS [MONTO_DOC_ML], 
+    [DOCUMENTOV].[MONTO_FIJO_ML] AS [MONTO_FIJO_ML], 
+    [DOCUMENTOV].[MONTO_BASE_GS_PCT_ML] AS [MONTO_BASE_GS_PCT_ML], 
+    [DOCUMENTOV].[MONTO_BASE_NS_PCT_ML] AS [MONTO_BASE_NS_PCT_ML], 
+    [DOCUMENTOV].[MONTO_DOC_ML2] AS [MONTO_DOC_ML2], 
+    [DOCUMENTOV].[MONTO_FIJO_ML2] AS [MONTO_FIJO_ML2], 
+    [DOCUMENTOV].[MONTO_BASE_GS_PCT_ML2] AS [MONTO_BASE_GS_PCT_ML2], 
+    [DOCUMENTOV].[MONTO_BASE_NS_PCT_ML2] AS [MONTO_BASE_NS_PCT_ML2], 
+    [DOCUMENTOV].[PORC_ADICIONAL] AS [PORC_ADICIONAL], 
+    [DOCUMENTOV].[IMPUESTO] AS [IMPUESTO], 
+    [DOCUMENTOV].[ESTATUS_EXT] AS [ESTATUS_EXT], 
+    [DOCUMENTOV].[PAYER_ID] AS [PAYER_ID], 
+    [DOCUMENTOV].[MONEDA_ID] AS [MONEDA_ID], 
+    [DOCUMENTOV].[MONEDAL_ID] AS [MONEDAL_ID], 
+    [DOCUMENTOV].[MONEDAL2_ID] AS [MONEDAL2_ID], 
+    [DOCUMENTOV].[TIPO_CAMBIO] AS [TIPO_CAMBIO], 
+    [DOCUMENTOV].[TIPO_CAMBIOL] AS [TIPO_CAMBIOL], 
+    [DOCUMENTOV].[TIPO_CAMBIOL2] AS [TIPO_CAMBIOL2], 
+    [DOCUMENTOV].[NO_FACTURA] AS [NO_FACTURA], 
+    [DOCUMENTOV].[FECHAD_SOPORTE] AS [FECHAD_SOPORTE], 
+    [DOCUMENTOV].[METODO_PAGO] AS [METODO_PAGO], 
+    [DOCUMENTOV].[NO_PROVEEDOR] AS [NO_PROVEEDOR], 
+    [DOCUMENTOV].[PASO_ACTUAL] AS [PASO_ACTUAL], 
+    [DOCUMENTOV].[AGENTE_ACTUAL] AS [AGENTE_ACTUAL], 
+    [DOCUMENTOV].[FECHA_PASO_ACTUAL] AS [FECHA_PASO_ACTUAL], 
+    [DOCUMENTOV].[USUARIOA_ID] AS [USUARIOA_ID], 
+    [DOCUMENTOV].[EXPR2] AS [EXPR2]
+    FROM [dbo].[DOCUMENTOV] AS [DOCUMENTOV]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PAGINAV" EntityType="Self.PAGINAV" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PAGINAV].[ID] AS [ID], 
+    [PAGINAV].[PAGINA_ID] AS [PAGINA_ID], 
+    [PAGINAV].[PAGINA_URL] AS [PAGINA_URL], 
+    [PAGINAV].[TXT50] AS [TXT50], 
+    [PAGINAV].[CARPETA_ID] AS [CARPETA_ID], 
+    [PAGINAV].[CARPETA_URL] AS [CARPETA_URL], 
+    [PAGINAV].[ICON] AS [ICON], 
+    [PAGINAV].[PERMISO] AS [PERMISO], 
+    [PAGINAV].[SPRAS_ID] AS [SPRAS_ID], 
+    [PAGINAV].[USUARIO_SPRAS] AS [USUARIO_SPRAS]
+    FROM [dbo].[PAGINAV] AS [PAGINAV]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="WARNINGV" EntityType="Self.WARNINGV" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [WARNINGV].[PAGINA_ID] AS [PAGINA_ID], 
+    [WARNINGV].[ID] AS [ID], 
+    [WARNINGV].[DESCRIPCION] AS [DESCRIPCION], 
+    [WARNINGV].[TIPO] AS [TIPO], 
+    [WARNINGV].[SPRAS_ID] AS [SPRAS_ID], 
+    [WARNINGV].[WARNING] AS [WARNING], 
+    [WARNINGV].[POSICION] AS [POSICION], 
+    [WARNINGV].[ACTIVO] AS [ACTIVO]
+    FROM [dbo].[WARNINGV] AS [WARNINGV]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_CAMPOS_PAGINA" Association="Self.FK_CAMPOS_PAGINA">
+      <End Role="PAGINA" EntitySet="PAGINA" />
+      <End Role="CAMPOS" EntitySet="CAMPOS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARPETAT_CARPETA" Association="Self.FK_CARPETAT_CARPETA">
+      <End Role="CARPETA" EntitySet="CARPETA" />
+      <End Role="CARPETAT" EntitySet="CARPETAT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CARPETAT_SPRAS" Association="Self.FK_CARPETAT_SPRAS">
+      <End Role="SPRAS" EntitySet="SPRAS" />
+      <End Role="CARPETAT" EntitySet="CARPETAT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DELEGAR_USUARIO" Association="Self.FK_DELEGAR_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="DELEGAR" EntitySet="DELEGAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DELEGAR_USUARIO1" Association="Self.FK_DELEGAR_USUARIO1">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="DELEGAR" EntitySet="DELEGAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_AGENTEC_USUARIO" Association="Self.FK_DET_AGENTEC_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="DET_AGENTEC" EntitySet="DET_AGENTEC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_AGENTEC_USUARIO1" Association="Self.FK_DET_AGENTEC_USUARIO1">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="DET_AGENTEC" EntitySet="DET_AGENTEC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_PROVEEDOR_PROYECTO" Association="Self.FK_DET_PROVEEDOR_PROYECTO">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="DET_PROVEEDOR" EntitySet="DET_PROVEEDOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_PROVEEDOR_SOCIEDAD" Association="Self.FK_DET_PROVEEDOR_SOCIEDAD">
+      <End Role="SOCIEDAD" EntitySet="SOCIEDAD" />
+      <End Role="DET_PROVEEDOR" EntitySet="DET_PROVEEDOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_PROYECTO_PROYECTO" Association="Self.FK_DET_PROYECTO_PROYECTO">
+      <End Role="PROYECTO" EntitySet="PROYECTO" />
+      <End Role="DET_PROYECTO" EntitySet="DET_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_PROYECTO_SOCIEDAD" Association="Self.FK_DET_PROYECTO_SOCIEDAD">
+      <End Role="SOCIEDAD" EntitySet="SOCIEDAD" />
+      <End Role="DET_PROYECTO" EntitySet="DET_PROYECTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_SOCIEDAD_SOCIEDAD" Association="Self.FK_DET_SOCIEDAD_SOCIEDAD">
+      <End Role="SOCIEDAD" EntitySet="SOCIEDAD" />
+      <End Role="DET_SOCIEDAD" EntitySet="DET_SOCIEDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_SOCIEDAD_TIPOPRESUPUESTO" Association="Self.FK_DET_SOCIEDAD_TIPOPRESUPUESTO">
+      <End Role="TIPOPRESUPUESTO" EntitySet="TIPOPRESUPUESTO" />
+      <End Role="DET_SOCIEDAD" EntitySet="DET_SOCIEDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_SOCIEDAD_USUARIO" Association="Self.FK_DET_SOCIEDAD_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="DET_SOCIEDAD" EntitySet="DET_SOCIEDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_TIPODOC_TSOL" Association="Self.FK_DET_TIPODOC_TSOL">
+      <End Role="TSOL" EntitySet="TSOL" />
+      <End Role="DET_TIPODOC" EntitySet="DET_TIPODOC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_TIPOPRESUPUESTO_SOCIEDAD" Association="Self.FK_DET_TIPOPRESUPUESTO_SOCIEDAD">
+      <End Role="SOCIEDAD" EntitySet="SOCIEDAD" />
+      <End Role="DET_TIPOPRESUPUESTO" EntitySet="DET_TIPOPRESUPUESTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_TIPOPRESUPUESTO_TIPOPRESUPUESTO" Association="Self.FK_DET_TIPOPRESUPUESTO_TIPOPRESUPUESTO">
+      <End Role="TIPOPRESUPUESTO" EntitySet="TIPOPRESUPUESTO" />
+      <End Role="DET_TIPOPRESUPUESTO" EntitySet="DET_TIPOPRESUPUESTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_TIPOPRESUPUESTO_USUARIO" Association="Self.FK_DET_TIPOPRESUPUESTO_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="DET_TIPOPRESUPUESTO" EntitySet="DET_TIPOPRESUPUESTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTO_SOCIEDAD" Association="Self.FK_DOCUMENTO_SOCIEDAD">
+      <End Role="SOCIEDAD" EntitySet="SOCIEDAD" />
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTO_TSOL" Association="Self.FK_DOCUMENTO_TSOL">
+      <End Role="TSOL" EntitySet="TSOL" />
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTO_USUARIO" Association="Self.FK_DOCUMENTO_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTOA_DOCUMENTOP" Association="Self.FK_DOCUMENTOA_DOCUMENTOP">
+      <End Role="DOCUMENTOP" EntitySet="DOCUMENTOP" />
+      <End Role="DOCUMENTOA" EntitySet="DOCUMENTOA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTOA_TSOPORTE" Association="Self.FK_DOCUMENTOA_TSOPORTE">
+      <End Role="TSOPORTE" EntitySet="TSOPORTE" />
+      <End Role="DOCUMENTOA" EntitySet="DOCUMENTOA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTOP_DOCUMENTO" Association="Self.FK_DOCUMENTOP_DOCUMENTO">
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+      <End Role="DOCUMENTOP" EntitySet="DOCUMENTOP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTOP_IMPUESTO" Association="Self.FK_DOCUMENTOP_IMPUESTO">
+      <End Role="IMPUESTO" EntitySet="IMPUESTO" />
+      <End Role="DOCUMENTOP" EntitySet="DOCUMENTOP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTOPRE_DOCUMENTO" Association="Self.FK_DOCUMENTOPRE_DOCUMENTO">
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+      <End Role="DOCUMENTOPRE" EntitySet="DOCUMENTOPRE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTOR_DOCUMENTO" Association="Self.FK_DOCUMENTOR_DOCUMENTO">
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+      <End Role="DOCUMENTOR" EntitySet="DOCUMENTOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTORP_DOCUMENTOP" Association="Self.FK_DOCUMENTORP_DOCUMENTOP">
+      <End Role="DOCUMENTOP" EntitySet="DOCUMENTOP" />
+      <End Role="DOCUMENTORP" EntitySet="DOCUMENTORP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTORP_RETENCION" Association="Self.FK_DOCUMENTORP_RETENCION">
+      <End Role="RETENCION" EntitySet="RETENCION" />
+      <End Role="DOCUMENTORP" EntitySet="DOCUMENTORP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTOSAP_DOCUMENTO" Association="Self.FK_DOCUMENTOSAP_DOCUMENTO">
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+      <End Role="DOCUMENTOSAP" EntitySet="DOCUMENTOSAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FLUJO_DOCUMENTO" Association="Self.FK_FLUJO_DOCUMENTO">
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+      <End Role="FLUJO" EntitySet="FLUJO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FLUJO_USUARIO" Association="Self.FK_FLUJO_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="FLUJO" EntitySet="FLUJO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FLUJO_USUARIO1" Association="Self.FK_FLUJO_USUARIO1">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="FLUJO" EntitySet="FLUJO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FLUJO_WORKFP" Association="Self.FK_FLUJO_WORKFP">
+      <End Role="WORKFP" EntitySet="WORKFP" />
+      <End Role="FLUJO" EntitySet="FLUJO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IIMPUESTO_IMPUESTO" Association="Self.FK_IIMPUESTO_IMPUESTO">
+      <End Role="IMPUESTO" EntitySet="IMPUESTO" />
+      <End Role="IIMPUESTO" EntitySet="IIMPUESTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IMPUESTOT_IMPUESTO" Association="Self.FK_IMPUESTOT_IMPUESTO">
+      <End Role="IMPUESTO" EntitySet="IMPUESTO" />
+      <End Role="IMPUESTOT" EntitySet="IMPUESTOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_IMPUESTOT_SPRAS" Association="Self.FK_IMPUESTOT_SPRAS">
+      <End Role="SPRAS" EntitySet="SPRAS" />
+      <End Role="IMPUESTOT" EntitySet="IMPUESTOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MIEMBROS_ROL" Association="Self.FK_MIEMBROS_ROL">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="MIEMBROS" EntitySet="MIEMBROS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MIEMBROS_USUARIO" Association="Self.FK_MIEMBROS_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="MIEMBROS" EntitySet="MIEMBROS" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PAGINA_CARPETA" Association="Self.FK_PAGINA_CARPETA">
+      <End Role="CARPETA" EntitySet="CARPETA" />
+      <End Role="PAGINA" EntitySet="PAGINA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PAGINAT_PAGINA" Association="Self.FK_PAGINAT_PAGINA">
+      <End Role="PAGINA" EntitySet="PAGINA" />
+      <End Role="PAGINAT" EntitySet="PAGINAT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PERMISO_PAGINA_PAGINA" Association="Self.FK_PERMISO_PAGINA_PAGINA">
+      <End Role="PAGINA" EntitySet="PAGINA" />
+      <End Role="PERMISO_PAGINA" EntitySet="PERMISO_PAGINA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PUESTOT_PUESTO" Association="Self.FK_PUESTOT_PUESTO">
+      <End Role="PUESTO" EntitySet="PUESTO" />
+      <End Role="PUESTOT" EntitySet="PUESTOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PUESTOT_SPRAS" Association="Self.FK_PUESTOT_SPRAS">
+      <End Role="SPRAS" EntitySet="SPRAS" />
+      <End Role="PUESTOT" EntitySet="PUESTOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RETENCION_PROV_PROVEEDOR" Association="Self.FK_RETENCION_PROV_PROVEEDOR">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDOR" />
+      <End Role="RETENCION_PROV" EntitySet="RETENCION_PROV" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RETENCION_PROV_RETENCION" Association="Self.FK_RETENCION_PROV_RETENCION">
+      <End Role="RETENCION" EntitySet="RETENCION" />
+      <End Role="RETENCION_PROV" EntitySet="RETENCION_PROV" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RETENCION_PROV_SOCIEDAD" Association="Self.FK_RETENCION_PROV_SOCIEDAD">
+      <End Role="SOCIEDAD" EntitySet="SOCIEDAD" />
+      <End Role="RETENCION_PROV" EntitySet="RETENCION_PROV" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RETENCIONT_RETENCION" Association="Self.FK_RETENCIONT_RETENCION">
+      <End Role="RETENCION" EntitySet="RETENCION" />
+      <End Role="RETENCIONT" EntitySet="RETENCIONT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RETENCIONT_SPRAS" Association="Self.FK_RETENCIONT_SPRAS">
+      <End Role="SPRAS" EntitySet="SPRAS" />
+      <End Role="RETENCIONT" EntitySet="RETENCIONT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ROLT_ROL" Association="Self.FK_ROLT_ROL">
+      <End Role="ROL" EntitySet="ROL" />
+      <End Role="ROLT" EntitySet="ROLT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SOCIEDAD_MONEDA" Association="Self.FK_SOCIEDAD_MONEDA">
+      <End Role="MONEDA" EntitySet="MONEDA" />
+      <End Role="SOCIEDAD" EntitySet="SOCIEDAD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TEXTO_CAMPOS" Association="Self.FK_TEXTO_CAMPOS">
+      <End Role="CAMPOS" EntitySet="CAMPOS" />
+      <End Role="TEXTO" EntitySet="TEXTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TEXTO_SPRAS" Association="Self.FK_TEXTO_SPRAS">
+      <End Role="SPRAS" EntitySet="SPRAS" />
+      <End Role="TEXTO" EntitySet="TEXTO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPOPRESUPUESTOT_SPRAS" Association="Self.FK_TIPOPRESUPUESTOT_SPRAS">
+      <End Role="SPRAS" EntitySet="SPRAS" />
+      <End Role="TIPOPRESUPUESTOT" EntitySet="TIPOPRESUPUESTOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TIPOPRESUPUESTOT_TIPOPRESUPUESTO" Association="Self.FK_TIPOPRESUPUESTOT_TIPOPRESUPUESTO">
+      <End Role="TIPOPRESUPUESTO" EntitySet="TIPOPRESUPUESTO" />
+      <End Role="TIPOPRESUPUESTOT" EntitySet="TIPOPRESUPUESTOT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TSOL_RANGO" Association="Self.FK_TSOL_RANGO">
+      <End Role="RANGO" EntitySet="RANGO" />
+      <End Role="TSOL" EntitySet="TSOL" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TSOLT_TSOL" Association="Self.FK_TSOLT_TSOL">
+      <End Role="TSOL" EntitySet="TSOL" />
+      <End Role="TSOLT" EntitySet="TSOLT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TSOPORTET_SPRAS" Association="Self.FK_TSOPORTET_SPRAS">
+      <End Role="SPRAS" EntitySet="SPRAS" />
+      <End Role="TSOPORTET" EntitySet="TSOPORTET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TSOPORTET_TSOPORTE" Association="Self.FK_TSOPORTET_TSOPORTE">
+      <End Role="TSOPORTE" EntitySet="TSOPORTE" />
+      <End Role="TSOPORTET" EntitySet="TSOPORTET" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_PUESTO" Association="Self.FK_USUARIO_PUESTO">
+      <End Role="PUESTO" EntitySet="PUESTO" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_SOCIEDAD" Association="Self.FK_USUARIO_SOCIEDAD">
+      <End Role="SOCIEDAD" EntitySet="SOCIEDAD" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_SPRAS" Association="Self.FK_USUARIO_SPRAS">
+      <End Role="SPRAS" EntitySet="SPRAS" />
+      <End Role="USUARIO" EntitySet="USUARIO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WARNING_CAMPOS" Association="Self.FK_WARNING_CAMPOS">
+      <End Role="CAMPOS" EntitySet="CAMPOS" />
+      <End Role="WARNING" EntitySet="WARNING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WARNING_POSICION" Association="Self.FK_WARNING_POSICION">
+      <End Role="POSICION" EntitySet="POSICION" />
+      <End Role="WARNING" EntitySet="WARNING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WARNING_SPRAS" Association="Self.FK_WARNING_SPRAS">
+      <End Role="SPRAS" EntitySet="SPRAS" />
+      <End Role="WARNING" EntitySet="WARNING" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WORKFP_ACCION" Association="Self.FK_WORKFP_ACCION">
+      <End Role="ACCION" EntitySet="ACCION" />
+      <End Role="WORKFP" EntitySet="WORKFP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WORKFP_TSOL" Association="Self.FK_WORKFP_TSOL">
+      <End Role="TSOL" EntitySet="TSOL" />
+      <End Role="WORKFH" EntitySet="WORKFH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WORKFP_USUARIO" Association="Self.FK_WORKFP_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="WORKFH" EntitySet="WORKFH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WORKFP_WORKFV" Association="Self.FK_WORKFP_WORKFV">
+      <End Role="WORKFV" EntitySet="WORKFV" />
+      <End Role="WORKFP" EntitySet="WORKFP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WORKFT_SPRAS" Association="Self.FK_WORKFT_SPRAS">
+      <End Role="SPRAS" EntitySet="SPRAS" />
+      <End Role="WORKFT" EntitySet="WORKFT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WORKFT_WORKFV" Association="Self.FK_WORKFT_WORKFV">
+      <End Role="WORKFV" EntitySet="WORKFV" />
+      <End Role="WORKFT" EntitySet="WORKFT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WORKV_WORKFH" Association="Self.FK_WORKV_WORKFH">
+      <End Role="WORKFH" EntitySet="WORKFH" />
+      <End Role="WORKFV" EntitySet="WORKFV" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

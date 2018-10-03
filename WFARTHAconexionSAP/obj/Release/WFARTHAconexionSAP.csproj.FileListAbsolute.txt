@@ -1,0 +1,16 @@
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release\WFARTHAconexionSAP.exe.config
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release\WFARTHAconexionSAP.exe.manifest
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release\WFARTHAconexionSAP.application
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release\WFARTHAconexionSAP.exe
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release\WFARTHAconexionSAP.pdb
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release\EntityFramework.dll
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release\EntityFramework.xml
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Release\WFARTHAconexionSAP.csprojAssemblyReference.cache
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Release\WFARTHAconexionSAP.csproj.CoreCompileInputs.cache
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Release\WFARTHAconexionSAP.exe.manifest
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Release\WFARTHAconexionSAP.application
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Release\WFARTHAconexionSAP.csproj.CopyComplete
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Release\WFARTHAconexionSAP.exe
+C:\Users\SF\source\repos\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Release\WFARTHAconexionSAP.pdb
