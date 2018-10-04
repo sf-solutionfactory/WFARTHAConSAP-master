@@ -124,13 +124,18 @@ namespace TATconexionSAP.Services
                     if (lstd[i].Mensaje == string.Empty)
                     {
                         //dA.ESTATUS_SAP = "X";
+                        //Creación del preliminar
                         if(lstd[i].accion == "P")
                         {
                             dp.MESSAGE = "Error Preliminar";
-
+                        
+                        //Cancelación del preliminar
                         }else if(lstd[i].accion == "C")
                         {
                             dp.MESSAGE = "Error Cancelación";
+                        }else if(lstd[i].accion == "A")
+                        {
+                            dp.MESSAGE = "Error contabilización SAP";
                         }
                         
                         db.DOCUMENTOPREs.Add(dp);
@@ -149,6 +154,10 @@ namespace TATconexionSAP.Services
                             else if (lstd[i].accion == "C")
                             {
                                 dp.MESSAGE = "Error Cancelación";
+                            }
+                            else if (lstd[i].accion == "A")
+                            {
+                                dp.MESSAGE = "Error contabilización SAP";
                             }
                             //dp.MESSAGE = "Error Preliminar";
                             db.DOCUMENTOPREs.Add(dp);
@@ -170,7 +179,12 @@ namespace TATconexionSAP.Services
                                 //Procesa el flujo de cancelación
                                 pf.procesaC(dp.NUM_DOC);
                             }
-                            
+                            else if (lstd[i].accion == "A")
+                            {
+                                //Proceso de contabilización
+                                pf.procesaA(dp.NUM_DOC);
+                            }
+
                         }
                     }
 

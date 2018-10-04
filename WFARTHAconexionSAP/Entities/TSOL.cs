@@ -26,6 +26,8 @@ namespace WFARTHAconexionSAP.Entities
         public string DESCRIPCION { get; set; }
         public string RANGO_ID { get; set; }
         public string ESTATUS { get; set; }
+        public Nullable<bool> EDITDET { get; set; }
+        public Nullable<bool> DEFAULT { get; set; }
     
         public virtual DET_TIPODOC DET_TIPODOC { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

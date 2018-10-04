@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WFARTHAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WFARTHAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ACCION">
           <Key>
             <PropertyRef Name="ID" />
@@ -644,6 +644,8 @@ warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key d
           <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="60" />
           <Property Name="RANGO_ID" Type="nchar" MaxLength="2" Nullable="false" />
           <Property Name="ESTATUS" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="EDITDET" Type="bit" />
+          <Property Name="DEFAULT" Type="bit" />
         </EntityType>
         <EntityType Name="TSOLT">
           <Key>
@@ -2218,8 +2220,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
             <End Role="WORKFV" EntitySet="WORKFV" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WFARTHAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -2908,6 +2909,8 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <NavigationProperty Name="RANGO" Relationship="Self.FK_TSOL_RANGO" FromRole="TSOL" ToRole="RANGO" />
           <NavigationProperty Name="TSOLTs" Relationship="Self.FK_TSOLT_TSOL" FromRole="TSOL" ToRole="TSOLT" />
           <NavigationProperty Name="WORKFHs" Relationship="Self.FK_WORKFP_TSOL" FromRole="TSOL" ToRole="WORKFH" />
+          <Property Name="EDITDET" Type="Boolean" />
+          <Property Name="DEFAULT" Type="Boolean" />
         </EntityType>
         <EntityType Name="TSOLT">
           <Key>
@@ -4970,6 +4973,8 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <EntitySetMapping Name="TSOLs">
             <EntityTypeMapping TypeName="WFARTHAModel.TSOL">
               <MappingFragment StoreEntitySet="TSOL">
+                <ScalarProperty Name="DEFAULT" ColumnName="DEFAULT" />
+                <ScalarProperty Name="EDITDET" ColumnName="EDITDET" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
                 <ScalarProperty Name="RANGO_ID" ColumnName="RANGO_ID" />
