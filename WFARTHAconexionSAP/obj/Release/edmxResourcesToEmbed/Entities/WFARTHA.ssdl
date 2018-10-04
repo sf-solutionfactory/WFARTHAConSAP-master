@@ -639,6 +639,8 @@ warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key d
     <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="60" />
     <Property Name="RANGO_ID" Type="nchar" MaxLength="2" Nullable="false" />
     <Property Name="ESTATUS" Type="nchar" MaxLength="1" Nullable="false" />
+    <Property Name="EDITDET" Type="bit" />
+    <Property Name="DEFAULT" Type="bit" />
   </EntityType>
   <EntityType Name="TSOLT">
     <Key>

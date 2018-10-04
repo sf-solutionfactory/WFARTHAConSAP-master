@@ -579,6 +579,8 @@
     <EntitySetMapping Name="TSOLs">
       <EntityTypeMapping TypeName="WFARTHAModel.TSOL">
         <MappingFragment StoreEntitySet="TSOL">
+          <ScalarProperty Name="DEFAULT" ColumnName="DEFAULT" />
+          <ScalarProperty Name="EDITDET" ColumnName="EDITDET" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
           <ScalarProperty Name="RANGO_ID" ColumnName="RANGO_ID" />

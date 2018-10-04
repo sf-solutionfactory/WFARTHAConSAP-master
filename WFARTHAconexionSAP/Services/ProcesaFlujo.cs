@@ -1248,6 +1248,22 @@ namespace WFARTHAconexionSAP.Services
             return correcto;
         }
 
+        public string procesaA(decimal num_doc)
+        {
+            WFARTHAEntities db = new WFARTHAEntities();
+            DOCUMENTOPRE dp = new DOCUMENTOPRE();
+
+            dp.NUM_DOC = num_doc;
+            dp.POS = 1;
+            dp.MESSAGE = "Contabilizado en SAP";
+
+            db.DOCUMENTOPREs.Add(dp);
+            db.SaveChanges();
+            
+
+            return "";
+        }
+
         public FLUJO determinaAgente(DOCUMENTO d, string user, string delega, int pos, int? loop, int sop, int fase_det)
         {
             if (delega != null)
