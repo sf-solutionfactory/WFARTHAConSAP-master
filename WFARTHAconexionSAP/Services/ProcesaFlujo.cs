@@ -46,7 +46,8 @@ namespace WFARTHAconexionSAP.Services
                 //actual.ESTATUS = f.ESTATUS;
                 //db.FLUJOes.Add(actual);
 
-                actual = db.FLUJOes.Where(fl => fl.NUM_DOC == num_doc).FirstOrDefault();
+                //actual = db.FLUJOes.Where(fl => fl.NUM_DOC == num_doc).FirstOrDefault();//MGC 05-10-2018 Modificación para work flow al ser editada
+                actual = db.FLUJOes.Where(a => a.NUM_DOC.Equals(d.NUM_DOC)).OrderByDescending(x => x.POS).FirstOrDefault();//MGC 05-10-2018 Modificación para work flow al ser editada
 
                 int step = 0;
                 if(actual.STEP_AUTO == 0)

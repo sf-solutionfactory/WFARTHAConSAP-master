@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WFARTHAconexionSAP.exe" size="378784">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WFARTHAconexionSAP.exe" size="379296">
       <assemblyIdentity name="WFARTHAconexionSAP" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MKO9+mumzWl/Tq6aPB00Ag966Qb3WeOkauf2IjV1ucQ=</dsig:DigestValue>
+        <dsig:DigestValue>+uvDsrn3C0qDoFkl2Z6ezunUJrRysINkZU38EthFghY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
