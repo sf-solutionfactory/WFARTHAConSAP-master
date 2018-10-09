@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WFARTHAconexionSAP.exe" size="383392">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WFARTHAconexionSAP.exe" size="387488">
       <assemblyIdentity name="WFARTHAconexionSAP" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>rN52YGMjPr4IsKaumaMhkPl64lLKtxSaNX3bsmssEyk=</dsig:DigestValue>
+        <dsig:DigestValue>SJ6NsGpltzi8M2zZx4T6ozqdoYLRv6QNpSa4rfosoUU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -95,13 +95,22 @@
       <dsig:DigestValue>mnShXNdkMNucAC90vxFyYxs5nyrmqJARX6ti+xyxvaI=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="WFARTHAconexionSAP.exe.config" size="4730">
+  <file name="images\artha_logo.jpg" size="5155">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>JT5LW5bCnh/4w7zhX0HJ0/tfWrwBfeF/ShUlplm4zYE=</dsig:DigestValue>
+      <dsig:DigestValue>zJLnodCqp6DvRxrrV60ZGkSlUXd0KDmhPlhzwAaZcBA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="WFARTHAconexionSAP.exe.config" size="4844">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>h7aGb1wg8W3nPYexJNuVc9Kq+mrthKRoVyBdI/gRiNU=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

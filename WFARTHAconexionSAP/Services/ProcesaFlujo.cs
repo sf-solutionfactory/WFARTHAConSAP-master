@@ -17,6 +17,8 @@ namespace WFARTHAconexionSAP.Services
             WFARTHAEntities db = new WFARTHAEntities();
             FLUJO actual = new FLUJO();
             string recurrente = "";
+            bool emails = false; //MGC 08-10-2018 Obtener los datos para el correo
+            string emailsto = ""; //MGC 09-10-2018 Envío de correos
             if (true)//---------------------------NUEVO REGISTRO
             {
                 DOCUMENTO d = db.DOCUMENTOes.Find(num_doc);
@@ -49,6 +51,26 @@ namespace WFARTHAconexionSAP.Services
                 //actual = db.FLUJOes.Where(fl => fl.NUM_DOC == num_doc).FirstOrDefault();//MGC 05-10-2018 Modificación para work flow al ser editada
                 actual = db.FLUJOes.Where(a => a.NUM_DOC.Equals(d.NUM_DOC)).OrderByDescending(x => x.POS).FirstOrDefault();//MGC 05-10-2018 Modificación para work flow al ser editada
 
+
+                //MGC 08-10-2018 Obtener los datos para el correo
+                WORKFV wf = db.WORKFHs.Where(a => a.ID == actual.WORKF_ID).FirstOrDefault().WORKFVs.OrderByDescending(a => a.VERSION).FirstOrDefault();
+
+                WORKFP wp = wf.WORKFPs.Where(a => a.ID.Equals(actual.WORKF_ID) & a.VERSION.Equals(actual.WF_VERSION) & a.POS.Equals(actual.WF_POS)).OrderBy(a => a.POS).FirstOrDefault();
+                string email = ""; //MGC 08-10-2018 Obtener el nombre del cliente
+                email = wp.EMAIL; //MGC 08-10-2018 Obtener el nombre del cliente
+
+                if (email == "X")
+                {
+                    emails = true;
+
+                    ////MGC 09-10-2018 Envío de correos
+                    ////Obtener el email del creador
+                    //string emailc = "";
+                    //emailc = db.USUARIOs.Where(us => us.ID == d.USUARIOC_ID).FirstOrDefault().EMAIL;
+                    //emailsto = emailc;
+
+                }
+
                 int step = 0;
                 if(actual.STEP_AUTO == 0)
                 {
@@ -59,8 +81,7 @@ namespace WFARTHAconexionSAP.Services
                 DET_AGENTECA dah = new DET_AGENTECA();
                 dah = detAgenteLimite(dap, Convert.ToDecimal(d.MONTO_DOC_MD));
 
-
-
+                
                 WORKFP paso_a = db.WORKFPs.Where(a => a.ID.Equals(actual.WORKF_ID) & a.VERSION.Equals(actual.WF_VERSION) & a.POS.Equals(actual.WF_POS)).FirstOrDefault();
                 int next_step_a = 0;
                 if (paso_a.NEXT_STEP != null)
@@ -71,11 +92,11 @@ namespace WFARTHAconexionSAP.Services
                 {
                     next = db.WORKFPs.Where(a => a.ID.Equals(actual.WORKF_ID) & a.VERSION.Equals(actual.WF_VERSION) & a.POS == next_step_a).FirstOrDefault();
                 }
-                else
-                {
-                    WORKFP autoriza = db.WORKFPs.Where(a => a.ID.Equals(actual.WORKF_ID) & a.VERSION.Equals(actual.WF_VERSION) & a.ACCION_ID == 5).FirstOrDefault();
-                    next = db.WORKFPs.Where(a => a.ID.Equals(actual.WORKF_ID) & a.VERSION.Equals(actual.WF_VERSION) & a.POS == autoriza.NS_ACCEPT).FirstOrDefault();
-                }
+                //else
+                //{
+                //    WORKFP autoriza = db.WORKFPs.Where(a => a.ID.Equals(actual.WORKF_ID) & a.VERSION.Equals(actual.WF_VERSION) & a.ACCION_ID == 5).FirstOrDefault();
+                //    next = db.WORKFPs.Where(a => a.ID.Equals(actual.WORKF_ID) & a.VERSION.Equals(actual.WF_VERSION) & a.POS == autoriza.NS_ACCEPT).FirstOrDefault();
+                //}
                 if (next.NEXT_STEP.Equals(99))//--------FIN DEL WORKFLOW
                 {
                     d.ESTATUS_WF = "A";
@@ -124,6 +145,28 @@ namespace WFARTHAconexionSAP.Services
 
                             nuevo.DETPOS = detA.DETPOS;
                             nuevo.DETVER = dah.VERSION;
+
+                            //MGC 09-10-2018 Envío de correos
+                            if (emails)
+                            {
+                                emails = true;
+
+                                //MGC 09-10-2018 Envío de correos
+                                //Obtener el email del creador
+                                string emailc = "";
+                                emailc = db.USUARIOs.Where(us => us.ID == d.USUARIOC_ID).FirstOrDefault().EMAIL;
+                                emailsto = emailc;
+                                emailc = "";
+
+                                //Obtener el usuario aprobador
+                                emailc = db.USUARIOs.Where(us => us.ID == nuevo.USUARIOA_ID).FirstOrDefault().EMAIL;
+                                emailsto += "," + emailc;
+
+                                //Obtener el usuario del siguiente aprobador 
+
+
+                            }
+
                         }
                         else
                         {
@@ -593,6 +636,25 @@ namespace WFARTHAconexionSAP.Services
             //-------------------------------------------------------------------------------------------------------------------------------//
             //-------------------------------------------------------------------------------------------------------------------------------//
             //-------------------------------------------------------------------------------------------------------------------------------//
+
+            //MGC 08-10-2018 Obtener los datos para el correo
+            if (emails)
+            {
+                //Obtener el directorio desde la configuración
+
+
+                //MGC 08-10-2018 Obtener los datos para el correo comentar provisional
+                Email em = new Email();
+                string UrlDirectory = "http://localhost:60621/Correos/Index/";
+                //string image = Server.MapPath("~/images/artha_logo.jpg");
+                string image = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string page = "Index";
+             
+
+                em.enviaMailC(num_doc, true, "ES", UrlDirectory, page, image, emailsto);
+
+            }
+
 
             return correcto;
         }
