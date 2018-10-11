@@ -685,6 +685,8 @@
     <NavigationProperty Name="RANGO" Relationship="Self.FK_TSOL_RANGO" FromRole="TSOL" ToRole="RANGO" />
     <NavigationProperty Name="TSOLTs" Relationship="Self.FK_TSOLT_TSOL" FromRole="TSOL" ToRole="TSOLT" />
     <NavigationProperty Name="WORKFHs" Relationship="Self.FK_WORKFP_TSOL" FromRole="TSOL" ToRole="WORKFH" />
+    <Property Name="EDITDET" Type="Boolean" />
+    <Property Name="DEFAULT" Type="Boolean" />
   </EntityType>
   <EntityType Name="TSOLT">
     <Key>

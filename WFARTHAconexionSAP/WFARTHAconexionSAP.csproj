@@ -285,6 +285,7 @@
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\doc2.cs" />
+    <Compile Include="Services\Email.cs" />
     <Compile Include="Services\MailErrores.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -333,6 +334,7 @@
       <DependentUpon>WFARTHA.edmx</DependentUpon>
       <LastGenOutput>WFARTHA.cs</LastGenOutput>
     </Content>
+    <Content Include="images\artha_logo.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
