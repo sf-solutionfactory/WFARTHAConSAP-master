@@ -269,6 +269,8 @@ warning 6002: The table/view 'PAGOS.dbo.DET_PEP' does not have a primary key def
           <Property Name="TEXTO_POS" Type="nchar" MaxLength="50" />
           <Property Name="ASIGNACION_POS" Type="nchar" MaxLength="18" />
           <Property Name="CLAVE_CTA" Type="nchar" MaxLength="2" />
+          <Property Name="SOCIEDAD_PRE" Type="nchar" MaxLength="4" />
+          <Property Name="EJERCICIO_PRE" Type="nchar" MaxLength="4" />
         </EntityType>
         <EntityType Name="DOCUMENTOA">
           <Key>
@@ -646,6 +648,7 @@ warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key d
           <Property Name="ESTATUS" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="EDITDET" Type="bit" />
           <Property Name="DEFAULT" Type="bit" />
+          <Property Name="TIPO_DOCFILE" Type="nchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="TSOLT">
           <Key>
@@ -784,9 +787,11 @@ warning 6002: The table/view 'PAGOS.dbo.DOCUMENTOV' does not have a primary key 
           <Key>
             <PropertyRef Name="POS" />
             <PropertyRef Name="NUM_DOC" />
+            <PropertyRef Name="NUM_PRE" />
           </Key>
           <Property Name="POS" Type="int" Nullable="false" />
           <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="NUM_PRE" Type="numeric" Precision="10" Scale="0" Nullable="false" />
           <Property Name="TSOL_ID" Type="nvarchar" MaxLength="10" />
           <Property Name="TALL_ID" Type="nvarchar" MaxLength="10" />
           <Property Name="SOCIEDAD_ID" Type="nchar" MaxLength="4" />
@@ -1854,6 +1859,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
             <DefiningQuery>SELECT 
     [DOCUMENTOV].[POS] AS [POS], 
     [DOCUMENTOV].[NUM_DOC] AS [NUM_DOC], 
+    [DOCUMENTOV].[NUM_PRE] AS [NUM_PRE], 
     [DOCUMENTOV].[TSOL_ID] AS [TSOL_ID], 
     [DOCUMENTOV].[TALL_ID] AS [TALL_ID], 
     [DOCUMENTOV].[SOCIEDAD_ID] AS [SOCIEDAD_ID], 
@@ -2467,6 +2473,8 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <NavigationProperty Name="DOCUMENTORs" Relationship="Self.FK_DOCUMENTOR_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOR" />
           <NavigationProperty Name="DOCUMENTOSAP" Relationship="Self.FK_DOCUMENTOSAP_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOSAP" />
           <NavigationProperty Name="FLUJOes" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="DOCUMENTO" ToRole="FLUJO" />
+          <Property Name="SOCIEDAD_PRE" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="EJERCICIO_PRE" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="DOCUMENTOA">
           <Key>
@@ -2911,6 +2919,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <NavigationProperty Name="WORKFHs" Relationship="Self.FK_WORKFP_TSOL" FromRole="TSOL" ToRole="WORKFH" />
           <Property Name="EDITDET" Type="Boolean" />
           <Property Name="DEFAULT" Type="Boolean" />
+          <Property Name="TIPO_DOCFILE" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="TSOLT">
           <Key>
@@ -3117,6 +3126,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <Key>
             <PropertyRef Name="POS" />
             <PropertyRef Name="NUM_DOC" />
+            <PropertyRef Name="NUM_PRE" />
           </Key>
           <Property Name="POS" Type="Int32" Nullable="false" />
           <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
@@ -3169,6 +3179,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <Property Name="FECHA_PASO_ACTUAL" Type="DateTime" Precision="3" />
           <Property Name="USUARIOA_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="EXPR2" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="NUM_PRE" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="PAGINAV">
           <Key>
@@ -4547,6 +4558,8 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <EntitySetMapping Name="DOCUMENTOes">
             <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTO">
               <MappingFragment StoreEntitySet="DOCUMENTO">
+                <ScalarProperty Name="EJERCICIO_PRE" ColumnName="EJERCICIO_PRE" />
+                <ScalarProperty Name="SOCIEDAD_PRE" ColumnName="SOCIEDAD_PRE" />
                 <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
                 <ScalarProperty Name="NUM_PRE" ColumnName="NUM_PRE" />
                 <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />
@@ -4973,6 +4986,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <EntitySetMapping Name="TSOLs">
             <EntityTypeMapping TypeName="WFARTHAModel.TSOL">
               <MappingFragment StoreEntitySet="TSOL">
+                <ScalarProperty Name="TIPO_DOCFILE" ColumnName="TIPO_DOCFILE" />
                 <ScalarProperty Name="DEFAULT" ColumnName="DEFAULT" />
                 <ScalarProperty Name="EDITDET" ColumnName="EDITDET" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -5147,6 +5161,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <EntitySetMapping Name="DOCUMENTOVs">
             <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOV">
               <MappingFragment StoreEntitySet="DOCUMENTOV">
+                <ScalarProperty Name="NUM_PRE" ColumnName="NUM_PRE" />
                 <ScalarProperty Name="POS" ColumnName="POS" />
                 <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
                 <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />

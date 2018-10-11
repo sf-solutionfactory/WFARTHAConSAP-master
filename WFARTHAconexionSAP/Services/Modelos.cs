@@ -72,8 +72,10 @@ namespace TATconexionSAP.Services
                                     d.accion = val[1];
                                     d.Mensaje = val[2];
                                     d.Num_doc_pre = decimal.Parse(val[3]);
-                                    d.Sociedad = val[4];
-      
+                                    d.Sociedad_pre = val[4];
+                                    d.Ejercicio_pre = val[5]; //MGC 11-10-2018 No enviar correos 
+
+
                                 }
                                 lstd.Add(d);
                             }
@@ -195,7 +197,9 @@ namespace TATconexionSAP.Services
                     {
                         ////Hacemos el update en BD
                         dA.NUM_PRE= lstd[i].Num_doc_pre;
-                        db.Entry(dA).State = EntityState.Modified;
+                        dA.SOCIEDAD_PRE = lstd[i].Sociedad_pre;
+                        dA.EJERCICIO_PRE = lstd[i].Ejercicio_pre;//MGC 11-10-2018 No enviar correos 
+                        db.Entry(dA).State = EntityState.Modified;//MGC 11-10-2018 No enviar correos 
                         x = x + db.SaveChanges();
                         ////Agregamos en la tabla los valores
                         //DOCUMENTOSAP ds = new DOCUMENTOSAP();
