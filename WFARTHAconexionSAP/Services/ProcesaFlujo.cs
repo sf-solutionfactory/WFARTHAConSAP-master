@@ -649,9 +649,9 @@ namespace WFARTHAconexionSAP.Services
                 //string image = Server.MapPath("~/images/artha_logo.jpg");
                 string image = System.Reflection.Assembly.GetExecutingAssembly().Location;
                 string page = "Index";
-             
 
-                em.enviaMailC(num_doc, true, "ES", UrlDirectory, page, image, emailsto);
+                //MGC 11-10-2018 No enviar correos 
+                //em.enviaMailC(num_doc, true, "ES", UrlDirectory, page, image, emailsto);
 
             }
 
