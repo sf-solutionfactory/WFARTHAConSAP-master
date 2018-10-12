@@ -651,7 +651,7 @@ namespace WFARTHAconexionSAP.Services
                 string page = "Index";
 
                 //MGC 11-10-2018 No enviar correos 
-                //em.enviaMailC(num_doc, true, "ES", UrlDirectory, page, image, emailsto);
+                em.enviaMailC(num_doc, true, "ES", UrlDirectory, page, image, emailsto);
 
             }
 

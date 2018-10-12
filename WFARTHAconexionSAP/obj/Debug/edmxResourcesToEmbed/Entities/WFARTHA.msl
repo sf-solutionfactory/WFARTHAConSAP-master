@@ -153,6 +153,8 @@
     <EntitySetMapping Name="DOCUMENTOes">
       <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTO">
         <MappingFragment StoreEntitySet="DOCUMENTO">
+          <ScalarProperty Name="EJERCICIO_PRE" ColumnName="EJERCICIO_PRE" />
+          <ScalarProperty Name="SOCIEDAD_PRE" ColumnName="SOCIEDAD_PRE" />
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="NUM_PRE" ColumnName="NUM_PRE" />
           <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />
@@ -579,6 +581,7 @@
     <EntitySetMapping Name="TSOLs">
       <EntityTypeMapping TypeName="WFARTHAModel.TSOL">
         <MappingFragment StoreEntitySet="TSOL">
+          <ScalarProperty Name="TIPO_DOCFILE" ColumnName="TIPO_DOCFILE" />
           <ScalarProperty Name="DEFAULT" ColumnName="DEFAULT" />
           <ScalarProperty Name="EDITDET" ColumnName="EDITDET" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -753,6 +756,7 @@
     <EntitySetMapping Name="DOCUMENTOVs">
       <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOV">
         <MappingFragment StoreEntitySet="DOCUMENTOV">
+          <ScalarProperty Name="NUM_PRE" ColumnName="NUM_PRE" />
           <ScalarProperty Name="POS" ColumnName="POS" />
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />
