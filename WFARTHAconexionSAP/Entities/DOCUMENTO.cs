@@ -84,6 +84,8 @@ namespace WFARTHAconexionSAP.Entities
         public string TEXTO_POS { get; set; }
         public string ASIGNACION_POS { get; set; }
         public string CLAVE_CTA { get; set; }
+        public string SOCIEDAD_PRE { get; set; }
+        public string EJERCICIO_PRE { get; set; }
     
         public virtual SOCIEDAD SOCIEDAD { get; set; }
         public virtual TSOL TSOL { get; set; }

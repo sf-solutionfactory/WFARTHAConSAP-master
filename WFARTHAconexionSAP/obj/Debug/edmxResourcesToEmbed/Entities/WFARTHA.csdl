@@ -243,6 +243,8 @@
     <NavigationProperty Name="DOCUMENTORs" Relationship="Self.FK_DOCUMENTOR_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOR" />
     <NavigationProperty Name="DOCUMENTOSAP" Relationship="Self.FK_DOCUMENTOSAP_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOSAP" />
     <NavigationProperty Name="FLUJOes" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="DOCUMENTO" ToRole="FLUJO" />
+    <Property Name="SOCIEDAD_PRE" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="EJERCICIO_PRE" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="DOCUMENTOA">
     <Key>
@@ -687,6 +689,7 @@
     <NavigationProperty Name="WORKFHs" Relationship="Self.FK_WORKFP_TSOL" FromRole="TSOL" ToRole="WORKFH" />
     <Property Name="EDITDET" Type="Boolean" />
     <Property Name="DEFAULT" Type="Boolean" />
+    <Property Name="TIPO_DOCFILE" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="TSOLT">
     <Key>
@@ -893,6 +896,7 @@
     <Key>
       <PropertyRef Name="POS" />
       <PropertyRef Name="NUM_DOC" />
+      <PropertyRef Name="NUM_PRE" />
     </Key>
     <Property Name="POS" Type="Int32" Nullable="false" />
     <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
@@ -945,6 +949,7 @@
     <Property Name="FECHA_PASO_ACTUAL" Type="DateTime" Precision="3" />
     <Property Name="USUARIOA_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
     <Property Name="EXPR2" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="NUM_PRE" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
   </EntityType>
   <EntityType Name="PAGINAV">
     <Key>

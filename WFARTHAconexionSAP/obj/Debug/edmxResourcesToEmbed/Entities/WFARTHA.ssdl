@@ -264,6 +264,8 @@ warning 6002: The table/view 'PAGOS.dbo.DET_PEP' does not have a primary key def
     <Property Name="TEXTO_POS" Type="nchar" MaxLength="50" />
     <Property Name="ASIGNACION_POS" Type="nchar" MaxLength="18" />
     <Property Name="CLAVE_CTA" Type="nchar" MaxLength="2" />
+    <Property Name="SOCIEDAD_PRE" Type="nchar" MaxLength="4" />
+    <Property Name="EJERCICIO_PRE" Type="nchar" MaxLength="4" />
   </EntityType>
   <EntityType Name="DOCUMENTOA">
     <Key>
@@ -641,6 +643,7 @@ warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key d
     <Property Name="ESTATUS" Type="nchar" MaxLength="1" Nullable="false" />
     <Property Name="EDITDET" Type="bit" />
     <Property Name="DEFAULT" Type="bit" />
+    <Property Name="TIPO_DOCFILE" Type="nchar" MaxLength="20" Nullable="false" />
   </EntityType>
   <EntityType Name="TSOLT">
     <Key>
@@ -779,9 +782,11 @@ warning 6002: The table/view 'PAGOS.dbo.DOCUMENTOV' does not have a primary key 
     <Key>
       <PropertyRef Name="POS" />
       <PropertyRef Name="NUM_DOC" />
+      <PropertyRef Name="NUM_PRE" />
     </Key>
     <Property Name="POS" Type="int" Nullable="false" />
     <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="NUM_PRE" Type="numeric" Precision="10" Scale="0" Nullable="false" />
     <Property Name="TSOL_ID" Type="nvarchar" MaxLength="10" />
     <Property Name="TALL_ID" Type="nvarchar" MaxLength="10" />
     <Property Name="SOCIEDAD_ID" Type="nchar" MaxLength="4" />
@@ -1849,6 +1854,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
       <DefiningQuery>SELECT 
     [DOCUMENTOV].[POS] AS [POS], 
     [DOCUMENTOV].[NUM_DOC] AS [NUM_DOC], 
+    [DOCUMENTOV].[NUM_PRE] AS [NUM_PRE], 
     [DOCUMENTOV].[TSOL_ID] AS [TSOL_ID], 
     [DOCUMENTOV].[TALL_ID] AS [TALL_ID], 
     [DOCUMENTOV].[SOCIEDAD_ID] AS [SOCIEDAD_ID], 

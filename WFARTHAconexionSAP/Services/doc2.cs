@@ -12,6 +12,7 @@ namespace WFARTHAconexionSAP.Services
         public string accion { get; set; }
         public string Mensaje { get; set; }
         public decimal Num_doc_pre { get; set; }
-        public string Sociedad { get; set; }
+        public string Sociedad_pre { get; set; }
+        public string Ejercicio_pre { get; set; }
     }
 }
