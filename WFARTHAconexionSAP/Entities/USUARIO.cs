@@ -42,6 +42,7 @@ namespace WFARTHAconexionSAP.Entities
         public string MANAGER { get; set; }
         public string BACKUP_ID { get; set; }
         public string BUNIT { get; set; }
+        public string FIRMA { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DELEGAR> DELEGARs { get; set; }

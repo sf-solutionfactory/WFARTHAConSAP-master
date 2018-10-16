@@ -189,6 +189,9 @@ namespace WFARTHAconexionSAP.Services
                     db.Entry(d).State = EntityState.Modified;
 
                     db.SaveChanges();
+
+                    //MGC 16-10-2018 Eliminar msg
+                    deleteMesg(d.NUM_DOC);
                 }
             }
             //else if (f.ESTATUS.Equals("A"))   //---------------------EN PROCESO DE APROBACIÓN
@@ -757,6 +760,23 @@ namespace WFARTHAconexionSAP.Services
             WFARTHAEntities db = new WFARTHAEntities();
             DOCUMENTOPRE dp = new DOCUMENTOPRE();
 
+            //MGC 16-10-2018 Detalle en flujo
+            //Obtener el flujo
+            FLUJO actual = new FLUJO();
+
+            actual = db.FLUJOes.Where(a => a.NUM_DOC.Equals(num_doc) & a.ESTATUS.Equals("P")).Include(x => x.WORKFP).OrderByDescending(x => x.POS).FirstOrDefault();
+
+            if(actual.STEP_AUTO == 99)
+            {
+                actual.ESTATUS = "A";
+
+                db.Entry(actual).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            //MGC 16-10-2018 Eliminar msg
+            deleteMesg(num_doc);
+
             dp.NUM_DOC = num_doc;
             dp.POS = 1;
             dp.MESSAGE = "Contabilizado en SAP";
@@ -996,5 +1016,23 @@ namespace WFARTHAconexionSAP.Services
 
             return url;
         }
-}
+
+        //MGC 16-10-2018 ---------------------------->
+        public void deleteMesg(decimal numdoc)
+        {
+            WFARTHAEntities db = new WFARTHAEntities();
+            //Eliminar los mensajes de la tabla 
+            try
+            {
+                db.DOCUMENTOPREs.RemoveRange(db.DOCUMENTOPREs.Where(d => d.NUM_DOC == numdoc));
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        //MGC 16-10-2018 <----------------------------
+    }
 }

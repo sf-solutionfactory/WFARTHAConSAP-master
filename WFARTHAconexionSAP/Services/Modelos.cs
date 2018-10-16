@@ -106,16 +106,9 @@ namespace TATconexionSAP.Services
                 //si encuentra una coincidencia
                 if (dA != null)
                 {
-                    //Eliminar los mensajes de la tabla 
-                    try
-                    {
-                        db.DOCUMENTOPREs.RemoveRange(db.DOCUMENTOPREs.Where(d => d.NUM_DOC == de));
-                        db.SaveChanges();
-                    }
-                    catch (Exception e)
-                    {
 
-                    }
+                    //MGC 16-10-2018 Eliminar sección de eliminar
+                    //MGC 16-10-2018
 
                     DOCUMENTOPRE dp = new DOCUMENTOPRE();
 
@@ -139,7 +132,9 @@ namespace TATconexionSAP.Services
                         {
                             dp.MESSAGE = "Error contabilización SAP";
                         }
-                        
+
+                        deleteMesg(de);//MGC 16-10-2018 Eliminar msg
+
                         db.DOCUMENTOPREs.Add(dp);
                         db.SaveChanges();
                     }
@@ -162,6 +157,7 @@ namespace TATconexionSAP.Services
                                 dp.MESSAGE = "Error contabilización SAP";
                             }
                             //dp.MESSAGE = "Error Preliminar";
+                            deleteMesg(de);//MGC 16-10-2018 Eliminar msg
                             db.DOCUMENTOPREs.Add(dp);
                             db.SaveChanges();
                         }
@@ -234,9 +230,13 @@ namespace TATconexionSAP.Services
                         //    db.SaveChanges();
                         //    moverArchivo(archivos[i]);
                         //}
+                        try
+                        {
+                            moverArchivo(archivos[i]);
+                        }catch(Exception e)
+                        {
 
-                        moverArchivo(archivos[i]);
-
+                        }
                         
 
 
@@ -304,6 +304,23 @@ namespace TATconexionSAP.Services
             }
         }
 
+        //MGC 16-10-2018 ---------------------------->
+        public void deleteMesg(decimal numdoc)
+        {
+            //Eliminar los mensajes de la tabla 
+            try
+            {
+                db.DOCUMENTOPREs.RemoveRange(db.DOCUMENTOPREs.Where(d => d.NUM_DOC == numdoc));
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+            }
+        }
+
+        //MGC 16-10-2018 <----------------------------
+
         public void moverArchivos(List<string> archivo)
         {
             for (int i = 0; i < archivo.Count; i++)
@@ -313,6 +330,11 @@ namespace TATconexionSAP.Services
                     var from = Path.Combine(archivo[i]);
                     var arc2 = archivo[i].Replace(datasync, dataproc);
                     var to = Path.Combine(arc2);
+
+                    if (File.Exists(to))
+                    {
+                        File.Delete(to);
+                    }
 
                     File.Move(from, to); // Try to move
                 }
@@ -331,6 +353,10 @@ namespace TATconexionSAP.Services
                 var from = Path.Combine(archivo);
                 var arc2 = archivo.Replace(datasync, dataproc);
                 var to = Path.Combine(arc2);
+                if (File.Exists(to))
+                {
+                    File.Delete(to);
+                }
 
                 File.Move(from, to); // Try to move
             }

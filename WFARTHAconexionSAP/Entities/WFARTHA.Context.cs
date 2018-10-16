@@ -84,6 +84,7 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<DET_AGENTECC> DET_AGENTECC { get; set; }
         public virtual DbSet<DET_PEP> DET_PEP { get; set; }
         public virtual DbSet<IIMPUESTO> IIMPUESTOes { get; set; }
+        public virtual DbSet<ASIGN_PROY_SOC> ASIGN_PROY_SOC { get; set; }
         public virtual DbSet<CARPETAV> CARPETAVs { get; set; }
         public virtual DbSet<DOCUMENTOV> DOCUMENTOVs { get; set; }
         public virtual DbSet<PAGINAV> PAGINAVs { get; set; }

@@ -16,6 +16,7 @@ namespace WFARTHAconexionSAP.Entities
     {
         public int POS { get; set; }
         public decimal NUM_DOC { get; set; }
+        public decimal NUM_PRE { get; set; }
         public string TSOL_ID { get; set; }
         public string TALL_ID { get; set; }
         public string SOCIEDAD_ID { get; set; }
@@ -65,6 +66,5 @@ namespace WFARTHAconexionSAP.Entities
         public Nullable<System.DateTime> FECHA_PASO_ACTUAL { get; set; }
         public string USUARIOA_ID { get; set; }
         public string EXPR2 { get; set; }
-        public decimal NUM_PRE { get; set; }
     }
 }

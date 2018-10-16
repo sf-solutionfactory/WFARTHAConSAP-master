@@ -86,6 +86,9 @@
     <Compile Include="Entities\APPSETTING.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ASIGN_PROY_SOC.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\CAMPOS.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
