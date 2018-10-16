@@ -23,10 +23,11 @@ namespace WFARTHAconexionSAP.Entities
         }
     
         public string WITHT { get; set; }
+        public string WT_WITHCD { get; set; }
         public string DESCRIPCION { get; set; }
         public bool ESTATUS { get; set; }
         public string WITHT_SUB { get; set; }
-        public decimal PORC { get; set; }
+        public Nullable<decimal> PORC { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DOCUMENTORP> DOCUMENTORPs { get; set; }

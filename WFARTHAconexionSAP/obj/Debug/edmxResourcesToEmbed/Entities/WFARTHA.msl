@@ -153,8 +153,6 @@
     <EntitySetMapping Name="DOCUMENTOes">
       <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTO">
         <MappingFragment StoreEntitySet="DOCUMENTO">
-          <ScalarProperty Name="EJERCICIO_PRE" ColumnName="EJERCICIO_PRE" />
-          <ScalarProperty Name="SOCIEDAD_PRE" ColumnName="SOCIEDAD_PRE" />
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="NUM_PRE" ColumnName="NUM_PRE" />
           <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />
@@ -216,6 +214,8 @@
           <ScalarProperty Name="TEXTO_POS" ColumnName="TEXTO_POS" />
           <ScalarProperty Name="ASIGNACION_POS" ColumnName="ASIGNACION_POS" />
           <ScalarProperty Name="CLAVE_CTA" ColumnName="CLAVE_CTA" />
+          <ScalarProperty Name="SOCIEDAD_PRE" ColumnName="SOCIEDAD_PRE" />
+          <ScalarProperty Name="EJERCICIO_PRE" ColumnName="EJERCICIO_PRE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -444,7 +444,7 @@
       <EntityTypeMapping TypeName="WFARTHAModel.PROYECTO">
         <MappingFragment StoreEntitySet="PROYECTO">
           <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
-          <ScalarProperty Name="NONBRE" ColumnName="NONBRE" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -480,6 +480,7 @@
       <EntityTypeMapping TypeName="WFARTHAModel.RETENCION">
         <MappingFragment StoreEntitySet="RETENCION">
           <ScalarProperty Name="WITHT" ColumnName="WITHT" />
+          <ScalarProperty Name="WT_WITHCD" ColumnName="WT_WITHCD" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
           <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
           <ScalarProperty Name="WITHT_SUB" ColumnName="WITHT_SUB" />
@@ -502,6 +503,7 @@
         <MappingFragment StoreEntitySet="RETENCIONT">
           <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
           <ScalarProperty Name="WITHT" ColumnName="WITHT" />
+          <ScalarProperty Name="WT_WITHCD" ColumnName="WT_WITHCD" />
           <ScalarProperty Name="TXT50" ColumnName="TXT50" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -581,13 +583,13 @@
     <EntitySetMapping Name="TSOLs">
       <EntityTypeMapping TypeName="WFARTHAModel.TSOL">
         <MappingFragment StoreEntitySet="TSOL">
-          <ScalarProperty Name="TIPO_DOCFILE" ColumnName="TIPO_DOCFILE" />
-          <ScalarProperty Name="DEFAULT" ColumnName="DEFAULT" />
-          <ScalarProperty Name="EDITDET" ColumnName="EDITDET" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
           <ScalarProperty Name="RANGO_ID" ColumnName="RANGO_ID" />
           <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
+          <ScalarProperty Name="EDITDET" ColumnName="EDITDET" />
+          <ScalarProperty Name="DEFAULT" ColumnName="DEFAULT" />
+          <ScalarProperty Name="TIPO_DOCFILE" ColumnName="TIPO_DOCFILE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -634,6 +636,7 @@
           <ScalarProperty Name="MANAGER" ColumnName="MANAGER" />
           <ScalarProperty Name="BACKUP_ID" ColumnName="BACKUP_ID" />
           <ScalarProperty Name="BUNIT" ColumnName="BUNIT" />
+          <ScalarProperty Name="FIRMA" ColumnName="FIRMA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -742,6 +745,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ASIGN_PROY_SOC">
+      <EntityTypeMapping TypeName="WFARTHAModel.ASIGN_PROY_SOC">
+        <MappingFragment StoreEntitySet="ASIGN_PROY_SOC">
+          <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
+          <ScalarProperty Name="ID_BUKRS" ColumnName="ID_BUKRS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CARPETAVs">
       <EntityTypeMapping TypeName="WFARTHAModel.CARPETAV">
         <MappingFragment StoreEntitySet="CARPETAV">
@@ -756,9 +767,9 @@
     <EntitySetMapping Name="DOCUMENTOVs">
       <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOV">
         <MappingFragment StoreEntitySet="DOCUMENTOV">
-          <ScalarProperty Name="NUM_PRE" ColumnName="NUM_PRE" />
           <ScalarProperty Name="POS" ColumnName="POS" />
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="NUM_PRE" ColumnName="NUM_PRE" />
           <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />
           <ScalarProperty Name="TALL_ID" ColumnName="TALL_ID" />
           <ScalarProperty Name="SOCIEDAD_ID" ColumnName="SOCIEDAD_ID" />

@@ -506,7 +506,7 @@ warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key d
       <PropertyRef Name="ID_PSPNR" />
     </Key>
     <Property Name="ID_PSPNR" Type="nvarchar" MaxLength="8" Nullable="false" />
-    <Property Name="NONBRE" Type="nchar" MaxLength="30" Nullable="false" />
+    <Property Name="NOMBRE" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="PUESTO">
     <Key>
@@ -537,31 +537,36 @@ warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key d
   <EntityType Name="RETENCION">
     <Key>
       <PropertyRef Name="WITHT" />
+      <PropertyRef Name="WT_WITHCD" />
     </Key>
     <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" Nullable="false" />
     <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="60" />
     <Property Name="ESTATUS" Type="bit" Nullable="false" />
     <Property Name="WITHT_SUB" Type="nchar" MaxLength="2" />
-    <Property Name="PORC" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+    <Property Name="PORC" Type="decimal" Precision="13" Scale="8" />
   </EntityType>
   <EntityType Name="RETENCION_PROV">
     <Key>
       <PropertyRef Name="LIFNR" />
       <PropertyRef Name="BUKRS" />
       <PropertyRef Name="WITHT" />
+      <PropertyRef Name="WT_WITHCD" />
     </Key>
     <Property Name="LIFNR" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
     <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
-    <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" />
+    <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" Nullable="false" />
   </EntityType>
   <EntityType Name="RETENCIONT">
     <Key>
       <PropertyRef Name="SPRAS_ID" />
       <PropertyRef Name="WITHT" />
+      <PropertyRef Name="WT_WITHCD" />
     </Key>
     <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
     <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
+    <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" Nullable="false" />
     <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="ROL">
@@ -587,7 +592,7 @@ warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key d
       <PropertyRef Name="BUKRS" />
     </Key>
     <Property Name="BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
-    <Property Name="BUTXT" Type="nvarchar" MaxLength="50" />
+    <Property Name="BUTXT" Type="nvarchar" MaxLength="100" />
     <Property Name="ORT01" Type="nvarchar" MaxLength="50" />
     <Property Name="SUBREGIO" Type="nchar" MaxLength="6" />
     <Property Name="WAERS" Type="nchar" MaxLength="3" />
@@ -688,6 +693,7 @@ warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key d
     <Property Name="MANAGER" Type="nvarchar" MaxLength="16" />
     <Property Name="BACKUP_ID" Type="nvarchar" MaxLength="16" />
     <Property Name="BUNIT" Type="nchar" MaxLength="4" Nullable="false" />
+    <Property Name="FIRMA" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="WARNING">
     <Key>
@@ -762,6 +768,16 @@ warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key d
     <Property Name="FECHAF" Type="date" />
     <Property Name="USUARIO_ID" Type="nvarchar" MaxLength="16" />
     <Property Name="FECHAC" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PAGOS.dbo.ASIGN_PROY_SOC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ASIGN_PROY_SOC">
+    <Key>
+      <PropertyRef Name="ID_PSPNR" />
+      <PropertyRef Name="ID_BUKRS" />
+    </Key>
+    <Property Name="ID_PSPNR" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ID_BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PAGOS.dbo.CARPETAV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1221,9 +1237,11 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
     <ReferentialConstraint>
       <Principal Role="RETENCION">
         <PropertyRef Name="WITHT" />
+        <PropertyRef Name="WT_WITHCD" />
       </Principal>
       <Dependent Role="DOCUMENTORP">
         <PropertyRef Name="WITHT" />
+        <PropertyRef Name="WT_WITHCD" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1429,9 +1447,11 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
     <ReferentialConstraint>
       <Principal Role="RETENCION">
         <PropertyRef Name="WITHT" />
+        <PropertyRef Name="WT_WITHCD" />
       </Principal>
       <Dependent Role="RETENCION_PROV">
         <PropertyRef Name="WITHT" />
+        <PropertyRef Name="WT_WITHCD" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1453,9 +1473,11 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
     <ReferentialConstraint>
       <Principal Role="RETENCION">
         <PropertyRef Name="WITHT" />
+        <PropertyRef Name="WT_WITHCD" />
       </Principal>
       <Dependent Role="RETENCIONT">
         <PropertyRef Name="WITHT" />
+        <PropertyRef Name="WT_WITHCD" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1840,6 +1862,12 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
     [IIMPUESTO].[KBETR] AS [KBETR], 
     [IIMPUESTO].[ACTIVO] AS [ACTIVO]
     FROM [dbo].[IIMPUESTO] AS [IIMPUESTO]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ASIGN_PROY_SOC" EntityType="Self.ASIGN_PROY_SOC" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ASIGN_PROY_SOC].[ID_PSPNR] AS [ID_PSPNR], 
+    [ASIGN_PROY_SOC].[ID_BUKRS] AS [ID_BUKRS]
+    FROM [dbo].[ASIGN_PROY_SOC] AS [ASIGN_PROY_SOC]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="CARPETAV" EntityType="Self.CARPETAV" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

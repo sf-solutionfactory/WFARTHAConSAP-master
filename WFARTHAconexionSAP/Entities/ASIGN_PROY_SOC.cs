@@ -12,14 +12,9 @@ namespace WFARTHAconexionSAP.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class RETENCIONT
+    public partial class ASIGN_PROY_SOC
     {
-        public string SPRAS_ID { get; set; }
-        public string WITHT { get; set; }
-        public string WT_WITHCD { get; set; }
-        public string TXT50 { get; set; }
-    
-        public virtual RETENCION RETENCION { get; set; }
-        public virtual SPRA SPRA { get; set; }
+        public string ID_PSPNR { get; set; }
+        public string ID_BUKRS { get; set; }
     }
 }
