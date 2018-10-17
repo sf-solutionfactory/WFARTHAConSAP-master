@@ -652,9 +652,15 @@ namespace WFARTHAconexionSAP.Services
                 //string image = Server.MapPath("~/images/artha_logo.jpg");
                 string image = System.Reflection.Assembly.GetExecutingAssembly().Location;
                 string page = "Index";
+                try
+                {
+                    //MGC 11-10-2018 No enviar correos 
+                    em.enviaMailC(num_doc, true, "ES", UrlDirectory, page, image, emailsto);
+                }
+                catch (Exception)
+                {
 
-                //MGC 11-10-2018 No enviar correos 
-                em.enviaMailC(num_doc, true, "ES", UrlDirectory, page, image, emailsto);
+                }
 
             }
 
@@ -764,14 +770,16 @@ namespace WFARTHAconexionSAP.Services
             //Obtener el flujo
             FLUJO actual = new FLUJO();
 
-            actual = db.FLUJOes.Where(a => a.NUM_DOC.Equals(num_doc) & a.ESTATUS.Equals("P")).Include(x => x.WORKFP).OrderByDescending(x => x.POS).FirstOrDefault();
-
-            if(actual.STEP_AUTO == 99)
+            actual = db.FLUJOes.Where(a => a.NUM_DOC.Equals(num_doc)).Include(x => x.WORKFP).OrderByDescending(x => x.POS).FirstOrDefault();
+            if (actual != null)
             {
-                actual.ESTATUS = "A";
+                if (actual.STEP_AUTO == 99)
+                {
+                    actual.ESTATUS = "A";
 
-                db.Entry(actual).State = EntityState.Modified;
-                db.SaveChanges();
+                    db.Entry(actual).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
 
             //MGC 16-10-2018 Eliminar msg
