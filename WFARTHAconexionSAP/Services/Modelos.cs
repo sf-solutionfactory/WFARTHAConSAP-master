@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
 using WFARTHAconexionSAP.Entities;
 using WFARTHAconexionSAP.Services;
 
@@ -27,61 +28,180 @@ namespace TATconexionSAP.Services
             List<string> archivos2 = new List<string>();
             try
             {
-                string[] archivos = Directory.GetFiles(cadena += sap += datasync, "*.txt", SearchOption.AllDirectories);
-                Console.WriteLine(archivos.Length + " _1");//RSG 30.07.2018
-                //en este for sabre cuales archivos usar
-                for (int i = 0; i < archivos.Length; i++)
+                //MGC prueba FTP---------------------------------------------------------------------------------------------------------------------------------------->
+                string ftpServerIP = "";
+                try
                 {
-                    //separo por carpetas
-                    string[] varx = archivos[i].Split('\\');
-                    //separo especificamente el nombre para saber si es BUDG O LOG
-                    string[] varNA = varx[varx.Length - 1].Split('_');
-                    if (varNA[1] == "LOG")
-                    {
-                        archivos2.Add(archivos[i]);
-                    }
+                    ftpServerIP = db.APPSETTINGs.Where(aps => aps.NOMBRE.Equals("URL_FTP_PRELIMINAR") && aps.ACTIVO == true).FirstOrDefault().VALUE.ToString();
+                    string targetFileName = "/SAP/DATA_SYNC";
+                    ftpServerIP += targetFileName;
                 }
+                catch (Exception e)
+                {
+
+                }
+
+                string username = "matias.gallegos";
+                string password = "Mimapo-2179=p23";
+
+                Uri uri = new Uri(String.Format("ftp://{0}/", ftpServerIP));
+                // Get the object used to communicate with the server.
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(uri);
+                request.Method = WebRequestMethods.Ftp.ListDirectory;
+
+                // This example assumes the FTP site uses anonymous logon.
+                request.Credentials = new NetworkCredential(username, password);
+
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+                Stream responseStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(responseStream);
+
+              
+
+                string line = reader.ReadLine();
+
+                while (!string.IsNullOrEmpty(line))
+                {
+                    archivos2.Add(line);
+                    line = reader.ReadLine();
+                }
+               
+                reader.Close();
+                response.Close();
+
+
+                //MGC prueba FTP----------------------------------------------------------------------------------------------------------------------------------------<
+                
+
+
+
+
+                //string[] archivos = Directory.GetFiles(cadena += sap += datasync, "*.txt", SearchOption.AllDirectories);
+                //Console.WriteLine(archivos.Length + " _1");//RSG 30.07.2018
+                ////en este for sabre cuales archivos usar
+                //for (int i = 0; i < archivos.Length; i++)
+                //{
+                //    //separo por carpetas
+                //    string[] varx = archivos[i].Split('\\');
+                //    //separo especificamente el nombre para saber si es BUDG O LOG
+                //    string[] varNA = varx[varx.Length - 1].Split('_');
+                //    if (varNA[1] == "LOG")
+                //    {
+                //        archivos2.Add(archivos[i]);
+                //    }
+                //}
+
+
                 Console.WriteLine(archivos2.Count + " _2");//RSG 30.07.2018
                 //en este for armo un objeto para posterior manipular hacia la bd
+                List<string> item = new List<string>();
                 for (int i = 0; i < archivos2.Count; i++)
                 {
                     //Leo todas las lineas del archivo
                     //string[] readText = File.ReadAllLines(archivos2[i]);
                     //foreach (var item in readText)
-                    foreach (var item in File.ReadLines(archivos2[i]))
+                    //////foreach (var item in File.ReadLines(archivos2[i]))
+                    //////{
+                    //////    doc2 d = new doc2();
+                    //////    string[] val = item.Split('|');
+                    //////    if (val != null)
+                    //////    {
+                    //////        if (val.Length < 2)
+                    //////            errores.Add("Archivo inválido" + archivos2[i]);
+                    //////        else
+                    //////        {
+                    //////            if (val[1] == "Error")
+                    //////            {
+                    //////                d.numero_wf = val[0];
+                    //////                d.accion = val[1];
+                    //////                d.Mensaje = val[2];
+                    //////                //d.Cuenta_cargo = Convert.ToInt64(val[5]);
+                    //////                //d.Cuenta_abono = Convert.ToInt64(val[6]);
+                    //////            }
+                    //////            else
+                    //////            {
+                    //////                d.numero_wf = val[0];
+                    //////                d.accion = val[1];
+                    //////                d.Mensaje = val[2];
+                    //////                d.Num_doc_pre = decimal.Parse(val[3]);
+                    //////                d.Sociedad_pre = val[4];
+                    //////                d.Ejercicio_pre = val[5]; //MGC 11-10-2018 No enviar correos 
+
+
+                    //////            }
+                    //////            lstd.Add(d);
+                    //////        }
+                    //////    }
+                    //////}
+                    //Leer cada uno de los archivos para leer individual
+                    string targetFileName = archivos2[i];
+                    Uri urifile = new Uri(String.Format("ftp://{0}/{1}", ftpServerIP, targetFileName));
+                    // Get the object used to communicate with the server.
+                    FtpWebRequest requestf = (FtpWebRequest)WebRequest.Create(urifile);
+                    requestf.Method = WebRequestMethods.Ftp.DownloadFile;
+
+                    // This example assumes the FTP site uses anonymous logon.
+                    requestf.Credentials = new NetworkCredential(username, password);
+
+                    FtpWebResponse responsef = (FtpWebResponse)requestf.GetResponse();
+
+                    Stream responseStreamf = responsef.GetResponseStream();
+                    StreamReader readerf = new StreamReader(responseStreamf);
+
+                    
+                    string linef = readerf.ReadLine();
+
+                    while (!string.IsNullOrEmpty(linef))
                     {
-                        doc2 d = new doc2();
-                        string[] val = item.Split('|');
-                        if (val != null)
+                        item.Add(linef);
+                        linef = readerf.ReadLine();
+                    }
+
+                    readerf.Close();
+                    responsef.Close();
+
+                }
+
+                
+                for (int i = 0; i < item.Count; i++)
+                {
+                    doc2 d = new doc2();
+                    string[] val = item[i].Split('|');
+                    if (val != null)
+                    {
+                        if (val.Length < 2)
+                            errores.Add("Archivo inválido" + archivos2[i]);
+                        else
                         {
-                            if (val.Length < 2)
-                                errores.Add("Archivo inválido" + archivos2[i]);
+                            if (val[1] == "Error")
+                            {
+                                d.numero_wf = val[0];
+                                d.accion = val[1];
+                                d.Mensaje = val[2];
+                                //d.Cuenta_cargo = Convert.ToInt64(val[5]);
+                                //d.Cuenta_abono = Convert.ToInt64(val[6]);
+                            }
                             else
                             {
-                                if (val[1] == "Error")
-                                {
-                                    d.numero_wf = val[0];
-                                    d.accion = val[1];
-                                    d.Mensaje = val[2];
-                                    //d.Cuenta_cargo = Convert.ToInt64(val[5]);
-                                    //d.Cuenta_abono = Convert.ToInt64(val[6]);
-                                }
-                                else
-                                {
-                                    d.numero_wf = val[0];
-                                    d.accion = val[1];
-                                    d.Mensaje = val[2];
-                                    d.Num_doc_pre = decimal.Parse(val[3]);
-                                    d.Sociedad_pre = val[4];
-                                    d.Ejercicio_pre = val[5]; //MGC 11-10-2018 No enviar correos 
+                                d.numero_wf = val[0];
+                                d.accion = val[1];
+                                d.Mensaje = val[2];
+                                d.Num_doc_pre = decimal.Parse(val[3]);
+                                d.Sociedad_pre = val[4];
+                                d.Ejercicio_pre = val[5]; //MGC 11-10-2018 No enviar correos 
 
 
-                                }
-                                lstd.Add(d);
                             }
+                            lstd.Add(d);
                         }
                     }
                 }
+
+
+
+
+
                 ValidarBd(lstd, archivos2);
 
                
