@@ -468,23 +468,54 @@ namespace TATconexionSAP.Services
 
         public void moverArchivo(string archivo)
         {
+            //try
+            //{
+            //    var from = Path.Combine(archivo);
+            //    var arc2 = archivo.Replace(datasync, dataproc);
+            //    var to = Path.Combine(arc2);
+            //    if (File.Exists(to))
+            //    {
+            //        File.Delete(to);
+            //    }
+
+            //    File.Move(from, to); // Try to move
+            //}
+            //catch (IOException ex)
+            //{
+            //    // Console.WriteLine(ex); // Write error
+            //    throw new Exception(ex.Message);
+            //}
+
+            //MGC prueba FTP---------------------------------------------------------------------------------------------------------------------------------------->
+            string ftpServerIP = "";
             try
             {
-                var from = Path.Combine(archivo);
-                var arc2 = archivo.Replace(datasync, dataproc);
-                var to = Path.Combine(arc2);
-                if (File.Exists(to))
-                {
-                    File.Delete(to);
-                }
-
-                File.Move(from, to); // Try to move
+                ftpServerIP = db.APPSETTINGs.Where(aps => aps.NOMBRE.Equals("URL_FTP_PRELIMINAR") && aps.ACTIVO == true).FirstOrDefault().VALUE.ToString();
+                string targetFileName = "/SAP/DATA_SYNC";
+                ftpServerIP += targetFileName;
             }
-            catch (IOException ex)
+            catch (Exception e)
             {
-                // Console.WriteLine(ex); // Write error
-                throw new Exception(ex.Message);
+
             }
+
+            string username = "matias.gallegos";
+            string password = "Mimapo-2179=p23";
+
+            Uri uri = new Uri(String.Format("ftp://{0}/{1}", ftpServerIP, archivo));
+            // Get the object used to communicate with the server.
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(uri);
+            request.Method = WebRequestMethods.Ftp.DeleteFile;
+
+            // This example assumes the FTP site uses anonymous logon.
+            request.Credentials = new NetworkCredential(username, password);
+
+            FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+            Stream responseStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(responseStream);
+
+            //MGC prueba FTP----------------------------------------------------------------------------------------------------------------------------------------<
         }
     }
 }
