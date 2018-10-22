@@ -74,14 +74,15 @@ namespace WFARTHAconexionSAP.Services
                 int step = 0;
                 if(actual.STEP_AUTO == 0)
                 {
-                    step = Convert.ToInt32(actual.STEP_AUTO) + 1;  
+                    //step = Convert.ToInt32(actual.STEP_AUTO) + 1;                      
+                    step = Convert.ToInt32(actual.STEP_AUTO);//MGC 19-10-2018 Cambio a detonador  
                 }
 
                 List<DET_AGENTECA> dap = db.DET_AGENTECA.Where(a => a.VERSION == actual.RUTA_VERSION && a.ID_RUTA_AGENTE == actual.ID_RUTA_A && a.STEP_FASE == step).OrderByDescending(a => a.VERSION).ToList();
                 DET_AGENTECA dah = new DET_AGENTECA();
-                dah = detAgenteLimite(dap, Convert.ToDecimal(d.MONTO_DOC_MD));
+                dah = detAgenteLimite(dap, Convert.ToDecimal(d.MONTO_DOC_MD), step, actual);//MGC 19-10-2018 Cambio a detonador  
 
-                
+
                 WORKFP paso_a = db.WORKFPs.Where(a => a.ID.Equals(actual.WORKF_ID) & a.VERSION.Equals(actual.WF_VERSION) & a.POS.Equals(actual.WF_POS)).FirstOrDefault();
                 int next_step_a = 0;
                 if (paso_a.NEXT_STEP != null)
@@ -131,7 +132,7 @@ namespace WFARTHAconexionSAP.Services
                     {
                         if (recurrente != "X")
                         {
-                            FLUJO detA = determinaAgenteI(d, actual.USUARIOA_ID, actual.USUARIOD_ID, 0, dah);
+                            FLUJO detA = determinaAgenteI(d, actual.USUARIOA_ID, actual.USUARIOD_ID, 0, dah, step, actual);//MGC 19-10-2018 Cambio a detonador 
                             nuevo.USUARIOA_ID = detA.USUARIOA_ID;
                             nuevo.USUARIOD_ID = nuevo.USUARIOA_ID;
                             nuevo.STEP_AUTO = detA.STEP_AUTO;
@@ -796,144 +797,144 @@ namespace WFARTHAconexionSAP.Services
             return "";
         }
 
-        public FLUJO determinaAgente(DOCUMENTO d, string user, string delega, int pos, int? loop, int sop, int fase_det)
-        {
-            if (delega != null)
-                user = delega;
-            bool fin = false;
-            WFARTHAEntities db = new WFARTHAEntities();
-            DET_AGENTECA dap = new DET_AGENTECA();
-            FLUJO f_actual = db.FLUJOes.Where(a => a.NUM_DOC.Equals(d.NUM_DOC)).FirstOrDefault();
-            //DET_AGENTEH dah = db.DET_AGENTEH.Where(a => a.SOCIEDAD_ID.Equals(d.SOCIEDAD_ID) & a.PUESTOC_ID == d.PUESTO_ID &
-            //                    a.USUARIOC_ID.Equals(d.USUARIOC_ID) & a.VERSION == f_actual.DETVER).FirstOrDefault();
+        //public FLUJO determinaAgente(DOCUMENTO d, string user, string delega, int pos, int? loop, int sop, int fase_det)
+        //{
+        //    if (delega != null)
+        //        user = delega;
+        //    bool fin = false;
+        //    WFARTHAEntities db = new WFARTHAEntities();
+        //    DET_AGENTECA dap = new DET_AGENTECA();
+        //    FLUJO f_actual = db.FLUJOes.Where(a => a.NUM_DOC.Equals(d.NUM_DOC)).FirstOrDefault();
+        //    //DET_AGENTEH dah = db.DET_AGENTEH.Where(a => a.SOCIEDAD_ID.Equals(d.SOCIEDAD_ID) & a.PUESTOC_ID == d.PUESTO_ID &
+        //    //                    a.USUARIOC_ID.Equals(d.USUARIOC_ID) & a.VERSION == f_actual.DETVER).FirstOrDefault();
 
-            //Obtener lista de agentes y obtener uno dependiendo del monto -----------------------------------------------------
-            List<DET_AGENTECA> dah = db.DET_AGENTECA.Where(a => a.VERSION == f_actual.RUTA_VERSION && a.ID_RUTA_AGENTE == f_actual.ID_RUTA_A && a.STEP_FASE == fase_det).ToList();
+        //    //Obtener lista de agentes y obtener uno dependiendo del monto -----------------------------------------------------
+        //    List<DET_AGENTECA> dah = db.DET_AGENTECA.Where(a => a.VERSION == f_actual.RUTA_VERSION && a.ID_RUTA_AGENTE == f_actual.ID_RUTA_A && a.STEP_FASE == fase_det).ToList();
 
-            if (dah != null || dah.Count > 0)
-            {
+        //    if (dah != null || dah.Count > 0)
+        //    {
 
-                dap = detAgenteLimite(dah, Convert.ToDecimal(d.MONTO_DOC_MD));
-            }
-            else
-            {
-                //El flujo termino
+        //        dap = detAgenteLimite(dah, Convert.ToDecimal(d.MONTO_DOC_MD));
+        //    }
+        //    else
+        //    {
+        //        //El flujo termino
 
-            }
-            int ppos = 0;
-            USUARIO u = db.USUARIOs.Find(d.USUARIOC_ID);
+        //    }
+        //    int ppos = 0;
+        //    USUARIO u = db.USUARIOs.Find(d.USUARIOC_ID);
 
-            //if (pos.Equals(0))
-            //{
-            //    if (loop == null)
-            //    {
-            //        //dap = db.DET_AGENTEP.Where(a => a.SOCIEDAD_ID.Equals(dah.SOCIEDAD_ID) & a.PUESTOC_ID == dah.PUESTOC_ID &
-            //        //                    a.VERSION == dah.VERSION & a.AGROUP_ID == dah.AGROUP_ID & a.POS == 1).FirstOrDefault();
-            //        dap = dah.Where(a => a.POS == 1).FirstOrDefault();
-            //        dap.POS = dap.POS - 1;
-            //    }
-            //    else
-            //    {
-            //        FLUJO ffl = db.FLUJOes.Where(a => a.NUM_DOC.Equals(d.NUM_DOC) & a.ESTATUS.Equals("R")).OrderByDescending(a => a.POS).FirstOrDefault();
-            //        if (ffl.DETPOS == 99)
-            //            ppos = 1;
-            //        ffl.DETPOS = ffl.DETPOS - 1;
-            //        fin = true;
-            //        ffl.POS = ppos;
+        //    //if (pos.Equals(0))
+        //    //{
+        //    //    if (loop == null)
+        //    //    {
+        //    //        //dap = db.DET_AGENTEP.Where(a => a.SOCIEDAD_ID.Equals(dah.SOCIEDAD_ID) & a.PUESTOC_ID == dah.PUESTOC_ID &
+        //    //        //                    a.VERSION == dah.VERSION & a.AGROUP_ID == dah.AGROUP_ID & a.POS == 1).FirstOrDefault();
+        //    //        dap = dah.Where(a => a.POS == 1).FirstOrDefault();
+        //    //        dap.POS = dap.POS - 1;
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        FLUJO ffl = db.FLUJOes.Where(a => a.NUM_DOC.Equals(d.NUM_DOC) & a.ESTATUS.Equals("R")).OrderByDescending(a => a.POS).FirstOrDefault();
+        //    //        if (ffl.DETPOS == 99)
+        //    //            ppos = 1;
+        //    //        ffl.DETPOS = ffl.DETPOS - 1;
+        //    //        fin = true;
+        //    //        ffl.POS = ppos;
 
-            //        return ffl;
-            //    }
-            //}
-            //else if (pos.Equals(98))
-            //{
-            //    dap = dah.Where(a => a.POS == (pos + 1)).FirstOrDefault();
-            //}
-            //else
-            //{
-            //    //DET_AGENTE actual = db.DET_AGENTE.Where(a => a.PUESTOC_ID == d.PUESTO_ID & a.AGROUP_ID == gaa & a.POS == (pos)).FirstOrDefault();
-            //    DET_AGENTEC actual = dah.Where(a => a.POS == (pos)).FirstOrDefault();
-            //    if (actual.POS == 99)
-            //    {
-            //        fin = true;
-            //    }
-            //    else if (actual.POS == 98)
-            //    {
-            //        //da = db.DET_AGENTE.Where(a => a.PUESTOC_ID == d.PUESTO_ID & a.AGROUP_ID == gaa & a.POS == (pos + 1)).FirstOrDefault();
-            //        dap = dah.Where(a => a.POS == (pos)).FirstOrDefault();
-            //    }
-            //    else
-            //    {
-            //        if (actual.MONTO != null)
-            //            if (d.MONTO_DOC_ML2 > actual.MONTO)
-            //            {
-            //                dap = dah.Where(a => a.POS == (pos + 1)).FirstOrDefault();
-            //                ppos = -1;
-            //            }
-            //        //if (actual.PRESUPUESTO != null)
-            //        if ((bool)actual.PRESUPUESTO)
-            //            if (d.MONTO_DOC_MD > 100000)
-            //            {
-            //                //da = db.DET_AGENTE.Where(a => a.PUESTOC_ID == d.PUESTO_ID & a.AGROUP_ID == gaa & a.POS == (pos + 1)).FirstOrDefault();
-            //                dap = dah.Where(a => a.POS == (pos + 1)).FirstOrDefault();
-            //                ppos = -1;
-            //            }
-            //    }
-            //}
+        //    //        return ffl;
+        //    //    }
+        //    //}
+        //    //else if (pos.Equals(98))
+        //    //{
+        //    //    dap = dah.Where(a => a.POS == (pos + 1)).FirstOrDefault();
+        //    //}
+        //    //else
+        //    //{
+        //    //    //DET_AGENTE actual = db.DET_AGENTE.Where(a => a.PUESTOC_ID == d.PUESTO_ID & a.AGROUP_ID == gaa & a.POS == (pos)).FirstOrDefault();
+        //    //    DET_AGENTEC actual = dah.Where(a => a.POS == (pos)).FirstOrDefault();
+        //    //    if (actual.POS == 99)
+        //    //    {
+        //    //        fin = true;
+        //    //    }
+        //    //    else if (actual.POS == 98)
+        //    //    {
+        //    //        //da = db.DET_AGENTE.Where(a => a.PUESTOC_ID == d.PUESTO_ID & a.AGROUP_ID == gaa & a.POS == (pos + 1)).FirstOrDefault();
+        //    //        dap = dah.Where(a => a.POS == (pos)).FirstOrDefault();
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        if (actual.MONTO != null)
+        //    //            if (d.MONTO_DOC_ML2 > actual.MONTO)
+        //    //            {
+        //    //                dap = dah.Where(a => a.POS == (pos + 1)).FirstOrDefault();
+        //    //                ppos = -1;
+        //    //            }
+        //    //        //if (actual.PRESUPUESTO != null)
+        //    //        if ((bool)actual.PRESUPUESTO)
+        //    //            if (d.MONTO_DOC_MD > 100000)
+        //    //            {
+        //    //                //da = db.DET_AGENTE.Where(a => a.PUESTOC_ID == d.PUESTO_ID & a.AGROUP_ID == gaa & a.POS == (pos + 1)).FirstOrDefault();
+        //    //                dap = dah.Where(a => a.POS == (pos + 1)).FirstOrDefault();
+        //    //                ppos = -1;
+        //    //            }
+        //    //    }
+        //    //}
 
-            string agente = "";
-            FLUJO f = new FLUJO();
-            f.DETPOS = 0;
-            //if (!fin)
-            //{
-            //    if (dap != null)
-            //    {
-            //        if (dap.USUARIOA_ID != null)
-            //        {
-            //            //agente = db.GAUTORIZACIONs.Where(a => a.ID == da.AGROUP_ID).FirstOrDefault().USUARIOs.Where(a => a.PUESTO_ID == da.PUESTOA_ID).First().ID;
-            //            agente = dap.USUARIOA_ID;
-            //            f.DETPOS = dap.POS;
-            //        }
-            //        else
-            //        {
-            //            dap = dah.Where(a => a.POS == (sop)).FirstOrDefault();
-            //            if (dap == null)
-            //            {
-            //                agente = d.USUARIOD_ID;
-            //                f.DETPOS = 98;
-            //            }
-            //            else
-            //            {
-            //                //agente = db.GAUTORIZACIONs.Where(a => a.ID == da.AGROUP_ID).FirstOrDefault().USUARIOs.Where(a => a.PUESTO_ID == da.PUESTOA_ID).First().ID;
-            //                agente = dap.USUARIOA_ID;
-            //                f.DETPOS = dap.POS;
-            //            }
-            //        }
-            //    }
-            //    else
-            //    {
-            //        dap = dah.Where(a => a.POS == (sop)).FirstOrDefault();
-            //        if (dap == null)
-            //        {
-            //            agente = d.USUARIOD_ID;
-            //            f.DETPOS = 98;
-            //        }
-            //        else
-            //        {
-            //            //agente = db.GAUTORIZACIONs.Where(a => a.ID == da.AGROUP_ID).FirstOrDefault().USUARIOs.Where(a => a.PUESTO_ID == da.PUESTOA_ID).First().ID;
-            //            agente = dap.USUARIOA_ID;
-            //            f.DETPOS = dap.POS;
-            //        }
-            //    }
-            //}
-            f.POS = ppos;
-            if (agente != "")
-                f.USUARIOA_ID = agente;
-            else
-                f.USUARIOA_ID = null;
-            return f;
-        }
+        //    string agente = "";
+        //    FLUJO f = new FLUJO();
+        //    f.DETPOS = 0;
+        //    //if (!fin)
+        //    //{
+        //    //    if (dap != null)
+        //    //    {
+        //    //        if (dap.USUARIOA_ID != null)
+        //    //        {
+        //    //            //agente = db.GAUTORIZACIONs.Where(a => a.ID == da.AGROUP_ID).FirstOrDefault().USUARIOs.Where(a => a.PUESTO_ID == da.PUESTOA_ID).First().ID;
+        //    //            agente = dap.USUARIOA_ID;
+        //    //            f.DETPOS = dap.POS;
+        //    //        }
+        //    //        else
+        //    //        {
+        //    //            dap = dah.Where(a => a.POS == (sop)).FirstOrDefault();
+        //    //            if (dap == null)
+        //    //            {
+        //    //                agente = d.USUARIOD_ID;
+        //    //                f.DETPOS = 98;
+        //    //            }
+        //    //            else
+        //    //            {
+        //    //                //agente = db.GAUTORIZACIONs.Where(a => a.ID == da.AGROUP_ID).FirstOrDefault().USUARIOs.Where(a => a.PUESTO_ID == da.PUESTOA_ID).First().ID;
+        //    //                agente = dap.USUARIOA_ID;
+        //    //                f.DETPOS = dap.POS;
+        //    //            }
+        //    //        }
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        dap = dah.Where(a => a.POS == (sop)).FirstOrDefault();
+        //    //        if (dap == null)
+        //    //        {
+        //    //            agente = d.USUARIOD_ID;
+        //    //            f.DETPOS = 98;
+        //    //        }
+        //    //        else
+        //    //        {
+        //    //            //agente = db.GAUTORIZACIONs.Where(a => a.ID == da.AGROUP_ID).FirstOrDefault().USUARIOs.Where(a => a.PUESTO_ID == da.PUESTOA_ID).First().ID;
+        //    //            agente = dap.USUARIOA_ID;
+        //    //            f.DETPOS = dap.POS;
+        //    //        }
+        //    //    }
+        //    //}
+        //    f.POS = ppos;
+        //    if (agente != "")
+        //        f.USUARIOA_ID = agente;
+        //    else
+        //        f.USUARIOA_ID = null;
+        //    return f;
+        //}
 
-        public FLUJO determinaAgenteI(DOCUMENTO d, string user, string delega, int pos, DET_AGENTECA dah)
+        public FLUJO determinaAgenteI(DOCUMENTO d, string user, string delega, int pos, DET_AGENTECA dah, int step, FLUJO actual)//MGC 19-10-2018 Cambio a detonador 
         {
             if (delega != null)
                 user = delega;
@@ -952,7 +953,7 @@ namespace WFARTHAconexionSAP.Services
 
                 List<DET_AGENTECA> dal = db.DET_AGENTECA.Where(a => a.VERSION == dah.VERSION && a.ID_RUTA_AGENTE == dah.ID_RUTA_AGENTE && a.STEP_FASE == dah.STEP_FASE).OrderByDescending(a => a.VERSION).ToList();
 
-                dap = detAgenteLimite(dal, Convert.ToDecimal(d.MONTO_DOC_MD));
+                dap = detAgenteLimite(dal, Convert.ToDecimal(d.MONTO_DOC_MD), step, actual);//MGC 19-10-2018 Cambio a detonador 
 
 
             }
@@ -984,14 +985,42 @@ namespace WFARTHAconexionSAP.Services
         }
 
         //Obtener el agente que se ajusta de a partir del monto del documento
-        public DET_AGENTECA detAgenteLimite(List<DET_AGENTECA> lag, decimal monto)
+        public DET_AGENTECA detAgenteLimite(List<DET_AGENTECA> lag, decimal monto,int  step, FLUJO flujo)//MGC 19-10-2018 Cambio a detonador  
         {
+
             List<DET_AGENTECA> lr = new List<DET_AGENTECA>();
-            foreach (DET_AGENTECA ag in lag)
+            //MGC 19-10-2018 Cambio a detonador 
+            if (lag.Count == 0 & step == 0)
             {
-                if (monto < ag.LIM_SUP)
+                WFARTHAEntities db = new WFARTHAEntities();
+                //Obtener el usuario al que se le creo la orden
+                DET_AGENTECC dc = new DET_AGENTECC();
+
+                dc = db.DET_AGENTECC.Where(dtc => dtc.VERSION == flujo.RUTA_VERSION && dtc.USUARIOC_ID == flujo.USUARIOA_ID && dtc.ID_RUTA_AGENTE == flujo.ID_RUTA_A).FirstOrDefault();
+
+                DET_AGENTECA dt = new DET_AGENTECA();
+
+                dt.ID_RUTA_AGENTE = flujo.ID_RUTA_A;
+                dt.VERSION = Convert.ToInt32(flujo.RUTA_VERSION);
+                dt.STEP_FASE = 0;
+                dt.STEP_ACCION = 0;
+                dt.LIM_SUP = Convert.ToDecimal(99999999999.00);
+                dt.AGENTE_SIG = dc.USUARIOA_ID;
+
+                lr.Add(dt);
+
+            }
+            //MGC 19-10-2018 Cambio a detonador 
+            else
+            { 
+                //Funcionamiento en cadena
+                //List<DET_AGENTECA> lr = new List<DET_AGENTECA>();
+                foreach (DET_AGENTECA ag in lag)
                 {
-                    lr.Add(ag);
+                    if (monto < ag.LIM_SUP)
+                    {
+                        lr.Add(ag);
+                    }
                 }
             }
 
