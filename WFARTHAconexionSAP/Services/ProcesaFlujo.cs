@@ -764,6 +764,8 @@ namespace WFARTHAconexionSAP.Services
 
         public string procesaA(decimal num_doc)
         {
+            string correcto = "";
+
             WFARTHAEntities db = new WFARTHAEntities();
             DOCUMENTOPRE dp = new DOCUMENTOPRE();
 
@@ -771,30 +773,36 @@ namespace WFARTHAconexionSAP.Services
             //Obtener el flujo
             FLUJO actual = new FLUJO();
 
-            actual = db.FLUJOes.Where(a => a.NUM_DOC.Equals(num_doc)).Include(x => x.WORKFP).OrderByDescending(x => x.POS).FirstOrDefault();
-            if (actual != null)
+            try
             {
-                if (actual.STEP_AUTO == 99)
+                actual = db.FLUJOes.Where(a => a.NUM_DOC.Equals(num_doc)).Include(x => x.WORKFP).OrderByDescending(x => x.POS).FirstOrDefault();
+                if (actual != null)
                 {
-                    actual.ESTATUS = "A";
+                    if (actual.STEP_AUTO == 99)
+                    {
+                        actual.ESTATUS = "A";
 
-                    db.Entry(actual).State = EntityState.Modified;
-                    db.SaveChanges();
+                        db.Entry(actual).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
                 }
+
+                //MGC 16-10-2018 Eliminar msg
+                deleteMesg(num_doc);
+
+                dp.NUM_DOC = num_doc;
+                dp.POS = 1;
+                dp.MESSAGE = "Contabilizado en SAP";
+
+                db.DOCUMENTOPREs.Add(dp);
+                db.SaveChanges();
+            }catch(Exception e)
+            {
+                correcto = "1";
             }
-
-            //MGC 16-10-2018 Eliminar msg
-            deleteMesg(num_doc);
-
-            dp.NUM_DOC = num_doc;
-            dp.POS = 1;
-            dp.MESSAGE = "Contabilizado en SAP";
-
-            db.DOCUMENTOPREs.Add(dp);
-            db.SaveChanges();
             
 
-            return "";
+            return correcto;
         }
 
         //public FLUJO determinaAgente(DOCUMENTO d, string user, string delega, int pos, int? loop, int sop, int fase_det)
