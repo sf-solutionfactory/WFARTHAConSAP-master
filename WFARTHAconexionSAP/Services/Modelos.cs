@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -20,183 +21,237 @@ namespace TATconexionSAP.Services
         public List<string> leerArchivos()
         {
             List<string> errores = new List<string>();
-            APPSETTING sett = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("filePath") & x.ACTIVO).FirstOrDefault();//RSG 30.07.2018
-            if (sett == null) { errores.Add("Falta configuración de PATH!"); }
-            //var cadena = ConfigurationManager.AppSettings["url"];
-            var cadena = sett.VALUE;
+            //APPSETTING sett = db.APPSETTINGs.Where(x => x.NOMBRE.Equals("filePath") & x.ACTIVO).FirstOrDefault();//RSG 30.07.2018
+            //if (sett == null) { errores.Add("Falta configuración de PATH!"); }
+            ////var cadena = ConfigurationManager.AppSettings["url"];
+            //var cadena = sett.VALUE;
+
+            //MGC 22-10-2018 Archivo local en servidor----------------------->
+            //Obtener la configuración del server
+            string carpeta = "out";//MGC 22-10-2018 Archivo local en servidor
+            string dirFile = "";
+            //Obtener la configuración de la url desde app setting
+            string url_prel = "";
+            try
+            {
+                //url_prel = db.APPSETTINGs.Where(aps => aps.NOMBRE.Equals("URL_PREL") && aps.ACTIVO == true).FirstOrDefault().VALUE.ToString();//MGC 22-10-2018 Archivo local en servidor
+                //url_prel += @"POSTING";//MGC 22-10-2018 Archivo local en servidor
+                url_prel = getDir(carpeta);
+                dirFile = url_prel;
+                if (dirFile == null | dirFile == "") { errores.Add("Falta configuración de PATH!"); }
+            }
+            catch (Exception e)
+            {
+                dirFile = ConfigurationManager.AppSettings["URL_PREL"].ToString() + @"out";
+            }
+
+
+
             List<doc2> lstd = new List<doc2>();
             List<string> archivos2 = new List<string>();
             try
             {
-                //MGC prueba FTP---------------------------------------------------------------------------------------------------------------------------------------->
-                string ftpServerIP = "";
-                try
-                {
-                    ftpServerIP = db.APPSETTINGs.Where(aps => aps.NOMBRE.Equals("URL_FTP_PRELIMINAR") && aps.ACTIVO == true).FirstOrDefault().VALUE.ToString();
-                    string targetFileName = "/SAP/DATA_SYNC";
-                    ftpServerIP += targetFileName;
-                }
-                catch (Exception e)
-                {
-
-                }
-
-                string username = "matias.gallegos";
-                string password = "Mimapo-2179=p23";
-
-                Uri uri = new Uri(String.Format("ftp://{0}/", ftpServerIP));
-                // Get the object used to communicate with the server.
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(uri);
-                request.Method = WebRequestMethods.Ftp.ListDirectory;
-
-                // This example assumes the FTP site uses anonymous logon.
-                request.Credentials = new NetworkCredential(username, password);
-
-                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-
-                Stream responseStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(responseStream);
-
-              
-
-                string line = reader.ReadLine();
-
-                while (!string.IsNullOrEmpty(line))
-                {
-                    archivos2.Add(line);
-                    line = reader.ReadLine();
-                }
-               
-                reader.Close();
-                response.Close();
-
-
-                //MGC prueba FTP----------------------------------------------------------------------------------------------------------------------------------------<
-                
-
-
-
-
-                //string[] archivos = Directory.GetFiles(cadena += sap += datasync, "*.txt", SearchOption.AllDirectories);
-                //Console.WriteLine(archivos.Length + " _1");//RSG 30.07.2018
-                ////en este for sabre cuales archivos usar
-                //for (int i = 0; i < archivos.Length; i++)
+                ////MGC prueba FTP---------------------------------------------------------------------------------------------------------------------------------------->
+                //string ftpServerIP = "";
+                //try
                 //{
-                //    //separo por carpetas
-                //    string[] varx = archivos[i].Split('\\');
-                //    //separo especificamente el nombre para saber si es BUDG O LOG
-                //    string[] varNA = varx[varx.Length - 1].Split('_');
-                //    if (varNA[1] == "LOG")
-                //    {
-                //        archivos2.Add(archivos[i]);
-                //    }
+                //    ftpServerIP = db.APPSETTINGs.Where(aps => aps.NOMBRE.Equals("URL_FTP_PRELIMINAR") && aps.ACTIVO == true).FirstOrDefault().VALUE.ToString();
+                //    string targetFileName = "/SAP/DATA_SYNC";
+                //    ftpServerIP += targetFileName;
                 //}
+                //catch (Exception e)
+                //{
+
+                //}
+
+                //string username = "matias.gallegos";
+                //string password = "Mimapo-2179=p23";
+
+                //Uri uri = new Uri(String.Format("ftp://{0}/", ftpServerIP));
+                //// Get the object used to communicate with the server.
+                //FtpWebRequest request = (FtpWebRequest)WebRequest.Create(uri);
+                //request.Method = WebRequestMethods.Ftp.ListDirectory;
+
+                //// This example assumes the FTP site uses anonymous logon.
+                //request.Credentials = new NetworkCredential(username, password);
+
+                //FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+                //Stream responseStream = response.GetResponseStream();
+                //StreamReader reader = new StreamReader(responseStream);
+
+
+
+                //string line = reader.ReadLine();
+
+                //while (!string.IsNullOrEmpty(line))
+                //{
+                //    archivos2.Add(line);
+                //    line = reader.ReadLine();
+                //}
+
+                //reader.Close();
+                //response.Close();
+
+
+                ////MGC prueba FTP----------------------------------------------------------------------------------------------------------------------------------------<
+
+
+
+
+
+                string[] archivos = Directory.GetFiles(dirFile, "*", SearchOption.AllDirectories);
+                //string[] archivos = Directory.GetFiles(dirFile += sap += datasync, "*.txt", SearchOption.AllDirectories);
+                Console.WriteLine(archivos.Length + " _1");//RSG 30.07.2018
+                //en este for sabre cuales archivos usar
+                for (int i = 0; i < archivos.Length; i++)
+                {
+                    //separo por carpetas
+                    string[] varx = archivos[i].Split('\\');
+                    //separo especificamente el nombre para saber si es BUDG O LOG
+                    //string[] varNA = varx[varx.Length - 1].Split('_');
+                    //if (varNA[1] == "LOG")
+                    //{
+                    //    archivos2.Add(archivos[i]);
+                    //}
+                    string name = varx[varx.Length - 1];
+
+                    if (name.IndexOf("RESPONSE") >= 0)
+                    {
+                        archivos2.Add(archivos[i]);
+                    }
+                }
 
 
                 Console.WriteLine(archivos2.Count + " _2");//RSG 30.07.2018
                 //en este for armo un objeto para posterior manipular hacia la bd
-                List<string> item = new List<string>();
+                //List<string> item = new List<string>();
                 for (int i = 0; i < archivos2.Count; i++)
                 {
                     //Leo todas las lineas del archivo
                     //string[] readText = File.ReadAllLines(archivos2[i]);
                     //foreach (var item in readText)
-                    //////foreach (var item in File.ReadLines(archivos2[i]))
-                    //////{
-                    //////    doc2 d = new doc2();
-                    //////    string[] val = item.Split('|');
-                    //////    if (val != null)
-                    //////    {
-                    //////        if (val.Length < 2)
-                    //////            errores.Add("Archivo inválido" + archivos2[i]);
-                    //////        else
-                    //////        {
-                    //////            if (val[1] == "Error")
-                    //////            {
-                    //////                d.numero_wf = val[0];
-                    //////                d.accion = val[1];
-                    //////                d.Mensaje = val[2];
-                    //////                //d.Cuenta_cargo = Convert.ToInt64(val[5]);
-                    //////                //d.Cuenta_abono = Convert.ToInt64(val[6]);
-                    //////            }
-                    //////            else
-                    //////            {
-                    //////                d.numero_wf = val[0];
-                    //////                d.accion = val[1];
-                    //////                d.Mensaje = val[2];
-                    //////                d.Num_doc_pre = decimal.Parse(val[3]);
-                    //////                d.Sociedad_pre = val[4];
-                    //////                d.Ejercicio_pre = val[5]; //MGC 11-10-2018 No enviar correos 
-
-
-                    //////            }
-                    //////            lstd.Add(d);
-                    //////        }
-                    //////    }
-                    //////}
-                    //Leer cada uno de los archivos para leer individual
-                    string targetFileName = archivos2[i];
-                    Uri urifile = new Uri(String.Format("ftp://{0}/{1}", ftpServerIP, targetFileName));
-                    // Get the object used to communicate with the server.
-                    FtpWebRequest requestf = (FtpWebRequest)WebRequest.Create(urifile);
-                    requestf.Method = WebRequestMethods.Ftp.DownloadFile;
-
-                    // This example assumes the FTP site uses anonymous logon.
-                    requestf.Credentials = new NetworkCredential(username, password);
-
-                    FtpWebResponse responsef = (FtpWebResponse)requestf.GetResponse();
-
-                    Stream responseStreamf = responsef.GetResponseStream();
-                    StreamReader readerf = new StreamReader(responseStreamf);
-
-                    
-                    string linef = readerf.ReadLine();
-
-                    while (!string.IsNullOrEmpty(linef))
-                    {
-                        item.Add(linef);
-                        linef = readerf.ReadLine();
-                    }
-
-                    readerf.Close();
-                    responsef.Close();
-
-                }
-
-                
-                for (int i = 0; i < item.Count; i++)
-                {
                     doc2 d = new doc2();
-                    string[] val = item[i].Split('|');
-                    if (val != null)
+                    bool head = false;
+                    List<doce> le = new List<doce>();
+                    foreach (var item in File.ReadLines(archivos2[i]))
                     {
-                        if (val.Length < 2)
-                            errores.Add("Archivo inválido" + archivos2[i]);
-                        else
+                        
+                        string[] val = item.Split('|');
+ 
+                        if (val != null)
                         {
-                            if (val[1] == "Error")
+                            if (val[0] == "P")
                             {
-                                d.numero_wf = val[0];
-                                d.accion = val[1];
-                                d.Mensaje = val[2];
-                                //d.Cuenta_cargo = Convert.ToInt64(val[5]);
-                                //d.Cuenta_abono = Convert.ToInt64(val[6]);
+                                //Leer la cabecera
+                                if (val.Length < 2)
+                                    errores.Add("Archivo inválido" + archivos2[i]);
+                        
+                                else
+                                {
+                                    docp pp = new docp();
+
+                                    pp.pos = val[0];
+                                    pp.tiposol = val[1];
+                                    pp.numero_wf = val[2];
+                                    pp.status = val[3];
+                                    pp.accion = val[4];
+                                    pp.Num_doc_pre = Convert.ToDecimal(val[5]);
+                                    pp.Sociedad_pre = val[7];
+                                    pp.Ejercicio_pre = val[6];
+
+                                    d.Posp = pp;
+
+                                    head = true;
+                                }
                             }
-                            else
+
+                            //Mensajes
+                            if (val[0] == "E" && head)
                             {
-                                d.numero_wf = val[0];
-                                d.accion = val[1];
-                                d.Mensaje = val[2];
-                                d.Num_doc_pre = decimal.Parse(val[3]);
-                                d.Sociedad_pre = val[4];
-                                d.Ejercicio_pre = val[5]; //MGC 11-10-2018 No enviar correos 
+                                doce e = new doce();
+                                //Leer los mensajes
+                                if (val.Length < 2)
+                                    errores.Add("Archivo inválido" + archivos2[i]);
+                                else
+                                {
+                                    e.pos = val[0];
+                                    e.tipo = val[1];
+                                    e.id = val[2];
+                                    e.numero = val[3];
+                                    e.mensaje = val[4];
+                                }
 
-
+                                le.Add(e);
                             }
-                            lstd.Add(d);
                         }
                     }
+                    d.Pose = le;
+                    lstd.Add(d);
+
+                    ////Leer cada uno de los archivos para leer individual
+                    //string targetFileName = archivos2[i];
+                    //Uri urifile = new Uri(String.Format("ftp://{0}/{1}", ftpServerIP, targetFileName));
+                    //// Get the object used to communicate with the server.
+                    //FtpWebRequest requestf = (FtpWebRequest)WebRequest.Create(urifile);
+                    //requestf.Method = WebRequestMethods.Ftp.DownloadFile;
+
+                    //// This example assumes the FTP site uses anonymous logon.
+                    //requestf.Credentials = new NetworkCredential(username, password);
+
+                    //FtpWebResponse responsef = (FtpWebResponse)requestf.GetResponse();
+
+                    //Stream responseStreamf = responsef.GetResponseStream();
+                    //StreamReader readerf = new StreamReader(responseStreamf);
+
+
+                    //string linef = readerf.ReadLine();
+
+                    //while (!string.IsNullOrEmpty(linef))
+                    //{
+                    //    item.Add(linef);
+                    //    linef = readerf.ReadLine();
+                    //}
+
+                    //readerf.Close();
+                    //responsef.Close();
+
                 }
+
+
+                //for (int i = 0; i < item.Count; i++)
+                //{
+                //    doc2 d = new doc2();
+                //    string[] val = item[i].Split('|');
+                //    if (val != null)
+                //    {
+                //        if (val.Length < 2)
+                //            errores.Add("Archivo inválido" + archivos2[i]);
+                //        else
+                //        {
+                //            if (val[1] == "Error")
+                //            {
+                //                d.numero_wf = val[0];
+                //                d.accion = val[1];
+                //                d.Mensaje = val[2];
+                //                //d.Cuenta_cargo = Convert.ToInt64(val[5]);
+                //                //d.Cuenta_abono = Convert.ToInt64(val[6]);
+                //            }
+                //            else
+                //            {
+                //                d.numero_wf = val[0];
+                //                d.accion = val[1];
+                //                d.Mensaje = val[2];
+                //                d.Num_doc_pre = decimal.Parse(val[3]);
+                //                d.Sociedad_pre = val[4];
+                //                d.Ejercicio_pre = val[5]; //MGC 11-10-2018 No enviar correos 
+
+
+                //            }
+                //            lstd.Add(d);
+                //        }
+                //    }
+                //}
 
 
 
@@ -204,7 +259,7 @@ namespace TATconexionSAP.Services
 
                 ValidarBd(lstd, archivos2);
 
-               
+
             }
 
             catch (Exception ex)
@@ -220,7 +275,9 @@ namespace TATconexionSAP.Services
             int x = 0;
             for (int i = 0; i < lstd.Count; i++)
             {
-                decimal de = Convert.ToDecimal(lstd[i].numero_wf);
+                string correcto = "X";
+
+                decimal de = Convert.ToDecimal(lstd[i].Posp.numero_wf);
                 //Corroboro que exista la informacion
                 var dA = db.DOCUMENTOes.Where(y => y.NUM_DOC == de).FirstOrDefault();
                 //si encuentra una coincidencia
@@ -234,21 +291,26 @@ namespace TATconexionSAP.Services
 
                     dp.NUM_DOC = de;
                     dp.POS = 1;
-                    
+
                     //para el estatus E/X
-                    if (lstd[i].Mensaje == string.Empty)
+                    if (lstd[i].Posp.status == string.Empty)
                     {
                         //dA.ESTATUS_SAP = "X";
                         //Creación del preliminar
-                        if(lstd[i].accion == "P")
+                        //if (lstd[i].accion == "P")
+                        if (lstd[i].Posp.accion == "CREAR")
                         {
                             dp.MESSAGE = "Error Preliminar";
-                        
-                        //Cancelación del preliminar
-                        }else if(lstd[i].accion == "C")
+
+                            //Cancelación del preliminar
+                        }
+                        //else if (lstd[i].accion == "C")
+                        else if (lstd[i].Posp.accion == "BORRAR" || lstd[i].Posp.accion == "BORRAR-CREAR")
                         {
                             dp.MESSAGE = "Error Cancelación";
-                        }else if(lstd[i].accion == "A")
+                        }
+                        //else if (lstd[i].accion == "A")
+                        else if (lstd[i].Posp.accion == "CONTABILIZAR")
                         {
                             dp.MESSAGE = "Error contabilización SAP";
                         }
@@ -258,21 +320,24 @@ namespace TATconexionSAP.Services
                         db.DOCUMENTOPREs.Add(dp);
                         db.SaveChanges();
                     }
-                    else if (lstd[i].Mensaje != string.Empty)
+                    else if (lstd[i].Posp.status != string.Empty)
                     {
-                        if (lstd[i].Mensaje.Equals("Error"))
+                        if (lstd[i].Posp.status.Equals("NOK"))
                         {
                             //dA.ESTATUS_SAP = "E";
-                            if (lstd[i].accion == "P")
+                            if (lstd[i].Posp.accion == "CREAR")
+                            //if (lstd[i].accion == "P")
                             {
                                 dp.MESSAGE = "Error Preliminar";
 
                             }
-                            else if (lstd[i].accion == "C")
+                            else if (lstd[i].Posp.accion == "BORRAR" || lstd[i].Posp.accion == "BORRAR-CREAR")
+                            //else if (lstd[i].accion == "C")
                             {
                                 dp.MESSAGE = "Error Cancelación";
                             }
-                            else if (lstd[i].accion == "A")
+                            else if (lstd[i].Posp.accion == "CONTABILIZAR")
+                            //else if (lstd[i].accion == "A")
                             {
                                 dp.MESSAGE = "Error contabilización SAP";
                             }
@@ -281,40 +346,40 @@ namespace TATconexionSAP.Services
                             db.DOCUMENTOPREs.Add(dp);
                             db.SaveChanges();
                         }
-                        if (lstd[i].Mensaje.Equals("Success"))
+                        if (lstd[i].Posp.status.Equals("OK"))
                         {
                             //dA.ESTATUS_SAP = "X";
                             //Completar el flujo en el 
                             ProcesaFlujo pf = new ProcesaFlujo();
-                            if (lstd[i].accion == "P")
+                            if (lstd[i].Posp.accion == "CREAR")
+                            //if (lstd[i].Posp.accion == "P")
                             {
                                 //Procesa el flujo de autorización
-                                pf.procesa2(dp.NUM_DOC);
+                                correcto =  pf.procesa2(dp.NUM_DOC);
 
                             }
-                            else if (lstd[i].accion == "C")
+                            else if (lstd[i].Posp.accion == "BORRAR" || lstd[i].Posp.accion == "BORRAR-CREAR")
+                            //else if (lstd[i].Posp.accion == "C")
                             {
                                 //Procesa el flujo de cancelación
-                                pf.procesaC(dp.NUM_DOC);
+                                correcto = pf.procesaC(dp.NUM_DOC);
                             }
-                            else if (lstd[i].accion == "A")
+                            else if (lstd[i].Posp.accion == "CONTABILIZAR")
+                            //else if (lstd[i].Posp.accion == "A")
                             {
                                 //Proceso de contabilización
-                                pf.procesaA(dp.NUM_DOC);
+                                correcto = pf.procesaA(dp.NUM_DOC);
                             }
 
                         }
                     }
 
-                    
-
-
                     try
                     {
                         ////Hacemos el update en BD
-                        dA.NUM_PRE= lstd[i].Num_doc_pre;
-                        dA.SOCIEDAD_PRE = lstd[i].Sociedad_pre;
-                        dA.EJERCICIO_PRE = lstd[i].Ejercicio_pre;//MGC 11-10-2018 No enviar correos 
+                        dA.NUM_PRE = lstd[i].Posp.Num_doc_pre;
+                        dA.SOCIEDAD_PRE = lstd[i].Posp.Sociedad_pre;
+                        dA.EJERCICIO_PRE = lstd[i].Posp.Ejercicio_pre;//MGC 11-10-2018 No enviar correos 
                         db.Entry(dA).State = EntityState.Modified;//MGC 11-10-2018 No enviar correos 
                         x = x + db.SaveChanges();
                         ////Agregamos en la tabla los valores
@@ -352,12 +417,13 @@ namespace TATconexionSAP.Services
                         //}
                         try
                         {
-                            moverArchivo(archivos[i]);
-                        }catch(Exception e)
+                            moverArchivo(archivos[i], correcto);
+                        }
+                        catch (Exception e)
                         {
 
                         }
-                        
+
 
 
                     }
@@ -466,7 +532,7 @@ namespace TATconexionSAP.Services
             }
         }
 
-        public void moverArchivo(string archivo)
+        public void moverArchivo(string archivo, string c)
         {
             //try
             //{
@@ -486,36 +552,77 @@ namespace TATconexionSAP.Services
             //    throw new Exception(ex.Message);
             //}
 
-            //MGC prueba FTP---------------------------------------------------------------------------------------------------------------------------------------->
-            string ftpServerIP = "";
+            if (c != "X")
+            {
+                //MGC prueba FTP---------------------------------------------------------------------------------------------------------------------------------------->
+
+                //string ftpServerIP = "";
+                //try
+                //{
+                //    ftpServerIP = db.APPSETTINGs.Where(aps => aps.NOMBRE.Equals("URL_FTP_PRELIMINAR") && aps.ACTIVO == true).FirstOrDefault().VALUE.ToString();
+                //    string targetFileName = "/SAP/DATA_SYNC";
+                //    ftpServerIP += targetFileName;
+                //}
+                //catch (Exception e)
+                //{
+
+                //}
+
+                //string username = "matias.gallegos";
+                //string password = "Mimapo-2179=p23";
+
+                //Uri uri = new Uri(String.Format("ftp://{0}/{1}", ftpServerIP, archivo));
+                //// Get the object used to communicate with the server.
+                //FtpWebRequest request = (FtpWebRequest)WebRequest.Create(uri);
+                //request.Method = WebRequestMethods.Ftp.DeleteFile;
+
+                //// This example assumes the FTP site uses anonymous logon.
+                //request.Credentials = new NetworkCredential(username, password);
+
+                //FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+
+                //Stream responseStream = response.GetResponseStream();
+                //StreamReader reader = new StreamReader(responseStream);
+
+                ////MGC prueba FTP----------------------------------------------------------------------------------------------------------------------------------------<
+
+
+                try
+                {
+                    var from = Path.Combine(archivo);
+                    //var arc2 = archivo.Replace(datasync, dataproc);
+                    //var to = Path.Combine(arc2);
+                    if (File.Exists(from))
+                    {
+                        File.Delete(from);
+                    }
+
+                    //File.Move(from, to); // Try to move
+                }
+                catch (IOException ex)
+                {
+                    // Console.WriteLine(ex); // Write error
+                    throw new Exception(ex.Message);
+                }
+            }
+        }
+
+        private string getDir(string carpeta)
+        {
+            string dir = "";
             try
             {
-                ftpServerIP = db.APPSETTINGs.Where(aps => aps.NOMBRE.Equals("URL_FTP_PRELIMINAR") && aps.ACTIVO == true).FirstOrDefault().VALUE.ToString();
-                string targetFileName = "/SAP/DATA_SYNC";
-                ftpServerIP += targetFileName;
+                dir = db.APPSETTINGs.Where(aps => aps.NOMBRE.Equals("URL_PREL") && aps.ACTIVO == true).FirstOrDefault().VALUE.ToString();
+                dir += carpeta;
+
             }
             catch (Exception e)
             {
-
+                dir = "";
             }
 
-            string username = "matias.gallegos";
-            string password = "Mimapo-2179=p23";
+            return dir;
 
-            Uri uri = new Uri(String.Format("ftp://{0}/{1}", ftpServerIP, archivo));
-            // Get the object used to communicate with the server.
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(uri);
-            request.Method = WebRequestMethods.Ftp.DeleteFile;
-
-            // This example assumes the FTP site uses anonymous logon.
-            request.Credentials = new NetworkCredential(username, password);
-
-            FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-
-            Stream responseStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(responseStream);
-
-            //MGC prueba FTP----------------------------------------------------------------------------------------------------------------------------------------<
         }
     }
 }

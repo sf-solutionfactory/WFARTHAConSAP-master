@@ -288,6 +288,8 @@
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\doc2.cs" />
+    <Compile Include="Services\doce.cs" />
+    <Compile Include="Services\docp.cs" />
     <Compile Include="Services\Email.cs" />
     <Compile Include="Services\MailErrores.cs" />
     <Compile Include="Program.cs" />
