@@ -17,8 +17,8 @@ namespace WFARTHAconexionSAP.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PROVEEDOR()
         {
+            this.DET_PROVEEDOR = new HashSet<DET_PROVEEDOR>();
             this.RETENCION_PROV = new HashSet<RETENCION_PROV>();
-            this.SOCIEDADs = new HashSet<SOCIEDAD>();
         }
     
         public string LIFNR { get; set; }
@@ -38,8 +38,8 @@ namespace WFARTHAconexionSAP.Entities
         public string STCD2 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RETENCION_PROV> RETENCION_PROV { get; set; }
+        public virtual ICollection<DET_PROVEEDOR> DET_PROVEEDOR { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SOCIEDAD> SOCIEDADs { get; set; }
+        public virtual ICollection<RETENCION_PROV> RETENCION_PROV { get; set; }
     }
 }

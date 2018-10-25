@@ -17,6 +17,7 @@ namespace WFARTHAconexionSAP.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DOCUMENTO()
         {
+            this.DOCUMENTOAS = new HashSet<DOCUMENTOA1>();
             this.DOCUMENTOPs = new HashSet<DOCUMENTOP>();
             this.DOCUMENTOPREs = new HashSet<DOCUMENTOPRE>();
             this.DOCUMENTORs = new HashSet<DOCUMENTOR>();
@@ -24,7 +25,7 @@ namespace WFARTHAconexionSAP.Entities
         }
     
         public decimal NUM_DOC { get; set; }
-        public decimal NUM_PRE { get; set; }
+        public string NUM_PRE { get; set; }
         public string TSOL_ID { get; set; }
         public string TALL_ID { get; set; }
         public string SOCIEDAD_ID { get; set; }
@@ -90,6 +91,8 @@ namespace WFARTHAconexionSAP.Entities
         public virtual SOCIEDAD SOCIEDAD { get; set; }
         public virtual TSOL TSOL { get; set; }
         public virtual USUARIO USUARIO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DOCUMENTOA1> DOCUMENTOAS { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DOCUMENTOP> DOCUMENTOPs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
