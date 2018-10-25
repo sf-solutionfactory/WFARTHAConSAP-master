@@ -30,22 +30,28 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<CAMPOS> CAMPOS { get; set; }
         public virtual DbSet<CARPETA> CARPETAs { get; set; }
         public virtual DbSet<CARPETAT> CARPETATs { get; set; }
+        public virtual DbSet<CECO> CECOes { get; set; }
         public virtual DbSet<CONCEPTO> CONCEPTOes { get; set; }
         public virtual DbSet<CONMAIL> CONMAILs { get; set; }
         public virtual DbSet<DELEGAR> DELEGARs { get; set; }
         public virtual DbSet<DET_AGENTEC> DET_AGENTEC { get; set; }
         public virtual DbSet<DET_AGENTECA> DET_AGENTECA { get; set; }
         public virtual DbSet<DET_APROB> DET_APROB { get; set; }
+        public virtual DbSet<DET_PEP> DET_PEP { get; set; }
+        public virtual DbSet<DET_PROVEEDOR> DET_PROVEEDOR { get; set; }
         public virtual DbSet<DET_SOCIEDAD> DET_SOCIEDAD { get; set; }
         public virtual DbSet<DET_TIPODOC> DET_TIPODOC { get; set; }
         public virtual DbSet<DET_TIPOPRESUPUESTO> DET_TIPOPRESUPUESTO { get; set; }
         public virtual DbSet<DOCUMENTO> DOCUMENTOes { get; set; }
         public virtual DbSet<DOCUMENTOA> DOCUMENTOAs { get; set; }
+        public virtual DbSet<DOCUMENTOA1> DOCUMENTOAS1 { get; set; }
         public virtual DbSet<DOCUMENTOP> DOCUMENTOPs { get; set; }
         public virtual DbSet<DOCUMENTOPRE> DOCUMENTOPREs { get; set; }
         public virtual DbSet<DOCUMENTOR> DOCUMENTORs { get; set; }
         public virtual DbSet<DOCUMENTORP> DOCUMENTORPs { get; set; }
         public virtual DbSet<DOCUMENTOSAP> DOCUMENTOSAPs { get; set; }
+        public virtual DbSet<EKKO_DUMM> EKKO_DUMM { get; set; }
+        public virtual DbSet<EKPO_DUMM> EKPO_DUMM { get; set; }
         public virtual DbSet<FLUJO> FLUJOes { get; set; }
         public virtual DbSet<FORMATO> FORMATOes { get; set; }
         public virtual DbSet<IMPUESTO> IMPUESTOes { get; set; }
@@ -81,11 +87,12 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<WORKFP> WORKFPs { get; set; }
         public virtual DbSet<WORKFT> WORKFTs { get; set; }
         public virtual DbSet<WORKFV> WORKFVs { get; set; }
+        public virtual DbSet<CONDICIONES_PAGO> CONDICIONES_PAGO { get; set; }
         public virtual DbSet<DET_AGENTECC> DET_AGENTECC { get; set; }
-        public virtual DbSet<DET_PEP> DET_PEP { get; set; }
         public virtual DbSet<IIMPUESTO> IIMPUESTOes { get; set; }
         public virtual DbSet<ASIGN_PROY_SOC> ASIGN_PROY_SOC { get; set; }
         public virtual DbSet<CARPETAV> CARPETAVs { get; set; }
+        public virtual DbSet<DET_PROVEEDORV> DET_PROVEEDORV { get; set; }
         public virtual DbSet<DOCUMENTOV> DOCUMENTOVs { get; set; }
         public virtual DbSet<PAGINAV> PAGINAVs { get; set; }
         public virtual DbSet<WARNINGV> WARNINGVs { get; set; }

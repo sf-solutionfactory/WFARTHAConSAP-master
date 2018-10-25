@@ -65,7 +65,6 @@ namespace WFARTHAconexionSAP.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MIEMBRO> MIEMBROS { get; set; }
         public virtual PUESTO PUESTO { get; set; }
-        public virtual SOCIEDAD SOCIEDAD { get; set; }
         public virtual SPRA SPRA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WORKFH> WORKFHs { get; set; }

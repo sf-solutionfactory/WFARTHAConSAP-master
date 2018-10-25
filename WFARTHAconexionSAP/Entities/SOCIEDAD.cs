@@ -17,12 +17,11 @@ namespace WFARTHAconexionSAP.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SOCIEDAD()
         {
+            this.DET_PROVEEDOR = new HashSet<DET_PROVEEDOR>();
             this.DET_SOCIEDAD = new HashSet<DET_SOCIEDAD>();
             this.DET_TIPOPRESUPUESTO = new HashSet<DET_TIPOPRESUPUESTO>();
             this.DOCUMENTOes = new HashSet<DOCUMENTO>();
             this.RETENCION_PROV = new HashSet<RETENCION_PROV>();
-            this.USUARIOs = new HashSet<USUARIO>();
-            this.PROVEEDORs = new HashSet<PROVEEDOR>();
             this.PROYECTOes = new HashSet<PROYECTO>();
         }
     
@@ -38,6 +37,8 @@ namespace WFARTHAconexionSAP.Entities
         public string REGION { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DET_PROVEEDOR> DET_PROVEEDOR { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DET_SOCIEDAD> DET_SOCIEDAD { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DET_TIPOPRESUPUESTO> DET_TIPOPRESUPUESTO { get; set; }
@@ -46,10 +47,6 @@ namespace WFARTHAconexionSAP.Entities
         public virtual MONEDA MONEDA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RETENCION_PROV> RETENCION_PROV { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<USUARIO> USUARIOs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PROVEEDOR> PROVEEDORs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PROYECTO> PROYECTOes { get; set; }
     }

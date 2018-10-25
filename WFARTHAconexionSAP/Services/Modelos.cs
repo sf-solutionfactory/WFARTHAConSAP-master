@@ -156,7 +156,7 @@ namespace TATconexionSAP.Services
                                     pp.numero_wf = val[2];
                                     pp.status = val[3];
                                     pp.accion = val[4];
-                                    pp.Num_doc_pre = Convert.ToDecimal(val[5]);
+                                    pp.Num_doc_pre = val[5];
                                     pp.Sociedad_pre = val[7];
                                     pp.Ejercicio_pre = val[6];
 
@@ -350,25 +350,31 @@ namespace TATconexionSAP.Services
                         {
                             //dA.ESTATUS_SAP = "X";
                             //Completar el flujo en el 
-                            ProcesaFlujo pf = new ProcesaFlujo();
-                            if (lstd[i].Posp.accion == "CREAR")
-                            //if (lstd[i].Posp.accion == "P")
+                            try
                             {
-                                //Procesa el flujo de autorización
-                                correcto =  pf.procesa2(dp.NUM_DOC);
+                                ProcesaFlujo pf = new ProcesaFlujo();
+                                if (lstd[i].Posp.accion == "CREAR")
+                                //if (lstd[i].Posp.accion == "P")
+                                {
+                                    //Procesa el flujo de autorización
+                                    correcto = pf.procesa2(dp.NUM_DOC);
 
-                            }
-                            else if (lstd[i].Posp.accion == "BORRAR" || lstd[i].Posp.accion == "BORRAR-CREAR")
-                            //else if (lstd[i].Posp.accion == "C")
+                                }
+                                else if (lstd[i].Posp.accion == "BORRAR" || lstd[i].Posp.accion == "BORRAR-CREAR")
+                                //else if (lstd[i].Posp.accion == "C")
+                                {
+                                    //Procesa el flujo de cancelación
+                                    correcto = pf.procesaC(dp.NUM_DOC);
+                                }
+                                else if (lstd[i].Posp.accion == "CONTABILIZAR")
+                                //else if (lstd[i].Posp.accion == "A")
+                                {
+                                    //Proceso de contabilización
+                                    correcto = pf.procesaA(dp.NUM_DOC);
+                                }
+                            } catch(Exception e)
                             {
-                                //Procesa el flujo de cancelación
-                                correcto = pf.procesaC(dp.NUM_DOC);
-                            }
-                            else if (lstd[i].Posp.accion == "CONTABILIZAR")
-                            //else if (lstd[i].Posp.accion == "A")
-                            {
-                                //Proceso de contabilización
-                                correcto = pf.procesaA(dp.NUM_DOC);
+
                             }
 
                         }
@@ -377,7 +383,15 @@ namespace TATconexionSAP.Services
                     try
                     {
                         ////Hacemos el update en BD
-                        dA.NUM_PRE = lstd[i].Posp.Num_doc_pre;
+                        if(lstd[i].Posp.accion == "CONTABILIZAR")
+                        {
+                            dA.DOCUMENTO_SAP = lstd[i].Posp.Num_doc_pre;
+                        }
+                        else
+                        {
+                            dA.NUM_PRE = lstd[i].Posp.Num_doc_pre;
+                        }
+                        
                         dA.SOCIEDAD_PRE = lstd[i].Posp.Sociedad_pre;
                         dA.EJERCICIO_PRE = lstd[i].Posp.Ejercicio_pre;//MGC 11-10-2018 No enviar correos 
                         db.Entry(dA).State = EntityState.Modified;//MGC 11-10-2018 No enviar correos 
