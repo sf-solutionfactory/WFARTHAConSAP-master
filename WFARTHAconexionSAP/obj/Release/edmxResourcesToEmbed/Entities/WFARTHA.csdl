@@ -54,6 +54,15 @@
     <NavigationProperty Name="CARPETA" Relationship="Self.FK_CARPETAT_CARPETA" FromRole="CARPETAT" ToRole="CARPETA" />
     <NavigationProperty Name="SPRA" Relationship="Self.FK_CARPETAT_SPRAS" FromRole="CARPETAT" ToRole="SPRAS" />
   </EntityType>
+  <EntityType Name="CECO">
+    <Key>
+      <PropertyRef Name="BUKRS" />
+      <PropertyRef Name="CECO1" />
+    </Key>
+    <Property Name="BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="CECO1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TEXT" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="CONCEPTO">
     <Key>
       <PropertyRef Name="ID_CONCEPTO" />
@@ -138,6 +147,29 @@
     <Property Name="ID_USUARIO" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="STEP_FASE" Type="Int32" Nullable="false" />
   </EntityType>
+  <EntityType Name="DET_PEP">
+    <Key>
+      <PropertyRef Name="PSPNR" />
+      <PropertyRef Name="CONCEPTO" />
+      <PropertyRef Name="TIPO_CONCEPTO" />
+    </Key>
+    <Property Name="PSPNR" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="POSID" Type="Int32" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CONCEPTO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TIPO_CONCEPTO" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DET_PROVEEDOR">
+    <Key>
+      <PropertyRef Name="ID_LIFNR" />
+      <PropertyRef Name="ID_BUKRS" />
+    </Key>
+    <Property Name="ID_LIFNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ID_BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="COND_PAGO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="PROVEEDOR" Relationship="Self.FK_DET_PROVEEDOR_PROYECTO" FromRole="DET_PROVEEDOR" ToRole="PROVEEDOR" />
+    <NavigationProperty Name="SOCIEDAD" Relationship="Self.FK_DET_PROVEEDOR_SOCIEDAD" FromRole="DET_PROVEEDOR" ToRole="SOCIEDAD" />
+  </EntityType>
   <EntityType Name="DET_SOCIEDAD">
     <Key>
       <PropertyRef Name="BUKRS" />
@@ -175,7 +207,7 @@
       <PropertyRef Name="NUM_DOC" />
     </Key>
     <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
-    <Property Name="NUM_PRE" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="NUM_PRE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="TSOL_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="TALL_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="SOCIEDAD_ID" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
@@ -235,9 +267,12 @@
     <Property Name="TEXTO_POS" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
     <Property Name="ASIGNACION_POS" Type="String" MaxLength="18" FixedLength="true" Unicode="true" />
     <Property Name="CLAVE_CTA" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="SOCIEDAD_PRE" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="EJERCICIO_PRE" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
     <NavigationProperty Name="SOCIEDAD" Relationship="Self.FK_DOCUMENTO_SOCIEDAD" FromRole="DOCUMENTO" ToRole="SOCIEDAD" />
     <NavigationProperty Name="TSOL" Relationship="Self.FK_DOCUMENTO_TSOL" FromRole="DOCUMENTO" ToRole="TSOL" />
     <NavigationProperty Name="USUARIO" Relationship="Self.FK_DOCUMENTO_USUARIO" FromRole="DOCUMENTO" ToRole="USUARIO" />
+    <NavigationProperty Name="DOCUMENTOAS" Relationship="Self.FK_DOCUMENTOAS_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOAS" />
     <NavigationProperty Name="DOCUMENTOPs" Relationship="Self.FK_DOCUMENTOP_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOP" />
     <NavigationProperty Name="DOCUMENTOPREs" Relationship="Self.FK_DOCUMENTOPRE_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOPRE" />
     <NavigationProperty Name="DOCUMENTORs" Relationship="Self.FK_DOCUMENTOR_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOR" />
@@ -262,6 +297,22 @@
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="DOCUMENTOP" Relationship="Self.FK_DOCUMENTOA_DOCUMENTOP" FromRole="DOCUMENTOA" ToRole="DOCUMENTOP" />
     <NavigationProperty Name="TSOPORTE" Relationship="Self.FK_DOCUMENTOA_TSOPORTE" FromRole="DOCUMENTOA" ToRole="TSOPORTE" />
+  </EntityType>
+  <EntityType Name="DOCUMENTOA1">
+    <Key>
+      <PropertyRef Name="NUM_DOC" />
+      <PropertyRef Name="POS" />
+    </Key>
+    <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="POS" Type="Int32" Nullable="false" />
+    <Property Name="TIPO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="DESC" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CLASE" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
+    <Property Name="STEP_WF" Type="Int32" />
+    <Property Name="USUARIO_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="PATH" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" />
+    <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOAS_DOCUMENTO" FromRole="DOCUMENTOAS" ToRole="DOCUMENTO" />
   </EntityType>
   <EntityType Name="DOCUMENTOP">
     <Key>
@@ -347,6 +398,53 @@
     <Property Name="IMPORTE" Type="Decimal" Precision="13" Scale="5" />
     <Property Name="DESCR" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOSAP_DOCUMENTO" FromRole="DOCUMENTOSAP" ToRole="DOCUMENTO" />
+  </EntityType>
+  <EntityType Name="EKKO_DUMM">
+    <Key>
+      <PropertyRef Name="EBELN" />
+    </Key>
+    <Property Name="EBELN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="LIFNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="BEDAT" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
+    <Property Name="BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="ZTERM" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="EKORG" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="WAERS" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="WKURS" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="RETPC" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="DPPCT" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="DPAMT" Type="Decimal" Precision="13" Scale="5" />
+    <Property Name="FONDOG" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="RET_FONDOG" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="RES_FONDOG" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="TOTAL" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="POR_ANTICIPO" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="POR_FONDO" Type="Decimal" Precision="13" Scale="2" />
+    <NavigationProperty Name="EKPO_DUMM" Relationship="Self.FK_EKPO_DUMM_EKKO_DUMM" FromRole="EKKO_DUMM" ToRole="EKPO_DUMM" />
+  </EntityType>
+  <EntityType Name="EKPO_DUMM">
+    <Key>
+      <PropertyRef Name="EBELN" />
+      <PropertyRef Name="EBELP" />
+    </Key>
+    <Property Name="EBELN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="EBELP" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+    <Property Name="TXZ0" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="MATNR" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="MENGE" Type="Decimal" Precision="13" Scale="3" />
+    <Property Name="MEINS" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="BPUMZ" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="BPUMN" Type="Decimal" Precision="5" Scale="0" />
+    <Property Name="NETWR" Type="Decimal" Precision="15" Scale="2" />
+    <Property Name="BRTWR" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="H_QUANTITY" Type="Decimal" Precision="13" Scale="3" />
+    <Property Name="H_VAL_LOCCUR" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="H_VAL_FORCUR" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="H_VAL_CURRENCY" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="H_ANT_PAG" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="H_ANT_SOL" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="H_ANT_AMORT" Type="Decimal" Precision="13" Scale="2" />
+    <NavigationProperty Name="EKKO_DUMM" Relationship="Self.FK_EKPO_DUMM_EKKO_DUMM" FromRole="EKPO_DUMM" ToRole="EKKO_DUMM" />
   </EntityType>
   <EntityType Name="FLUJO">
     <Key>
@@ -495,15 +593,15 @@
     <Property Name="ADRNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="STCD1" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
     <Property Name="STCD2" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="DET_PROVEEDOR" Relationship="Self.FK_DET_PROVEEDOR_PROYECTO" FromRole="PROVEEDOR" ToRole="DET_PROVEEDOR" />
     <NavigationProperty Name="RETENCION_PROV" Relationship="Self.FK_RETENCION_PROV_PROVEEDOR" FromRole="PROVEEDOR" ToRole="RETENCION_PROV" />
-    <NavigationProperty Name="SOCIEDADs" Relationship="Self.DET_PROVEEDOR" FromRole="PROVEEDOR" ToRole="SOCIEDAD" />
   </EntityType>
   <EntityType Name="PROYECTO">
     <Key>
       <PropertyRef Name="ID_PSPNR" />
     </Key>
     <Property Name="ID_PSPNR" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="NONBRE" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="SOCIEDADs" Relationship="Self.DET_PROYECTO" FromRole="PROYECTO" ToRole="SOCIEDAD" />
   </EntityType>
   <EntityType Name="PUESTO">
@@ -540,12 +638,14 @@
   <EntityType Name="RETENCION">
     <Key>
       <PropertyRef Name="WITHT" />
+      <PropertyRef Name="WT_WITHCD" />
     </Key>
     <Property Name="WITHT" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="WT_WITHCD" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="DESCRIPCION" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
     <Property Name="ESTATUS" Type="Boolean" Nullable="false" />
     <Property Name="WITHT_SUB" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
-    <Property Name="PORC" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+    <Property Name="PORC" Type="Decimal" Precision="13" Scale="8" />
     <NavigationProperty Name="DOCUMENTORPs" Relationship="Self.FK_DOCUMENTORP_RETENCION" FromRole="RETENCION" ToRole="DOCUMENTORP" />
     <NavigationProperty Name="RETENCION_PROV" Relationship="Self.FK_RETENCION_PROV_RETENCION" FromRole="RETENCION" ToRole="RETENCION_PROV" />
     <NavigationProperty Name="RETENCIONTs" Relationship="Self.FK_RETENCIONT_RETENCION" FromRole="RETENCION" ToRole="RETENCIONT" />
@@ -555,11 +655,12 @@
       <PropertyRef Name="LIFNR" />
       <PropertyRef Name="BUKRS" />
       <PropertyRef Name="WITHT" />
+      <PropertyRef Name="WT_WITHCD" />
     </Key>
     <Property Name="LIFNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="WITHT" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="WT_WITHCD" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
+    <Property Name="WT_WITHCD" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="PROVEEDOR" Relationship="Self.FK_RETENCION_PROV_PROVEEDOR" FromRole="RETENCION_PROV" ToRole="PROVEEDOR" />
     <NavigationProperty Name="RETENCION" Relationship="Self.FK_RETENCION_PROV_RETENCION" FromRole="RETENCION_PROV" ToRole="RETENCION" />
     <NavigationProperty Name="SOCIEDAD" Relationship="Self.FK_RETENCION_PROV_SOCIEDAD" FromRole="RETENCION_PROV" ToRole="SOCIEDAD" />
@@ -568,9 +669,11 @@
     <Key>
       <PropertyRef Name="SPRAS_ID" />
       <PropertyRef Name="WITHT" />
+      <PropertyRef Name="WT_WITHCD" />
     </Key>
     <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="WITHT" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="WT_WITHCD" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="TXT50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="RETENCION" Relationship="Self.FK_RETENCIONT_RETENCION" FromRole="RETENCIONT" ToRole="RETENCION" />
     <NavigationProperty Name="SPRA" Relationship="Self.FK_RETENCIONT_SPRAS" FromRole="RETENCIONT" ToRole="SPRAS" />
@@ -601,7 +704,7 @@
       <PropertyRef Name="BUKRS" />
     </Key>
     <Property Name="BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="BUTXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BUTXT" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="ORT01" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="SUBREGIO" Type="String" MaxLength="6" FixedLength="true" Unicode="true" />
     <Property Name="WAERS" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
@@ -610,13 +713,12 @@
     <Property Name="KTOPL" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
     <Property Name="REGION" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="DET_PROVEEDOR" Relationship="Self.FK_DET_PROVEEDOR_SOCIEDAD" FromRole="SOCIEDAD" ToRole="DET_PROVEEDOR" />
     <NavigationProperty Name="DET_SOCIEDAD" Relationship="Self.FK_DET_SOCIEDAD_SOCIEDAD" FromRole="SOCIEDAD" ToRole="DET_SOCIEDAD" />
     <NavigationProperty Name="DET_TIPOPRESUPUESTO" Relationship="Self.FK_DET_TIPOPRESUPUESTO_SOCIEDAD" FromRole="SOCIEDAD" ToRole="DET_TIPOPRESUPUESTO" />
     <NavigationProperty Name="DOCUMENTOes" Relationship="Self.FK_DOCUMENTO_SOCIEDAD" FromRole="SOCIEDAD" ToRole="DOCUMENTO" />
     <NavigationProperty Name="MONEDA" Relationship="Self.FK_SOCIEDAD_MONEDA" FromRole="SOCIEDAD" ToRole="MONEDA" />
     <NavigationProperty Name="RETENCION_PROV" Relationship="Self.FK_RETENCION_PROV_SOCIEDAD" FromRole="SOCIEDAD" ToRole="RETENCION_PROV" />
-    <NavigationProperty Name="USUARIOs" Relationship="Self.FK_USUARIO_SOCIEDAD" FromRole="SOCIEDAD" ToRole="USUARIO" />
-    <NavigationProperty Name="PROVEEDORs" Relationship="Self.DET_PROVEEDOR" FromRole="SOCIEDAD" ToRole="PROVEEDOR" />
     <NavigationProperty Name="PROYECTOes" Relationship="Self.DET_PROYECTO" FromRole="SOCIEDAD" ToRole="PROYECTO" />
   </EntityType>
   <EntityType Name="SPRA">
@@ -680,13 +782,14 @@
     <Property Name="DESCRIPCION" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
     <Property Name="RANGO_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="ESTATUS" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="EDITDET" Type="Boolean" />
+    <Property Name="DEFAULT" Type="Boolean" />
+    <Property Name="TIPO_DOCFILE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="DET_TIPODOC" Relationship="Self.FK_DET_TIPODOC_TSOL" FromRole="TSOL" ToRole="DET_TIPODOC" />
     <NavigationProperty Name="DOCUMENTOes" Relationship="Self.FK_DOCUMENTO_TSOL" FromRole="TSOL" ToRole="DOCUMENTO" />
     <NavigationProperty Name="RANGO" Relationship="Self.FK_TSOL_RANGO" FromRole="TSOL" ToRole="RANGO" />
     <NavigationProperty Name="TSOLTs" Relationship="Self.FK_TSOLT_TSOL" FromRole="TSOL" ToRole="TSOLT" />
     <NavigationProperty Name="WORKFHs" Relationship="Self.FK_WORKFP_TSOL" FromRole="TSOL" ToRole="WORKFH" />
-    <Property Name="EDITDET" Type="Boolean" />
-    <Property Name="DEFAULT" Type="Boolean" />
   </EntityType>
   <EntityType Name="TSOLT">
     <Key>
@@ -736,6 +839,7 @@
     <Property Name="MANAGER" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
     <Property Name="BACKUP_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
     <Property Name="BUNIT" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="FIRMA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DELEGARs" Relationship="Self.FK_DELEGAR_USUARIO" FromRole="USUARIO" ToRole="DELEGAR" />
     <NavigationProperty Name="DELEGARs1" Relationship="Self.FK_DELEGAR_USUARIO1" FromRole="USUARIO" ToRole="DELEGAR" />
     <NavigationProperty Name="DET_AGENTEC" Relationship="Self.FK_DET_AGENTEC_USUARIO" FromRole="USUARIO" ToRole="DET_AGENTEC" />
@@ -747,7 +851,6 @@
     <NavigationProperty Name="FLUJOes1" Relationship="Self.FK_FLUJO_USUARIO1" FromRole="USUARIO" ToRole="FLUJO" />
     <NavigationProperty Name="MIEMBROS" Relationship="Self.FK_MIEMBROS_USUARIO" FromRole="USUARIO" ToRole="MIEMBROS" />
     <NavigationProperty Name="PUESTO" Relationship="Self.FK_USUARIO_PUESTO" FromRole="USUARIO" ToRole="PUESTO" />
-    <NavigationProperty Name="SOCIEDAD" Relationship="Self.FK_USUARIO_SOCIEDAD" FromRole="USUARIO" ToRole="SOCIEDAD" />
     <NavigationProperty Name="SPRA" Relationship="Self.FK_USUARIO_SPRAS" FromRole="USUARIO" ToRole="SPRAS" />
     <NavigationProperty Name="WORKFHs" Relationship="Self.FK_WORKFP_USUARIO" FromRole="USUARIO" ToRole="WORKFH" />
   </EntityType>
@@ -839,6 +942,13 @@
     <NavigationProperty Name="WORKFPs" Relationship="Self.FK_WORKFP_WORKFV" FromRole="WORKFV" ToRole="WORKFP" />
     <NavigationProperty Name="WORKFTs" Relationship="Self.FK_WORKFT_WORKFV" FromRole="WORKFV" ToRole="WORKFT" />
   </EntityType>
+  <EntityType Name="CONDICIONES_PAGO">
+    <Key>
+      <PropertyRef Name="COND_PAGO" />
+    </Key>
+    <Property Name="COND_PAGO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
   <EntityType Name="DET_AGENTECC">
     <Key>
       <PropertyRef Name="VERSION" />
@@ -854,19 +964,6 @@
     <Property Name="USUARIOA_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="FECHAC" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
-  <EntityType Name="DET_PEP">
-    <Key>
-      <PropertyRef Name="PSPNR" />
-      <PropertyRef Name="DESCRIPCION" />
-      <PropertyRef Name="CONCEPTO" />
-      <PropertyRef Name="TIPO_CONCEPTO" />
-    </Key>
-    <Property Name="PSPNR" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="POSID" Type="Int32" />
-    <Property Name="DESCRIPCION" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="CONCEPTO" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="TIPO_CONCEPTO" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
   <EntityType Name="IIMPUESTO">
     <Key>
       <PropertyRef Name="MWSKZ" />
@@ -877,6 +974,14 @@
     <Property Name="KBETR" Type="Decimal" Precision="11" Scale="2" />
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="IMPUESTO" Relationship="Self.FK_IIMPUESTO_IMPUESTO" FromRole="IIMPUESTO" ToRole="IMPUESTO" />
+  </EntityType>
+  <EntityType Name="ASIGN_PROY_SOC">
+    <Key>
+      <PropertyRef Name="ID_PSPNR" />
+      <PropertyRef Name="ID_BUKRS" />
+    </Key>
+    <Property Name="ID_PSPNR" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
   </EntityType>
   <EntityType Name="CARPETAV">
     <Key>
@@ -889,6 +994,15 @@
     <Property Name="TXT50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ICON" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="DET_PROVEEDORV">
+    <Key>
+      <PropertyRef Name="ID_LIFNR" />
+      <PropertyRef Name="ID_BUKRS" />
+    </Key>
+    <Property Name="ID_LIFNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ID_BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="COND_PAGO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+  </EntityType>
   <EntityType Name="DOCUMENTOV">
     <Key>
       <PropertyRef Name="POS" />
@@ -896,6 +1010,7 @@
     </Key>
     <Property Name="POS" Type="Int32" Nullable="false" />
     <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="NUM_PRE" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="TSOL_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="TALL_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="SOCIEDAD_ID" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
@@ -1116,6 +1231,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_DET_PROVEEDOR_PROYECTO">
+    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="1" />
+    <End Role="DET_PROVEEDOR" Type="Self.DET_PROVEEDOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PROVEEDOR">
+        <PropertyRef Name="LIFNR" />
+      </Principal>
+      <Dependent Role="DET_PROVEEDOR">
+        <PropertyRef Name="ID_LIFNR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DET_PROVEEDOR_SOCIEDAD">
+    <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="1" />
+    <End Role="DET_PROVEEDOR" Type="Self.DET_PROVEEDOR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SOCIEDAD">
+        <PropertyRef Name="BUKRS" />
+      </Principal>
+      <Dependent Role="DET_PROVEEDOR">
+        <PropertyRef Name="ID_BUKRS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_DET_SOCIEDAD_SOCIEDAD">
     <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="1" />
     <End Role="DET_SOCIEDAD" Type="Self.DET_SOCIEDAD" Multiplicity="*" />
@@ -1233,6 +1372,18 @@
       </Principal>
       <Dependent Role="DOCUMENTO">
         <PropertyRef Name="USUARIOC_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTOAS_DOCUMENTO">
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+    <End Role="DOCUMENTOAS" Type="Self.DOCUMENTOA1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTO">
+        <PropertyRef Name="NUM_DOC" />
+      </Principal>
+      <Dependent Role="DOCUMENTOAS">
+        <PropertyRef Name="NUM_DOC" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1354,9 +1505,23 @@
     <ReferentialConstraint>
       <Principal Role="RETENCION">
         <PropertyRef Name="WITHT" />
+        <PropertyRef Name="WT_WITHCD" />
       </Principal>
       <Dependent Role="DOCUMENTORP">
         <PropertyRef Name="WITHT" />
+        <PropertyRef Name="WT_WITHCD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EKPO_DUMM_EKKO_DUMM">
+    <End Role="EKKO_DUMM" Type="Self.EKKO_DUMM" Multiplicity="1" />
+    <End Role="EKPO_DUMM" Type="Self.EKPO_DUMM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EKKO_DUMM">
+        <PropertyRef Name="EBELN" />
+      </Principal>
+      <Dependent Role="EKPO_DUMM">
+        <PropertyRef Name="EBELN" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1574,9 +1739,11 @@
     <ReferentialConstraint>
       <Principal Role="RETENCION">
         <PropertyRef Name="WITHT" />
+        <PropertyRef Name="WT_WITHCD" />
       </Principal>
       <Dependent Role="RETENCION_PROV">
         <PropertyRef Name="WITHT" />
+        <PropertyRef Name="WT_WITHCD" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1586,9 +1753,11 @@
     <ReferentialConstraint>
       <Principal Role="RETENCION">
         <PropertyRef Name="WITHT" />
+        <PropertyRef Name="WT_WITHCD" />
       </Principal>
       <Dependent Role="RETENCIONT">
         <PropertyRef Name="WITHT" />
+        <PropertyRef Name="WT_WITHCD" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1625,18 +1794,6 @@
       </Principal>
       <Dependent Role="ROLT">
         <PropertyRef Name="ROL_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_USUARIO_SOCIEDAD">
-    <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="1" />
-    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="SOCIEDAD">
-        <PropertyRef Name="BUKRS" />
-      </Principal>
-      <Dependent Role="USUARIO">
-        <PropertyRef Name="BUNIT" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1812,10 +1969,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="DET_PROVEEDOR">
-    <End Role="PROVEEDOR" Type="Self.PROVEEDOR" Multiplicity="*" />
-    <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="*" />
-  </Association>
   <Association Name="DET_PROYECTO">
     <End Role="PROYECTO" Type="Self.PROYECTO" Multiplicity="*" />
     <End Role="SOCIEDAD" Type="Self.SOCIEDAD" Multiplicity="*" />
@@ -1826,22 +1979,28 @@
     <EntitySet Name="CAMPOS" EntityType="Self.CAMPOS" />
     <EntitySet Name="CARPETAs" EntityType="Self.CARPETA" />
     <EntitySet Name="CARPETATs" EntityType="Self.CARPETAT" />
+    <EntitySet Name="CECOes" EntityType="Self.CECO" />
     <EntitySet Name="CONCEPTOes" EntityType="Self.CONCEPTO" />
     <EntitySet Name="CONMAILs" EntityType="Self.CONMAIL" />
     <EntitySet Name="DELEGARs" EntityType="Self.DELEGAR" />
     <EntitySet Name="DET_AGENTEC" EntityType="Self.DET_AGENTEC" />
     <EntitySet Name="DET_AGENTECA" EntityType="Self.DET_AGENTECA" />
     <EntitySet Name="DET_APROB" EntityType="Self.DET_APROB" />
+    <EntitySet Name="DET_PEP" EntityType="Self.DET_PEP" />
+    <EntitySet Name="DET_PROVEEDOR" EntityType="Self.DET_PROVEEDOR" />
     <EntitySet Name="DET_SOCIEDAD" EntityType="Self.DET_SOCIEDAD" />
     <EntitySet Name="DET_TIPODOC" EntityType="Self.DET_TIPODOC" />
     <EntitySet Name="DET_TIPOPRESUPUESTO" EntityType="Self.DET_TIPOPRESUPUESTO" />
     <EntitySet Name="DOCUMENTOes" EntityType="Self.DOCUMENTO" />
     <EntitySet Name="DOCUMENTOAs" EntityType="Self.DOCUMENTOA" />
+    <EntitySet Name="DOCUMENTOAS1" EntityType="Self.DOCUMENTOA1" />
     <EntitySet Name="DOCUMENTOPs" EntityType="Self.DOCUMENTOP" />
     <EntitySet Name="DOCUMENTOPREs" EntityType="Self.DOCUMENTOPRE" />
     <EntitySet Name="DOCUMENTORs" EntityType="Self.DOCUMENTOR" />
     <EntitySet Name="DOCUMENTORPs" EntityType="Self.DOCUMENTORP" />
     <EntitySet Name="DOCUMENTOSAPs" EntityType="Self.DOCUMENTOSAP" />
+    <EntitySet Name="EKKO_DUMM" EntityType="Self.EKKO_DUMM" />
+    <EntitySet Name="EKPO_DUMM" EntityType="Self.EKPO_DUMM" />
     <EntitySet Name="FLUJOes" EntityType="Self.FLUJO" />
     <EntitySet Name="FORMATOes" EntityType="Self.FORMATO" />
     <EntitySet Name="IMPUESTOes" EntityType="Self.IMPUESTO" />
@@ -1877,10 +2036,12 @@
     <EntitySet Name="WORKFPs" EntityType="Self.WORKFP" />
     <EntitySet Name="WORKFTs" EntityType="Self.WORKFT" />
     <EntitySet Name="WORKFVs" EntityType="Self.WORKFV" />
+    <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" />
     <EntitySet Name="DET_AGENTECC" EntityType="Self.DET_AGENTECC" />
-    <EntitySet Name="DET_PEP" EntityType="Self.DET_PEP" />
     <EntitySet Name="IIMPUESTOes" EntityType="Self.IIMPUESTO" />
+    <EntitySet Name="ASIGN_PROY_SOC" EntityType="Self.ASIGN_PROY_SOC" />
     <EntitySet Name="CARPETAVs" EntityType="Self.CARPETAV" />
+    <EntitySet Name="DET_PROVEEDORV" EntityType="Self.DET_PROVEEDORV" />
     <EntitySet Name="DOCUMENTOVs" EntityType="Self.DOCUMENTOV" />
     <EntitySet Name="PAGINAVs" EntityType="Self.PAGINAV" />
     <EntitySet Name="WARNINGVs" EntityType="Self.WARNINGV" />
@@ -1928,6 +2089,14 @@
       <End Role="USUARIO" EntitySet="USUARIOs" />
       <End Role="DET_AGENTEC" EntitySet="DET_AGENTEC" />
     </AssociationSet>
+    <AssociationSet Name="FK_DET_PROVEEDOR_PROYECTO" Association="Self.FK_DET_PROVEEDOR_PROYECTO">
+      <End Role="PROVEEDOR" EntitySet="PROVEEDORs" />
+      <End Role="DET_PROVEEDOR" EntitySet="DET_PROVEEDOR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DET_PROVEEDOR_SOCIEDAD" Association="Self.FK_DET_PROVEEDOR_SOCIEDAD">
+      <End Role="SOCIEDAD" EntitySet="SOCIEDADs" />
+      <End Role="DET_PROVEEDOR" EntitySet="DET_PROVEEDOR" />
+    </AssociationSet>
     <AssociationSet Name="FK_DET_SOCIEDAD_SOCIEDAD" Association="Self.FK_DET_SOCIEDAD_SOCIEDAD">
       <End Role="SOCIEDAD" EntitySet="SOCIEDADs" />
       <End Role="DET_SOCIEDAD" EntitySet="DET_SOCIEDAD" />
@@ -1968,6 +2137,10 @@
       <End Role="USUARIO" EntitySet="USUARIOs" />
       <End Role="DOCUMENTO" EntitySet="DOCUMENTOes" />
     </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTOAS_DOCUMENTO" Association="Self.FK_DOCUMENTOAS_DOCUMENTO">
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTOes" />
+      <End Role="DOCUMENTOAS" EntitySet="DOCUMENTOAS1" />
+    </AssociationSet>
     <AssociationSet Name="FK_DOCUMENTOP_DOCUMENTO" Association="Self.FK_DOCUMENTOP_DOCUMENTO">
       <End Role="DOCUMENTO" EntitySet="DOCUMENTOes" />
       <End Role="DOCUMENTOP" EntitySet="DOCUMENTOPs" />
@@ -2007,6 +2180,10 @@
     <AssociationSet Name="FK_DOCUMENTORP_RETENCION" Association="Self.FK_DOCUMENTORP_RETENCION">
       <End Role="RETENCION" EntitySet="RETENCIONs" />
       <End Role="DOCUMENTORP" EntitySet="DOCUMENTORPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EKPO_DUMM_EKKO_DUMM" Association="Self.FK_EKPO_DUMM_EKKO_DUMM">
+      <End Role="EKKO_DUMM" EntitySet="EKKO_DUMM" />
+      <End Role="EKPO_DUMM" EntitySet="EKPO_DUMM" />
     </AssociationSet>
     <AssociationSet Name="FK_FLUJO_USUARIO" Association="Self.FK_FLUJO_USUARIO">
       <End Role="USUARIO" EntitySet="USUARIOs" />
@@ -2096,10 +2273,6 @@
       <End Role="ROL" EntitySet="ROLs" />
       <End Role="ROLT" EntitySet="ROLTs" />
     </AssociationSet>
-    <AssociationSet Name="FK_USUARIO_SOCIEDAD" Association="Self.FK_USUARIO_SOCIEDAD">
-      <End Role="SOCIEDAD" EntitySet="SOCIEDADs" />
-      <End Role="USUARIO" EntitySet="USUARIOs" />
-    </AssociationSet>
     <AssociationSet Name="FK_TEXTO_SPRAS" Association="Self.FK_TEXTO_SPRAS">
       <End Role="SPRAS" EntitySet="SPRAS" />
       <End Role="TEXTO" EntitySet="TEXTOes" />
@@ -2155,10 +2328,6 @@
     <AssociationSet Name="FK_WORKFT_WORKFV" Association="Self.FK_WORKFT_WORKFV">
       <End Role="WORKFV" EntitySet="WORKFVs" />
       <End Role="WORKFT" EntitySet="WORKFTs" />
-    </AssociationSet>
-    <AssociationSet Name="DET_PROVEEDOR" Association="Self.DET_PROVEEDOR">
-      <End Role="PROVEEDOR" EntitySet="PROVEEDORs" />
-      <End Role="SOCIEDAD" EntitySet="SOCIEDADs" />
     </AssociationSet>
     <AssociationSet Name="DET_PROYECTO" Association="Self.DET_PROYECTO">
       <End Role="PROYECTO" EntitySet="PROYECTOes" />

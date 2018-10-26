@@ -7,14 +7,14 @@
     <framework targetVersion="4.6.1" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="WFARTHAconexionSAP.exe.manifest" size="5711">
+    <dependentAssembly dependencyType="install" codebase="WFARTHAconexionSAP.exe.manifest" size="6110">
       <assemblyIdentity name="WFARTHAconexionSAP.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gBeYfONvOAE4TDJ4Lf9paHBy3KAgE+dKDPQuUBETjMw=</dsig:DigestValue>
+        <dsig:DigestValue>yhNHEP1y7bsWmdyCTzcqZhgJT3+UbStibrwbemF2Y24=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
