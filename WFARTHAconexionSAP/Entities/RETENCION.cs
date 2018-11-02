@@ -28,6 +28,8 @@ namespace WFARTHAconexionSAP.Entities
         public bool ESTATUS { get; set; }
         public string WITHT_SUB { get; set; }
         public Nullable<decimal> PORC { get; set; }
+        public string WT_WITHCD_SUB { get; set; }
+        public string CAMPO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DOCUMENTORP> DOCUMENTORPs { get; set; }

@@ -35,6 +35,7 @@ namespace WFARTHAconexionSAP.Entities
         public string KTOPL { get; set; }
         public bool ACTIVO { get; set; }
         public string REGION { get; set; }
+        public string STCD1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DET_PROVEEDOR> DET_PROVEEDOR { get; set; }

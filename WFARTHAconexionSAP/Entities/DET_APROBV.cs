@@ -12,16 +12,13 @@ namespace WFARTHAconexionSAP.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class DOCUMENTOR
+    public partial class DET_APROBV
     {
-        public decimal NUM_DOC { get; set; }
-        public string WITHT { get; set; }
-        public string WT_WITHCD { get; set; }
-        public Nullable<decimal> POS { get; set; }
-        public Nullable<decimal> BIMPONIBLE { get; set; }
-        public Nullable<decimal> IMPORTE_RET { get; set; }
-        public Nullable<bool> VISIBLE { get; set; }
-    
-        public virtual DOCUMENTO DOCUMENTO { get; set; }
+        public int VERSION { get; set; }
+        public string ID_SOCIEDAD { get; set; }
+        public string SOCIEDAD { get; set; }
+        public string ID_USUARIO { get; set; }
+        public string USUARIO { get; set; }
+        public int STEP_FASE { get; set; }
     }
 }

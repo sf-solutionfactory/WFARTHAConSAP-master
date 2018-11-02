@@ -59,6 +59,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="CLAVES_CONTA">
+      <EntityTypeMapping TypeName="WFARTHAModel.CLAVES_CONTA">
+        <MappingFragment StoreEntitySet="CLAVES_CONTA">
+          <ScalarProperty Name="TSOL" ColumnName="TSOL" />
+          <ScalarProperty Name="DH" ColumnName="DH" />
+          <ScalarProperty Name="BSCHL" ColumnName="BSCHL" />
+          <ScalarProperty Name="BSCHLL" ColumnName="BSCHLL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CONCEPTOes">
       <EntityTypeMapping TypeName="WFARTHAModel.CONCEPTO">
         <MappingFragment StoreEntitySet="CONCEPTO">
@@ -130,6 +140,14 @@
           <ScalarProperty Name="ID_SOCIEDAD" ColumnName="ID_SOCIEDAD" />
           <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
           <ScalarProperty Name="STEP_FASE" ColumnName="STEP_FASE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_K">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_K">
+        <MappingFragment StoreEntitySet="DET_K">
+          <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
+          <ScalarProperty Name="CUENTA" ColumnName="CUENTA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -245,6 +263,7 @@
           <ScalarProperty Name="CLAVE_CTA" ColumnName="CLAVE_CTA" />
           <ScalarProperty Name="SOCIEDAD_PRE" ColumnName="SOCIEDAD_PRE" />
           <ScalarProperty Name="EJERCICIO_PRE" ColumnName="EJERCICIO_PRE" />
+          <ScalarProperty Name="ESTATUS_PRE" ColumnName="ESTATUS_PRE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -276,6 +295,20 @@
           <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
           <ScalarProperty Name="PATH" ColumnName="PATH" />
           <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTOLOGs">
+      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOLOG">
+        <MappingFragment StoreEntitySet="DOCUMENTOLOG">
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="TYPE_LINE" ColumnName="TYPE_LINE" />
+          <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NUMBER" ColumnName="NUMBER" />
+          <ScalarProperty Name="MESSAGE" ColumnName="MESSAGE" />
+          <ScalarProperty Name="FECHA" ColumnName="FECHA" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -318,6 +351,7 @@
           <ScalarProperty Name="POS" ColumnName="POS" />
           <ScalarProperty Name="BIMPONIBLE" ColumnName="BIMPONIBLE" />
           <ScalarProperty Name="IMPORTE_RET" ColumnName="IMPORTE_RET" />
+          <ScalarProperty Name="VISIBLE" ColumnName="VISIBLE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -350,6 +384,17 @@
           <ScalarProperty Name="KUNNR" ColumnName="KUNNR" />
           <ScalarProperty Name="IMPORTE" ColumnName="IMPORTE" />
           <ScalarProperty Name="DESCR" ColumnName="DESCR" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOCUMENTOUUIDs">
+      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOUUID">
+        <MappingFragment StoreEntitySet="DOCUMENTOUUID">
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="POS" ColumnName="POS" />
+          <ScalarProperty Name="DOCUMENTO_SAP" ColumnName="DOCUMENTO_SAP" />
+          <ScalarProperty Name="UUID" ColumnName="UUID" />
+          <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -575,6 +620,8 @@
           <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
           <ScalarProperty Name="WITHT_SUB" ColumnName="WITHT_SUB" />
           <ScalarProperty Name="PORC" ColumnName="PORC" />
+          <ScalarProperty Name="WT_WITHCD_SUB" ColumnName="WT_WITHCD_SUB" />
+          <ScalarProperty Name="CAMPO" ColumnName="CAMPO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -630,6 +677,7 @@
           <ScalarProperty Name="KTOPL" ColumnName="KTOPL" />
           <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
           <ScalarProperty Name="REGION" ColumnName="REGION" />
+          <ScalarProperty Name="STCD1" ColumnName="STCD1" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -851,12 +899,54 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DET_APROBV">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_APROBV">
+        <MappingFragment StoreEntitySet="DET_APROBV">
+          <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+          <ScalarProperty Name="ID_SOCIEDAD" ColumnName="ID_SOCIEDAD" />
+          <ScalarProperty Name="SOCIEDAD" ColumnName="SOCIEDAD" />
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+          <ScalarProperty Name="STEP_FASE" ColumnName="STEP_FASE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="DET_PROVEEDORV">
       <EntityTypeMapping TypeName="WFARTHAModel.DET_PROVEEDORV">
         <MappingFragment StoreEntitySet="DET_PROVEEDORV">
           <ScalarProperty Name="ID_LIFNR" ColumnName="ID_LIFNR" />
           <ScalarProperty Name="ID_BUKRS" ColumnName="ID_BUKRS" />
           <ScalarProperty Name="COND_PAGO" ColumnName="COND_PAGO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_PROYECTO_DEC_V">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_PROYECTO_DEC_V">
+        <MappingFragment StoreEntitySet="DET_PROYECTO_DEC_V">
+          <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="ID_BUKRS" ColumnName="ID_BUKRS" />
+          <ScalarProperty Name="BUTXT" ColumnName="BUTXT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_PROYECTOV">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_PROYECTOV">
+        <MappingFragment StoreEntitySet="DET_PROYECTOV">
+          <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
+          <ScalarProperty Name="ID_BUKRS" ColumnName="ID_BUKRS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_TIPOPRESUPUESTOV">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_TIPOPRESUPUESTOV">
+        <MappingFragment StoreEntitySet="DET_TIPOPRESUPUESTOV">
+          <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
+          <ScalarProperty Name="BUTXT" ColumnName="BUTXT" />
+          <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
+          <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="TIPOPRE" ColumnName="TIPOPRE" />
+          <ScalarProperty Name="DESC" ColumnName="DESC" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

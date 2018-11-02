@@ -15,8 +15,8 @@ namespace TATconexionSAP.Services
         #region Variables Globales     
         private WFARTHAEntities db = new WFARTHAEntities();
         public string sap = "\\SAP";
-        public string datasync = "\\DATA_SYNC";
-        public string dataproc = "\\DATA_PROC";
+        public string datasync = "\\out";
+        public string dataproc = "\\proc";
         #endregion
         public List<string> leerArchivos()
         {
@@ -106,19 +106,25 @@ namespace TATconexionSAP.Services
                 //en este for sabre cuales archivos usar
                 for (int i = 0; i < archivos.Length; i++)
                 {
-                    //separo por carpetas
-                    string[] varx = archivos[i].Split('\\');
-                    //separo especificamente el nombre para saber si es BUDG O LOG
-                    //string[] varNA = varx[varx.Length - 1].Split('_');
-                    //if (varNA[1] == "LOG")
-                    //{
-                    //    archivos2.Add(archivos[i]);
-                    //}
-                    string name = varx[varx.Length - 1];
-
-                    if (name.IndexOf("RESPONSE") >= 0)
+                    try
                     {
-                        archivos2.Add(archivos[i]);
+                        //separo por carpetas
+                        string[] varx = archivos[i].Split('\\');
+                        //separo especificamente el nombre para saber si es BUDG O LOG
+                        //string[] varNA = varx[varx.Length - 1].Split('_');
+                        //if (varNA[1] == "LOG")
+                        //{
+                        //    archivos2.Add(archivos[i]);
+                        //}
+                        string name = varx[varx.Length - 1];
+
+                        if (name.IndexOf("RESPONSE") >= 0)
+                        {
+                            archivos2.Add(archivos[i]);
+                        }
+                    }catch(Exception e)
+                    {
+
                     }
                 }
 
@@ -143,46 +149,58 @@ namespace TATconexionSAP.Services
                         {
                             if (val[0] == "P")
                             {
-                                //Leer la cabecera
-                                if (val.Length < 2)
-                                    errores.Add("Archivo inválido" + archivos2[i]);
-                        
-                                else
+                                try
                                 {
-                                    docp pp = new docp();
+                                    //Leer la cabecera
+                                    if (val.Length < 2)
+                                        errores.Add("Archivo inválido" + archivos2[i]);
 
-                                    pp.pos = val[0];
-                                    pp.tiposol = val[1];
-                                    pp.numero_wf = val[2];
-                                    pp.status = val[3];
-                                    pp.accion = val[4];
-                                    pp.Num_doc_pre = val[5];
-                                    pp.Sociedad_pre = val[7];
-                                    pp.Ejercicio_pre = val[6];
+                                    else
+                                    {
+                                        docp pp = new docp();
 
-                                    d.Posp = pp;
+                                        pp.pos = val[0];
+                                        pp.tiposol = val[1];
+                                        pp.numero_wf = val[2];
+                                        pp.status = val[3];
+                                        pp.accion = val[4];
+                                        pp.Num_doc_pre = val[5];
+                                        pp.Sociedad_pre = val[7];
+                                        pp.Ejercicio_pre = val[6];
 
-                                    head = true;
+                                        d.Posp = pp;
+
+                                        head = true;
+                                    }
+                                }catch(Exception e)
+                                {
+
                                 }
                             }
 
-                            //Mensajes
-                            if (val[0] == "E" && head)
+                            try
                             {
-                                doce e = new doce();
-                                //Leer los mensajes
-                                if (val.Length < 2)
-                                    errores.Add("Archivo inválido" + archivos2[i]);
-                                else
+                                //Mensajes
+                                if (val[0] == "M" && val[1] == "E" && head)
                                 {
-                                    e.pos = val[0];
-                                    e.tipo = val[1];
-                                    e.id = val[2];
-                                    e.numero = val[3];
-                                    e.mensaje = val[4];
-                                }
+                                    doce e = new doce();
+                                    //Leer los mensajes
+                                    if (val.Length < 2)
+                                        errores.Add("Archivo inválido" + archivos2[i]);
+                                    else
+                                    {
+                                        e.pos = val[0];
+                                        e.tipo = val[1];
+                                        e.id = val[2];
+                                        e.numero = val[3];
+                                        e.mensaje = val[4];
+                                    }
 
-                                le.Add(e);
+                                    le.Add(e);
+                                }
+                            }catch(Exception e)
+                            {
+
                             }
                         }
                     }
@@ -256,12 +274,15 @@ namespace TATconexionSAP.Services
 
 
 
+                try
+                {
+                    ValidarBd(lstd, archivos2);
+                }catch(Exception e)
+                {
 
-                ValidarBd(lstd, archivos2);
-
+                } 
 
             }
-
             catch (Exception ex)
             {
                 errores.Add(ex.Message);
@@ -279,6 +300,7 @@ namespace TATconexionSAP.Services
 
                 decimal de = Convert.ToDecimal(lstd[i].Posp.numero_wf);
                 //Corroboro que exista la informacion
+                //var ddd = db.DOCUMENTOes.Where(dds => dds.NUM_DOC == 1000000936).FirstOrDefault();
                 var dA = db.DOCUMENTOes.Where(y => y.NUM_DOC == de).FirstOrDefault();
                 //si encuentra una coincidencia
                 if (dA != null)
@@ -324,11 +346,40 @@ namespace TATconexionSAP.Services
                     {
                         if (lstd[i].Posp.status.Equals("NOK"))
                         {
-                            //dA.ESTATUS_SAP = "E";
+                            
+                            
                             if (lstd[i].Posp.accion == "CREAR")
                             //if (lstd[i].accion == "P")
                             {
-                                dp.MESSAGE = "Error Preliminar";
+                                //MGC 30-10-2018 Modificación estatus, cambiar estatus SAP = E y estatus preliminar a E que quiere decir error SAP
+                                dA.ESTATUS_SAP = "E";
+                                dA.ESTATUS_PRE = "E";
+                                db.Entry(dA).State = EntityState.Modified;
+                                //dp.MESSAGE = "Error Preliminar";
+
+                                //MGC 30-10-2018 Guardar los mensajes para log
+                                for(int j = 0; j < lstd[i].Pose.Count; j++)
+                                {
+                                    try
+                                    {
+                                        DOCUMENTOLOG dl = new DOCUMENTOLOG();
+
+                                        dl.NUM_DOC = dA.NUM_DOC;
+                                        dl.TYPE_LINE = lstd[i].Pose[j].pos;
+                                        dl.TYPE = lstd[i].Pose[j].tipo;
+                                        dl.NUMBER = lstd[i].Pose[j].numero;
+                                        dl.MESSAGE = lstd[i].Pose[j].mensaje;
+                                        dl.FECHA = DateTime.Now;
+
+                                        db.DOCUMENTOLOGs.Add(dl);
+                                        db.SaveChanges();
+
+                                    }
+                                    catch(Exception e)
+                                    {
+
+                                    }
+                                }
 
                             }
                             else if (lstd[i].Posp.accion == "BORRAR" || lstd[i].Posp.accion == "BORRAR-CREAR")
@@ -356,8 +407,33 @@ namespace TATconexionSAP.Services
                                 if (lstd[i].Posp.accion == "CREAR")
                                 //if (lstd[i].Posp.accion == "P")
                                 {
+                                    //MGC 30-10-2018 Guardar los mensajes para log
+                                    for (int j = 0; j < lstd[i].Pose.Count; j++)
+                                    {
+                                        try
+                                        {
+                                            DOCUMENTOLOG dl = new DOCUMENTOLOG();
+
+                                            dl.NUM_DOC = dA.NUM_DOC;
+                                            dl.TYPE_LINE = lstd[i].Pose[j].pos;
+                                            dl.TYPE = lstd[i].Pose[j].tipo;
+                                            dl.NUMBER = lstd[i].Pose[j].numero;
+                                            dl.MESSAGE = lstd[i].Pose[j].mensaje;
+                                            dl.FECHA = DateTime.Now;
+
+                                            db.DOCUMENTOLOGs.Add(dl);
+                                            db.SaveChanges();
+
+                                        }
+                                        catch (Exception e)
+                                        {
+
+                                        }
+                                    }
+
+
                                     //Procesa el flujo de autorización
-                                    correcto = pf.procesa2(dp.NUM_DOC);
+                                    correcto = pf.procesa2(dp.NUM_DOC, lstd[i]);//MGC 29-10-2018 Configuración de estatus
 
                                 }
                                 else if (lstd[i].Posp.accion == "BORRAR" || lstd[i].Posp.accion == "BORRAR-CREAR")
@@ -369,8 +445,32 @@ namespace TATconexionSAP.Services
                                 else if (lstd[i].Posp.accion == "CONTABILIZAR")
                                 //else if (lstd[i].Posp.accion == "A")
                                 {
+                                    //MGC 30-10-2018 Guardar los mensajes para log
+                                    for (int j = 0; j < lstd[i].Pose.Count; j++)
+                                    {
+                                        try
+                                        {
+                                            DOCUMENTOLOG dl = new DOCUMENTOLOG();
+
+                                            dl.NUM_DOC = dA.NUM_DOC;
+                                            dl.TYPE_LINE = lstd[i].Pose[j].pos;
+                                            dl.TYPE = lstd[i].Pose[j].tipo;
+                                            dl.NUMBER = lstd[i].Pose[j].numero;
+                                            dl.MESSAGE = lstd[i].Pose[j].mensaje;
+                                            dl.FECHA = DateTime.Now;
+
+                                            db.DOCUMENTOLOGs.Add(dl);
+                                            db.SaveChanges();
+
+                                        }
+                                        catch (Exception e)
+                                        {
+
+                                        }
+                                    }
+
                                     //Proceso de contabilización
-                                    correcto = pf.procesaA(dp.NUM_DOC);
+                                    correcto = pf.procesaA(dp.NUM_DOC, lstd[i]);//MGC 29-10-2018 Configuración de estatus
                                 }
                             } catch(Exception e)
                             {
@@ -382,20 +482,21 @@ namespace TATconexionSAP.Services
 
                     try
                     {
-                        ////Hacemos el update en BD
-                        if(lstd[i].Posp.accion == "CONTABILIZAR")
-                        {
-                            dA.DOCUMENTO_SAP = lstd[i].Posp.Num_doc_pre;
-                        }
-                        else
-                        {
-                            dA.NUM_PRE = lstd[i].Posp.Num_doc_pre;
-                        }
+                        //MGC 29-10-2018 Error porque mueve los datos ya actualizados en el flujo
+                        //////Hacemos el update en BD
+                        //if(lstd[i].Posp.accion == "CONTABILIZAR")
+                        //{
+                        //    dA.DOCUMENTO_SAP = lstd[i].Posp.Num_doc_pre;
+                        //}
+                        //else
+                        //{
+                        //    dA.NUM_PRE = lstd[i].Posp.Num_doc_pre;
+                        //}
                         
-                        dA.SOCIEDAD_PRE = lstd[i].Posp.Sociedad_pre;
-                        dA.EJERCICIO_PRE = lstd[i].Posp.Ejercicio_pre;//MGC 11-10-2018 No enviar correos 
-                        db.Entry(dA).State = EntityState.Modified;//MGC 11-10-2018 No enviar correos 
-                        x = x + db.SaveChanges();
+                        //dA.SOCIEDAD_PRE = lstd[i].Posp.Sociedad_pre;
+                        //dA.EJERCICIO_PRE = lstd[i].Posp.Ejercicio_pre;//MGC 11-10-2018 No enviar correos 
+                        //db.Entry(dA).State = EntityState.Modified;//MGC 11-10-2018 No enviar correos 
+                        //x = x + db.SaveChanges();
                         ////Agregamos en la tabla los valores
                         //DOCUMENTOSAP ds = new DOCUMENTOSAP();
                         //ds.NUM_DOC = decimal.Parse(lstd[i].numero_wf);
@@ -504,6 +605,8 @@ namespace TATconexionSAP.Services
             }
         }
 
+
+
         //MGC 16-10-2018 ---------------------------->
         public void deleteMesg(decimal numdoc)
         {
@@ -566,8 +669,9 @@ namespace TATconexionSAP.Services
             //    throw new Exception(ex.Message);
             //}
 
-            if (c != "X")
-            {
+            //if (c != "X")
+                if (true)
+                {
                 //MGC prueba FTP---------------------------------------------------------------------------------------------------------------------------------------->
 
                 //string ftpServerIP = "";
@@ -604,14 +708,14 @@ namespace TATconexionSAP.Services
                 try
                 {
                     var from = Path.Combine(archivo);
-                    //var arc2 = archivo.Replace(datasync, dataproc);
-                    //var to = Path.Combine(arc2);
-                    if (File.Exists(from))
+                    var arc2 = archivo.Replace(datasync, dataproc);
+                    var to = Path.Combine(arc2);
+                    if (File.Exists(to))
                     {
-                        File.Delete(from);
+                        File.Delete(to);
                     }
 
-                    //File.Move(from, to); // Try to move
+                    File.Move(from, to); // Try to move
                 }
                 catch (IOException ex)
                 {

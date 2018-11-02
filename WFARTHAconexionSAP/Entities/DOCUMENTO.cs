@@ -21,6 +21,7 @@ namespace WFARTHAconexionSAP.Entities
             this.DOCUMENTOPs = new HashSet<DOCUMENTOP>();
             this.DOCUMENTOPREs = new HashSet<DOCUMENTOPRE>();
             this.DOCUMENTORs = new HashSet<DOCUMENTOR>();
+            this.DOCUMENTOUUIDs = new HashSet<DOCUMENTOUUID>();
             this.FLUJOes = new HashSet<FLUJO>();
         }
     
@@ -87,6 +88,7 @@ namespace WFARTHAconexionSAP.Entities
         public string CLAVE_CTA { get; set; }
         public string SOCIEDAD_PRE { get; set; }
         public string EJERCICIO_PRE { get; set; }
+        public string ESTATUS_PRE { get; set; }
     
         public virtual SOCIEDAD SOCIEDAD { get; set; }
         public virtual TSOL TSOL { get; set; }
@@ -100,6 +102,8 @@ namespace WFARTHAconexionSAP.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DOCUMENTOR> DOCUMENTORs { get; set; }
         public virtual DOCUMENTOSAP DOCUMENTOSAP { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DOCUMENTOUUID> DOCUMENTOUUIDs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FLUJO> FLUJOes { get; set; }
     }
