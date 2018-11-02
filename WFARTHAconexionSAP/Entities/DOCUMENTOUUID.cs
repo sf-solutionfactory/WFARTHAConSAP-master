@@ -12,15 +12,13 @@ namespace WFARTHAconexionSAP.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class DOCUMENTOR
+    public partial class DOCUMENTOUUID
     {
         public decimal NUM_DOC { get; set; }
-        public string WITHT { get; set; }
-        public string WT_WITHCD { get; set; }
-        public Nullable<decimal> POS { get; set; }
-        public Nullable<decimal> BIMPONIBLE { get; set; }
-        public Nullable<decimal> IMPORTE_RET { get; set; }
-        public Nullable<bool> VISIBLE { get; set; }
+        public decimal POS { get; set; }
+        public string DOCUMENTO_SAP { get; set; }
+        public string UUID { get; set; }
+        public bool ESTATUS { get; set; }
     
         public virtual DOCUMENTO DOCUMENTO { get; set; }
     }

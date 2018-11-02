@@ -11,7 +11,7 @@ namespace WFARTHAconexionSAP.Services
     public class ProcesaFlujo
     {
 
-        public string procesa2(decimal num_doc)
+        public string procesa2(decimal num_doc, doc2 elemento)//MGC 29-10-2018 Configuración de estatus
         {
             string correcto = String.Empty;
             WFARTHAEntities db = new WFARTHAEntities();
@@ -186,10 +186,41 @@ namespace WFARTHAconexionSAP.Services
                         if (paso_a.EMAIL.Equals("X"))
                             correcto = "1";
                     }
+
                     d.ESTATUS_WF = "P";
+                    d.ESTATUS = "F";
                     db.Entry(d).State = EntityState.Modified;
 
+                    DOCUMENTO dmod = db.DOCUMENTOes.Find(num_doc);
+                    dmod.ESTATUS_WF = "P";
+                    dmod.ESTATUS = "F";
+                    db.Entry(dmod).State = EntityState.Modified;
+
                     db.SaveChanges();
+
+
+                    addInfoSap(elemento); //MGC 29-10-2018 Error porque mueve los datos ya actualizados en el flujo
+
+
+                    //MGC 30-10-2018 Agregar mensaje a log de modificación
+                    try
+                    {
+                        DOCUMENTOLOG dl = new DOCUMENTOLOG();
+
+                        dl.NUM_DOC = d.NUM_DOC;
+                        dl.TYPE_LINE = "M";
+                        dl.TYPE = "S";
+                        dl.MESSAGE = "Comienza el Proceso de Aprobación";
+                        dl.FECHA = DateTime.Now;
+
+                        db.DOCUMENTOLOGs.Add(dl);
+                        db.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                    //MGC 30-10-2018 Agregar mensaje a log de modificación
 
                     //MGC 16-10-2018 Eliminar msg
                     deleteMesg(d.NUM_DOC);
@@ -668,7 +699,40 @@ namespace WFARTHAconexionSAP.Services
 
             return correcto;
         }
-      
+
+        public void addInfoSap(doc2 elemento)
+        {
+            WFARTHAEntities db = new WFARTHAEntities();
+            try
+            {
+                decimal de = Convert.ToDecimal(elemento.Posp.numero_wf);
+                //Corroboro que exista la informacion
+                //var ddd = db.DOCUMENTOes.Where(dds => dds.NUM_DOC == 1000000936).FirstOrDefault();
+                var dA = db.DOCUMENTOes.Where(y => y.NUM_DOC == de).FirstOrDefault();
+
+                ////Hacemos el update en BD
+                if (elemento.Posp.accion == "CONTABILIZAR")
+                {
+                    dA.DOCUMENTO_SAP = elemento.Posp.Num_doc_pre;
+                    dA.ESTATUS = "A";
+                }
+                else
+                {
+                    dA.NUM_PRE = elemento.Posp.Num_doc_pre;
+                }
+
+                dA.SOCIEDAD_PRE = elemento.Posp.Sociedad_pre;
+                dA.EJERCICIO_PRE = elemento.Posp.Ejercicio_pre;//MGC 11-10-2018 No enviar correos 
+                db.Entry(dA).State = EntityState.Modified;//MGC 11-10-2018 No enviar correos 
+                db.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+            }
+
+        }
+
 
         public string procesaC(decimal num_doc)
         {
@@ -762,7 +826,7 @@ namespace WFARTHAconexionSAP.Services
             return correcto;
         }
 
-        public string procesaA(decimal num_doc)
+        public string procesaA(decimal num_doc, doc2 elemento)//MGC 29-10-2018 Configuración de estatus
         {
             string correcto = "";
 
@@ -788,15 +852,25 @@ namespace WFARTHAconexionSAP.Services
                 }
 
                 //MGC 16-10-2018 Eliminar msg
-                deleteMesg(num_doc);
+                try
+                {
+                    deleteMesg(num_doc);
+                }catch(Exception e)
+                {
 
-                dp.NUM_DOC = num_doc;
-                dp.POS = 1;
-                dp.MESSAGE = "Contabilizado en SAP";
+                }
 
-                db.DOCUMENTOPREs.Add(dp);
-                db.SaveChanges();
-            }catch(Exception e)
+                addInfoSap(elemento);
+
+                //MGC 29-10-2018 Configuración de estatus
+                //dp.NUM_DOC = num_doc;
+                //dp.POS = 1;
+                //dp.MESSAGE = "Contabilizado en SAP";
+
+                //db.DOCUMENTOPREs.Add(dp);
+                //db.SaveChanges();
+            }
+            catch (Exception e)
             {
                 correcto = "1";
             }

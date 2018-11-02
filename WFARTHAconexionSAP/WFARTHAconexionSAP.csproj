@@ -104,6 +104,9 @@
     <Compile Include="Entities\CECO.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\CLAVES_CONTA.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\CONCEPTO.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
@@ -128,6 +131,12 @@
     <Compile Include="Entities\DET_APROB.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\DET_APROBV.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_K.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\DET_PEP.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
@@ -135,6 +144,12 @@
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DET_PROVEEDORV.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_PROYECTOV.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_PROYECTO_DEC_V.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DET_SOCIEDAD.cs">
@@ -146,6 +161,9 @@
     <Compile Include="Entities\DET_TIPOPRESUPUESTO.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\DET_TIPOPRESUPUESTOV.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\DOCUMENTO.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
@@ -153,6 +171,9 @@
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DOCUMENTOA1.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOLOG.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DOCUMENTOP.cs">
@@ -168,6 +189,9 @@
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DOCUMENTOSAP.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DOCUMENTOUUID.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DOCUMENTOV.cs">
@@ -322,7 +346,9 @@
     <Compile Include="Services\ProcesaFlujo2.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="Entities\WFARTHA.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>WFARTHA.Designer.cs</LastGenOutput>
