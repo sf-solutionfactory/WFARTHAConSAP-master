@@ -439,8 +439,31 @@ namespace TATconexionSAP.Services
                                 else if (lstd[i].Posp.accion == "BORRAR" || lstd[i].Posp.accion == "BORRAR-CREAR")
                                 //else if (lstd[i].Posp.accion == "C")
                                 {
+                                    //MGC 30-10-2018 Guardar los mensajes para log
+                                    for (int j = 0; j < lstd[i].Pose.Count; j++)
+                                    {
+                                        try
+                                        {
+                                            DOCUMENTOLOG dl = new DOCUMENTOLOG();
+
+                                            dl.NUM_DOC = dA.NUM_DOC;
+                                            dl.TYPE_LINE = lstd[i].Pose[j].pos;
+                                            dl.TYPE = lstd[i].Pose[j].tipo;
+                                            dl.NUMBER = lstd[i].Pose[j].numero;
+                                            dl.MESSAGE = lstd[i].Pose[j].mensaje;
+                                            dl.FECHA = DateTime.Now;
+
+                                            db.DOCUMENTOLOGs.Add(dl);
+                                            db.SaveChanges();
+
+                                        }
+                                        catch (Exception e)
+                                        {
+
+                                        }
+                                    }
                                     //Procesa el flujo de cancelación
-                                    correcto = pf.procesaC(dp.NUM_DOC);
+                                    correcto = pf.procesaC(dp.NUM_DOC, lstd[i]);//MGC 29-10-2018 Configuración de estatus
                                 }
                                 else if (lstd[i].Posp.accion == "CONTABILIZAR")
                                 //else if (lstd[i].Posp.accion == "A")
