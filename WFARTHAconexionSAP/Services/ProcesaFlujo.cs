@@ -734,8 +734,10 @@ namespace WFARTHAconexionSAP.Services
         }
 
 
-        public string procesaC(decimal num_doc)
+        public string procesaC(decimal num_doc, doc2 elemento)//MGC 29-10-2018 Configuración de estatus
         {
+
+            ////MGC 02-11-2018 Lógica para respuesta de Borrar-Crear
             WFARTHAEntities db = new WFARTHAEntities();
 
             FLUJO f = db.FLUJOes.Where(a => a.NUM_DOC.Equals(num_doc)).OrderByDescending(a => a.POS).FirstOrDefault();
@@ -769,7 +771,8 @@ namespace WFARTHAconexionSAP.Services
             FLUJO nuevo = new FLUJO();
             nuevo.WORKF_ID = next.ID;
             nuevo.WF_VERSION = next.VERSION;
-            nuevo.WF_POS = next.POS;
+            //nuevo.WF_POS = next.POS;//MGC 02-11-2018 Modificación de usuario c a d, para asignarle al solicitante            
+            nuevo.WF_POS = Convert.ToInt32(next.NEXT_STEP);//MGC 02-11-2018 Modificación de usuario c a d, para asignarle al solicitante
             nuevo.NUM_DOC = actual.NUM_DOC;
             nuevo.POS = actual.POS + 1;
             nuevo.DETPOS = 1;
@@ -780,7 +783,7 @@ namespace WFARTHAconexionSAP.Services
             //MGC 
             //nuevo.USUARIOD_ID = d.USUARIOD_ID;
             //Datos del flujo
-            nuevo.USUARIOD_ID = d.USUARIOC_ID;
+            nuevo.USUARIOD_ID = d.USUARIOD_ID; //MGC 02-11-2018 Modificación de usuario c a d, para asignarle al solicitante
             nuevo.USUARIOA_ID = d.USUARIOC_ID;
 
             //Datos del flujo versiones
@@ -802,15 +805,22 @@ namespace WFARTHAconexionSAP.Services
             db.FLUJOes.Add(nuevo);//MGC Cancelar Preliminar
 
             db.Entry(actual).State = EntityState.Modified;
-            d.ESTATUS_WF = "R";
+            //d.ESTATUS_WF = "R";//MGC 02-11-2018 Lógica para respuesta de Borrar-Crear
             if (next.ACCION.TIPO == "S")
             {
                 d.ESTATUS = "R";
                 d.ESTATUS_WF = "S";
             }
 
+            //MGC 02-11-2018 Cambiar estatus para continuar con la aprobación
+            d.ESTATUS = "F";
+            d.ESTATUS_WF = "P";
+            d.ESTATUS_PRE = "G";
+            db.Entry(d).State = EntityState.Modified;
             //MGC Cancelar Preliminar
             //Eliminar los mensajes de la tabla 
+
+            addInfoSap(elemento); //MGC 29-10-2018 Error porque mueve los datos ya actualizados en el flujo
             try
             {
                 db.DOCUMENTOPREs.RemoveRange(db.DOCUMENTOPREs.Where(dpre => dpre.NUM_DOC == actual.NUM_DOC));
