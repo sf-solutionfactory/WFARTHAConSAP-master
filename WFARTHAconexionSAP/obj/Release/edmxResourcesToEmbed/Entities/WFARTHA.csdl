@@ -1069,7 +1069,7 @@
     <Property Name="ID_BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="COND_PAGO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
   </EntityType>
-  <EntityType Name="DET_PROYECTOV">
+  <EntityType Name="DET_PROYECTO_DEC_V">
     <Key>
       <PropertyRef Name="ID_PSPNR" />
       <PropertyRef Name="NOMBRE" />
@@ -1080,6 +1080,14 @@
     <Property Name="NOMBRE" Type="String" MaxLength="61" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ID_BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="BUTXT" Type="String" MaxLength="107" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DET_PROYECTOV">
+    <Key>
+      <PropertyRef Name="ID_PSPNR" />
+      <PropertyRef Name="ID_BUKRS" />
+    </Key>
+    <Property Name="ID_PSPNR" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
   </EntityType>
   <EntityType Name="DET_TIPOPRESUPUESTOV">
     <Key>
@@ -2152,6 +2160,7 @@
     <EntitySet Name="CARPETAVs" EntityType="Self.CARPETAV" />
     <EntitySet Name="DET_APROBV" EntityType="Self.DET_APROBV" />
     <EntitySet Name="DET_PROVEEDORV" EntityType="Self.DET_PROVEEDORV" />
+    <EntitySet Name="DET_PROYECTO_DEC_V" EntityType="Self.DET_PROYECTO_DEC_V" />
     <EntitySet Name="DET_PROYECTOV" EntityType="Self.DET_PROYECTOV" />
     <EntitySet Name="DET_TIPOPRESUPUESTOV" EntityType="Self.DET_TIPOPRESUPUESTOV" />
     <EntitySet Name="DOCUMENTOVs" EntityType="Self.DOCUMENTOV" />
