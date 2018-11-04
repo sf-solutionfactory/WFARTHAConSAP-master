@@ -194,6 +194,8 @@ namespace WFARTHAconexionSAP.Services
                     DOCUMENTO dmod = db.DOCUMENTOes.Find(num_doc);
                     dmod.ESTATUS_WF = "P";
                     dmod.ESTATUS = "F";
+                    dmod.ESTATUS_SAP = null;
+                    dmod.ESTATUS_PRE = "G";
                     db.Entry(dmod).State = EntityState.Modified;
 
                     db.SaveChanges();

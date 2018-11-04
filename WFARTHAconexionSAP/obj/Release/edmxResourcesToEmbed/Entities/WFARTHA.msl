@@ -920,13 +920,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DET_PROYECTOV">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_PROYECTOV">
-        <MappingFragment StoreEntitySet="DET_PROYECTOV">
+    <EntitySetMapping Name="DET_PROYECTO_DEC_V">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_PROYECTO_DEC_V">
+        <MappingFragment StoreEntitySet="DET_PROYECTO_DEC_V">
           <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
           <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
           <ScalarProperty Name="ID_BUKRS" ColumnName="ID_BUKRS" />
           <ScalarProperty Name="BUTXT" ColumnName="BUTXT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DET_PROYECTOV">
+      <EntityTypeMapping TypeName="WFARTHAModel.DET_PROYECTOV">
+        <MappingFragment StoreEntitySet="DET_PROYECTOV">
+          <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
+          <ScalarProperty Name="ID_BUKRS" ColumnName="ID_BUKRS" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

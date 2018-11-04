@@ -17,18 +17,6 @@
     <Property Name="VALUE" Type="nvarchar" MaxLength="255" />
     <Property Name="ACTIVO" Type="bit" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'PAGOS.dbo.'CADENAS M$'' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="'CADENAS M$'">
-          <Property Name="VERSION" Type="float" />
-          <Property Name="USUARIOC_ID" Type="nvarchar" MaxLength="255" />
-          <Property Name="ID_RUTA_AGENTE" Type="nchar" MaxLength="10" />
-          <Property Name="USUARIOA_ID" Type="nvarchar" MaxLength="255" />
-          <Property Name="A1" Type="nvarchar" MaxLength="255" />
-          <Property Name="A2" Type="nvarchar" MaxLength="255" />
-          <Property Name="F7" Type="nvarchar" MaxLength="255" />
-          <Property Name="F8" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
   <EntityType Name="CAMPOS">
     <Key>
       <PropertyRef Name="PAGINA_ID" />
@@ -245,12 +233,6 @@ warning 6002: The table/view 'PAGOS.dbo.DET_AGENTECC' does not have a primary ke
     <Property Name="ID_USER" Type="nvarchar" MaxLength="16" Nullable="false" />
     <Property Name="TIPOPRE" Type="varchar" MaxLength="1" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'PAGOS.dbo.DETK$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="DETK$">
-          <Property Name="BUKRS" Type="nchar" MaxLength="4" />
-          <Property Name="SAKNR" Type="nchar" MaxLength="10" />
-        </EntityType>-->
   <EntityType Name="DOCUMENTO">
     <Key>
       <PropertyRef Name="NUM_DOC" />
@@ -970,8 +952,8 @@ warning 6002: The table/view 'PAGOS.dbo.DET_PROVEEDORV' does not have a primary 
     <Property Name="COND_PAGO" Type="nchar" MaxLength="4" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS.dbo.DET_PROYECTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="DET_PROYECTOV">
+warning 6002: The table/view 'PAGOS.dbo.DET_PROYECTO_DEC_V' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DET_PROYECTO_DEC_V">
     <Key>
       <PropertyRef Name="ID_PSPNR" />
       <PropertyRef Name="NOMBRE" />
@@ -982,6 +964,16 @@ warning 6002: The table/view 'PAGOS.dbo.DET_PROYECTOV' does not have a primary k
     <Property Name="NOMBRE" Type="nvarchar" MaxLength="61" Nullable="false" />
     <Property Name="ID_BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
     <Property Name="BUTXT" Type="nvarchar" MaxLength="107" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PAGOS.dbo.DET_PROYECTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DET_PROYECTOV">
+    <Key>
+      <PropertyRef Name="ID_PSPNR" />
+      <PropertyRef Name="ID_BUKRS" />
+    </Key>
+    <Property Name="ID_PSPNR" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ID_BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PAGOS.dbo.DET_TIPOPRESUPUESTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -2132,12 +2124,18 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
     [DET_PROVEEDORV].[COND_PAGO] AS [COND_PAGO]
     FROM [dbo].[DET_PROVEEDORV] AS [DET_PROVEEDORV]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="DET_PROYECTO_DEC_V" EntityType="Self.DET_PROYECTO_DEC_V" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DET_PROYECTO_DEC_V].[ID_PSPNR] AS [ID_PSPNR], 
+    [DET_PROYECTO_DEC_V].[NOMBRE] AS [NOMBRE], 
+    [DET_PROYECTO_DEC_V].[ID_BUKRS] AS [ID_BUKRS], 
+    [DET_PROYECTO_DEC_V].[BUTXT] AS [BUTXT]
+    FROM [dbo].[DET_PROYECTO_DEC_V] AS [DET_PROYECTO_DEC_V]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="DET_PROYECTOV" EntityType="Self.DET_PROYECTOV" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [DET_PROYECTOV].[ID_PSPNR] AS [ID_PSPNR], 
-    [DET_PROYECTOV].[NOMBRE] AS [NOMBRE], 
-    [DET_PROYECTOV].[ID_BUKRS] AS [ID_BUKRS], 
-    [DET_PROYECTOV].[BUTXT] AS [BUTXT]
+    [DET_PROYECTOV].[ID_BUKRS] AS [ID_BUKRS]
     FROM [dbo].[DET_PROYECTOV] AS [DET_PROYECTOV]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="DET_TIPOPRESUPUESTOV" EntityType="Self.DET_TIPOPRESUPUESTOV" store:Type="Views" store:Schema="dbo">

@@ -385,11 +385,77 @@ namespace TATconexionSAP.Services
                             else if (lstd[i].Posp.accion == "BORRAR" || lstd[i].Posp.accion == "BORRAR-CREAR")
                             //else if (lstd[i].accion == "C")
                             {
-                                dp.MESSAGE = "Error Cancelación";
+                                //dp.MESSAGE = "Error Cancelación";
+
+
+
+                                //MGC 03-12-2018 Guardar los mensajes para log
+                                for (int j = 0; j < lstd[i].Pose.Count; j++)
+                                {
+                                    try
+                                    {
+                                        DOCUMENTOLOG dl = new DOCUMENTOLOG();
+
+                                        dl.NUM_DOC = dA.NUM_DOC;
+                                        dl.TYPE_LINE = lstd[i].Pose[j].pos;
+                                        dl.TYPE = lstd[i].Pose[j].tipo;
+                                        dl.NUMBER = lstd[i].Pose[j].numero;
+                                        dl.MESSAGE = lstd[i].Pose[j].mensaje;
+                                        dl.FECHA = DateTime.Now;
+
+                                        db.DOCUMENTOLOGs.Add(dl);
+                                        db.SaveChanges();
+
+                                    }
+                                    catch (Exception e)
+                                    {
+
+                                    }
+                                }
+
+                                if(lstd[i].Posp.accion == "BORRAR-CREAR")
+                                {
+                                    dA.ESTATUS = "N";
+                                    dA.ESTATUS_SAP = "E";
+                                    dA.ESTATUS_PRE = "E";
+                                    db.Entry(dA).State = EntityState.Modified;
+
+                                }
                             }
                             else if (lstd[i].Posp.accion == "CONTABILIZAR")
                             //else if (lstd[i].accion == "A")
                             {
+                                //MGC 03-12-2018 Guardar los mensajes para log
+                                for (int j = 0; j < lstd[i].Pose.Count; j++)
+                                {
+                                    try
+                                    {
+                                        DOCUMENTOLOG dl = new DOCUMENTOLOG();
+
+                                        dl.NUM_DOC = dA.NUM_DOC;
+                                        dl.TYPE_LINE = lstd[i].Pose[j].pos;
+                                        dl.TYPE = lstd[i].Pose[j].tipo;
+                                        dl.NUMBER = lstd[i].Pose[j].numero;
+                                        dl.MESSAGE = lstd[i].Pose[j].mensaje;
+                                        dl.FECHA = DateTime.Now;
+
+                                        db.DOCUMENTOLOGs.Add(dl);
+                                        db.SaveChanges();
+
+                                    }
+                                    catch (Exception e)
+                                    {
+
+                                    }
+
+
+                                }
+
+                                dA.ESTATUS = "C";
+                                dA.ESTATUS_SAP = "E";
+                                dA.ESTATUS_WF = "A";
+                                db.Entry(dA).State = EntityState.Modified;
+
                                 dp.MESSAGE = "Error contabilización SAP";
                             }
                             //dp.MESSAGE = "Error Preliminar";
@@ -439,6 +505,7 @@ namespace TATconexionSAP.Services
                                 else if (lstd[i].Posp.accion == "BORRAR" || lstd[i].Posp.accion == "BORRAR-CREAR")
                                 //else if (lstd[i].Posp.accion == "C")
                                 {
+                                    
                                     //MGC 30-10-2018 Guardar los mensajes para log
                                     for (int j = 0; j < lstd[i].Pose.Count; j++)
                                     {
@@ -462,8 +529,11 @@ namespace TATconexionSAP.Services
 
                                         }
                                     }
-                                    //Procesa el flujo de cancelación
-                                    correcto = pf.procesaC(dp.NUM_DOC, lstd[i]);//MGC 29-10-2018 Configuración de estatus
+                                    if (lstd[i].Posp.accion == "BORRAR-CREAR")
+                                    {
+                                        //Procesa el flujo de cancelación
+                                        correcto = pf.procesaC(dp.NUM_DOC, lstd[i]);//MGC 29-10-2018 Configuración de estatus
+                                    }
                                 }
                                 else if (lstd[i].Posp.accion == "CONTABILIZAR")
                                 //else if (lstd[i].Posp.accion == "A")
