@@ -352,6 +352,7 @@ namespace TATconexionSAP.Services
                             //if (lstd[i].accion == "P")
                             {
                                 //MGC 30-10-2018 Modificación estatus, cambiar estatus SAP = E y estatus preliminar a E que quiere decir error SAP
+                                dA.ESTATUS = "N";
                                 dA.ESTATUS_SAP = "E";
                                 dA.ESTATUS_PRE = "E";
                                 db.Entry(dA).State = EntityState.Modified;
@@ -418,7 +419,9 @@ namespace TATconexionSAP.Services
                                     dA.ESTATUS = "N";
                                     dA.ESTATUS_SAP = "E";
                                     dA.ESTATUS_PRE = "E";
+                                    dA.ESTATUS_WF = null;
                                     db.Entry(dA).State = EntityState.Modified;
+                                    db.SaveChanges();
 
                                 }
                             }
@@ -459,8 +462,8 @@ namespace TATconexionSAP.Services
                                 dp.MESSAGE = "Error contabilización SAP";
                             }
                             //dp.MESSAGE = "Error Preliminar";
-                            deleteMesg(de);//MGC 16-10-2018 Eliminar msg
-                            db.DOCUMENTOPREs.Add(dp);
+                            //deleteMesg(de);//MGC 16-10-2018 Eliminar msg
+                            //db.DOCUMENTOPREs.Add(dp);
                             db.SaveChanges();
                         }
                         if (lstd[i].Posp.status.Equals("OK"))
