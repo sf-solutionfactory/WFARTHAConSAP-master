@@ -26,6 +26,8 @@ namespace WFARTHAconexionSAP.Entities
             this.DOCUMENTOes = new HashSet<DOCUMENTO>();
             this.FLUJOes = new HashSet<FLUJO>();
             this.FLUJOes1 = new HashSet<FLUJO>();
+            this.FOROes = new HashSet<FORO>();
+            this.FORODs = new HashSet<FOROD>();
             this.MIEMBROS = new HashSet<MIEMBRO>();
             this.WORKFHs = new HashSet<WORKFH>();
         }
@@ -62,6 +64,10 @@ namespace WFARTHAconexionSAP.Entities
         public virtual ICollection<FLUJO> FLUJOes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FLUJO> FLUJOes1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FORO> FOROes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FOROD> FORODs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MIEMBRO> MIEMBROS { get; set; }
         public virtual PUESTO PUESTO { get; set; }

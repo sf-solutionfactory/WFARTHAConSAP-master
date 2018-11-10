@@ -209,6 +209,12 @@
     <Compile Include="Entities\FORMATO.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\FORO.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\FOROD.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\IIMPUESTO.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>

@@ -288,6 +288,7 @@
     <Property Name="SOCIEDAD_PRE" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
     <Property Name="EJERCICIO_PRE" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
     <Property Name="ESTATUS_PRE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="ID_PSPNR" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="SOCIEDAD" Relationship="Self.FK_DOCUMENTO_SOCIEDAD" FromRole="DOCUMENTO" ToRole="SOCIEDAD" />
     <NavigationProperty Name="TSOL" Relationship="Self.FK_DOCUMENTO_TSOL" FromRole="DOCUMENTO" ToRole="TSOL" />
     <NavigationProperty Name="USUARIO" Relationship="Self.FK_DOCUMENTO_USUARIO" FromRole="DOCUMENTO" ToRole="USUARIO" />
@@ -298,6 +299,7 @@
     <NavigationProperty Name="DOCUMENTOSAP" Relationship="Self.FK_DOCUMENTOSAP_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOSAP" />
     <NavigationProperty Name="DOCUMENTOUUIDs" Relationship="Self.FK_DOCUMENTOUUID_DOCUMENTO" FromRole="DOCUMENTO" ToRole="DOCUMENTOUUID" />
     <NavigationProperty Name="FLUJOes" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="DOCUMENTO" ToRole="FLUJO" />
+    <NavigationProperty Name="FOROes" Relationship="Self.FK_FORO_DOCUMENTO" FromRole="DOCUMENTO" ToRole="FORO" />
   </EntityType>
   <EntityType Name="DOCUMENTOA">
     <Key>
@@ -533,6 +535,34 @@
     <Property Name="DECIMALES" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
   </EntityType>
+  <EntityType Name="FORO">
+    <Key>
+      <PropertyRef Name="ID_FORO" />
+    </Key>
+    <Property Name="ID_FORO" Type="Byte" Nullable="false" />
+    <Property Name="ID_USUARIO" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="TITULO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CREADO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CERRADO" Type="DateTime" Precision="3" />
+    <Property Name="MAIL" Type="Boolean" />
+    <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_FORO_DOCUMENTO" FromRole="FORO" ToRole="DOCUMENTO" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_FORO_USUARIO" FromRole="FORO" ToRole="USUARIO" />
+    <NavigationProperty Name="FORODs" Relationship="Self.FK_FOROD_FORO" FromRole="FORO" ToRole="FOROD" />
+  </EntityType>
+  <EntityType Name="FOROD">
+    <Key>
+      <PropertyRef Name="ID_RESPUESTA" />
+    </Key>
+    <Property Name="ID_RESPUESTA" Type="Byte" Nullable="false" />
+    <Property Name="ID_FORO" Type="Byte" Nullable="false" />
+    <Property Name="ID_USUARIO" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CREADO" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="COMENTARIO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MAIL" Type="Boolean" />
+    <NavigationProperty Name="FORO" Relationship="Self.FK_FOROD_FORO" FromRole="FOROD" ToRole="FORO" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_FOROD_USUARIO" FromRole="FOROD" ToRole="USUARIO" />
+  </EntityType>
   <EntityType Name="IMPUESTO">
     <Key>
       <PropertyRef Name="MWSKZ" />
@@ -551,6 +581,7 @@
     <Property Name="SPRAS_ID" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="MWSKZ" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="TXT50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TXT20" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="IMPUESTO" Relationship="Self.FK_IMPUESTOT_IMPUESTO" FromRole="IMPUESTOT" ToRole="IMPUESTO" />
     <NavigationProperty Name="SPRA" Relationship="Self.FK_IMPUESTOT_SPRAS" FromRole="IMPUESTOT" ToRole="SPRAS" />
   </EntityType>
@@ -899,6 +930,8 @@
     <NavigationProperty Name="DOCUMENTOes" Relationship="Self.FK_DOCUMENTO_USUARIO" FromRole="USUARIO" ToRole="DOCUMENTO" />
     <NavigationProperty Name="FLUJOes" Relationship="Self.FK_FLUJO_USUARIO" FromRole="USUARIO" ToRole="FLUJO" />
     <NavigationProperty Name="FLUJOes1" Relationship="Self.FK_FLUJO_USUARIO1" FromRole="USUARIO" ToRole="FLUJO" />
+    <NavigationProperty Name="FOROes" Relationship="Self.FK_FORO_USUARIO" FromRole="USUARIO" ToRole="FORO" />
+    <NavigationProperty Name="FORODs" Relationship="Self.FK_FOROD_USUARIO" FromRole="USUARIO" ToRole="FOROD" />
     <NavigationProperty Name="MIEMBROS" Relationship="Self.FK_MIEMBROS_USUARIO" FromRole="USUARIO" ToRole="MIEMBROS" />
     <NavigationProperty Name="PUESTO" Relationship="Self.FK_USUARIO_PUESTO" FromRole="USUARIO" ToRole="PUESTO" />
     <NavigationProperty Name="SPRA" Relationship="Self.FK_USUARIO_SPRAS" FromRole="USUARIO" ToRole="SPRAS" />
@@ -1127,6 +1160,7 @@
     <Property Name="ESTATUS_C" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="ESTATUS_SAP" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="ESTATUS_WF" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="ESTATUS_PRE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="DOCUMENTO_REF" Type="Decimal" Precision="10" Scale="0" />
     <Property Name="CONCEPTO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="NOTAS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -1560,6 +1594,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_FORO_DOCUMENTO">
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+    <End Role="FORO" Type="Self.FORO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTO">
+        <PropertyRef Name="NUM_DOC" />
+      </Principal>
+      <Dependent Role="FORO">
+        <PropertyRef Name="NUM_DOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_DOCUMENTOA_DOCUMENTOP">
     <End Role="DOCUMENTOP" Type="Self.DOCUMENTOP" Multiplicity="1" />
     <End Role="DOCUMENTOA" Type="Self.DOCUMENTOA" Multiplicity="*" />
@@ -1675,6 +1721,42 @@
         <PropertyRef Name="WORKF_ID" />
         <PropertyRef Name="WF_VERSION" />
         <PropertyRef Name="WF_POS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FORO_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="FORO" Type="Self.FORO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FORO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FOROD_FORO">
+    <End Role="FORO" Type="Self.FORO" Multiplicity="1" />
+    <End Role="FOROD" Type="Self.FOROD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FORO">
+        <PropertyRef Name="ID_FORO" />
+      </Principal>
+      <Dependent Role="FOROD">
+        <PropertyRef Name="ID_FORO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FOROD_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="FOROD" Type="Self.FOROD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FOROD">
+        <PropertyRef Name="ID_USUARIO" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2120,6 +2202,8 @@
     <EntitySet Name="EKPO_DUMM" EntityType="Self.EKPO_DUMM" />
     <EntitySet Name="FLUJOes" EntityType="Self.FLUJO" />
     <EntitySet Name="FORMATOes" EntityType="Self.FORMATO" />
+    <EntitySet Name="FOROes" EntityType="Self.FORO" />
+    <EntitySet Name="FORODs" EntityType="Self.FOROD" />
     <EntitySet Name="IMPUESTOes" EntityType="Self.IMPUESTO" />
     <EntitySet Name="IMPUESTOTs" EntityType="Self.IMPUESTOT" />
     <EntitySet Name="MIEMBROS" EntityType="Self.MIEMBRO" />
@@ -2286,6 +2370,10 @@
       <End Role="DOCUMENTO" EntitySet="DOCUMENTOes" />
       <End Role="FLUJO" EntitySet="FLUJOes" />
     </AssociationSet>
+    <AssociationSet Name="FK_FORO_DOCUMENTO" Association="Self.FK_FORO_DOCUMENTO">
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTOes" />
+      <End Role="FORO" EntitySet="FOROes" />
+    </AssociationSet>
     <AssociationSet Name="FK_DOCUMENTOA_DOCUMENTOP" Association="Self.FK_DOCUMENTOA_DOCUMENTOP">
       <End Role="DOCUMENTOP" EntitySet="DOCUMENTOPs" />
       <End Role="DOCUMENTOA" EntitySet="DOCUMENTOAs" />
@@ -2321,6 +2409,18 @@
     <AssociationSet Name="FK_FLUJO_WORKFP" Association="Self.FK_FLUJO_WORKFP">
       <End Role="WORKFP" EntitySet="WORKFPs" />
       <End Role="FLUJO" EntitySet="FLUJOes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FORO_USUARIO" Association="Self.FK_FORO_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIOs" />
+      <End Role="FORO" EntitySet="FOROes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FOROD_FORO" Association="Self.FK_FOROD_FORO">
+      <End Role="FORO" EntitySet="FOROes" />
+      <End Role="FOROD" EntitySet="FORODs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FOROD_USUARIO" Association="Self.FK_FOROD_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIOs" />
+      <End Role="FOROD" EntitySet="FORODs" />
     </AssociationSet>
     <AssociationSet Name="FK_IIMPUESTO_IMPUESTO" Association="Self.FK_IIMPUESTO_IMPUESTO">
       <End Role="IMPUESTO" EntitySet="IMPUESTOes" />

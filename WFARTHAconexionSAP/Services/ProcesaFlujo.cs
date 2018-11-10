@@ -710,22 +710,22 @@ namespace WFARTHAconexionSAP.Services
                 decimal de = Convert.ToDecimal(elemento.Posp.numero_wf);
                 //Corroboro que exista la informacion
                 //var ddd = db.DOCUMENTOes.Where(dds => dds.NUM_DOC == 1000000936).FirstOrDefault();
-                var dA = db.DOCUMENTOes.Where(y => y.NUM_DOC == de).FirstOrDefault();
+                var dM = db.DOCUMENTOes.Where(y => y.NUM_DOC == de).FirstOrDefault();
 
                 ////Hacemos el update en BD
                 if (elemento.Posp.accion == "CONTABILIZAR")
                 {
-                    dA.DOCUMENTO_SAP = elemento.Posp.Num_doc_pre;
-                    dA.ESTATUS = "A";
+                    dM.DOCUMENTO_SAP = elemento.Posp.Num_doc_pre;
+                    dM.ESTATUS = "A";
                 }
                 else
                 {
-                    dA.NUM_PRE = elemento.Posp.Num_doc_pre;
+                    dM.NUM_PRE = elemento.Posp.Num_doc_pre;
                 }
 
-                dA.SOCIEDAD_PRE = elemento.Posp.Sociedad_pre;
-                dA.EJERCICIO_PRE = elemento.Posp.Ejercicio_pre;//MGC 11-10-2018 No enviar correos 
-                db.Entry(dA).State = EntityState.Modified;//MGC 11-10-2018 No enviar correos 
+                dM.SOCIEDAD_PRE = elemento.Posp.Sociedad_pre;
+                dM.EJERCICIO_PRE = elemento.Posp.Ejercicio_pre;//MGC 11-10-2018 No enviar correos 
+                db.Entry(dM).State = EntityState.Modified;//MGC 11-10-2018 Modificaión, nuevo registro de preliminar
                 db.SaveChanges();
             }
             catch (Exception e)
@@ -807,6 +807,7 @@ namespace WFARTHAconexionSAP.Services
             db.FLUJOes.Add(nuevo);//MGC Cancelar Preliminar
 
             db.Entry(actual).State = EntityState.Modified;
+            db.SaveChanges();
             //d.ESTATUS_WF = "R";//MGC 02-11-2018 Lógica para respuesta de Borrar-Crear
             if (next.ACCION.TIPO == "S")
             {
@@ -819,6 +820,7 @@ namespace WFARTHAconexionSAP.Services
             d.ESTATUS_WF = "P";
             d.ESTATUS_PRE = "G";
             db.Entry(d).State = EntityState.Modified;
+            db.SaveChanges();
             //MGC Cancelar Preliminar
             //Eliminar los mensajes de la tabla 
 

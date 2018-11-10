@@ -32,6 +32,7 @@ namespace WFARTHAconexionSAP.Entities
         public string ESTATUS_C { get; set; }
         public string ESTATUS_SAP { get; set; }
         public string ESTATUS_WF { get; set; }
+        public string ESTATUS_PRE { get; set; }
         public Nullable<decimal> DOCUMENTO_REF { get; set; }
         public string CONCEPTO { get; set; }
         public string NOTAS { get; set; }

@@ -23,6 +23,7 @@ namespace WFARTHAconexionSAP.Entities
             this.DOCUMENTORs = new HashSet<DOCUMENTOR>();
             this.DOCUMENTOUUIDs = new HashSet<DOCUMENTOUUID>();
             this.FLUJOes = new HashSet<FLUJO>();
+            this.FOROes = new HashSet<FORO>();
         }
     
         public decimal NUM_DOC { get; set; }
@@ -89,6 +90,7 @@ namespace WFARTHAconexionSAP.Entities
         public string SOCIEDAD_PRE { get; set; }
         public string EJERCICIO_PRE { get; set; }
         public string ESTATUS_PRE { get; set; }
+        public string ID_PSPNR { get; set; }
     
         public virtual SOCIEDAD SOCIEDAD { get; set; }
         public virtual TSOL TSOL { get; set; }
@@ -106,5 +108,7 @@ namespace WFARTHAconexionSAP.Entities
         public virtual ICollection<DOCUMENTOUUID> DOCUMENTOUUIDs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FLUJO> FLUJOes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FORO> FOROes { get; set; }
     }
 }
