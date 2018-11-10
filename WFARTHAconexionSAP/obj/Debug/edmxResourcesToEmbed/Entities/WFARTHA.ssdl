@@ -301,6 +301,7 @@ warning 6002: The table/view 'PAGOS.dbo.DET_AGENTECC' does not have a primary ke
     <Property Name="SOCIEDAD_PRE" Type="nchar" MaxLength="4" />
     <Property Name="EJERCICIO_PRE" Type="nchar" MaxLength="4" />
     <Property Name="ESTATUS_PRE" Type="nchar" MaxLength="1" />
+    <Property Name="ID_PSPNR" Type="nvarchar" MaxLength="8" />
   </EntityType>
   <EntityType Name="DOCUMENTOA">
     <Key>
@@ -517,6 +518,29 @@ warning 6002: The table/view 'PAGOS.dbo.DET_AGENTECC' does not have a primary ke
     <Property Name="DECIMALES" Type="nchar" MaxLength="1" Nullable="false" />
     <Property Name="ACTIVO" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="FORO">
+    <Key>
+      <PropertyRef Name="ID_FORO" />
+    </Key>
+    <Property Name="ID_FORO" Type="tinyint" Nullable="false" />
+    <Property Name="ID_USUARIO" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="TITULO" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="CREADO" Type="datetime" Nullable="false" />
+    <Property Name="CERRADO" Type="datetime" />
+    <Property Name="MAIL" Type="bit" />
+  </EntityType>
+  <EntityType Name="FOROD">
+    <Key>
+      <PropertyRef Name="ID_RESPUESTA" />
+    </Key>
+    <Property Name="ID_RESPUESTA" Type="tinyint" Nullable="false" />
+    <Property Name="ID_FORO" Type="tinyint" Nullable="false" />
+    <Property Name="ID_USUARIO" Type="nvarchar" MaxLength="16" Nullable="false" />
+    <Property Name="CREADO" Type="datetime" Nullable="false" />
+    <Property Name="COMENTARIO" Type="varchar" MaxLength="200" />
+    <Property Name="MAIL" Type="bit" />
+  </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="IIMPUESTO">
@@ -544,6 +568,7 @@ warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key d
     <Property Name="SPRAS_ID" Type="nchar" MaxLength="2" Nullable="false" />
     <Property Name="MWSKZ" Type="nchar" MaxLength="2" Nullable="false" />
     <Property Name="TXT50" Type="nvarchar" MaxLength="50" />
+    <Property Name="TXT20" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="MIEMBROS">
     <Key>
@@ -1017,6 +1042,7 @@ warning 6002: The table/view 'PAGOS.dbo.DOCUMENTOV' does not have a primary key 
     <Property Name="ESTATUS_C" Type="nchar" MaxLength="1" />
     <Property Name="ESTATUS_SAP" Type="nchar" MaxLength="1" />
     <Property Name="ESTATUS_WF" Type="nchar" MaxLength="1" />
+    <Property Name="ESTATUS_PRE" Type="nchar" MaxLength="1" />
     <Property Name="DOCUMENTO_REF" Type="decimal" Precision="10" Scale="0" />
     <Property Name="CONCEPTO" Type="nvarchar" MaxLength="100" />
     <Property Name="NOTAS" Type="nvarchar" MaxLength="255" />
@@ -1544,6 +1570,54 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_FORO_DOCUMENTO">
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+    <End Role="FORO" Type="Self.FORO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTO">
+        <PropertyRef Name="NUM_DOC" />
+      </Principal>
+      <Dependent Role="FORO">
+        <PropertyRef Name="NUM_DOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FORO_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="FORO" Type="Self.FORO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FORO">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FOROD_FORO">
+    <End Role="FORO" Type="Self.FORO" Multiplicity="1" />
+    <End Role="FOROD" Type="Self.FOROD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FORO">
+        <PropertyRef Name="ID_FORO" />
+      </Principal>
+      <Dependent Role="FOROD">
+        <PropertyRef Name="ID_FORO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FOROD_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="FOROD" Type="Self.FOROD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="FOROD">
+        <PropertyRef Name="ID_USUARIO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_IIMPUESTO_IMPUESTO">
     <End Role="IMPUESTO" Type="Self.IMPUESTO" Multiplicity="1" />
     <End Role="IIMPUESTO" Type="Self.IIMPUESTO" Multiplicity="*" />
@@ -2035,6 +2109,8 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
     <EntitySet Name="EKPO_DUMM" EntityType="Self.EKPO_DUMM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FLUJO" EntityType="Self.FLUJO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FORMATO" EntityType="Self.FORMATO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FORO" EntityType="Self.FORO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FOROD" EntityType="Self.FOROD" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="IMPUESTO" EntityType="Self.IMPUESTO" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="IMPUESTOT" EntityType="Self.IMPUESTOT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MIEMBROS" EntityType="Self.MIEMBROS" Schema="dbo" store:Type="Tables" />
@@ -2168,6 +2244,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
     [DOCUMENTOV].[ESTATUS_C] AS [ESTATUS_C], 
     [DOCUMENTOV].[ESTATUS_SAP] AS [ESTATUS_SAP], 
     [DOCUMENTOV].[ESTATUS_WF] AS [ESTATUS_WF], 
+    [DOCUMENTOV].[ESTATUS_PRE] AS [ESTATUS_PRE], 
     [DOCUMENTOV].[DOCUMENTO_REF] AS [DOCUMENTO_REF], 
     [DOCUMENTOV].[CONCEPTO] AS [CONCEPTO], 
     [DOCUMENTOV].[NOTAS] AS [NOTAS], 
@@ -2377,6 +2454,22 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
     <AssociationSet Name="FK_FLUJO_WORKFP" Association="Self.FK_FLUJO_WORKFP">
       <End Role="WORKFP" EntitySet="WORKFP" />
       <End Role="FLUJO" EntitySet="FLUJO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FORO_DOCUMENTO" Association="Self.FK_FORO_DOCUMENTO">
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+      <End Role="FORO" EntitySet="FORO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FORO_USUARIO" Association="Self.FK_FORO_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="FORO" EntitySet="FORO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FOROD_FORO" Association="Self.FK_FOROD_FORO">
+      <End Role="FORO" EntitySet="FORO" />
+      <End Role="FOROD" EntitySet="FOROD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FOROD_USUARIO" Association="Self.FK_FOROD_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="FOROD" EntitySet="FOROD" />
     </AssociationSet>
     <AssociationSet Name="FK_IIMPUESTO_IMPUESTO" Association="Self.FK_IIMPUESTO_IMPUESTO">
       <End Role="IMPUESTO" EntitySet="IMPUESTO" />

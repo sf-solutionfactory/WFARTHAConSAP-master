@@ -12,14 +12,16 @@ namespace WFARTHAconexionSAP.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class IMPUESTOT
+    public partial class FOROD
     {
-        public string SPRAS_ID { get; set; }
-        public string MWSKZ { get; set; }
-        public string TXT50 { get; set; }
-        public string TXT20 { get; set; }
+        public byte ID_RESPUESTA { get; set; }
+        public byte ID_FORO { get; set; }
+        public string ID_USUARIO { get; set; }
+        public System.DateTime CREADO { get; set; }
+        public string COMENTARIO { get; set; }
+        public Nullable<bool> MAIL { get; set; }
     
-        public virtual IMPUESTO IMPUESTO { get; set; }
-        public virtual SPRA SPRA { get; set; }
+        public virtual FORO FORO { get; set; }
+        public virtual USUARIO USUARIO { get; set; }
     }
 }

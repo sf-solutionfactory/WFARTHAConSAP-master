@@ -181,7 +181,8 @@ namespace TATconexionSAP.Services
                             try
                             {
                                 //Mensajes
-                                if (val[0] == "M" && val[1] == "E" && head)
+                                //if (val[0] == "M" && val[1] == "E" && head)
+                                if (val[0] == "M" && head)
                                 {
                                     doce e = new doce();
                                     //Leer los mensajes

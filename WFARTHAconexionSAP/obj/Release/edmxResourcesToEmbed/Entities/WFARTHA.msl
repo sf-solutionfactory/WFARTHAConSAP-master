@@ -264,6 +264,7 @@
           <ScalarProperty Name="SOCIEDAD_PRE" ColumnName="SOCIEDAD_PRE" />
           <ScalarProperty Name="EJERCICIO_PRE" ColumnName="EJERCICIO_PRE" />
           <ScalarProperty Name="ESTATUS_PRE" ColumnName="ESTATUS_PRE" />
+          <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -477,6 +478,31 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="FOROes">
+      <EntityTypeMapping TypeName="WFARTHAModel.FORO">
+        <MappingFragment StoreEntitySet="FORO">
+          <ScalarProperty Name="ID_FORO" ColumnName="ID_FORO" />
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+          <ScalarProperty Name="TITULO" ColumnName="TITULO" />
+          <ScalarProperty Name="CREADO" ColumnName="CREADO" />
+          <ScalarProperty Name="CERRADO" ColumnName="CERRADO" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FORODs">
+      <EntityTypeMapping TypeName="WFARTHAModel.FOROD">
+        <MappingFragment StoreEntitySet="FOROD">
+          <ScalarProperty Name="ID_RESPUESTA" ColumnName="ID_RESPUESTA" />
+          <ScalarProperty Name="ID_FORO" ColumnName="ID_FORO" />
+          <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+          <ScalarProperty Name="CREADO" ColumnName="CREADO" />
+          <ScalarProperty Name="COMENTARIO" ColumnName="COMENTARIO" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="IMPUESTOes">
       <EntityTypeMapping TypeName="WFARTHAModel.IMPUESTO">
         <MappingFragment StoreEntitySet="IMPUESTO">
@@ -491,6 +517,7 @@
           <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
           <ScalarProperty Name="MWSKZ" ColumnName="MWSKZ" />
           <ScalarProperty Name="TXT50" ColumnName="TXT50" />
+          <ScalarProperty Name="TXT20" ColumnName="TXT20" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -971,6 +998,7 @@
           <ScalarProperty Name="ESTATUS_C" ColumnName="ESTATUS_C" />
           <ScalarProperty Name="ESTATUS_SAP" ColumnName="ESTATUS_SAP" />
           <ScalarProperty Name="ESTATUS_WF" ColumnName="ESTATUS_WF" />
+          <ScalarProperty Name="ESTATUS_PRE" ColumnName="ESTATUS_PRE" />
           <ScalarProperty Name="DOCUMENTO_REF" ColumnName="DOCUMENTO_REF" />
           <ScalarProperty Name="CONCEPTO" ColumnName="CONCEPTO" />
           <ScalarProperty Name="NOTAS" ColumnName="NOTAS" />

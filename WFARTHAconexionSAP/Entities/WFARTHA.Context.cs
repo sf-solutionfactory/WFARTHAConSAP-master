@@ -58,6 +58,8 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<EKPO_DUMM> EKPO_DUMM { get; set; }
         public virtual DbSet<FLUJO> FLUJOes { get; set; }
         public virtual DbSet<FORMATO> FORMATOes { get; set; }
+        public virtual DbSet<FORO> FOROes { get; set; }
+        public virtual DbSet<FOROD> FORODs { get; set; }
         public virtual DbSet<IMPUESTO> IMPUESTOes { get; set; }
         public virtual DbSet<IMPUESTOT> IMPUESTOTs { get; set; }
         public virtual DbSet<MIEMBRO> MIEMBROS { get; set; }
