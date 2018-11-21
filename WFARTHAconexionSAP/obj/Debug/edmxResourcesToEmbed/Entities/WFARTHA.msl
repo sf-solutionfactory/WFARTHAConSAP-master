@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="WFARTHAModelStoreContainer" CdmEntityContainer="WFARTHAEntities">
+  <EntityContainerMapping StorageEntityContainer="PAGOS300IModelStoreContainer" CdmEntityContainer="WFARTHAEntities">
     <EntitySetMapping Name="ACCIONs">
-      <EntityTypeMapping TypeName="WFARTHAModel.ACCION">
+      <EntityTypeMapping TypeName="PAGOS300IModel.ACCION">
         <MappingFragment StoreEntitySet="ACCION">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DESCCRIPCION" ColumnName="DESCCRIPCION" />
@@ -11,7 +11,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="APPSETTINGs">
-      <EntityTypeMapping TypeName="WFARTHAModel.APPSETTING">
+      <EntityTypeMapping TypeName="PAGOS300IModel.APPSETTING">
         <MappingFragment StoreEntitySet="APPSETTING">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
@@ -21,7 +21,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CAMPOS">
-      <EntityTypeMapping TypeName="WFARTHAModel.CAMPOS">
+      <EntityTypeMapping TypeName="PAGOS300IModel.CAMPOS">
         <MappingFragment StoreEntitySet="CAMPOS">
           <ScalarProperty Name="PAGINA_ID" ColumnName="PAGINA_ID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -31,7 +31,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CARPETAs">
-      <EntityTypeMapping TypeName="WFARTHAModel.CARPETA">
+      <EntityTypeMapping TypeName="PAGOS300IModel.CARPETA">
         <MappingFragment StoreEntitySet="CARPETA">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="URL" ColumnName="URL" />
@@ -42,7 +42,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CARPETATs">
-      <EntityTypeMapping TypeName="WFARTHAModel.CARPETAT">
+      <EntityTypeMapping TypeName="PAGOS300IModel.CARPETAT">
         <MappingFragment StoreEntitySet="CARPETAT">
           <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -51,16 +51,17 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CECOes">
-      <EntityTypeMapping TypeName="WFARTHAModel.CECO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.CECO">
         <MappingFragment StoreEntitySet="CECO">
           <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
           <ScalarProperty Name="CECO1" ColumnName="CECO" />
           <ScalarProperty Name="TEXT" ColumnName="TEXT" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CLAVES_CONTA">
-      <EntityTypeMapping TypeName="WFARTHAModel.CLAVES_CONTA">
+      <EntityTypeMapping TypeName="PAGOS300IModel.CLAVES_CONTA">
         <MappingFragment StoreEntitySet="CLAVES_CONTA">
           <ScalarProperty Name="TSOL" ColumnName="TSOL" />
           <ScalarProperty Name="DH" ColumnName="DH" />
@@ -70,7 +71,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CONCEPTOes">
-      <EntityTypeMapping TypeName="WFARTHAModel.CONCEPTO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.CONCEPTO">
         <MappingFragment StoreEntitySet="CONCEPTO">
           <ScalarProperty Name="ID_CONCEPTO" ColumnName="ID_CONCEPTO" />
           <ScalarProperty Name="DESC_CONCEPTO" ColumnName="DESC_CONCEPTO" />
@@ -79,11 +80,21 @@
           <ScalarProperty Name="ID_PRESUPUESTO" ColumnName="ID_PRESUPUESTO" />
           <ScalarProperty Name="TIPO_PRESUPUESTO" ColumnName="TIPO_PRESUPUESTO" />
           <ScalarProperty Name="CUENTA" ColumnName="CUENTA" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONDICIONES_PAGO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.CONDICIONES_PAGO">
+        <MappingFragment StoreEntitySet="CONDICIONES_PAGO">
+          <ScalarProperty Name="COND_PAGO" ColumnName="COND_PAGO" />
+          <ScalarProperty Name="TEXT" ColumnName="TEXT" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CONMAILs">
-      <EntityTypeMapping TypeName="WFARTHAModel.CONMAIL">
+      <EntityTypeMapping TypeName="PAGOS300IModel.CONMAIL">
         <MappingFragment StoreEntitySet="CONMAIL">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="HOST" ColumnName="HOST" />
@@ -96,7 +107,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DELEGARs">
-      <EntityTypeMapping TypeName="WFARTHAModel.DELEGAR">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DELEGAR">
         <MappingFragment StoreEntitySet="DELEGAR">
           <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
           <ScalarProperty Name="USUARIOD_ID" ColumnName="USUARIOD_ID" />
@@ -107,7 +118,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_AGENTEC">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_AGENTEC">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_AGENTEC">
         <MappingFragment StoreEntitySet="DET_AGENTEC">
           <ScalarProperty Name="USUARIOC_ID" ColumnName="USUARIOC_ID" />
           <ScalarProperty Name="VERSION" ColumnName="VERSION" />
@@ -121,7 +132,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_AGENTECA">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_AGENTECA">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_AGENTECA">
         <MappingFragment StoreEntitySet="DET_AGENTECA">
           <ScalarProperty Name="ID_RUTA_AGENTE" ColumnName="ID_RUTA_AGENTE" />
           <ScalarProperty Name="VERSION" ColumnName="VERSION" />
@@ -134,7 +145,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_APROB">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_APROB">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_APROB">
         <MappingFragment StoreEntitySet="DET_APROB">
           <ScalarProperty Name="VERSION" ColumnName="VERSION" />
           <ScalarProperty Name="ID_SOCIEDAD" ColumnName="ID_SOCIEDAD" />
@@ -144,7 +155,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_K">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_K">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_K">
         <MappingFragment StoreEntitySet="DET_K">
           <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
           <ScalarProperty Name="CUENTA" ColumnName="CUENTA" />
@@ -152,7 +163,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_PEP">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_PEP">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_PEP">
         <MappingFragment StoreEntitySet="DET_PEP">
           <ScalarProperty Name="PSPNR" ColumnName="PSPNR" />
           <ScalarProperty Name="POSID" ColumnName="POSID" />
@@ -163,7 +174,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_PROVEEDOR">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_PROVEEDOR">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_PROVEEDOR">
         <MappingFragment StoreEntitySet="DET_PROVEEDOR">
           <ScalarProperty Name="ID_LIFNR" ColumnName="ID_LIFNR" />
           <ScalarProperty Name="ID_BUKRS" ColumnName="ID_BUKRS" />
@@ -172,7 +183,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_SOCIEDAD">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_SOCIEDAD">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_SOCIEDAD">
         <MappingFragment StoreEntitySet="DET_SOCIEDAD">
           <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
           <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
@@ -181,7 +192,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_TIPODOC">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_TIPODOC">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_TIPODOC">
         <MappingFragment StoreEntitySet="DET_TIPODOC">
           <ScalarProperty Name="TIPO_SOL" ColumnName="TIPO_SOL" />
           <ScalarProperty Name="BLART" ColumnName="BLART" />
@@ -189,7 +200,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_TIPOPRESUPUESTO">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_TIPOPRESUPUESTO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_TIPOPRESUPUESTO">
         <MappingFragment StoreEntitySet="DET_TIPOPRESUPUESTO">
           <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
           <ScalarProperty Name="ID_USER" ColumnName="ID_USER" />
@@ -198,7 +209,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DOCUMENTOes">
-      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DOCUMENTO">
         <MappingFragment StoreEntitySet="DOCUMENTO">
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="NUM_PRE" ColumnName="NUM_PRE" />
@@ -269,7 +280,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DOCUMENTOAs">
-      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOA">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DOCUMENTOA">
         <MappingFragment StoreEntitySet="DOCUMENTOA">
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="POSD" ColumnName="POSD" />
@@ -285,7 +296,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DOCUMENTOAS1">
-      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOA1">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DOCUMENTOA1">
         <MappingFragment StoreEntitySet="DOCUMENTOAS">
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="POS" ColumnName="POS" />
@@ -300,7 +311,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DOCUMENTOLOGs">
-      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOLOG">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DOCUMENTOLOG">
         <MappingFragment StoreEntitySet="DOCUMENTOLOG">
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="POS" ColumnName="POS" />
@@ -314,7 +325,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DOCUMENTOPs">
-      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOP">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DOCUMENTOP">
         <MappingFragment StoreEntitySet="DOCUMENTOP">
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="POS" ColumnName="POS" />
@@ -335,7 +346,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DOCUMENTOPREs">
-      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOPRE">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DOCUMENTOPRE">
         <MappingFragment StoreEntitySet="DOCUMENTOPRE">
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="POS" ColumnName="POS" />
@@ -344,7 +355,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DOCUMENTORs">
-      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOR">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DOCUMENTOR">
         <MappingFragment StoreEntitySet="DOCUMENTOR">
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="WITHT" ColumnName="WITHT" />
@@ -357,7 +368,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DOCUMENTORPs">
-      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTORP">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DOCUMENTORP">
         <MappingFragment StoreEntitySet="DOCUMENTORP">
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="POS" ColumnName="POS" />
@@ -369,7 +380,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DOCUMENTOSAPs">
-      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOSAP">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DOCUMENTOSAP">
         <MappingFragment StoreEntitySet="DOCUMENTOSAP">
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
@@ -389,7 +400,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DOCUMENTOUUIDs">
-      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOUUID">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DOCUMENTOUUID">
         <MappingFragment StoreEntitySet="DOCUMENTOUUID">
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
           <ScalarProperty Name="POS" ColumnName="POS" />
@@ -400,7 +411,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="EKKO_DUMM">
-      <EntityTypeMapping TypeName="WFARTHAModel.EKKO_DUMM">
+      <EntityTypeMapping TypeName="PAGOS300IModel.EKKO_DUMM">
         <MappingFragment StoreEntitySet="EKKO_DUMM">
           <ScalarProperty Name="EBELN" ColumnName="EBELN" />
           <ScalarProperty Name="LIFNR" ColumnName="LIFNR" />
@@ -423,7 +434,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="EKPO_DUMM">
-      <EntityTypeMapping TypeName="WFARTHAModel.EKPO_DUMM">
+      <EntityTypeMapping TypeName="PAGOS300IModel.EKPO_DUMM">
         <MappingFragment StoreEntitySet="EKPO_DUMM">
           <ScalarProperty Name="EBELN" ColumnName="EBELN" />
           <ScalarProperty Name="EBELP" ColumnName="EBELP" />
@@ -446,7 +457,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FLUJOes">
-      <EntityTypeMapping TypeName="WFARTHAModel.FLUJO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.FLUJO">
         <MappingFragment StoreEntitySet="FLUJO">
           <ScalarProperty Name="WORKF_ID" ColumnName="WORKF_ID" />
           <ScalarProperty Name="WF_VERSION" ColumnName="WF_VERSION" />
@@ -469,7 +480,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FORMATOes">
-      <EntityTypeMapping TypeName="WFARTHAModel.FORMATO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.FORMATO">
         <MappingFragment StoreEntitySet="FORMATO">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="MILES" ColumnName="MILES" />
@@ -479,7 +490,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FOROes">
-      <EntityTypeMapping TypeName="WFARTHAModel.FORO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.FORO">
         <MappingFragment StoreEntitySet="FORO">
           <ScalarProperty Name="ID_FORO" ColumnName="ID_FORO" />
           <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
@@ -492,7 +503,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FORODs">
-      <EntityTypeMapping TypeName="WFARTHAModel.FOROD">
+      <EntityTypeMapping TypeName="PAGOS300IModel.FOROD">
         <MappingFragment StoreEntitySet="FOROD">
           <ScalarProperty Name="ID_RESPUESTA" ColumnName="ID_RESPUESTA" />
           <ScalarProperty Name="ID_FORO" ColumnName="ID_FORO" />
@@ -504,7 +515,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="IMPUESTOes">
-      <EntityTypeMapping TypeName="WFARTHAModel.IMPUESTO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.IMPUESTO">
         <MappingFragment StoreEntitySet="IMPUESTO">
           <ScalarProperty Name="MWSKZ" ColumnName="MWSKZ" />
           <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
@@ -512,7 +523,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="IMPUESTOTs">
-      <EntityTypeMapping TypeName="WFARTHAModel.IMPUESTOT">
+      <EntityTypeMapping TypeName="PAGOS300IModel.IMPUESTOT">
         <MappingFragment StoreEntitySet="IMPUESTOT">
           <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
           <ScalarProperty Name="MWSKZ" ColumnName="MWSKZ" />
@@ -522,7 +533,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MIEMBROS">
-      <EntityTypeMapping TypeName="WFARTHAModel.MIEMBRO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.MIEMBRO">
         <MappingFragment StoreEntitySet="MIEMBROS">
           <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
           <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
@@ -531,7 +542,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MONEDAs">
-      <EntityTypeMapping TypeName="WFARTHAModel.MONEDA">
+      <EntityTypeMapping TypeName="PAGOS300IModel.MONEDA">
         <MappingFragment StoreEntitySet="MONEDA">
           <ScalarProperty Name="WAERS" ColumnName="WAERS" />
           <ScalarProperty Name="ISOCD" ColumnName="ISOCD" />
@@ -543,7 +554,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PAGINAs">
-      <EntityTypeMapping TypeName="WFARTHAModel.PAGINA">
+      <EntityTypeMapping TypeName="PAGOS300IModel.PAGINA">
         <MappingFragment StoreEntitySet="PAGINA">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="URL" ColumnName="URL" />
@@ -556,7 +567,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PAGINATs">
-      <EntityTypeMapping TypeName="WFARTHAModel.PAGINAT">
+      <EntityTypeMapping TypeName="PAGOS300IModel.PAGINAT">
         <MappingFragment StoreEntitySet="PAGINAT">
           <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -565,7 +576,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PERMISO_PAGINA">
-      <EntityTypeMapping TypeName="WFARTHAModel.PERMISO_PAGINA">
+      <EntityTypeMapping TypeName="PAGOS300IModel.PERMISO_PAGINA">
         <MappingFragment StoreEntitySet="PERMISO_PAGINA">
           <ScalarProperty Name="PAGINA_ID" ColumnName="PAGINA_ID" />
           <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
@@ -574,7 +585,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="POSICIONs">
-      <EntityTypeMapping TypeName="WFARTHAModel.POSICION">
+      <EntityTypeMapping TypeName="PAGOS300IModel.POSICION">
         <MappingFragment StoreEntitySet="POSICION">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
@@ -582,7 +593,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PROVEEDORs">
-      <EntityTypeMapping TypeName="WFARTHAModel.PROVEEDOR">
+      <EntityTypeMapping TypeName="PAGOS300IModel.PROVEEDOR">
         <MappingFragment StoreEntitySet="PROVEEDOR">
           <ScalarProperty Name="LIFNR" ColumnName="LIFNR" />
           <ScalarProperty Name="LAND1" ColumnName="LAND1" />
@@ -599,19 +610,21 @@
           <ScalarProperty Name="ADRNR" ColumnName="ADRNR" />
           <ScalarProperty Name="STCD1" ColumnName="STCD1" />
           <ScalarProperty Name="STCD2" ColumnName="STCD2" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PROYECTOes">
-      <EntityTypeMapping TypeName="WFARTHAModel.PROYECTO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.PROYECTO">
         <MappingFragment StoreEntitySet="PROYECTO">
           <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
           <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PUESTOes">
-      <EntityTypeMapping TypeName="WFARTHAModel.PUESTO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.PUESTO">
         <MappingFragment StoreEntitySet="PUESTO">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
@@ -619,7 +632,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PUESTOTs">
-      <EntityTypeMapping TypeName="WFARTHAModel.PUESTOT">
+      <EntityTypeMapping TypeName="PAGOS300IModel.PUESTOT">
         <MappingFragment StoreEntitySet="PUESTOT">
           <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
           <ScalarProperty Name="PUESTO_ID" ColumnName="PUESTO_ID" />
@@ -628,7 +641,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RANGOes">
-      <EntityTypeMapping TypeName="WFARTHAModel.RANGO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.RANGO">
         <MappingFragment StoreEntitySet="RANGO">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="INICIO" ColumnName="INICIO" />
@@ -639,7 +652,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RETENCIONs">
-      <EntityTypeMapping TypeName="WFARTHAModel.RETENCION">
+      <EntityTypeMapping TypeName="PAGOS300IModel.RETENCION">
         <MappingFragment StoreEntitySet="RETENCION">
           <ScalarProperty Name="WITHT" ColumnName="WITHT" />
           <ScalarProperty Name="WT_WITHCD" ColumnName="WT_WITHCD" />
@@ -653,7 +666,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RETENCION_PROV">
-      <EntityTypeMapping TypeName="WFARTHAModel.RETENCION_PROV">
+      <EntityTypeMapping TypeName="PAGOS300IModel.RETENCION_PROV">
         <MappingFragment StoreEntitySet="RETENCION_PROV">
           <ScalarProperty Name="LIFNR" ColumnName="LIFNR" />
           <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
@@ -663,7 +676,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RETENCIONTs">
-      <EntityTypeMapping TypeName="WFARTHAModel.RETENCIONT">
+      <EntityTypeMapping TypeName="PAGOS300IModel.RETENCIONT">
         <MappingFragment StoreEntitySet="RETENCIONT">
           <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
           <ScalarProperty Name="WITHT" ColumnName="WITHT" />
@@ -673,7 +686,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ROLs">
-      <EntityTypeMapping TypeName="WFARTHAModel.ROL">
+      <EntityTypeMapping TypeName="PAGOS300IModel.ROL">
         <MappingFragment StoreEntitySet="ROL">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="CLAVE" ColumnName="CLAVE" />
@@ -683,7 +696,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ROLTs">
-      <EntityTypeMapping TypeName="WFARTHAModel.ROLT">
+      <EntityTypeMapping TypeName="PAGOS300IModel.ROLT">
         <MappingFragment StoreEntitySet="ROLT">
           <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
           <ScalarProperty Name="ROL_ID" ColumnName="ROL_ID" />
@@ -692,7 +705,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SOCIEDADs">
-      <EntityTypeMapping TypeName="WFARTHAModel.SOCIEDAD">
+      <EntityTypeMapping TypeName="PAGOS300IModel.SOCIEDAD">
         <MappingFragment StoreEntitySet="SOCIEDAD">
           <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
           <ScalarProperty Name="BUTXT" ColumnName="BUTXT" />
@@ -709,15 +722,26 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SPRAS">
-      <EntityTypeMapping TypeName="WFARTHAModel.SPRA">
+      <EntityTypeMapping TypeName="PAGOS300IModel.SPRA">
         <MappingFragment StoreEntitySet="SPRAS">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TCAMBIOs">
+      <EntityTypeMapping TypeName="PAGOS300IModel.TCAMBIO">
+        <MappingFragment StoreEntitySet="TCAMBIO">
+          <ScalarProperty Name="KURST" ColumnName="KURST" />
+          <ScalarProperty Name="FCURR" ColumnName="FCURR" />
+          <ScalarProperty Name="TCURR" ColumnName="TCURR" />
+          <ScalarProperty Name="GDATU" ColumnName="GDATU" />
+          <ScalarProperty Name="UKURS" ColumnName="UKURS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="TEXTOes">
-      <EntityTypeMapping TypeName="WFARTHAModel.TEXTO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.TEXTO">
         <MappingFragment StoreEntitySet="TEXTO">
           <ScalarProperty Name="PAGINA_ID" ColumnName="PAGINA_ID" />
           <ScalarProperty Name="CAMPO_ID" ColumnName="CAMPO_ID" />
@@ -728,7 +752,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TIPOPRESUPUESTOes">
-      <EntityTypeMapping TypeName="WFARTHAModel.TIPOPRESUPUESTO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.TIPOPRESUPUESTO">
         <MappingFragment StoreEntitySet="TIPOPRESUPUESTO">
           <ScalarProperty Name="TIPOPRE" ColumnName="TIPOPRE" />
           <ScalarProperty Name="DESC" ColumnName="DESC" />
@@ -737,7 +761,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TIPOPRESUPUESTOTs">
-      <EntityTypeMapping TypeName="WFARTHAModel.TIPOPRESUPUESTOT">
+      <EntityTypeMapping TypeName="PAGOS300IModel.TIPOPRESUPUESTOT">
         <MappingFragment StoreEntitySet="TIPOPRESUPUESTOT">
           <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
           <ScalarProperty Name="TIPOPRE" ColumnName="TIPOPRE" />
@@ -746,7 +770,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TSOLs">
-      <EntityTypeMapping TypeName="WFARTHAModel.TSOL">
+      <EntityTypeMapping TypeName="PAGOS300IModel.TSOL">
         <MappingFragment StoreEntitySet="TSOL">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
@@ -755,11 +779,12 @@
           <ScalarProperty Name="EDITDET" ColumnName="EDITDET" />
           <ScalarProperty Name="DEFAULT" ColumnName="DEFAULT" />
           <ScalarProperty Name="TIPO_DOCFILE" ColumnName="TIPO_DOCFILE" />
+          <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TSOLTs">
-      <EntityTypeMapping TypeName="WFARTHAModel.TSOLT">
+      <EntityTypeMapping TypeName="PAGOS300IModel.TSOLT">
         <MappingFragment StoreEntitySet="TSOLT">
           <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
           <ScalarProperty Name="TSOL_ID" ColumnName="TSOL_ID" />
@@ -769,7 +794,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TSOPORTEs">
-      <EntityTypeMapping TypeName="WFARTHAModel.TSOPORTE">
+      <EntityTypeMapping TypeName="PAGOS300IModel.TSOPORTE">
         <MappingFragment StoreEntitySet="TSOPORTE">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
@@ -778,7 +803,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TSOPORTETs">
-      <EntityTypeMapping TypeName="WFARTHAModel.TSOPORTET">
+      <EntityTypeMapping TypeName="PAGOS300IModel.TSOPORTET">
         <MappingFragment StoreEntitySet="TSOPORTET">
           <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
           <ScalarProperty Name="TSOPORTE_ID" ColumnName="TSOPORTE_ID" />
@@ -787,7 +812,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="USUARIOs">
-      <EntityTypeMapping TypeName="WFARTHAModel.USUARIO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.USUARIO">
         <MappingFragment StoreEntitySet="USUARIO">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="PASS" ColumnName="PASS" />
@@ -806,7 +831,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WARNINGs">
-      <EntityTypeMapping TypeName="WFARTHAModel.WARNING">
+      <EntityTypeMapping TypeName="PAGOS300IModel.WARNING">
         <MappingFragment StoreEntitySet="WARNING">
           <ScalarProperty Name="PAGINA_ID" ColumnName="PAGINA_ID" />
           <ScalarProperty Name="CAMPO_ID" ColumnName="CAMPO_ID" />
@@ -818,7 +843,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WORKFHs">
-      <EntityTypeMapping TypeName="WFARTHAModel.WORKFH">
+      <EntityTypeMapping TypeName="PAGOS300IModel.WORKFH">
         <MappingFragment StoreEntitySet="WORKFH">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
@@ -832,7 +857,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WORKFPs">
-      <EntityTypeMapping TypeName="WFARTHAModel.WORKFP">
+      <EntityTypeMapping TypeName="PAGOS300IModel.WORKFP">
         <MappingFragment StoreEntitySet="WORKFP">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="VERSION" ColumnName="VERSION" />
@@ -853,7 +878,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WORKFTs">
-      <EntityTypeMapping TypeName="WFARTHAModel.WORKFT">
+      <EntityTypeMapping TypeName="PAGOS300IModel.WORKFT">
         <MappingFragment StoreEntitySet="WORKFT">
           <ScalarProperty Name="SPRAS_ID" ColumnName="SPRAS_ID" />
           <ScalarProperty Name="WF_ID" ColumnName="WF_ID" />
@@ -864,7 +889,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WORKFVs">
-      <EntityTypeMapping TypeName="WFARTHAModel.WORKFV">
+      <EntityTypeMapping TypeName="PAGOS300IModel.WORKFV">
         <MappingFragment StoreEntitySet="WORKFV">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="VERSION" ColumnName="VERSION" />
@@ -877,16 +902,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CONDICIONES_PAGO">
-      <EntityTypeMapping TypeName="WFARTHAModel.CONDICIONES_PAGO">
-        <MappingFragment StoreEntitySet="CONDICIONES_PAGO">
-          <ScalarProperty Name="COND_PAGO" ColumnName="COND_PAGO" />
-          <ScalarProperty Name="TEXT" ColumnName="TEXT" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DET_AGENTECC">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_AGENTECC">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_AGENTECC">
         <MappingFragment StoreEntitySet="DET_AGENTECC">
           <ScalarProperty Name="VERSION" ColumnName="VERSION" />
           <ScalarProperty Name="USUARIOC_ID" ColumnName="USUARIOC_ID" />
@@ -898,7 +915,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="IIMPUESTOes">
-      <EntityTypeMapping TypeName="WFARTHAModel.IIMPUESTO">
+      <EntityTypeMapping TypeName="PAGOS300IModel.IIMPUESTO">
         <MappingFragment StoreEntitySet="IIMPUESTO">
           <ScalarProperty Name="MWSKZ" ColumnName="MWSKZ" />
           <ScalarProperty Name="KSCHL" ColumnName="KSCHL" />
@@ -908,7 +925,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ASIGN_PROY_SOC">
-      <EntityTypeMapping TypeName="WFARTHAModel.ASIGN_PROY_SOC">
+      <EntityTypeMapping TypeName="PAGOS300IModel.ASIGN_PROY_SOC">
         <MappingFragment StoreEntitySet="ASIGN_PROY_SOC">
           <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
           <ScalarProperty Name="ID_BUKRS" ColumnName="ID_BUKRS" />
@@ -916,7 +933,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CARPETAVs">
-      <EntityTypeMapping TypeName="WFARTHAModel.CARPETAV">
+      <EntityTypeMapping TypeName="PAGOS300IModel.CARPETAV">
         <MappingFragment StoreEntitySet="CARPETAV">
           <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -927,7 +944,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_APROBV">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_APROBV">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_APROBV">
         <MappingFragment StoreEntitySet="DET_APROBV">
           <ScalarProperty Name="VERSION" ColumnName="VERSION" />
           <ScalarProperty Name="ID_SOCIEDAD" ColumnName="ID_SOCIEDAD" />
@@ -939,7 +956,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_PROVEEDORV">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_PROVEEDORV">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_PROVEEDORV">
         <MappingFragment StoreEntitySet="DET_PROVEEDORV">
           <ScalarProperty Name="ID_LIFNR" ColumnName="ID_LIFNR" />
           <ScalarProperty Name="ID_BUKRS" ColumnName="ID_BUKRS" />
@@ -948,7 +965,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_PROYECTO_DEC_V">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_PROYECTO_DEC_V">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_PROYECTO_DEC_V">
         <MappingFragment StoreEntitySet="DET_PROYECTO_DEC_V">
           <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
           <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
@@ -958,7 +975,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_PROYECTOV">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_PROYECTOV">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_PROYECTOV">
         <MappingFragment StoreEntitySet="DET_PROYECTOV">
           <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
           <ScalarProperty Name="ID_BUKRS" ColumnName="ID_BUKRS" />
@@ -966,7 +983,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DET_TIPOPRESUPUESTOV">
-      <EntityTypeMapping TypeName="WFARTHAModel.DET_TIPOPRESUPUESTOV">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DET_TIPOPRESUPUESTOV">
         <MappingFragment StoreEntitySet="DET_TIPOPRESUPUESTOV">
           <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
           <ScalarProperty Name="BUTXT" ColumnName="BUTXT" />
@@ -978,7 +995,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="DOCUMENTOVs">
-      <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOV">
+      <EntityTypeMapping TypeName="PAGOS300IModel.DOCUMENTOV">
         <MappingFragment StoreEntitySet="DOCUMENTOV">
           <ScalarProperty Name="POS" ColumnName="POS" />
           <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
@@ -1037,7 +1054,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="PAGINAVs">
-      <EntityTypeMapping TypeName="WFARTHAModel.PAGINAV">
+      <EntityTypeMapping TypeName="PAGOS300IModel.PAGINAV">
         <MappingFragment StoreEntitySet="PAGINAV">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="PAGINA_ID" ColumnName="PAGINA_ID" />
@@ -1053,7 +1070,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="WARNINGVs">
-      <EntityTypeMapping TypeName="WFARTHAModel.WARNINGV">
+      <EntityTypeMapping TypeName="PAGOS300IModel.WARNINGV">
         <MappingFragment StoreEntitySet="WARNINGV">
           <ScalarProperty Name="PAGINA_ID" ColumnName="PAGINA_ID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
@@ -1066,7 +1083,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="DET_PROYECTO" TypeName="WFARTHAModel.DET_PROYECTO" StoreEntitySet="DET_PROYECTO">
+    <AssociationSetMapping Name="DET_PROYECTO" TypeName="PAGOS300IModel.DET_PROYECTO" StoreEntitySet="DET_PROYECTO">
       <EndProperty Name="PROYECTO">
         <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
       </EndProperty>

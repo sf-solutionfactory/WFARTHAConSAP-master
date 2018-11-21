@@ -59,6 +59,7 @@
           <Property Name="BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
           <Property Name="CECO" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="TEXT" Type="nvarchar" MaxLength="80" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CLAVES_CONTA">
           <Key>
@@ -82,15 +83,15 @@
           <Property Name="ID_PRESUPUESTO" Type="nchar" MaxLength="2" />
           <Property Name="TIPO_PRESUPUESTO" Type="nchar" MaxLength="1" />
           <Property Name="CUENTA" Type="nchar" MaxLength="10" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS.dbo.CONDICIONES_PAGO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="CONDICIONES_PAGO">
           <Key>
             <PropertyRef Name="COND_PAGO" />
           </Key>
           <Property Name="COND_PAGO" Type="nchar" MaxLength="4" Nullable="false" />
           <Property Name="TEXT" Type="nvarchar" MaxLength="50" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CONMAIL">
           <Key>
@@ -137,26 +138,22 @@ warning 6002: The table/view 'PAGOS.dbo.CONDICIONES_PAGO' does not have a primar
             <PropertyRef Name="ID_RUTA_AGENTE" />
             <PropertyRef Name="VERSION" />
             <PropertyRef Name="STEP_FASE" />
-            <PropertyRef Name="STEP_ACCION" />
             <PropertyRef Name="AGENTE_SIG" />
           </Key>
           <Property Name="ID_RUTA_AGENTE" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="VERSION" Type="int" Nullable="false" />
           <Property Name="STEP_FASE" Type="int" Nullable="false" />
           <Property Name="STEP_ACCION" Type="int" Nullable="false" />
-          <Property Name="LIM_SUP" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="LIM_SUP" Type="decimal" Precision="18" Scale="5" Nullable="false" />
           <Property Name="AGENTE_SIG" Type="nvarchar" MaxLength="16" Nullable="false" />
           <Property Name="OVERRIDE" Type="bit" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS.dbo.DET_AGENTECC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DET_AGENTECC">
           <Key>
             <PropertyRef Name="VERSION" />
             <PropertyRef Name="USUARIOC_ID" />
             <PropertyRef Name="ID_RUTA_AGENTE" />
             <PropertyRef Name="USUARIOA_ID" />
-            <PropertyRef Name="FECHAC" />
           </Key>
           <Property Name="VERSION" Type="int" Nullable="false" />
           <Property Name="USUARIOC_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
@@ -263,12 +260,12 @@ warning 6002: The table/view 'PAGOS.dbo.DET_AGENTECC' does not have a primary ke
           <Property Name="DOCUMENTO_REF" Type="decimal" Precision="10" Scale="0" />
           <Property Name="CONCEPTO" Type="nvarchar" MaxLength="100" />
           <Property Name="NOTAS" Type="nvarchar" MaxLength="255" />
-          <Property Name="MONTO_DOC_MD" Type="decimal" Precision="13" Scale="2" />
-          <Property Name="MONTO_FIJO_MD" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="MONTO_DOC_MD" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="MONTO_FIJO_MD" Type="decimal" Precision="18" Scale="5" />
           <Property Name="MONTO_BASE_GS_PCT_MD" Type="decimal" Precision="13" Scale="2" />
           <Property Name="MONTO_BASE_NS_PCT_MD" Type="decimal" Precision="13" Scale="2" />
-          <Property Name="MONTO_DOC_ML" Type="decimal" Precision="13" Scale="2" />
-          <Property Name="MONTO_FIJO_ML" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="MONTO_DOC_ML" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="MONTO_FIJO_ML" Type="decimal" Precision="18" Scale="5" />
           <Property Name="MONTO_BASE_GS_PCT_ML" Type="decimal" Precision="13" Scale="2" />
           <Property Name="MONTO_BASE_NS_PCT_ML" Type="decimal" Precision="13" Scale="2" />
           <Property Name="MONTO_DOC_ML2" Type="decimal" Precision="13" Scale="2" />
@@ -369,10 +366,10 @@ warning 6002: The table/view 'PAGOS.dbo.DET_AGENTECC' does not have a primary ke
           <Property Name="TIPOIMP" Type="nchar" MaxLength="1" />
           <Property Name="IMPUTACION" Type="nchar" MaxLength="30" />
           <Property Name="CCOSTO" Type="nchar" MaxLength="20" />
-          <Property Name="MONTO" Type="decimal" Precision="13" Scale="5" Nullable="false" />
+          <Property Name="MONTO" Type="decimal" Precision="18" Scale="5" Nullable="false" />
           <Property Name="MWSKZ" Type="nchar" MaxLength="2" Nullable="false" />
-          <Property Name="IVA" Type="decimal" Precision="13" Scale="5" Nullable="false" />
-          <Property Name="TOTAL" Type="decimal" Precision="13" Scale="5" Nullable="false" />
+          <Property Name="IVA" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="TOTAL" Type="decimal" Precision="18" Scale="5" Nullable="false" />
           <Property Name="TEXTO" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="DOCUMENTOPRE">
@@ -394,8 +391,8 @@ warning 6002: The table/view 'PAGOS.dbo.DET_AGENTECC' does not have a primary ke
           <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
           <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" Nullable="false" />
           <Property Name="POS" Type="numeric" Precision="5" Scale="0" />
-          <Property Name="BIMPONIBLE" Type="decimal" Precision="13" Scale="2" />
-          <Property Name="IMPORTE_RET" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="BIMPONIBLE" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="IMPORTE_RET" Type="decimal" Precision="18" Scale="5" />
           <Property Name="VISIBLE" Type="bit" />
         </EntityType>
         <EntityType Name="DOCUMENTORP">
@@ -409,8 +406,8 @@ warning 6002: The table/view 'PAGOS.dbo.DET_AGENTECC' does not have a primary ke
           <Property Name="POS" Type="numeric" Precision="5" Scale="0" Nullable="false" />
           <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
           <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" Nullable="false" />
-          <Property Name="BIMPONIBLE" Type="decimal" Precision="13" Scale="2" />
-          <Property Name="IMPORTE_RET" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="BIMPONIBLE" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="IMPORTE_RET" Type="decimal" Precision="18" Scale="5" />
         </EntityType>
         <EntityType Name="DOCUMENTOSAP">
           <Key>
@@ -651,6 +648,7 @@ warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key d
           <Property Name="ADRNR" Type="nchar" MaxLength="10" />
           <Property Name="STCD1" Type="nchar" MaxLength="16" />
           <Property Name="STCD2" Type="nchar" MaxLength="11" />
+          <Property Name="ACTIVO" Type="bit" />
         </EntityType>
         <EntityType Name="PROYECTO">
           <Key>
@@ -658,6 +656,7 @@ warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key d
           </Key>
           <Property Name="ID_PSPNR" Type="nvarchar" MaxLength="8" Nullable="false" />
           <Property Name="NOMBRE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="PUESTO">
           <Key>
@@ -769,6 +768,19 @@ warning 6013: The table/view 'PAGOS.dbo.SOCIEDADRFC$' does not have a primary ke
           <Property Name="ID" Type="nchar" MaxLength="2" Nullable="false" />
           <Property Name="DESCRIPCION" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="TCAMBIO">
+          <Key>
+            <PropertyRef Name="KURST" />
+            <PropertyRef Name="FCURR" />
+            <PropertyRef Name="TCURR" />
+            <PropertyRef Name="GDATU" />
+          </Key>
+          <Property Name="KURST" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="FCURR" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="TCURR" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="GDATU" Type="date" Nullable="false" />
+          <Property Name="UKURS" Type="decimal" Precision="9" Scale="5" />
+        </EntityType>
         <EntityType Name="TEXTO">
           <Key>
             <PropertyRef Name="PAGINA_ID" />
@@ -809,6 +821,7 @@ warning 6013: The table/view 'PAGOS.dbo.SOCIEDADRFC$' does not have a primary ke
           <Property Name="EDITDET" Type="bit" />
           <Property Name="DEFAULT" Type="bit" />
           <Property Name="TIPO_DOCFILE" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="ACTIVO" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TSOLT">
           <Key>
@@ -1831,6 +1844,30 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TCAMBIO_MONEDA">
+          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="1" />
+          <End Role="TCAMBIO" Type="Self.TCAMBIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEDA">
+              <PropertyRef Name="WAERS" />
+            </Principal>
+            <Dependent Role="TCAMBIO">
+              <PropertyRef Name="TCURR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TCAMBIO_MONEDA1">
+          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="1" />
+          <End Role="TCAMBIO" Type="Self.TCAMBIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEDA">
+              <PropertyRef Name="WAERS" />
+            </Principal>
+            <Dependent Role="TCAMBIO">
+              <PropertyRef Name="FCURR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TEXTO_CAMPOS">
           <End Role="CAMPOS" Type="Self.CAMPOS" Multiplicity="1" />
           <End Role="TEXTO" Type="Self.TEXTO" Multiplicity="*" />
@@ -2088,10 +2125,12 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <EntitySet Name="CECO" EntityType="Self.CECO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLAVES_CONTA" EntityType="Self.CLAVES_CONTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONCEPTO" EntityType="Self.CONCEPTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONMAIL" EntityType="Self.CONMAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DELEGAR" EntityType="Self.DELEGAR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DET_AGENTEC" EntityType="Self.DET_AGENTEC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DET_AGENTECA" EntityType="Self.DET_AGENTECA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DET_AGENTECC" EntityType="Self.DET_AGENTECC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DET_APROB" EntityType="Self.DET_APROB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DET_K" EntityType="Self.DET_K" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DET_PEP" EntityType="Self.DET_PEP" Schema="dbo" store:Type="Tables" />
@@ -2136,6 +2175,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <EntitySet Name="ROLT" EntityType="Self.ROLT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SOCIEDAD" EntityType="Self.SOCIEDAD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SPRAS" EntityType="Self.SPRAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TCAMBIO" EntityType="Self.TCAMBIO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TEXTO" EntityType="Self.TEXTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOPRESUPUESTO" EntityType="Self.TIPOPRESUPUESTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TIPOPRESUPUESTOT" EntityType="Self.TIPOPRESUPUESTOT" Schema="dbo" store:Type="Tables" />
@@ -2149,22 +2189,6 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <EntitySet Name="WORKFP" EntityType="Self.WORKFP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WORKFT" EntityType="Self.WORKFT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WORKFV" EntityType="Self.WORKFV" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [CONDICIONES_PAGO].[COND_PAGO] AS [COND_PAGO], 
-    [CONDICIONES_PAGO].[TEXT] AS [TEXT]
-    FROM [dbo].[CONDICIONES_PAGO] AS [CONDICIONES_PAGO]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="DET_AGENTECC" EntityType="Self.DET_AGENTECC" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [DET_AGENTECC].[VERSION] AS [VERSION], 
-    [DET_AGENTECC].[USUARIOC_ID] AS [USUARIOC_ID], 
-    [DET_AGENTECC].[ID_RUTA_AGENTE] AS [ID_RUTA_AGENTE], 
-    [DET_AGENTECC].[DESCRIPCION] AS [DESCRIPCION], 
-    [DET_AGENTECC].[USUARIOA_ID] AS [USUARIOA_ID], 
-    [DET_AGENTECC].[FECHAC] AS [FECHAC]
-    FROM [dbo].[DET_AGENTECC] AS [DET_AGENTECC]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="IIMPUESTO" EntityType="Self.IIMPUESTO" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [IIMPUESTO].[MWSKZ] AS [MWSKZ], 
@@ -2544,6 +2568,14 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
             <End Role="MONEDA" EntitySet="MONEDA" />
             <End Role="SOCIEDAD" EntitySet="SOCIEDAD" />
           </AssociationSet>
+          <AssociationSet Name="FK_TCAMBIO_MONEDA" Association="Self.FK_TCAMBIO_MONEDA">
+            <End Role="MONEDA" EntitySet="MONEDA" />
+            <End Role="TCAMBIO" EntitySet="TCAMBIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TCAMBIO_MONEDA1" Association="Self.FK_TCAMBIO_MONEDA1">
+            <End Role="MONEDA" EntitySet="MONEDA" />
+            <End Role="TCAMBIO" EntitySet="TCAMBIO" />
+          </AssociationSet>
           <AssociationSet Name="FK_TEXTO_CAMPOS" Association="Self.FK_TEXTO_CAMPOS">
             <End Role="CAMPOS" EntitySet="CAMPOS" />
             <End Role="TEXTO" EntitySet="TEXTO" />
@@ -2692,6 +2724,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <Property Name="BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="CECO1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="TEXT" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="CLAVES_CONTA">
           <Key>
@@ -2715,6 +2748,15 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <Property Name="ID_PRESUPUESTO" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
           <Property Name="TIPO_PRESUPUESTO" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="CUENTA" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONDICIONES_PAGO">
+          <Key>
+            <PropertyRef Name="COND_PAGO" />
+          </Key>
+          <Property Name="COND_PAGO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="CONMAIL">
           <Key>
@@ -2765,16 +2807,29 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
             <PropertyRef Name="ID_RUTA_AGENTE" />
             <PropertyRef Name="VERSION" />
             <PropertyRef Name="STEP_FASE" />
-            <PropertyRef Name="STEP_ACCION" />
             <PropertyRef Name="AGENTE_SIG" />
           </Key>
           <Property Name="ID_RUTA_AGENTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="VERSION" Type="Int32" Nullable="false" />
           <Property Name="STEP_FASE" Type="Int32" Nullable="false" />
           <Property Name="STEP_ACCION" Type="Int32" Nullable="false" />
-          <Property Name="LIM_SUP" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+          <Property Name="LIM_SUP" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
           <Property Name="AGENTE_SIG" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="OVERRIDE" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DET_AGENTECC">
+          <Key>
+            <PropertyRef Name="VERSION" />
+            <PropertyRef Name="USUARIOC_ID" />
+            <PropertyRef Name="ID_RUTA_AGENTE" />
+            <PropertyRef Name="USUARIOA_ID" />
+          </Key>
+          <Property Name="VERSION" Type="Int32" Nullable="false" />
+          <Property Name="USUARIOC_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_RUTA_AGENTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="USUARIOA_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FECHAC" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="DET_APROB">
           <Key>
@@ -2875,12 +2930,12 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <Property Name="DOCUMENTO_REF" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="CONCEPTO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NOTAS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="MONTO_DOC_MD" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="MONTO_FIJO_MD" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="MONTO_DOC_MD" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="MONTO_FIJO_MD" Type="Decimal" Precision="18" Scale="5" />
           <Property Name="MONTO_BASE_GS_PCT_MD" Type="Decimal" Precision="13" Scale="2" />
           <Property Name="MONTO_BASE_NS_PCT_MD" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="MONTO_DOC_ML" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="MONTO_FIJO_ML" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="MONTO_DOC_ML" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="MONTO_FIJO_ML" Type="Decimal" Precision="18" Scale="5" />
           <Property Name="MONTO_BASE_GS_PCT_ML" Type="Decimal" Precision="13" Scale="2" />
           <Property Name="MONTO_BASE_NS_PCT_ML" Type="Decimal" Precision="13" Scale="2" />
           <Property Name="MONTO_DOC_ML2" Type="Decimal" Precision="13" Scale="2" />
@@ -2995,10 +3050,10 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <Property Name="TIPOIMP" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="IMPUTACION" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="CCOSTO" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="MONTO" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
+          <Property Name="MONTO" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
           <Property Name="MWSKZ" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="IVA" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
-          <Property Name="TOTAL" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
+          <Property Name="IVA" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="TOTAL" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
           <Property Name="TEXTO" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOP_DOCUMENTO" FromRole="DOCUMENTOP" ToRole="DOCUMENTO" />
           <NavigationProperty Name="DOCUMENTOAs" Relationship="Self.FK_DOCUMENTOA_DOCUMENTOP" FromRole="DOCUMENTOP" ToRole="DOCUMENTOA" />
@@ -3025,8 +3080,8 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <Property Name="WITHT" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="WT_WITHCD" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="POS" Type="Decimal" Precision="5" Scale="0" />
-          <Property Name="BIMPONIBLE" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="IMPORTE_RET" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="BIMPONIBLE" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="IMPORTE_RET" Type="Decimal" Precision="18" Scale="5" />
           <Property Name="VISIBLE" Type="Boolean" />
           <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOR_DOCUMENTO" FromRole="DOCUMENTOR" ToRole="DOCUMENTO" />
         </EntityType>
@@ -3041,8 +3096,8 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <Property Name="POS" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
           <Property Name="WITHT" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="WT_WITHCD" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="BIMPONIBLE" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="IMPORTE_RET" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="BIMPONIBLE" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="IMPORTE_RET" Type="Decimal" Precision="18" Scale="5" />
           <NavigationProperty Name="DOCUMENTOP" Relationship="Self.FK_DOCUMENTORP_DOCUMENTOP" FromRole="DOCUMENTORP" ToRole="DOCUMENTOP" />
           <NavigationProperty Name="RETENCION" Relationship="Self.FK_DOCUMENTORP_RETENCION" FromRole="DOCUMENTORP" ToRole="RETENCION" />
         </EntityType>
@@ -3237,6 +3292,8 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <Property Name="KTEXT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="SOCIEDADs" Relationship="Self.FK_SOCIEDAD_MONEDA" FromRole="MONEDA" ToRole="SOCIEDAD" />
+          <NavigationProperty Name="TCAMBIOs" Relationship="Self.FK_TCAMBIO_MONEDA" FromRole="MONEDA" ToRole="TCAMBIO" />
+          <NavigationProperty Name="TCAMBIOs1" Relationship="Self.FK_TCAMBIO_MONEDA1" FromRole="MONEDA" ToRole="TCAMBIO" />
         </EntityType>
         <EntityType Name="PAGINA">
           <Key>
@@ -3301,6 +3358,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <Property Name="ADRNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="STCD1" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
           <Property Name="STCD2" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="ACTIVO" Type="Boolean" />
           <NavigationProperty Name="DET_PROVEEDOR" Relationship="Self.FK_DET_PROVEEDOR_PROYECTO" FromRole="PROVEEDOR" ToRole="DET_PROVEEDOR" />
           <NavigationProperty Name="RETENCION_PROV" Relationship="Self.FK_RETENCION_PROV_PROVEEDOR" FromRole="PROVEEDOR" ToRole="RETENCION_PROV" />
         </EntityType>
@@ -3310,6 +3368,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           </Key>
           <Property Name="ID_PSPNR" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="SOCIEDADs" Relationship="Self.DET_PROYECTO" FromRole="PROYECTO" ToRole="SOCIEDAD" />
         </EntityType>
         <EntityType Name="PUESTO">
@@ -3449,6 +3508,21 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <NavigationProperty Name="WARNINGs" Relationship="Self.FK_WARNING_SPRAS" FromRole="SPRAS" ToRole="WARNING" />
           <NavigationProperty Name="WORKFTs" Relationship="Self.FK_WORKFT_SPRAS" FromRole="SPRAS" ToRole="WORKFT" />
         </EntityType>
+        <EntityType Name="TCAMBIO">
+          <Key>
+            <PropertyRef Name="KURST" />
+            <PropertyRef Name="FCURR" />
+            <PropertyRef Name="TCURR" />
+            <PropertyRef Name="GDATU" />
+          </Key>
+          <Property Name="KURST" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="FCURR" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TCURR" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="GDATU" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UKURS" Type="Decimal" Precision="9" Scale="5" />
+          <NavigationProperty Name="MONEDA" Relationship="Self.FK_TCAMBIO_MONEDA" FromRole="TCAMBIO" ToRole="MONEDA" />
+          <NavigationProperty Name="MONEDA1" Relationship="Self.FK_TCAMBIO_MONEDA1" FromRole="TCAMBIO" ToRole="MONEDA" />
+        </EntityType>
         <EntityType Name="TEXTO">
           <Key>
             <PropertyRef Name="PAGINA_ID" />
@@ -3496,6 +3570,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <Property Name="EDITDET" Type="Boolean" />
           <Property Name="DEFAULT" Type="Boolean" />
           <Property Name="TIPO_DOCFILE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DET_TIPODOC" Relationship="Self.FK_DET_TIPODOC_TSOL" FromRole="TSOL" ToRole="DET_TIPODOC" />
           <NavigationProperty Name="DOCUMENTOes" Relationship="Self.FK_DOCUMENTO_TSOL" FromRole="TSOL" ToRole="DOCUMENTO" />
           <NavigationProperty Name="RANGO" Relationship="Self.FK_TSOL_RANGO" FromRole="TSOL" ToRole="RANGO" />
@@ -3654,28 +3729,6 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <NavigationProperty Name="WORKFH" Relationship="Self.FK_WORKV_WORKFH" FromRole="WORKFV" ToRole="WORKFH" />
           <NavigationProperty Name="WORKFPs" Relationship="Self.FK_WORKFP_WORKFV" FromRole="WORKFV" ToRole="WORKFP" />
           <NavigationProperty Name="WORKFTs" Relationship="Self.FK_WORKFT_WORKFV" FromRole="WORKFV" ToRole="WORKFT" />
-        </EntityType>
-        <EntityType Name="CONDICIONES_PAGO">
-          <Key>
-            <PropertyRef Name="COND_PAGO" />
-          </Key>
-          <Property Name="COND_PAGO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="TEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="DET_AGENTECC">
-          <Key>
-            <PropertyRef Name="VERSION" />
-            <PropertyRef Name="USUARIOC_ID" />
-            <PropertyRef Name="ID_RUTA_AGENTE" />
-            <PropertyRef Name="USUARIOA_ID" />
-            <PropertyRef Name="FECHAC" />
-          </Key>
-          <Property Name="VERSION" Type="Int32" Nullable="false" />
-          <Property Name="USUARIOC_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ID_RUTA_AGENTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="DESCRIPCION" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-          <Property Name="USUARIOA_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FECHAC" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="IIMPUESTO">
           <Key>
@@ -4462,6 +4515,30 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TCAMBIO_MONEDA">
+          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="1" />
+          <End Role="TCAMBIO" Type="Self.TCAMBIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEDA">
+              <PropertyRef Name="WAERS" />
+            </Principal>
+            <Dependent Role="TCAMBIO">
+              <PropertyRef Name="TCURR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TCAMBIO_MONEDA1">
+          <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="1" />
+          <End Role="TCAMBIO" Type="Self.TCAMBIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MONEDA">
+              <PropertyRef Name="WAERS" />
+            </Principal>
+            <Dependent Role="TCAMBIO">
+              <PropertyRef Name="FCURR" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PAGINAT_PAGINA">
           <End Role="PAGINA" Type="Self.PAGINA" Multiplicity="1" />
           <End Role="PAGINAT" Type="Self.PAGINAT" Multiplicity="*" />
@@ -4807,10 +4884,12 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <EntitySet Name="CECOes" EntityType="Self.CECO" />
           <EntitySet Name="CLAVES_CONTA" EntityType="Self.CLAVES_CONTA" />
           <EntitySet Name="CONCEPTOes" EntityType="Self.CONCEPTO" />
+          <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" />
           <EntitySet Name="CONMAILs" EntityType="Self.CONMAIL" />
           <EntitySet Name="DELEGARs" EntityType="Self.DELEGAR" />
           <EntitySet Name="DET_AGENTEC" EntityType="Self.DET_AGENTEC" />
           <EntitySet Name="DET_AGENTECA" EntityType="Self.DET_AGENTECA" />
+          <EntitySet Name="DET_AGENTECC" EntityType="Self.DET_AGENTECC" />
           <EntitySet Name="DET_APROB" EntityType="Self.DET_APROB" />
           <EntitySet Name="DET_K" EntityType="Self.DET_K" />
           <EntitySet Name="DET_PEP" EntityType="Self.DET_PEP" />
@@ -4854,6 +4933,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <EntitySet Name="ROLTs" EntityType="Self.ROLT" />
           <EntitySet Name="SOCIEDADs" EntityType="Self.SOCIEDAD" />
           <EntitySet Name="SPRAS" EntityType="Self.SPRA" />
+          <EntitySet Name="TCAMBIOs" EntityType="Self.TCAMBIO" />
           <EntitySet Name="TEXTOes" EntityType="Self.TEXTO" />
           <EntitySet Name="TIPOPRESUPUESTOes" EntityType="Self.TIPOPRESUPUESTO" />
           <EntitySet Name="TIPOPRESUPUESTOTs" EntityType="Self.TIPOPRESUPUESTOT" />
@@ -4867,8 +4947,6 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
           <EntitySet Name="WORKFPs" EntityType="Self.WORKFP" />
           <EntitySet Name="WORKFTs" EntityType="Self.WORKFT" />
           <EntitySet Name="WORKFVs" EntityType="Self.WORKFV" />
-          <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" />
-          <EntitySet Name="DET_AGENTECC" EntityType="Self.DET_AGENTECC" />
           <EntitySet Name="IIMPUESTOes" EntityType="Self.IIMPUESTO" />
           <EntitySet Name="ASIGN_PROY_SOC" EntityType="Self.ASIGN_PROY_SOC" />
           <EntitySet Name="CARPETAVs" EntityType="Self.CARPETAV" />
@@ -5076,6 +5154,14 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
             <End Role="MONEDA" EntitySet="MONEDAs" />
             <End Role="SOCIEDAD" EntitySet="SOCIEDADs" />
           </AssociationSet>
+          <AssociationSet Name="FK_TCAMBIO_MONEDA" Association="Self.FK_TCAMBIO_MONEDA">
+            <End Role="MONEDA" EntitySet="MONEDAs" />
+            <End Role="TCAMBIO" EntitySet="TCAMBIOs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TCAMBIO_MONEDA1" Association="Self.FK_TCAMBIO_MONEDA1">
+            <End Role="MONEDA" EntitySet="MONEDAs" />
+            <End Role="TCAMBIO" EntitySet="TCAMBIOs" />
+          </AssociationSet>
           <AssociationSet Name="FK_PAGINAT_PAGINA" Association="Self.FK_PAGINAT_PAGINA">
             <End Role="PAGINA" EntitySet="PAGINAs" />
             <End Role="PAGINAT" EntitySet="PAGINATs" />
@@ -5250,6 +5336,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
                 <ScalarProperty Name="BUKRS" ColumnName="BUKRS" />
                 <ScalarProperty Name="CECO1" ColumnName="CECO" />
                 <ScalarProperty Name="TEXT" ColumnName="TEXT" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5273,6 +5360,16 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
                 <ScalarProperty Name="ID_PRESUPUESTO" ColumnName="ID_PRESUPUESTO" />
                 <ScalarProperty Name="TIPO_PRESUPUESTO" ColumnName="TIPO_PRESUPUESTO" />
                 <ScalarProperty Name="CUENTA" ColumnName="CUENTA" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONDICIONES_PAGO">
+            <EntityTypeMapping TypeName="WFARTHAModel.CONDICIONES_PAGO">
+              <MappingFragment StoreEntitySet="CONDICIONES_PAGO">
+                <ScalarProperty Name="COND_PAGO" ColumnName="COND_PAGO" />
+                <ScalarProperty Name="TEXT" ColumnName="TEXT" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5324,6 +5421,18 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
                 <ScalarProperty Name="LIM_SUP" ColumnName="LIM_SUP" />
                 <ScalarProperty Name="AGENTE_SIG" ColumnName="AGENTE_SIG" />
                 <ScalarProperty Name="OVERRIDE" ColumnName="OVERRIDE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DET_AGENTECC">
+            <EntityTypeMapping TypeName="WFARTHAModel.DET_AGENTECC">
+              <MappingFragment StoreEntitySet="DET_AGENTECC">
+                <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+                <ScalarProperty Name="USUARIOC_ID" ColumnName="USUARIOC_ID" />
+                <ScalarProperty Name="ID_RUTA_AGENTE" ColumnName="ID_RUTA_AGENTE" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="USUARIOA_ID" ColumnName="USUARIOA_ID" />
+                <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5793,6 +5902,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
                 <ScalarProperty Name="ADRNR" ColumnName="ADRNR" />
                 <ScalarProperty Name="STCD1" ColumnName="STCD1" />
                 <ScalarProperty Name="STCD2" ColumnName="STCD2" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5801,6 +5911,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
               <MappingFragment StoreEntitySet="PROYECTO">
                 <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5910,6 +6021,17 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TCAMBIOs">
+            <EntityTypeMapping TypeName="WFARTHAModel.TCAMBIO">
+              <MappingFragment StoreEntitySet="TCAMBIO">
+                <ScalarProperty Name="KURST" ColumnName="KURST" />
+                <ScalarProperty Name="FCURR" ColumnName="FCURR" />
+                <ScalarProperty Name="TCURR" ColumnName="TCURR" />
+                <ScalarProperty Name="GDATU" ColumnName="GDATU" />
+                <ScalarProperty Name="UKURS" ColumnName="UKURS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TEXTOes">
             <EntityTypeMapping TypeName="WFARTHAModel.TEXTO">
               <MappingFragment StoreEntitySet="TEXTO">
@@ -5949,6 +6071,7 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
                 <ScalarProperty Name="EDITDET" ColumnName="EDITDET" />
                 <ScalarProperty Name="DEFAULT" ColumnName="DEFAULT" />
                 <ScalarProperty Name="TIPO_DOCFILE" ColumnName="TIPO_DOCFILE" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6067,26 +6190,6 @@ warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key de
                 <ScalarProperty Name="FECHAI" ColumnName="FECHAI" />
                 <ScalarProperty Name="FECHAF" ColumnName="FECHAF" />
                 <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
-                <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CONDICIONES_PAGO">
-            <EntityTypeMapping TypeName="WFARTHAModel.CONDICIONES_PAGO">
-              <MappingFragment StoreEntitySet="CONDICIONES_PAGO">
-                <ScalarProperty Name="COND_PAGO" ColumnName="COND_PAGO" />
-                <ScalarProperty Name="TEXT" ColumnName="TEXT" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DET_AGENTECC">
-            <EntityTypeMapping TypeName="WFARTHAModel.DET_AGENTECC">
-              <MappingFragment StoreEntitySet="DET_AGENTECC">
-                <ScalarProperty Name="VERSION" ColumnName="VERSION" />
-                <ScalarProperty Name="USUARIOC_ID" ColumnName="USUARIOC_ID" />
-                <ScalarProperty Name="ID_RUTA_AGENTE" ColumnName="ID_RUTA_AGENTE" />
-                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
-                <ScalarProperty Name="USUARIOA_ID" ColumnName="USUARIOA_ID" />
                 <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
               </MappingFragment>
             </EntityTypeMapping>

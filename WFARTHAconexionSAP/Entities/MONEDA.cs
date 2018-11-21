@@ -18,6 +18,8 @@ namespace WFARTHAconexionSAP.Entities
         public MONEDA()
         {
             this.SOCIEDADs = new HashSet<SOCIEDAD>();
+            this.TCAMBIOs = new HashSet<TCAMBIO>();
+            this.TCAMBIOs1 = new HashSet<TCAMBIO>();
         }
     
         public string WAERS { get; set; }
@@ -29,5 +31,9 @@ namespace WFARTHAconexionSAP.Entities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SOCIEDAD> SOCIEDADs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TCAMBIO> TCAMBIOs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TCAMBIO> TCAMBIOs1 { get; set; }
     }
 }

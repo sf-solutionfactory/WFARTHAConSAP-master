@@ -36,6 +36,7 @@ namespace WFARTHAconexionSAP.Entities
         public string ADRNR { get; set; }
         public string STCD1 { get; set; }
         public string STCD2 { get; set; }
+        public Nullable<bool> ACTIVO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DET_PROVEEDOR> DET_PROVEEDOR { get; set; }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="WFARTHAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="PAGOS300IModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="ACCION">
     <Key>
       <PropertyRef Name="ID" />
@@ -62,6 +62,7 @@
     <Property Name="BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="CECO1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="TEXT" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="CLAVES_CONTA">
     <Key>
@@ -85,6 +86,15 @@
     <Property Name="ID_PRESUPUESTO" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
     <Property Name="TIPO_PRESUPUESTO" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="CUENTA" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONDICIONES_PAGO">
+    <Key>
+      <PropertyRef Name="COND_PAGO" />
+    </Key>
+    <Property Name="COND_PAGO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="CONMAIL">
     <Key>
@@ -607,6 +617,8 @@
     <Property Name="KTEXT" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="SOCIEDADs" Relationship="Self.FK_SOCIEDAD_MONEDA" FromRole="MONEDA" ToRole="SOCIEDAD" />
+    <NavigationProperty Name="TCAMBIOs" Relationship="Self.FK_TCAMBIO_MONEDA" FromRole="MONEDA" ToRole="TCAMBIO" />
+    <NavigationProperty Name="TCAMBIOs1" Relationship="Self.FK_TCAMBIO_MONEDA1" FromRole="MONEDA" ToRole="TCAMBIO" />
   </EntityType>
   <EntityType Name="PAGINA">
     <Key>
@@ -671,6 +683,7 @@
     <Property Name="ADRNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="STCD1" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
     <Property Name="STCD2" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" />
     <NavigationProperty Name="DET_PROVEEDOR" Relationship="Self.FK_DET_PROVEEDOR_PROYECTO" FromRole="PROVEEDOR" ToRole="DET_PROVEEDOR" />
     <NavigationProperty Name="RETENCION_PROV" Relationship="Self.FK_RETENCION_PROV_PROVEEDOR" FromRole="PROVEEDOR" ToRole="RETENCION_PROV" />
   </EntityType>
@@ -680,6 +693,7 @@
     </Key>
     <Property Name="ID_PSPNR" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="NOMBRE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="SOCIEDADs" Relationship="Self.DET_PROYECTO" FromRole="PROYECTO" ToRole="SOCIEDAD" />
   </EntityType>
   <EntityType Name="PUESTO">
@@ -819,6 +833,21 @@
     <NavigationProperty Name="WARNINGs" Relationship="Self.FK_WARNING_SPRAS" FromRole="SPRAS" ToRole="WARNING" />
     <NavigationProperty Name="WORKFTs" Relationship="Self.FK_WORKFT_SPRAS" FromRole="SPRAS" ToRole="WORKFT" />
   </EntityType>
+  <EntityType Name="TCAMBIO">
+    <Key>
+      <PropertyRef Name="KURST" />
+      <PropertyRef Name="FCURR" />
+      <PropertyRef Name="TCURR" />
+      <PropertyRef Name="GDATU" />
+    </Key>
+    <Property Name="KURST" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="FCURR" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TCURR" Type="String" MaxLength="3" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="GDATU" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="UKURS" Type="Decimal" Precision="9" Scale="5" />
+    <NavigationProperty Name="MONEDA" Relationship="Self.FK_TCAMBIO_MONEDA" FromRole="TCAMBIO" ToRole="MONEDA" />
+    <NavigationProperty Name="MONEDA1" Relationship="Self.FK_TCAMBIO_MONEDA1" FromRole="TCAMBIO" ToRole="MONEDA" />
+  </EntityType>
   <EntityType Name="TEXTO">
     <Key>
       <PropertyRef Name="PAGINA_ID" />
@@ -866,6 +895,7 @@
     <Property Name="EDITDET" Type="Boolean" />
     <Property Name="DEFAULT" Type="Boolean" />
     <Property Name="TIPO_DOCFILE" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="DET_TIPODOC" Relationship="Self.FK_DET_TIPODOC_TSOL" FromRole="TSOL" ToRole="DET_TIPODOC" />
     <NavigationProperty Name="DOCUMENTOes" Relationship="Self.FK_DOCUMENTO_TSOL" FromRole="TSOL" ToRole="DOCUMENTO" />
     <NavigationProperty Name="RANGO" Relationship="Self.FK_TSOL_RANGO" FromRole="TSOL" ToRole="RANGO" />
@@ -1024,13 +1054,6 @@
     <NavigationProperty Name="WORKFH" Relationship="Self.FK_WORKV_WORKFH" FromRole="WORKFV" ToRole="WORKFH" />
     <NavigationProperty Name="WORKFPs" Relationship="Self.FK_WORKFP_WORKFV" FromRole="WORKFV" ToRole="WORKFP" />
     <NavigationProperty Name="WORKFTs" Relationship="Self.FK_WORKFT_WORKFV" FromRole="WORKFV" ToRole="WORKFT" />
-  </EntityType>
-  <EntityType Name="CONDICIONES_PAGO">
-    <Key>
-      <PropertyRef Name="COND_PAGO" />
-    </Key>
-    <Property Name="COND_PAGO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="TEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="DET_AGENTECC">
     <Key>
@@ -1832,6 +1855,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TCAMBIO_MONEDA">
+    <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="1" />
+    <End Role="TCAMBIO" Type="Self.TCAMBIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MONEDA">
+        <PropertyRef Name="WAERS" />
+      </Principal>
+      <Dependent Role="TCAMBIO">
+        <PropertyRef Name="TCURR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TCAMBIO_MONEDA1">
+    <End Role="MONEDA" Type="Self.MONEDA" Multiplicity="1" />
+    <End Role="TCAMBIO" Type="Self.TCAMBIO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MONEDA">
+        <PropertyRef Name="WAERS" />
+      </Principal>
+      <Dependent Role="TCAMBIO">
+        <PropertyRef Name="FCURR" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PAGINAT_PAGINA">
     <End Role="PAGINA" Type="Self.PAGINA" Multiplicity="1" />
     <End Role="PAGINAT" Type="Self.PAGINAT" Multiplicity="*" />
@@ -2177,6 +2224,7 @@
     <EntitySet Name="CECOes" EntityType="Self.CECO" />
     <EntitySet Name="CLAVES_CONTA" EntityType="Self.CLAVES_CONTA" />
     <EntitySet Name="CONCEPTOes" EntityType="Self.CONCEPTO" />
+    <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" />
     <EntitySet Name="CONMAILs" EntityType="Self.CONMAIL" />
     <EntitySet Name="DELEGARs" EntityType="Self.DELEGAR" />
     <EntitySet Name="DET_AGENTEC" EntityType="Self.DET_AGENTEC" />
@@ -2224,6 +2272,7 @@
     <EntitySet Name="ROLTs" EntityType="Self.ROLT" />
     <EntitySet Name="SOCIEDADs" EntityType="Self.SOCIEDAD" />
     <EntitySet Name="SPRAS" EntityType="Self.SPRA" />
+    <EntitySet Name="TCAMBIOs" EntityType="Self.TCAMBIO" />
     <EntitySet Name="TEXTOes" EntityType="Self.TEXTO" />
     <EntitySet Name="TIPOPRESUPUESTOes" EntityType="Self.TIPOPRESUPUESTO" />
     <EntitySet Name="TIPOPRESUPUESTOTs" EntityType="Self.TIPOPRESUPUESTOT" />
@@ -2237,7 +2286,6 @@
     <EntitySet Name="WORKFPs" EntityType="Self.WORKFP" />
     <EntitySet Name="WORKFTs" EntityType="Self.WORKFT" />
     <EntitySet Name="WORKFVs" EntityType="Self.WORKFV" />
-    <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" />
     <EntitySet Name="DET_AGENTECC" EntityType="Self.DET_AGENTECC" />
     <EntitySet Name="IIMPUESTOes" EntityType="Self.IIMPUESTO" />
     <EntitySet Name="ASIGN_PROY_SOC" EntityType="Self.ASIGN_PROY_SOC" />
@@ -2445,6 +2493,14 @@
     <AssociationSet Name="FK_SOCIEDAD_MONEDA" Association="Self.FK_SOCIEDAD_MONEDA">
       <End Role="MONEDA" EntitySet="MONEDAs" />
       <End Role="SOCIEDAD" EntitySet="SOCIEDADs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TCAMBIO_MONEDA" Association="Self.FK_TCAMBIO_MONEDA">
+      <End Role="MONEDA" EntitySet="MONEDAs" />
+      <End Role="TCAMBIO" EntitySet="TCAMBIOs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TCAMBIO_MONEDA1" Association="Self.FK_TCAMBIO_MONEDA1">
+      <End Role="MONEDA" EntitySet="MONEDAs" />
+      <End Role="TCAMBIO" EntitySet="TCAMBIOs" />
     </AssociationSet>
     <AssociationSet Name="FK_PAGINAT_PAGINA" Association="Self.FK_PAGINAT_PAGINA">
       <End Role="PAGINA" EntitySet="PAGINAs" />
