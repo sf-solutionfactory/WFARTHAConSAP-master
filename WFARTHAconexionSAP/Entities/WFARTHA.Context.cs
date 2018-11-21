@@ -33,10 +33,12 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<CECO> CECOes { get; set; }
         public virtual DbSet<CLAVES_CONTA> CLAVES_CONTA { get; set; }
         public virtual DbSet<CONCEPTO> CONCEPTOes { get; set; }
+        public virtual DbSet<CONDICIONES_PAGO> CONDICIONES_PAGO { get; set; }
         public virtual DbSet<CONMAIL> CONMAILs { get; set; }
         public virtual DbSet<DELEGAR> DELEGARs { get; set; }
         public virtual DbSet<DET_AGENTEC> DET_AGENTEC { get; set; }
         public virtual DbSet<DET_AGENTECA> DET_AGENTECA { get; set; }
+        public virtual DbSet<DET_AGENTECC> DET_AGENTECC { get; set; }
         public virtual DbSet<DET_APROB> DET_APROB { get; set; }
         public virtual DbSet<DET_K> DET_K { get; set; }
         public virtual DbSet<DET_PEP> DET_PEP { get; set; }
@@ -80,6 +82,7 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<ROLT> ROLTs { get; set; }
         public virtual DbSet<SOCIEDAD> SOCIEDADs { get; set; }
         public virtual DbSet<SPRA> SPRAS { get; set; }
+        public virtual DbSet<TCAMBIO> TCAMBIOs { get; set; }
         public virtual DbSet<TEXTO> TEXTOes { get; set; }
         public virtual DbSet<TIPOPRESUPUESTO> TIPOPRESUPUESTOes { get; set; }
         public virtual DbSet<TIPOPRESUPUESTOT> TIPOPRESUPUESTOTs { get; set; }
@@ -93,8 +96,6 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<WORKFP> WORKFPs { get; set; }
         public virtual DbSet<WORKFT> WORKFTs { get; set; }
         public virtual DbSet<WORKFV> WORKFVs { get; set; }
-        public virtual DbSet<CONDICIONES_PAGO> CONDICIONES_PAGO { get; set; }
-        public virtual DbSet<DET_AGENTECC> DET_AGENTECC { get; set; }
         public virtual DbSet<IIMPUESTO> IIMPUESTOes { get; set; }
         public virtual DbSet<ASIGN_PROY_SOC> ASIGN_PROY_SOC { get; set; }
         public virtual DbSet<CARPETAV> CARPETAVs { get; set; }

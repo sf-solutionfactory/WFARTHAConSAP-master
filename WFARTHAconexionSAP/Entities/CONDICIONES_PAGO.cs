@@ -16,5 +16,6 @@ namespace WFARTHAconexionSAP.Entities
     {
         public string COND_PAGO { get; set; }
         public string TEXT { get; set; }
+        public bool ACTIVO { get; set; }
     }
 }

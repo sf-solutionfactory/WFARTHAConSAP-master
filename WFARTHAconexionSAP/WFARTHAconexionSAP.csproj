@@ -281,6 +281,9 @@
     <Compile Include="Entities\SPRA.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\TCAMBIO.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\TEXTO.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>

@@ -12,15 +12,15 @@ namespace WFARTHAconexionSAP.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class CONCEPTO
+    public partial class TCAMBIO
     {
-        public string ID_CONCEPTO { get; set; }
-        public string DESC_CONCEPTO { get; set; }
-        public string TIPO_CONCEPTO { get; set; }
-        public string TIPO_IMPUTACION { get; set; }
-        public string ID_PRESUPUESTO { get; set; }
-        public string TIPO_PRESUPUESTO { get; set; }
-        public string CUENTA { get; set; }
-        public bool ACTIVO { get; set; }
+        public string KURST { get; set; }
+        public string FCURR { get; set; }
+        public string TCURR { get; set; }
+        public System.DateTime GDATU { get; set; }
+        public Nullable<decimal> UKURS { get; set; }
+    
+        public virtual MONEDA MONEDA { get; set; }
+        public virtual MONEDA MONEDA1 { get; set; }
     }
 }

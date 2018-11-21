@@ -17,5 +17,6 @@ namespace WFARTHAconexionSAP.Entities
         public string BUKRS { get; set; }
         public string CECO1 { get; set; }
         public string TEXT { get; set; }
+        public bool ACTIVO { get; set; }
     }
 }

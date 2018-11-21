@@ -132,11 +132,13 @@ namespace WFARTHAconexionSAP.Services
                     {
                         if (recurrente != "X")
                         {
+                            //MGC 12-11-2018 Se guarda con normalidad
                             FLUJO detA = determinaAgenteI(d, actual.USUARIOA_ID, actual.USUARIOD_ID, 0, dah, step, actual);//MGC 19-10-2018 Cambio a detonador 
                             nuevo.USUARIOA_ID = detA.USUARIOA_ID;
                             nuevo.USUARIOD_ID = nuevo.USUARIOA_ID;
                             nuevo.STEP_AUTO = detA.STEP_AUTO;
 
+                            //MGC 12-11-2018 Se obtiene el back up
                             DateTime fecha = DateTime.Now.Date;
                             DELEGAR del = db.DELEGARs.Where(a => a.USUARIO_ID.Equals(nuevo.USUARIOD_ID) & a.FECHAI <= fecha & a.FECHAF >= fecha & a.ACTIVO == true).FirstOrDefault();
                             if (del != null)
