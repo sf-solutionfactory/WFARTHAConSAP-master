@@ -23,6 +23,7 @@ C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release\EntityFramework.SqlServer.dll
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release\EntityFramework.xml
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Release\WFARTHAconexionSAP.csprojAssemblyReference.cache
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Release\WFARTHAconexionSAP.csproj.CoreCompileInputs.cache
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Release\WFARTHAconexionSAP.exe.manifest
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Release\WFARTHAconexionSAP.application
