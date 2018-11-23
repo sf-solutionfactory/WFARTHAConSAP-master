@@ -66,14 +66,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WFARTHAconexionSAP.exe" size="481696">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WFARTHAconexionSAP.exe" size="489376">
       <assemblyIdentity name="WFARTHAconexionSAP" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>mK+ob9TbM2/Goz6hy1M3wvla2PKL9Worhb5hWvH5a4M=</dsig:DigestValue>
+        <dsig:DigestValue>2LXLrl1jtQmvvb2wrV+MJ5dOOiyYwzefmE/IbsMVAMk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -104,13 +104,13 @@
       <dsig:DigestValue>zJLnodCqp6DvRxrrV60ZGkSlUXd0KDmhPlhzwAaZcBA=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="WFARTHAconexionSAP.exe.config" size="7317">
+  <file name="WFARTHAconexionSAP.exe.config" size="7730">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>dDd8UX7jBNrHO8XqQpAPTO5aD1zw14Lp8BPkAK5y1TA=</dsig:DigestValue>
+      <dsig:DigestValue>Fpl7lxQ4siJb1FjE5Si9n+gV2ctwaa1BjlQEjHutIjk=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

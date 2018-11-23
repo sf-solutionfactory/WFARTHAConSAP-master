@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="PAGOS300IModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="WFARTHAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="ACCION">
     <Key>
       <PropertyRef Name="ID" />
@@ -17,16 +17,6 @@
     <Property Name="VALUE" Type="nvarchar" MaxLength="255" />
     <Property Name="ACTIVO" Type="bit" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'PAGOS300I.dbo.CADENAS M2$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="CADENAS M2$">
-          <Property Name="VERSION" Type="float" />
-          <Property Name="USUARIOC_ID" Type="nvarchar" MaxLength="255" />
-          <Property Name="ID_RUTA_AGENTE" Type="nchar" MaxLength="10" />
-          <Property Name="USUARIOA_ID" Type="nvarchar" MaxLength="255" />
-          <Property Name="A1" Type="nvarchar" MaxLength="255" />
-          <Property Name="A2" Type="nvarchar" MaxLength="255" />
-        </EntityType>-->
   <EntityType Name="CAMPOS">
     <Key>
       <PropertyRef Name="PAGINA_ID" />
@@ -143,26 +133,22 @@ warning 6013: The table/view 'PAGOS300I.dbo.CADENAS M2$' does not have a primary
       <PropertyRef Name="ID_RUTA_AGENTE" />
       <PropertyRef Name="VERSION" />
       <PropertyRef Name="STEP_FASE" />
-      <PropertyRef Name="STEP_ACCION" />
       <PropertyRef Name="AGENTE_SIG" />
     </Key>
     <Property Name="ID_RUTA_AGENTE" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="VERSION" Type="int" Nullable="false" />
     <Property Name="STEP_FASE" Type="int" Nullable="false" />
     <Property Name="STEP_ACCION" Type="int" Nullable="false" />
-    <Property Name="LIM_SUP" Type="decimal" Precision="13" Scale="2" Nullable="false" />
+    <Property Name="LIM_SUP" Type="decimal" Precision="18" Scale="5" Nullable="false" />
     <Property Name="AGENTE_SIG" Type="nvarchar" MaxLength="16" Nullable="false" />
     <Property Name="OVERRIDE" Type="bit" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS300I.dbo.DET_AGENTECC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DET_AGENTECC">
     <Key>
       <PropertyRef Name="VERSION" />
       <PropertyRef Name="USUARIOC_ID" />
       <PropertyRef Name="ID_RUTA_AGENTE" />
       <PropertyRef Name="USUARIOA_ID" />
-      <PropertyRef Name="FECHAC" />
     </Key>
     <Property Name="VERSION" Type="int" Nullable="false" />
     <Property Name="USUARIOC_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
@@ -211,13 +197,6 @@ warning 6002: The table/view 'PAGOS300I.dbo.DET_AGENTECC' does not have a primar
     <Property Name="ID_BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
     <Property Name="COND_PAGO" Type="nchar" MaxLength="4" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'PAGOS300I.dbo.DET_PROVEEDOR$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="DET_PROVEEDOR$">
-          <Property Name="ID_LIFNR" Type="nchar" MaxLength="10" />
-          <Property Name="ID_BURKS" Type="nchar" MaxLength="4" />
-          <Property Name="COND_PAGO" Type="nchar" MaxLength="4" />
-        </EntityType>-->
   <EntityType Name="DET_PROYECTO">
     <Key>
       <PropertyRef Name="ID_PSPNR" />
@@ -276,12 +255,12 @@ warning 6013: The table/view 'PAGOS300I.dbo.DET_PROVEEDOR$' does not have a prim
     <Property Name="DOCUMENTO_REF" Type="decimal" Precision="10" Scale="0" />
     <Property Name="CONCEPTO" Type="nvarchar" MaxLength="100" />
     <Property Name="NOTAS" Type="nvarchar" MaxLength="255" />
-    <Property Name="MONTO_DOC_MD" Type="decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_FIJO_MD" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_DOC_MD" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="MONTO_FIJO_MD" Type="decimal" Precision="18" Scale="5" />
     <Property Name="MONTO_BASE_GS_PCT_MD" Type="decimal" Precision="13" Scale="2" />
     <Property Name="MONTO_BASE_NS_PCT_MD" Type="decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_DOC_ML" Type="decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_FIJO_ML" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_DOC_ML" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="MONTO_FIJO_ML" Type="decimal" Precision="18" Scale="5" />
     <Property Name="MONTO_BASE_GS_PCT_ML" Type="decimal" Precision="13" Scale="2" />
     <Property Name="MONTO_BASE_NS_PCT_ML" Type="decimal" Precision="13" Scale="2" />
     <Property Name="MONTO_DOC_ML2" Type="decimal" Precision="13" Scale="2" />
@@ -382,10 +361,10 @@ warning 6013: The table/view 'PAGOS300I.dbo.DET_PROVEEDOR$' does not have a prim
     <Property Name="TIPOIMP" Type="nchar" MaxLength="1" />
     <Property Name="IMPUTACION" Type="nchar" MaxLength="30" />
     <Property Name="CCOSTO" Type="nchar" MaxLength="20" />
-    <Property Name="MONTO" Type="decimal" Precision="13" Scale="5" Nullable="false" />
+    <Property Name="MONTO" Type="decimal" Precision="18" Scale="5" Nullable="false" />
     <Property Name="MWSKZ" Type="nchar" MaxLength="2" Nullable="false" />
-    <Property Name="IVA" Type="decimal" Precision="13" Scale="5" Nullable="false" />
-    <Property Name="TOTAL" Type="decimal" Precision="13" Scale="5" Nullable="false" />
+    <Property Name="IVA" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="TOTAL" Type="decimal" Precision="18" Scale="5" Nullable="false" />
     <Property Name="TEXTO" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="DOCUMENTOPRE">
@@ -407,8 +386,8 @@ warning 6013: The table/view 'PAGOS300I.dbo.DET_PROVEEDOR$' does not have a prim
     <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
     <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" Nullable="false" />
     <Property Name="POS" Type="numeric" Precision="5" Scale="0" />
-    <Property Name="BIMPONIBLE" Type="decimal" Precision="13" Scale="2" />
-    <Property Name="IMPORTE_RET" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="BIMPONIBLE" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="IMPORTE_RET" Type="decimal" Precision="18" Scale="5" />
     <Property Name="VISIBLE" Type="bit" />
   </EntityType>
   <EntityType Name="DOCUMENTORP">
@@ -422,8 +401,8 @@ warning 6013: The table/view 'PAGOS300I.dbo.DET_PROVEEDOR$' does not have a prim
     <Property Name="POS" Type="numeric" Precision="5" Scale="0" Nullable="false" />
     <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
     <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" Nullable="false" />
-    <Property Name="BIMPONIBLE" Type="decimal" Precision="13" Scale="2" />
-    <Property Name="IMPORTE_RET" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="BIMPONIBLE" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="IMPORTE_RET" Type="decimal" Precision="18" Scale="5" />
   </EntityType>
   <EntityType Name="DOCUMENTOSAP">
     <Key>
@@ -560,7 +539,7 @@ warning 6013: The table/view 'PAGOS300I.dbo.DET_PROVEEDOR$' does not have a prim
     <Property Name="MAIL" Type="bit" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS300I.dbo.IIMPUESTO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOS.dbo.IIMPUESTO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="IIMPUESTO">
     <Key>
       <PropertyRef Name="MWSKZ" />
@@ -666,14 +645,6 @@ warning 6002: The table/view 'PAGOS300I.dbo.IIMPUESTO' does not have a primary k
     <Property Name="STCD2" Type="nchar" MaxLength="11" />
     <Property Name="ACTIVO" Type="bit" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'PAGOS300I.dbo.PROVEEDORES$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="PROVEEDORES$">
-          <Property Name="LIFNR" Type="nchar" MaxLength="10" />
-          <Property Name="LAND1" Type="nchar" MaxLength="3" />
-          <Property Name="NAME1" Type="nchar" MaxLength="35" />
-          <Property Name="RFC" Type="nchar" MaxLength="16" />
-        </EntityType>-->
   <EntityType Name="PROYECTO">
     <Key>
       <PropertyRef Name="ID_PSPNR" />
@@ -734,14 +705,6 @@ warning 6013: The table/view 'PAGOS300I.dbo.PROVEEDORES$' does not have a primar
     <Property Name="WITHT" Type="nchar" MaxLength="2" Nullable="false" />
     <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'PAGOS300I.dbo.RETENCION_PROV$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="RETENCION_PROV$">
-          <Property Name="LIFNR" Type="nchar" MaxLength="10" />
-          <Property Name="BURKS" Type="nchar" MaxLength="4" />
-          <Property Name="WITH" Type="nchar" MaxLength="2" />
-          <Property Name="WT_WITHCD" Type="nchar" MaxLength="2" />
-        </EntityType>-->
   <EntityType Name="RETENCIONT">
     <Key>
       <PropertyRef Name="SPRAS_ID" />
@@ -788,17 +751,10 @@ warning 6013: The table/view 'PAGOS300I.dbo.RETENCION_PROV$' does not have a pri
     <Property Name="STCD1" Type="nchar" MaxLength="16" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6013: The table/view 'PAGOS300I.dbo.SOCIEDAD$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="SOCIEDAD$">
+warning 6013: The table/view 'PAGOS.dbo.SOCIEDADRFC$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SOCIEDADRFC$">
           <Property Name="BURKS" Type="nchar" MaxLength="4" />
-          <Property Name="BUTXT" Type="nvarchar" MaxLength="100" />
-          <Property Name="RFC" Type="nchar" MaxLength="16" />
-        </EntityType>-->
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'PAGOS300I.dbo.SOCIEDADESP$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="SOCIEDADESP$">
-          <Property Name="BURKS" Type="nchar" MaxLength="4" />
-          <Property Name="F2" Type="nvarchar" MaxLength="255" />
+          <Property Name="STCD1" Type="nchar" MaxLength="16" />
         </EntityType>-->
   <EntityType Name="SPRAS">
     <Key>
@@ -907,15 +863,6 @@ warning 6013: The table/view 'PAGOS300I.dbo.SOCIEDADESP$' does not have a primar
     <Property Name="BUNIT" Type="nchar" MaxLength="4" Nullable="false" />
     <Property Name="FIRMA" Type="nvarchar" MaxLength="50" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'PAGOS300I.dbo.USUARIOS$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="USUARIOS$">
-          <Property Name="ID_USUARIO" Type="nvarchar" MaxLength="16" />
-          <Property Name="NOMBRE" Type="nvarchar" MaxLength="50" />
-          <Property Name="APELLIDO_P" Type="nvarchar" MaxLength="50" />
-          <Property Name="APELLIDO_M" Type="nvarchar" MaxLength="50" />
-          <Property Name="EMAIL" Type="nvarchar" MaxLength="256" />
-        </EntityType>-->
   <EntityType Name="WARNING">
     <Key>
       <PropertyRef Name="PAGINA_ID" />
@@ -991,7 +938,7 @@ warning 6013: The table/view 'PAGOS300I.dbo.USUARIOS$' does not have a primary k
     <Property Name="FECHAC" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS300I.dbo.ASIGN_PROY_SOC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOS.dbo.ASIGN_PROY_SOC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="ASIGN_PROY_SOC">
     <Key>
       <PropertyRef Name="ID_PSPNR" />
@@ -1001,7 +948,7 @@ warning 6002: The table/view 'PAGOS300I.dbo.ASIGN_PROY_SOC' does not have a prim
     <Property Name="ID_BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS300I.dbo.CARPETAV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOS.dbo.CARPETAV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="CARPETAV">
     <Key>
       <PropertyRef Name="USUARIO_ID" />
@@ -1014,7 +961,7 @@ warning 6002: The table/view 'PAGOS300I.dbo.CARPETAV' does not have a primary ke
     <Property Name="ICON" Type="nvarchar" MaxLength="20" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS300I.dbo.DET_APROBV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOS.dbo.DET_APROBV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DET_APROBV">
     <Key>
       <PropertyRef Name="VERSION" />
@@ -1032,7 +979,7 @@ warning 6002: The table/view 'PAGOS300I.dbo.DET_APROBV' does not have a primary 
     <Property Name="STEP_FASE" Type="int" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS300I.dbo.DET_PROVEEDORV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOS.dbo.DET_PROVEEDORV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DET_PROVEEDORV">
     <Key>
       <PropertyRef Name="ID_LIFNR" />
@@ -1043,7 +990,7 @@ warning 6002: The table/view 'PAGOS300I.dbo.DET_PROVEEDORV' does not have a prim
     <Property Name="COND_PAGO" Type="nchar" MaxLength="4" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS300I.dbo.DET_PROYECTO_DEC_V' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOS.dbo.DET_PROYECTO_DEC_V' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DET_PROYECTO_DEC_V">
     <Key>
       <PropertyRef Name="ID_PSPNR" />
@@ -1057,7 +1004,7 @@ warning 6002: The table/view 'PAGOS300I.dbo.DET_PROYECTO_DEC_V' does not have a 
     <Property Name="BUTXT" Type="nvarchar" MaxLength="107" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS300I.dbo.DET_PROYECTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOS.dbo.DET_PROYECTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DET_PROYECTOV">
     <Key>
       <PropertyRef Name="ID_PSPNR" />
@@ -1067,7 +1014,7 @@ warning 6002: The table/view 'PAGOS300I.dbo.DET_PROYECTOV' does not have a prima
     <Property Name="ID_BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS300I.dbo.DET_TIPOPRESUPUESTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOS.dbo.DET_TIPOPRESUPUESTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DET_TIPOPRESUPUESTOV">
     <Key>
       <PropertyRef Name="BUKRS" />
@@ -1084,7 +1031,7 @@ warning 6002: The table/view 'PAGOS300I.dbo.DET_TIPOPRESUPUESTOV' does not have 
     <Property Name="DESC" Type="nvarchar" MaxLength="30" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS300I.dbo.DOCUMENTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOS.dbo.DOCUMENTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="DOCUMENTOV">
     <Key>
       <PropertyRef Name="POS" />
@@ -1145,7 +1092,7 @@ warning 6002: The table/view 'PAGOS300I.dbo.DOCUMENTOV' does not have a primary 
     <Property Name="EXPR2" Type="nchar" MaxLength="1" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS300I.dbo.PAGINAV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOS.dbo.PAGINAV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="PAGINAV">
     <Key>
       <PropertyRef Name="ID" />
@@ -1166,7 +1113,7 @@ warning 6002: The table/view 'PAGOS300I.dbo.PAGINAV' does not have a primary key
     <Property Name="USUARIO_SPRAS" Type="nchar" MaxLength="2" Nullable="false" />
   </EntityType>
   <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS300I.dbo.WARNINGV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOS.dbo.WARNINGV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="WARNINGV">
     <Key>
       <PropertyRef Name="PAGINA_ID" />
@@ -2164,7 +2111,7 @@ warning 6002: The table/view 'PAGOS300I.dbo.WARNINGV' does not have a primary ke
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="PAGOS300IModelStoreContainer">
+  <EntityContainer Name="WFARTHAModelStoreContainer">
     <EntitySet Name="ACCION" EntityType="Self.ACCION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="APPSETTING" EntityType="Self.APPSETTING" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CAMPOS" EntityType="Self.CAMPOS" Schema="dbo" store:Type="Tables" />
@@ -2178,6 +2125,7 @@ warning 6002: The table/view 'PAGOS300I.dbo.WARNINGV' does not have a primary ke
     <EntitySet Name="DELEGAR" EntityType="Self.DELEGAR" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DET_AGENTEC" EntityType="Self.DET_AGENTEC" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DET_AGENTECA" EntityType="Self.DET_AGENTECA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DET_AGENTECC" EntityType="Self.DET_AGENTECC" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DET_APROB" EntityType="Self.DET_APROB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DET_K" EntityType="Self.DET_K" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DET_PEP" EntityType="Self.DET_PEP" Schema="dbo" store:Type="Tables" />
@@ -2236,16 +2184,6 @@ warning 6002: The table/view 'PAGOS300I.dbo.WARNINGV' does not have a primary ke
     <EntitySet Name="WORKFP" EntityType="Self.WORKFP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WORKFT" EntityType="Self.WORKFT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WORKFV" EntityType="Self.WORKFV" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="DET_AGENTECC" EntityType="Self.DET_AGENTECC" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [DET_AGENTECC].[VERSION] AS [VERSION], 
-    [DET_AGENTECC].[USUARIOC_ID] AS [USUARIOC_ID], 
-    [DET_AGENTECC].[ID_RUTA_AGENTE] AS [ID_RUTA_AGENTE], 
-    [DET_AGENTECC].[DESCRIPCION] AS [DESCRIPCION], 
-    [DET_AGENTECC].[USUARIOA_ID] AS [USUARIOA_ID], 
-    [DET_AGENTECC].[FECHAC] AS [FECHAC]
-    FROM [dbo].[DET_AGENTECC] AS [DET_AGENTECC]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="IIMPUESTO" EntityType="Self.IIMPUESTO" store:Type="Tables" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [IIMPUESTO].[MWSKZ] AS [MWSKZ], 

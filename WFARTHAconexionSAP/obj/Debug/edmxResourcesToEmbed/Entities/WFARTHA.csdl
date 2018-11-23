@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="PAGOS300IModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="WFARTHAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="ACCION">
     <Key>
       <PropertyRef Name="ID" />
@@ -145,16 +145,29 @@
       <PropertyRef Name="ID_RUTA_AGENTE" />
       <PropertyRef Name="VERSION" />
       <PropertyRef Name="STEP_FASE" />
-      <PropertyRef Name="STEP_ACCION" />
       <PropertyRef Name="AGENTE_SIG" />
     </Key>
     <Property Name="ID_RUTA_AGENTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="VERSION" Type="Int32" Nullable="false" />
     <Property Name="STEP_FASE" Type="Int32" Nullable="false" />
     <Property Name="STEP_ACCION" Type="Int32" Nullable="false" />
-    <Property Name="LIM_SUP" Type="Decimal" Precision="13" Scale="2" Nullable="false" />
+    <Property Name="LIM_SUP" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
     <Property Name="AGENTE_SIG" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="OVERRIDE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="DET_AGENTECC">
+    <Key>
+      <PropertyRef Name="VERSION" />
+      <PropertyRef Name="USUARIOC_ID" />
+      <PropertyRef Name="ID_RUTA_AGENTE" />
+      <PropertyRef Name="USUARIOA_ID" />
+    </Key>
+    <Property Name="VERSION" Type="Int32" Nullable="false" />
+    <Property Name="USUARIOC_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_RUTA_AGENTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="USUARIOA_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FECHAC" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="DET_APROB">
     <Key>
@@ -255,12 +268,12 @@
     <Property Name="DOCUMENTO_REF" Type="Decimal" Precision="10" Scale="0" />
     <Property Name="CONCEPTO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="NOTAS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="MONTO_DOC_MD" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_FIJO_MD" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_DOC_MD" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="MONTO_FIJO_MD" Type="Decimal" Precision="18" Scale="5" />
     <Property Name="MONTO_BASE_GS_PCT_MD" Type="Decimal" Precision="13" Scale="2" />
     <Property Name="MONTO_BASE_NS_PCT_MD" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_DOC_ML" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_FIJO_ML" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_DOC_ML" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="MONTO_FIJO_ML" Type="Decimal" Precision="18" Scale="5" />
     <Property Name="MONTO_BASE_GS_PCT_ML" Type="Decimal" Precision="13" Scale="2" />
     <Property Name="MONTO_BASE_NS_PCT_ML" Type="Decimal" Precision="13" Scale="2" />
     <Property Name="MONTO_DOC_ML2" Type="Decimal" Precision="13" Scale="2" />
@@ -375,10 +388,10 @@
     <Property Name="TIPOIMP" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="IMPUTACION" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
     <Property Name="CCOSTO" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-    <Property Name="MONTO" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
+    <Property Name="MONTO" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
     <Property Name="MWSKZ" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="IVA" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
-    <Property Name="TOTAL" Type="Decimal" Precision="13" Scale="5" Nullable="false" />
+    <Property Name="IVA" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="TOTAL" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
     <Property Name="TEXTO" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOP_DOCUMENTO" FromRole="DOCUMENTOP" ToRole="DOCUMENTO" />
     <NavigationProperty Name="DOCUMENTOAs" Relationship="Self.FK_DOCUMENTOA_DOCUMENTOP" FromRole="DOCUMENTOP" ToRole="DOCUMENTOA" />
@@ -405,8 +418,8 @@
     <Property Name="WITHT" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="WT_WITHCD" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="POS" Type="Decimal" Precision="5" Scale="0" />
-    <Property Name="BIMPONIBLE" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="IMPORTE_RET" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="BIMPONIBLE" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="IMPORTE_RET" Type="Decimal" Precision="18" Scale="5" />
     <Property Name="VISIBLE" Type="Boolean" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOR_DOCUMENTO" FromRole="DOCUMENTOR" ToRole="DOCUMENTO" />
   </EntityType>
@@ -421,8 +434,8 @@
     <Property Name="POS" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
     <Property Name="WITHT" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="WT_WITHCD" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="BIMPONIBLE" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="IMPORTE_RET" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="BIMPONIBLE" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="IMPORTE_RET" Type="Decimal" Precision="18" Scale="5" />
     <NavigationProperty Name="DOCUMENTOP" Relationship="Self.FK_DOCUMENTORP_DOCUMENTOP" FromRole="DOCUMENTORP" ToRole="DOCUMENTOP" />
     <NavigationProperty Name="RETENCION" Relationship="Self.FK_DOCUMENTORP_RETENCION" FromRole="DOCUMENTORP" ToRole="RETENCION" />
   </EntityType>
@@ -1054,21 +1067,6 @@
     <NavigationProperty Name="WORKFH" Relationship="Self.FK_WORKV_WORKFH" FromRole="WORKFV" ToRole="WORKFH" />
     <NavigationProperty Name="WORKFPs" Relationship="Self.FK_WORKFP_WORKFV" FromRole="WORKFV" ToRole="WORKFP" />
     <NavigationProperty Name="WORKFTs" Relationship="Self.FK_WORKFT_WORKFV" FromRole="WORKFV" ToRole="WORKFT" />
-  </EntityType>
-  <EntityType Name="DET_AGENTECC">
-    <Key>
-      <PropertyRef Name="VERSION" />
-      <PropertyRef Name="USUARIOC_ID" />
-      <PropertyRef Name="ID_RUTA_AGENTE" />
-      <PropertyRef Name="USUARIOA_ID" />
-      <PropertyRef Name="FECHAC" />
-    </Key>
-    <Property Name="VERSION" Type="Int32" Nullable="false" />
-    <Property Name="USUARIOC_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="ID_RUTA_AGENTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="DESCRIPCION" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-    <Property Name="USUARIOA_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="FECHAC" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <EntityType Name="IIMPUESTO">
     <Key>
@@ -2229,6 +2227,7 @@
     <EntitySet Name="DELEGARs" EntityType="Self.DELEGAR" />
     <EntitySet Name="DET_AGENTEC" EntityType="Self.DET_AGENTEC" />
     <EntitySet Name="DET_AGENTECA" EntityType="Self.DET_AGENTECA" />
+    <EntitySet Name="DET_AGENTECC" EntityType="Self.DET_AGENTECC" />
     <EntitySet Name="DET_APROB" EntityType="Self.DET_APROB" />
     <EntitySet Name="DET_K" EntityType="Self.DET_K" />
     <EntitySet Name="DET_PEP" EntityType="Self.DET_PEP" />
@@ -2286,7 +2285,6 @@
     <EntitySet Name="WORKFPs" EntityType="Self.WORKFP" />
     <EntitySet Name="WORKFTs" EntityType="Self.WORKFT" />
     <EntitySet Name="WORKFVs" EntityType="Self.WORKFV" />
-    <EntitySet Name="DET_AGENTECC" EntityType="Self.DET_AGENTECC" />
     <EntitySet Name="IIMPUESTOes" EntityType="Self.IIMPUESTO" />
     <EntitySet Name="ASIGN_PROY_SOC" EntityType="Self.ASIGN_PROY_SOC" />
     <EntitySet Name="CARPETAVs" EntityType="Self.CARPETAV" />
