@@ -356,11 +356,13 @@ namespace TATconexionSAP.Services
                                 dA.ESTATUS = "N";
                                 dA.ESTATUS_SAP = "E";
                                 dA.ESTATUS_PRE = "E";
+                                dA.ESTATUS_WF = null;//MGC 26-11-2018 Marcar como error SAP
                                 db.Entry(dA).State = EntityState.Modified;
+                                db.SaveChanges();//MGC 26-11-2018 Marcar como error SAP
                                 //dp.MESSAGE = "Error Preliminar";
 
                                 //MGC 30-10-2018 Guardar los mensajes para log
-                                for(int j = 0; j < lstd[i].Pose.Count; j++)
+                                for (int j = 0; j < lstd[i].Pose.Count; j++)
                                 {
                                     try
                                     {
