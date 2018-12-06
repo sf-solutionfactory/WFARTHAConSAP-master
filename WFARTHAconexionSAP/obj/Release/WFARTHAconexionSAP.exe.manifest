@@ -73,7 +73,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nZW4eKlQ2AfwrwcxKlMz/FaY4naz9bRZXtQTbpi+4ho=</dsig:DigestValue>
+        <dsig:DigestValue>S3xQde+EFL2/L8sjDqbiVo4MtbIKDj3tgaLzEe6VpQw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -104,13 +104,13 @@
       <dsig:DigestValue>zJLnodCqp6DvRxrrV60ZGkSlUXd0KDmhPlhzwAaZcBA=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="WFARTHAconexionSAP.exe.config" size="7734">
+  <file name="WFARTHAconexionSAP.exe.config" size="7735">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>dpt9ZhjN7DLsdXjus4kdns5wnKxDITyMokkmrg3iZi4=</dsig:DigestValue>
+      <dsig:DigestValue>mS9PDNP4Wab48NRYOYEFGn7JNN1cNyIhx8r68Cg3UgA=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
