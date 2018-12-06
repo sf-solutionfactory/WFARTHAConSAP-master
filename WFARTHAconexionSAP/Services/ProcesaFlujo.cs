@@ -117,7 +117,8 @@ namespace WFARTHAconexionSAP.Services
                     nuevo.WF_POS = next.POS;
                     nuevo.NUM_DOC = actual.NUM_DOC;
                     nuevo.POS = actual.POS + 1;
-                    nuevo.LOOP = 1;
+                    nuevo.LOOP = actual.LOOP;//MGC 03-12-2018 Loop para firmas y obtener el más actual
+                    //nuevo.LOOP = 1;//MGC 03-12-2018 Loop para firmas y obtener el más actual
 
                     //Agregar autorización MGC
                     nuevo.ID_RUTA_A = actual.ID_RUTA_A;
@@ -182,8 +183,9 @@ namespace WFARTHAconexionSAP.Services
                     nuevo.ESTATUS = "P";
                     nuevo.FECHAC = DateTime.Now;
                     nuevo.FECHAM = DateTime.Now;
-
                     db.FLUJOes.Add(nuevo);
+                    db.SaveChanges();//MGC 03-12-2018 Loop para firmas y obtener el más actual
+
                     if (paso_a.EMAIL != null)
                     {
                         if (paso_a.EMAIL.Equals("X"))
@@ -193,6 +195,7 @@ namespace WFARTHAconexionSAP.Services
                     d.ESTATUS_WF = "P";
                     d.ESTATUS = "F";
                     db.Entry(d).State = EntityState.Modified;
+                    db.SaveChanges();//MGC 03-12-2018 Loop para firmas y obtener el más actual
 
                     DOCUMENTO dmod = db.DOCUMENTOes.Find(num_doc);
                     dmod.ESTATUS_WF = "P";
@@ -200,7 +203,12 @@ namespace WFARTHAconexionSAP.Services
                     dmod.ESTATUS_SAP = null;
                     dmod.ESTATUS_PRE = "G";
                     db.Entry(dmod).State = EntityState.Modified;
+                    db.SaveChanges();
 
+                    //MGC 03-12-2018 Loop para firmas y obtener el más actual
+                    //Actualizar el actual
+                    actual.FECHAM = DateTime.Now;
+                    db.Entry(actual).State = EntityState.Modified;
                     db.SaveChanges();
 
 
@@ -817,7 +825,7 @@ namespace WFARTHAconexionSAP.Services
 
             correcto = "3";
             actual.ESTATUS = f.ESTATUS;
-            actual.FECHAM = f.FECHAM;
+            actual.FECHAM = DateTime.Now;//MGC 03-12-2018 Loop para firmas y obtener el más actual
             actual.COMENTARIO = f.COMENTARIO;
 
             FLUJO nuevo = new FLUJO();
@@ -829,7 +837,8 @@ namespace WFARTHAconexionSAP.Services
             nuevo.POS = actual.POS + 1;
             nuevo.DETPOS = 1;
             nuevo.DETVER = actual.DETVER;
-            nuevo.LOOP = 1;//-----------------------------------
+            //nuevo.LOOP = 1;//-----------------------------------//MGC 03-12-2018 Loop para firmas y obtener el más actual
+            nuevo.LOOP = actual.LOOP;//-----------------------------------//MGC 03-12-2018 Loop para firmas y obtener el más actual
             DOCUMENTO d = db.DOCUMENTOes.Find(actual.NUM_DOC);
 
             //MGC 
@@ -957,7 +966,7 @@ namespace WFARTHAconexionSAP.Services
                     if (actual.STEP_AUTO == 99)
                     {
                         actual.ESTATUS = "A";
-
+                        actual.FECHAM = DateTime.Now;//MGC 03-12-2018 Loop para firmas y obtener el más actual
                         db.Entry(actual).State = EntityState.Modified;
                         db.SaveChanges();
                     }
