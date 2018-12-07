@@ -426,6 +426,11 @@ namespace TATconexionSAP.Services
                                     db.Entry(dA).State = EntityState.Modified;
                                     db.SaveChanges();
 
+                                }else if(lstd[i].Posp.accion == "BORRAR")
+                                {
+                                    dA.ESTATUS_C = "B";
+                                    db.Entry(dA).State = EntityState.Modified;
+                                    db.SaveChanges();
                                 }
                             }
                             else if (lstd[i].Posp.accion == "CONTABILIZAR")
@@ -540,6 +545,13 @@ namespace TATconexionSAP.Services
                                         //Procesa el flujo de cancelación
                                         correcto = pf.procesaC(dp.NUM_DOC, lstd[i]);//MGC 29-10-2018 Configuración de estatus
                                     }
+                                    //MGC 06-12-2018 Eliminar la solicitud ------------>
+                                    else if (lstd[i].Posp.accion == "BORRAR")
+                                    {
+                                        //Procesa el flujo de cancelación
+                                        correcto = pf.procesaCB(dp.NUM_DOC, lstd[i]);//MGC 29-10-2018 Configuración de estatus
+                                    }
+                                    //MGC 06-12-2018 Eliminar la solicitud ------------<
                                 }
                                 else if (lstd[i].Posp.accion == "CONTABILIZAR")
                                 //else if (lstd[i].Posp.accion == "A")

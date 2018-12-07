@@ -947,6 +947,51 @@ namespace WFARTHAconexionSAP.Services
             return correcto;
         }
 
+        //MGC 06-12-2018 Eliminar la solicitud ------------>
+        public string procesaCB(decimal num_doc, doc2 elemento)
+        {
+            WFARTHAEntities db = new WFARTHAEntities();
+
+            DOCUMENTO _d = new DOCUMENTO();
+
+            _d = db.DOCUMENTOes.Where(d => d.NUM_DOC == num_doc).FirstOrDefault();
+
+            if (_d != null)
+            {
+                try
+                {
+                    _d.ESTATUS_C = "C"; //Estatus de eliminado
+                    db.Entry(_d).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    //Estatus de inactivo a los UUID de la solicitud
+                    List<DOCUMENTOUUID> luu = new List<DOCUMENTOUUID>();
+
+                    luu = db.DOCUMENTOUUIDs.Where(du => du.NUM_DOC == num_doc).ToList();
+                    try
+                    {
+                        foreach (DOCUMENTOUUID du in luu)
+                        {
+                            du.ESTATUS = false;
+                        }
+                        db.SaveChanges();
+
+                    }
+                    catch(Exception e)
+                    {
+
+                    }
+                }catch(Exception e)
+                {
+
+                }
+
+            }
+
+            return "";
+        }
+
+        //MGC 06-12-2018 Eliminar la solicitud ------------<
         public string procesaA(decimal num_doc, doc2 elemento)//MGC 29-10-2018 Configuración de estatus
         {
             string correcto = "";
