@@ -89,6 +89,9 @@
     <Compile Include="Entities\ASIGN_PROY_SOC.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\BANCO.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\CAMPOS.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
@@ -129,6 +132,9 @@
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DET_APROB.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\DET_APROB0.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DET_APROBV.cs">
@@ -197,10 +203,25 @@
     <Compile Include="Entities\DOCUMENTOV.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\EKKO_DUMM.cs">
+    <Compile Include="Entities\EKBE.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\EKPO_DUMM.cs">
+    <Compile Include="Entities\EKBE_DUMMY.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\EKKO.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\EKKO_DUMMY.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\EKPO.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\EKPO_DUMMY.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ESTATUS_PAGO.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\FLUJO.cs">
@@ -248,6 +269,9 @@
     <Compile Include="Entities\PROVEEDOR.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\PROVEEDOR_BANCO.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\PROYECTO.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
@@ -255,6 +279,9 @@
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\PUESTOT.cs">
+      <DependentUpon>WFARTHA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RAMA_PEP.cs">
       <DependentUpon>WFARTHA.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\RANGO.cs">

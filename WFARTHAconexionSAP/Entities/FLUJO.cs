@@ -31,6 +31,8 @@ namespace WFARTHAconexionSAP.Entities
         public string ID_RUTA_A { get; set; }
         public Nullable<int> RUTA_VERSION { get; set; }
         public Nullable<int> STEP_AUTO { get; set; }
+        public int VERSIONC1 { get; set; }
+        public int VERSIONC2 { get; set; }
     
         public virtual DOCUMENTO DOCUMENTO { get; set; }
         public virtual USUARIO USUARIO { get; set; }

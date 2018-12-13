@@ -124,6 +124,11 @@ namespace WFARTHAconexionSAP.Services
                     nuevo.ID_RUTA_A = actual.ID_RUTA_A;
                     nuevo.RUTA_VERSION = actual.RUTA_VERSION;
 
+                    //MGC 11-12-2018 Agregar Contabilizador 0----------------->
+                    nuevo.VERSIONC1 = actual.VERSIONC1;
+                    nuevo.VERSIONC2 = actual.VERSIONC2;
+                    //MGC 11-12-2018 Agregar Contabilizador 0-----------------<
+
                     if (next.ACCION.TIPO == "E")
                     {
                         nuevo.USUARIOA_ID = null;
@@ -852,6 +857,12 @@ namespace WFARTHAconexionSAP.Services
             nuevo.RUTA_VERSION = actual.RUTA_VERSION;
             nuevo.STEP_AUTO = 0;
 
+
+            //MGC 11-12-2018 Agregar Contabilizador 0----------------->
+            nuevo.VERSIONC1 = actual.VERSIONC1;
+            nuevo.VERSIONC2 = actual.VERSIONC2;
+            //MGC 11-12-2018 Agregar Contabilizador 0-----------------<
+
             DateTime fecha = DateTime.Now.Date;
             DELEGAR del = db.DELEGARs.Where(a => a.USUARIO_ID.Equals(nuevo.USUARIOD_ID) & a.FECHAI <= fecha & a.FECHAF >= fecha & a.ACTIVO == true).FirstOrDefault();
             if (del != null)
@@ -868,11 +879,15 @@ namespace WFARTHAconexionSAP.Services
             db.Entry(actual).State = EntityState.Modified;
             db.SaveChanges();
             //d.ESTATUS_WF = "R";//MGC 02-11-2018 Lógica para respuesta de Borrar-Crear
-            if (next.ACCION.TIPO == "S")
-            {
-                d.ESTATUS = "R";
-                d.ESTATUS_WF = "S";
-            }
+
+            //MGC 11-12-2018 Agregar Contabilizador 0----------------->
+            //if (next.ACCION.TIPO == "S")
+            //{
+            //    d.ESTATUS = "R";
+            //    d.ESTATUS_WF = "S";
+            //}
+
+            //MGC 11-12-2018 Agregar Contabilizador 0-----------------<
 
             //MGC 02-11-2018 Cambiar estatus para continuar con la aprobación
             d.ESTATUS = "F";
@@ -1805,18 +1820,31 @@ namespace WFARTHAconexionSAP.Services
                                 {
                                     bool res = false;
 
-                                    res = detAgenteSiguiente(d.NUM_DOC, actual);
-
-                                    if (res)
-                                    {
-                                        next = paso_a;
-                                        stepnew = Convert.ToInt32(actual.STEP_AUTO) + 1;
-                                    }
-                                    else
+                                    //MGC 11-12-2018 Agregar Contabilizador 0----------------->
+                                    //Verificar si hay un primer contabilizador contabilizador 
+                                    WORKFP nextconp = new WORKFP();
+                                    nextconp = db.WORKFPs.Where(a => a.ID.Equals(actual.WORKF_ID) & a.VERSION.Equals(actual.WF_VERSION) & a.POS == next_step_a).FirstOrDefault();
+                                    if (nextconp != null && nextconp.ACCION.TIPO == "S")
                                     {
                                         next = db.WORKFPs.Where(a => a.ID.Equals(actual.WORKF_ID) & a.VERSION.Equals(actual.WF_VERSION) & a.POS == next_step_a).FirstOrDefault();
                                         stepnew = Convert.ToInt32(actual.STEP_AUTO);
                                     }
+                                    else
+                                    {
+                                        res = detAgenteSiguiente(d.NUM_DOC, actual);
+
+                                        if (res)
+                                        {
+                                            next = paso_a;
+                                            stepnew = Convert.ToInt32(actual.STEP_AUTO) + 1;
+                                        }
+                                        else
+                                        {
+                                            next = db.WORKFPs.Where(a => a.ID.Equals(actual.WORKF_ID) & a.VERSION.Equals(actual.WF_VERSION) & a.POS == next_step_a).FirstOrDefault();
+                                            stepnew = Convert.ToInt32(actual.STEP_AUTO);
+                                        }
+                                    }
+                                    //MGC 11-12-2018 Agregar Contabilizador 0-----------------<
                                 }
 
                                 FLUJO nuevo = new FLUJO();
@@ -1825,7 +1853,8 @@ namespace WFARTHAconexionSAP.Services
                                 nuevo.WF_POS = next.POS;
                                 nuevo.NUM_DOC = actual.NUM_DOC;
                                 nuevo.POS = actual.POS + 1;
-                                nuevo.LOOP = 1;//-----------------------------------cc
+                                //nuevo.LOOP = 1;//-----------------------------------cc//MGC 11-12-2018 Agregar Contabilizador 0----------------->
+                                nuevo.LOOP = actual.LOOP;//-----------------------------------cc//MGC 11-12-2018 Agregar Contabilizador 0----------------->
                                                //                                   //int loop = db.FLUJOes.Where(a => a.WORKF_ID.Equals(next.ID) & a.WF_VERSION.Equals(next.VERSION) & a.WF_POS == next.POS & a.NUM_DOC.Equals(actual.NUM_DOC) & a.ESTATUS.Equals("A")).Count();
                                                //                                   //if (loop >= next.LOOPS)
                                                //                                   //{
@@ -1857,6 +1886,13 @@ namespace WFARTHAconexionSAP.Services
                                     detA = determinaAgenteContabilidad(d, actual.USUARIOA_ID, actual.USUARIOD_ID, actual.DETPOS, next.LOOPS, sop, Convert.ToInt32(actual.STEP_AUTO));
                                     contabilizar = true;//MGC 08-10-2018 Modificación para mensaje por contabilizar
                                 }
+                                //MGC 11-12-2018 Agregar Contabilizador 0----------------->
+                                else if (next.ACCION.TIPO == "S")
+                                {
+                                    detA = determinaAgenteContabilidad0(d, actual.USUARIOA_ID, actual.USUARIOD_ID, actual.DETPOS, next.LOOPS, sop, Convert.ToInt32(actual.STEP_AUTO));
+                                                                    
+                                }
+                                //MGC 11-12-2018 Agregar Contabilizador 0-----------------<
                                 else
                                 {
 
@@ -1889,6 +1925,12 @@ namespace WFARTHAconexionSAP.Services
                                 nuevo.DETPOS = detA.DETPOS;
                                 nuevo.DETVER = actual.DETVER;
                                 nuevo.STEP_AUTO = detA.STEP_AUTO;
+
+                                //MGC 11-12-2018 Agregar Contabilizador 0----------------->
+                                nuevo.VERSIONC1 = actual.VERSIONC1;
+                                nuevo.VERSIONC2 = actual.VERSIONC2;
+                                //MGC 11-12-2018 Agregar Contabilizador 0-----------------<
+
                                 if (paso_a.ACCION.TIPO == "N")
                                 {
                                     nuevo.DETPOS = nuevo.DETPOS + 1;
@@ -2524,7 +2566,157 @@ namespace WFARTHAconexionSAP.Services
             ////MGC 12-11-2018 El usuario aprobador, no tiene como tal una versión, se toma el actual-------------------------------------------------------------------->
 
             //dap = db.DET_APROB.Where(ap => ap.VERSION == f_actual.RUTA_VERSION && ap.ID_SOCIEDAD == d.SOCIEDAD_ID).OrderBy(apo => apo.VERSION).FirstOrDefault();
-            dap = db.DET_APROB.Where(ap => ap.ID_SOCIEDAD == d.SOCIEDAD_ID).OrderBy(apo => apo.VERSION).FirstOrDefault();
+            //MGC 11-12-2018 Agregar Contabilizador 0----------------->
+            //dap = db.DET_APROB.Where(ap => ap.ID_SOCIEDAD == d.SOCIEDAD_ID).OrderBy(apo => apo.VERSION).FirstOrDefault();
+            dap = db.DET_APROB.Where(ap => ap.ID_SOCIEDAD == d.SOCIEDAD_ID && ap.VERSION == f_actual.VERSIONC2).OrderBy(apo => apo.VERSION).FirstOrDefault();
+            //MGC 11-12-2018 Agregar Contabilizador 0-----------------<
+            ////MGC 12-11-2018 El usuario aprobador, no tiene como tal una versión, se toma el actual--------------------------------------------------------------------<
+
+            int ppos = 0;
+
+            //dap = db.DET_AGENTECA.Where(a => a.VERSION == dah.VERSION && a.ID_RUTA_AGENTE == dah.ID_RUTA_AGENTE && a.STEP == 1).FirstOrDefault();
+            //dap = db.DET_AGENTECA.Where(a => a.VERSION == f_actual.RUTA_VERSION && a.ID_RUTA_AGENTE == f_actual.ID_RUTA_A && a.STEP == 1).FirstOrDefault();
+
+
+            USUARIO u = db.USUARIOs.Find(d.USUARIOC_ID);
+            //long gaa = db.CREADOR2.Where(a => a.ID.Equals(u.ID) & a.BUKRS.Equals(d.SOCIEDAD_ID) & a.LAND.Equals(d.PAIS_ID) & a.PUESTOC_ID == d.PUESTO_ID & a.ACTIVO == true).FirstOrDefault().AGROUP_ID;
+            //int ppos = 0;
+
+            //if (pos.Equals(0))
+            //{
+            //    if (loop == null)
+            //    {
+            //        //dap = db.DET_AGENTEP.Where(a => a.SOCIEDAD_ID.Equals(dah.SOCIEDAD_ID) & a.PUESTOC_ID == dah.PUESTOC_ID &
+            //        //                    a.VERSION == dah.VERSION & a.AGROUP_ID == dah.AGROUP_ID & a.POS == 1).FirstOrDefault();
+            //        dap = dah.Where(a => a.STEP_FASE == 1).FirstOrDefault();
+            //        dap.STEP_FASE = dap.STEP_FASE - 1;
+            //    }
+            //    else
+            //    {
+            //        FLUJO ffl = db.FLUJOes.Where(a => a.NUM_DOC.Equals(d.NUM_DOC) & a.ESTATUS.Equals("R")).OrderByDescending(a => a.POS).FirstOrDefault();
+            //        if (ffl.DETPOS == 99)
+            //            ppos = 1;
+            //        ffl.DETPOS = ffl.DETPOS - 1;
+            //        fin = true;
+            //        ffl.POS = ppos;
+
+            //        return ffl;
+            //    }
+            //}
+            //else if (pos.Equals(98))
+            //{
+            //    dap = dah.Where(a => a.STEP_FASE == (pos + 1)).FirstOrDefault();
+            //}
+            //else
+            //{
+            //    //DET_AGENTE actual = db.DET_AGENTE.Where(a => a.PUESTOC_ID == d.PUESTO_ID & a.AGROUP_ID == gaa & a.POS == (pos)).FirstOrDefault();
+            //    DET_AGENTECA actual = dah.Where(a => a.POS == (pos)).FirstOrDefault();
+            //    if (actual.STEP_FASE == 99)
+            //    {
+            //        fin = true;
+            //    }
+            //    else if (actual.STEP_FASE == 98)
+            //    {
+            //        //da = db.DET_AGENTE.Where(a => a.PUESTOC_ID == d.PUESTO_ID & a.AGROUP_ID == gaa & a.POS == (pos + 1)).FirstOrDefault();
+            //        dap = dah.Where(a => a.STEP_FASE == (pos)).FirstOrDefault();
+            //    }
+            //    else
+            //    {
+            //        if (actual.MONTO != null)
+            //            if (d.MONTO_DOC_ML2 > actual.MONTO)
+            //            {
+            //                dap = dah.Where(a => a.POS == (pos + 1)).FirstOrDefault();
+            //                ppos = -1;
+            //            }
+            //        //if (actual.PRESUPUESTO != null)
+            //        if ((bool)actual.PRESUPUESTO)
+            //            if (d.MONTO_DOC_MD > 100000)
+            //            {
+            //                //da = db.DET_AGENTE.Where(a => a.PUESTOC_ID == d.PUESTO_ID & a.AGROUP_ID == gaa & a.POS == (pos + 1)).FirstOrDefault();
+            //                dap = dah.Where(a => a.POS == (pos + 1)).FirstOrDefault();
+            //                ppos = -1;
+            //            }
+            //    }
+            //}
+
+            //agente = dap.USUARIOA_ID;
+
+
+            string agente = "";
+            FLUJO f = new FLUJO();
+            f.DETPOS = 0;
+
+
+            agente = dap.ID_USUARIO;
+            //f.DETPOS = dap.POS;
+            f.DETPOS = 1;
+            f.STEP_AUTO = dap.STEP_FASE;
+            //if (!fin)
+            //{
+            //    if (dap != null)
+            //    {
+            //        if (dap.USUARIOA_ID != null)
+            //        {
+            //            //agente = db.GAUTORIZACIONs.Where(a => a.ID == da.AGROUP_ID).FirstOrDefault().USUARIOs.Where(a => a.PUESTO_ID == da.PUESTOA_ID).First().ID;
+            //            agente = dap.USUARIOA_ID;
+            //            f.DETPOS = dap.POS;
+            //        }
+            //        else
+            //        {
+            //            dap = dah.Where(a => a.POS == (sop)).FirstOrDefault();
+            //            if (dap == null)
+            //            {
+            //                agente = d.USUARIOD_ID;
+            //                f.DETPOS = 98;
+            //            }
+            //            else
+            //            {
+            //                //agente = db.GAUTORIZACIONs.Where(a => a.ID == da.AGROUP_ID).FirstOrDefault().USUARIOs.Where(a => a.PUESTO_ID == da.PUESTOA_ID).First().ID;
+            //                agente = dap.USUARIOA_ID;
+            //                f.DETPOS = dap.POS;
+            //            }
+            //        }
+            //    }
+            //    else
+            //    {
+            //        dap = dah.Where(a => a.POS == (sop)).FirstOrDefault();
+            //        if (dap == null)
+            //        {
+            //            agente = d.USUARIOD_ID;
+            //            f.DETPOS = 98;
+            //        }
+            //        else
+            //        {
+            //            //agente = db.GAUTORIZACIONs.Where(a => a.ID == da.AGROUP_ID).FirstOrDefault().USUARIOs.Where(a => a.PUESTO_ID == da.PUESTOA_ID).First().ID;
+            //            agente = dap.USUARIOA_ID;
+            //            f.DETPOS = dap.POS;
+            //        }
+            //    }
+            //}
+            f.POS = ppos;
+            if (agente != "")
+                f.USUARIOA_ID = agente;
+            else
+                f.USUARIOA_ID = null;
+            return f;
+        }
+
+        //MGC 11-12-2018 Agregar Contabilizador 0----------------->
+        public FLUJO determinaAgenteContabilidad0(DOCUMENTO d, string user, string delega, int pos, int? loop, int sop, int fase_det)
+        {
+            if (delega != null)
+                user = delega;
+            bool fin = false;
+            WFARTHAEntities db = new WFARTHAEntities();
+            DET_APROB0 dap = new DET_APROB0();
+            FLUJO f_actual = db.FLUJOes.Where(a => a.NUM_DOC.Equals(d.NUM_DOC)).FirstOrDefault();
+            //DET_AGENTEH dah = db.DET_AGENTEH.Where(a => a.SOCIEDAD_ID.Equals(d.SOCIEDAD_ID) & a.PUESTOC_ID == d.PUESTO_ID &
+            //                    a.USUARIOC_ID.Equals(d.USUARIOC_ID) & a.VERSION == f_actual.DETVER).FirstOrDefault();
+
+            ////MGC 12-11-2018 El usuario aprobador, no tiene como tal una versión, se toma el actual-------------------------------------------------------------------->
+
+            //dap = db.DET_APROB.Where(ap => ap.VERSION == f_actual.RUTA_VERSION && ap.ID_SOCIEDAD == d.SOCIEDAD_ID).OrderBy(apo => apo.VERSION).FirstOrDefault();
+            dap = db.DET_APROB0.Where(ap => ap.ID_SOCIEDAD == d.SOCIEDAD_ID && ap.VERSION == f_actual.VERSIONC1).OrderBy(apo => apo.VERSION).FirstOrDefault();
 
             ////MGC 12-11-2018 El usuario aprobador, no tiene como tal una versión, se toma el actual--------------------------------------------------------------------<
 
@@ -2656,6 +2848,7 @@ namespace WFARTHAconexionSAP.Services
                 f.USUARIOA_ID = null;
             return f;
         }
+        //MGC 11-12-2018 Agregar Contabilizador 0-----------------<
 
         public FLUJO determinaAgente(DOCUMENTO d, string user, string delega, int pos, int? loop, int sop, int fase_det)
         {

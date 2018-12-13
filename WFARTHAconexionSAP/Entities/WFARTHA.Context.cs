@@ -27,19 +27,20 @@ namespace WFARTHAconexionSAP.Entities
     
         public virtual DbSet<ACCION> ACCIONs { get; set; }
         public virtual DbSet<APPSETTING> APPSETTINGs { get; set; }
+        public virtual DbSet<BANCO> BANCOS { get; set; }
         public virtual DbSet<CAMPOS> CAMPOS { get; set; }
         public virtual DbSet<CARPETA> CARPETAs { get; set; }
         public virtual DbSet<CARPETAT> CARPETATs { get; set; }
         public virtual DbSet<CECO> CECOes { get; set; }
         public virtual DbSet<CLAVES_CONTA> CLAVES_CONTA { get; set; }
         public virtual DbSet<CONCEPTO> CONCEPTOes { get; set; }
-        public virtual DbSet<CONDICIONES_PAGO> CONDICIONES_PAGO { get; set; }
         public virtual DbSet<CONMAIL> CONMAILs { get; set; }
         public virtual DbSet<DELEGAR> DELEGARs { get; set; }
         public virtual DbSet<DET_AGENTEC> DET_AGENTEC { get; set; }
         public virtual DbSet<DET_AGENTECA> DET_AGENTECA { get; set; }
         public virtual DbSet<DET_AGENTECC> DET_AGENTECC { get; set; }
         public virtual DbSet<DET_APROB> DET_APROB { get; set; }
+        public virtual DbSet<DET_APROB0> DET_APROB0 { get; set; }
         public virtual DbSet<DET_K> DET_K { get; set; }
         public virtual DbSet<DET_PEP> DET_PEP { get; set; }
         public virtual DbSet<DET_PROVEEDOR> DET_PROVEEDOR { get; set; }
@@ -56,8 +57,13 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<DOCUMENTORP> DOCUMENTORPs { get; set; }
         public virtual DbSet<DOCUMENTOSAP> DOCUMENTOSAPs { get; set; }
         public virtual DbSet<DOCUMENTOUUID> DOCUMENTOUUIDs { get; set; }
-        public virtual DbSet<EKKO_DUMM> EKKO_DUMM { get; set; }
-        public virtual DbSet<EKPO_DUMM> EKPO_DUMM { get; set; }
+        public virtual DbSet<EKBE> EKBEs { get; set; }
+        public virtual DbSet<EKBE_DUMMY> EKBE_DUMMY { get; set; }
+        public virtual DbSet<EKKO> EKKOes { get; set; }
+        public virtual DbSet<EKKO_DUMMY> EKKO_DUMMY { get; set; }
+        public virtual DbSet<EKPO> EKPOes { get; set; }
+        public virtual DbSet<EKPO_DUMMY> EKPO_DUMMY { get; set; }
+        public virtual DbSet<ESTATUS_PAGO> ESTATUS_PAGO { get; set; }
         public virtual DbSet<FLUJO> FLUJOes { get; set; }
         public virtual DbSet<FORMATO> FORMATOes { get; set; }
         public virtual DbSet<FORO> FOROes { get; set; }
@@ -71,9 +77,11 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<PERMISO_PAGINA> PERMISO_PAGINA { get; set; }
         public virtual DbSet<POSICION> POSICIONs { get; set; }
         public virtual DbSet<PROVEEDOR> PROVEEDORs { get; set; }
+        public virtual DbSet<PROVEEDOR_BANCO> PROVEEDOR_BANCO { get; set; }
         public virtual DbSet<PROYECTO> PROYECTOes { get; set; }
         public virtual DbSet<PUESTO> PUESTOes { get; set; }
         public virtual DbSet<PUESTOT> PUESTOTs { get; set; }
+        public virtual DbSet<RAMA_PEP> RAMA_PEP { get; set; }
         public virtual DbSet<RANGO> RANGOes { get; set; }
         public virtual DbSet<RETENCION> RETENCIONs { get; set; }
         public virtual DbSet<RETENCION_PROV> RETENCION_PROV { get; set; }
@@ -96,6 +104,7 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<WORKFP> WORKFPs { get; set; }
         public virtual DbSet<WORKFT> WORKFTs { get; set; }
         public virtual DbSet<WORKFV> WORKFVs { get; set; }
+        public virtual DbSet<CONDICIONES_PAGO> CONDICIONES_PAGO { get; set; }
         public virtual DbSet<IIMPUESTO> IIMPUESTOes { get; set; }
         public virtual DbSet<ASIGN_PROY_SOC> ASIGN_PROY_SOC { get; set; }
         public virtual DbSet<CARPETAV> CARPETAVs { get; set; }
