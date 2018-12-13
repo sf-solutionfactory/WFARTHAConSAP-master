@@ -29,4 +29,3 @@ C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Debug\W
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Debug\WFARTHAconexionSAP.csproj.CopyComplete
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Debug\WFARTHAconexionSAP.exe
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Debug\WFARTHAconexionSAP.pdb
-C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Debug\WFARTHAconexionSAP.csprojAssemblyReference.cache

@@ -12,26 +12,25 @@ namespace WFARTHAconexionSAP.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class EKPO_DUMM
+    public partial class EKPO_DUMMY
     {
         public string EBELN { get; set; }
         public decimal EBELP { get; set; }
-        public string TXZ0 { get; set; }
+        public Nullable<System.DateTime> BEDAT { get; set; }
         public string MATNR { get; set; }
+        public string TXZ01 { get; set; }
+        public string MATKL { get; set; }
+        public string WERKS { get; set; }
+        public string LGORT { get; set; }
         public Nullable<decimal> MENGE { get; set; }
         public string MEINS { get; set; }
-        public Nullable<decimal> BPUMZ { get; set; }
-        public Nullable<decimal> BPUMN { get; set; }
-        public Nullable<decimal> NETWR { get; set; }
-        public Nullable<decimal> BRTWR { get; set; }
-        public Nullable<decimal> H_QUANTITY { get; set; }
-        public Nullable<decimal> H_VAL_LOCCUR { get; set; }
-        public Nullable<decimal> H_VAL_FORCUR { get; set; }
-        public string H_VAL_CURRENCY { get; set; }
-        public Nullable<decimal> H_ANT_PAG { get; set; }
-        public Nullable<decimal> H_ANT_SOL { get; set; }
-        public Nullable<decimal> H_ANT_AMORT { get; set; }
-    
-        public virtual EKKO_DUMM EKKO_DUMM { get; set; }
+        public Nullable<decimal> NETPR { get; set; }
+        public string WAERS { get; set; }
+        public Nullable<decimal> PEINH { get; set; }
+        public Nullable<decimal> MENGE_DEL { get; set; }
+        public Nullable<decimal> NETPR_DEL { get; set; }
+        public Nullable<decimal> MENGE_BIL { get; set; }
+        public Nullable<decimal> NETPR_BIL { get; set; }
+        public string MWSKZ { get; set; }
     }
 }
