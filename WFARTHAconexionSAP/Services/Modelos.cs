@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleImpersonation;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
@@ -96,15 +97,34 @@ namespace TATconexionSAP.Services
 
                 ////MGC prueba FTP----------------------------------------------------------------------------------------------------------------------------------------<
 
+                ////MGC 13-12-2018 Modificaión nuevos directorios------------->
 
+                //Credenciales cre = new Credenciales();
 
+                //string user = "";
+                //string pass = "";
+                //string dom = "";
 
+                //user = cre.getUserPrel();
+                //pass = cre.getPassPrel();
+                //dom = cre.getDomPrel();
 
-                string[] archivos = Directory.GetFiles(dirFile, "*", SearchOption.AllDirectories);
+                ////string[] archivos = Directory.GetFiles(dirFile, "*", SearchOption.AllDirectories);
+                //string[] archivos = new string[]();
+
+                //using (Impersonation.LogonUser(dom, user, pass, LogonType.NewCredentials))
+                //{
+                //    archivos = Directory.GetFiles(dirFile, "*", SearchOption.AllDirectories);
+                //}
+                List<string> archivos = new List<string>();
+
+                archivos = getArchivos(dirFile); 
+
+                ////MGC 13-12-2018 Modificaión nuevos directorios-------------<
                 //string[] archivos = Directory.GetFiles(dirFile += sap += datasync, "*.txt", SearchOption.AllDirectories);
-                Console.WriteLine(archivos.Length + " _1");//RSG 30.07.2018
+                Console.WriteLine(archivos.Count + " _1");//RSG 30.07.2018
                 //en este for sabre cuales archivos usar
-                for (int i = 0; i < archivos.Length; i++)
+                for (int i = 0; i < archivos.Count; i++)
                 {
                     try
                     {
@@ -816,17 +836,31 @@ namespace TATconexionSAP.Services
                 ////MGC prueba FTP----------------------------------------------------------------------------------------------------------------------------------------<
 
 
+                Credenciales cre = new Credenciales();
+
+                string user = "";
+                string pass = "";
+                string dom = "";
+
+                user = cre.getUserPrel();
+                pass = cre.getPassPrel();
+                dom = cre.getDomPrel();
+
                 try
                 {
-                    var from = Path.Combine(archivo);
-                    var arc2 = archivo.Replace(datasync, dataproc);
-                    var to = Path.Combine(arc2);
-                    if (File.Exists(to))
+                    using (Impersonation.LogonUser(dom, user, pass, LogonType.NewCredentials))
                     {
-                        File.Delete(to);
-                    }
 
-                    File.Move(from, to); // Try to move
+                        var from = Path.Combine(archivo);
+                        var arc2 = archivo.Replace(datasync, dataproc);
+                        var to = Path.Combine(arc2);
+                        if (File.Exists(to))
+                        {
+                            File.Delete(to);
+                        }
+
+                        File.Move(from, to); // Try to move
+                    }
                 }
                 catch (IOException ex)
                 {
@@ -853,5 +887,44 @@ namespace TATconexionSAP.Services
             return dir;
 
         }
+
+        //MGC 13-12-2018 Modificaión nuevos directorios------------->
+        private List<string> getArchivos(string dirFile)
+        {
+            
+
+            Credenciales cre = new Credenciales();
+
+            string user = "";
+            string pass = "";
+            string dom = "";
+
+            user = cre.getUserPrel();
+            pass = cre.getPassPrel();
+            dom = cre.getDomPrel();
+
+            //string[] archivos = Directory.GetFiles(dirFile, "*", SearchOption.AllDirectories);
+            List<string> larchivos = new List<string>();
+
+            using (Impersonation.LogonUser(dom, user, pass, LogonType.NewCredentials))
+            {
+                string[] archivosl = Directory.GetFiles(dirFile, "*", SearchOption.AllDirectories);
+
+                if(archivosl != null)
+                {
+                    for(int i = 0;i< archivosl.Count(); i++)
+                    {
+                        larchivos.Add(archivosl[i]);
+                    }
+                }
+
+            }
+
+            return larchivos;
+            
+        }
+
+      
+        //MGC 13-12-2018 Modificaión nuevos directorios-------------<
     }
 }
