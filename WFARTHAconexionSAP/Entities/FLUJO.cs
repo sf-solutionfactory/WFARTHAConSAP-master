@@ -33,6 +33,7 @@ namespace WFARTHAconexionSAP.Entities
         public Nullable<int> STEP_AUTO { get; set; }
         public int VERSIONC1 { get; set; }
         public int VERSIONC2 { get; set; }
+        public Nullable<System.DateTime> FECHACON { get; set; }
     
         public virtual DOCUMENTO DOCUMENTO { get; set; }
         public virtual USUARIO USUARIO { get; set; }
