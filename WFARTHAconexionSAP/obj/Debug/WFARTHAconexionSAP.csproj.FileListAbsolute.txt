@@ -26,7 +26,6 @@ C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Debug\S
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Debug\EntityFramework.xml
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\bin\Debug\SimpleImpersonation.xml
-C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Debug\WFARTHAconexionSAP.csprojAssemblyReference.cache
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Debug\WFARTHAconexionSAP.csproj.CoreCompileInputs.cache
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Debug\WFARTHAconexionSAP.exe.manifest
 C:\Users\SF\Documents\GitHub\WFARTHAConSAP-master\WFARTHAconexionSAP\obj\Debug\WFARTHAconexionSAP.application

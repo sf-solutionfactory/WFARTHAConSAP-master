@@ -485,6 +485,7 @@ namespace TATconexionSAP.Services
                                 dA.ESTATUS = "C";
                                 dA.ESTATUS_SAP = "E";
                                 dA.ESTATUS_WF = "A";
+                                dA.ESTATUS_PRE = "G";
                                 db.Entry(dA).State = EntityState.Modified;
 
                                 dp.MESSAGE = "Error contabilización SAP";
