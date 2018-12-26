@@ -12,6 +12,8 @@ namespace WFARTHAconexionSAP.Entities
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class WFARTHAEntities : DbContext
     {
@@ -26,6 +28,7 @@ namespace WFARTHAconexionSAP.Entities
         }
     
         public virtual DbSet<ACCION> ACCIONs { get; set; }
+        public virtual DbSet<AMOR_ANT> AMOR_ANT { get; set; }
         public virtual DbSet<APPSETTING> APPSETTINGs { get; set; }
         public virtual DbSet<BANCO> BANCOS { get; set; }
         public virtual DbSet<CAMPOS> CAMPOS { get; set; }
@@ -34,6 +37,7 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<CECO> CECOes { get; set; }
         public virtual DbSet<CLAVES_CONTA> CLAVES_CONTA { get; set; }
         public virtual DbSet<CONCEPTO> CONCEPTOes { get; set; }
+        public virtual DbSet<CONDICIONES_PAGO> CONDICIONES_PAGO { get; set; }
         public virtual DbSet<CONMAIL> CONMAILs { get; set; }
         public virtual DbSet<DELEGAR> DELEGARs { get; set; }
         public virtual DbSet<DET_AGENTEC> DET_AGENTEC { get; set; }
@@ -50,6 +54,7 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<DOCUMENTO> DOCUMENTOes { get; set; }
         public virtual DbSet<DOCUMENTOA> DOCUMENTOAs { get; set; }
         public virtual DbSet<DOCUMENTOA1> DOCUMENTOAS1 { get; set; }
+        public virtual DbSet<DOCUMENTOCOC> DOCUMENTOCOCs { get; set; }
         public virtual DbSet<DOCUMENTOLOG> DOCUMENTOLOGs { get; set; }
         public virtual DbSet<DOCUMENTOP> DOCUMENTOPs { get; set; }
         public virtual DbSet<DOCUMENTOPRE> DOCUMENTOPREs { get; set; }
@@ -104,10 +109,12 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<WORKFP> WORKFPs { get; set; }
         public virtual DbSet<WORKFT> WORKFTs { get; set; }
         public virtual DbSet<WORKFV> WORKFVs { get; set; }
-        public virtual DbSet<CONDICIONES_PAGO> CONDICIONES_PAGO { get; set; }
         public virtual DbSet<IIMPUESTO> IIMPUESTOes { get; set; }
         public virtual DbSet<ASIGN_PROY_SOC> ASIGN_PROY_SOC { get; set; }
         public virtual DbSet<CARPETAV> CARPETAVs { get; set; }
+        public virtual DbSet<DET_AGENTECAV> DET_AGENTECAV { get; set; }
+        public virtual DbSet<DET_AGENTECCV> DET_AGENTECCV { get; set; }
+        public virtual DbSet<DET_APROB0V> DET_APROB0V { get; set; }
         public virtual DbSet<DET_APROBV> DET_APROBV { get; set; }
         public virtual DbSet<DET_PROVEEDORV> DET_PROVEEDORV { get; set; }
         public virtual DbSet<DET_PROYECTO_DEC_V> DET_PROYECTO_DEC_V { get; set; }
@@ -116,5 +123,53 @@ namespace WFARTHAconexionSAP.Entities
         public virtual DbSet<DOCUMENTOV> DOCUMENTOVs { get; set; }
         public virtual DbSet<PAGINAV> PAGINAVs { get; set; }
         public virtual DbSet<WARNINGV> WARNINGVs { get; set; }
+    
+        public virtual ObjectResult<SP_CABECERA_Result> SP_CABECERA(Nullable<decimal> nUM_DOC)
+        {
+            var nUM_DOCParameter = nUM_DOC.HasValue ?
+                new ObjectParameter("NUM_DOC", nUM_DOC) :
+                new ObjectParameter("NUM_DOC", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CABECERA_Result>("SP_CABECERA", nUM_DOCParameter);
+        }
+    
+        public virtual ObjectResult<SP_DETALLE_Result> SP_DETALLE(Nullable<decimal> nUM_DOC)
+        {
+            var nUM_DOCParameter = nUM_DOC.HasValue ?
+                new ObjectParameter("NUM_DOC", nUM_DOC) :
+                new ObjectParameter("NUM_DOC", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_DETALLE_Result>("SP_DETALLE", nUM_DOCParameter);
+        }
+    
+        public virtual int SP_FIRMAS(Nullable<decimal> nUM_DOC)
+        {
+            var nUM_DOCParameter = nUM_DOC.HasValue ?
+                new ObjectParameter("NUM_DOC", nUM_DOC) :
+                new ObjectParameter("NUM_DOC", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_FIRMAS", nUM_DOCParameter);
+        }
+    
+        public virtual int SP_REPORTESOLS(Nullable<decimal> nUM_DOC, string bUKRS, string uSER, Nullable<int> num)
+        {
+            var nUM_DOCParameter = nUM_DOC.HasValue ?
+                new ObjectParameter("NUM_DOC", nUM_DOC) :
+                new ObjectParameter("NUM_DOC", typeof(decimal));
+    
+            var bUKRSParameter = bUKRS != null ?
+                new ObjectParameter("BUKRS", bUKRS) :
+                new ObjectParameter("BUKRS", typeof(string));
+    
+            var uSERParameter = uSER != null ?
+                new ObjectParameter("USER", uSER) :
+                new ObjectParameter("USER", typeof(string));
+    
+            var numParameter = num.HasValue ?
+                new ObjectParameter("num", num) :
+                new ObjectParameter("num", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_REPORTESOLS", nUM_DOCParameter, bUKRSParameter, uSERParameter, numParameter);
+        }
     }
 }

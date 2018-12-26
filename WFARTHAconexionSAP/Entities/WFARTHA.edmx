@@ -13,6 +13,24 @@
           <Property Name="DESCCRIPCION" Type="nvarchar" MaxLength="50" />
           <Property Name="TIPO" Type="nchar" MaxLength="1" Nullable="false" />
         </EntityType>
+        <EntityType Name="AMOR_ANT">
+          <Key>
+            <PropertyRef Name="POS" />
+            <PropertyRef Name="NUM_DOC" />
+          </Key>
+          <Property Name="POS" Type="int" Nullable="false" />
+          <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="EBELN" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="EBELP" Type="nvarchar" MaxLength="5" />
+          <Property Name="BELNR" Type="nchar" MaxLength="10" />
+          <Property Name="GJAHR" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="BUZEI" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="ANTAMOR" Type="decimal" Precision="13" Scale="0" />
+          <Property Name="TANT" Type="decimal" Precision="13" Scale="0" />
+          <Property Name="WAERS" Type="nvarchar" MaxLength="5" />
+          <Property Name="ANTTRANS" Type="decimal" Precision="13" Scale="0" />
+          <Property Name="ANTXAMORT" Type="decimal" Precision="13" Scale="0" />
+        </EntityType>
         <EntityType Name="APPSETTING">
           <Key>
             <PropertyRef Name="ID" />
@@ -94,12 +112,9 @@
           <Property Name="CUENTA" Type="nchar" MaxLength="10" />
           <Property Name="ACTIVO" Type="bit" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS0.dbo.CONDICIONES_PAGO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="CONDICIONES_PAGO">
           <Key>
             <PropertyRef Name="COND_PAGO" />
-            <PropertyRef Name="ACTIVO" />
           </Key>
           <Property Name="COND_PAGO" Type="nchar" MaxLength="4" Nullable="false" />
           <Property Name="TEXT" Type="nvarchar" MaxLength="50" />
@@ -225,6 +240,13 @@ warning 6002: The table/view 'PAGOS0.dbo.CONDICIONES_PAGO' does not have a prima
           <Property Name="ID_BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
           <Property Name="COND_PAGO" Type="nchar" MaxLength="4" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'PAGOSI.dbo.DET_PROVEEDOR$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="DET_PROVEEDOR$">
+          <Property Name="ID_LIFNR" Type="nchar" MaxLength="10" />
+          <Property Name="ID_BURKS" Type="nchar" MaxLength="4" />
+          <Property Name="COND_PAGO" Type="nchar" MaxLength="4" />
+        </EntityType>-->
         <EntityType Name="DET_PROYECTO">
           <Key>
             <PropertyRef Name="ID_PSPNR" />
@@ -327,6 +349,12 @@ warning 6002: The table/view 'PAGOS0.dbo.CONDICIONES_PAGO' does not have a prima
           <Property Name="EJERCICIO_PRE" Type="nchar" MaxLength="4" />
           <Property Name="ESTATUS_PRE" Type="nchar" MaxLength="1" />
           <Property Name="ID_PSPNR" Type="nvarchar" MaxLength="8" />
+          <Property Name="EBELN" Type="nchar" MaxLength="10" />
+          <Property Name="AMOR_ANT" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="RETPC" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="DPPCT" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="TOAD" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="ANTR" Type="decimal" Precision="13" Scale="2" />
         </EntityType>
         <EntityType Name="DOCUMENTOA">
           <Key>
@@ -359,6 +387,20 @@ warning 6002: The table/view 'PAGOS0.dbo.CONDICIONES_PAGO' does not have a prima
           <Property Name="USUARIO_ID" Type="nvarchar" MaxLength="16" />
           <Property Name="PATH" Type="nvarchar" MaxLength="500" />
           <Property Name="ACTIVO" Type="bit" />
+        </EntityType>
+        <EntityType Name="DOCUMENTOCOC">
+          <Key>
+            <PropertyRef Name="NUM_DOC" />
+            <PropertyRef Name="POSD" />
+          </Key>
+          <Property Name="NUM_DOC" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="POSD" Type="numeric" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="POS" Type="int" />
+          <Property Name="MATNR" Type="nvarchar" MaxLength="40" />
+          <Property Name="PS_PSP_PNR" Type="nvarchar" MaxLength="30" />
+          <Property Name="WAERS" Type="nvarchar" MaxLength="5" />
+          <Property Name="MENGE_BIL" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="MEINS" Type="nvarchar" MaxLength="3" />
         </EntityType>
         <EntityType Name="DOCUMENTOLOG">
           <Key>
@@ -483,8 +525,18 @@ warning 6002: The table/view 'PAGOS0.dbo.CONDICIONES_PAGO' does not have a prima
           <Property Name="WAERS" Type="nchar" MaxLength="3" />
           <Property Name="DMBTR" Type="decimal" Precision="13" Scale="2" />
           <Property Name="WRBTR" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="SHKZG" Type="nchar" MaxLength="1" />
           <Property Name="BUDAT" Type="date" />
           <Property Name="XBLNR" Type="nchar" MaxLength="16" />
+          <Property Name="REBZG" Type="nchar" MaxLength="10" />
+          <Property Name="REBZJ" Type="nchar" MaxLength="4" />
+          <Property Name="REBZZ" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="XREVERSED" Type="nchar" MaxLength="1" />
+          <Property Name="XREVERSEING" Type="nchar" MaxLength="1" />
+          <Property Name="STJAAH" Type="nchar" MaxLength="4" />
+          <Property Name="STBLG" Type="nchar" MaxLength="10" />
+          <Property Name="AUDT" Type="date" />
+          <Property Name="AUGBL" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="EKBE_DUMMY">
           <Key>
@@ -569,6 +621,7 @@ warning 6002: The table/view 'PAGOS0.dbo.CONDICIONES_PAGO' does not have a prima
           <Property Name="KOSTL" Type="nvarchar" MaxLength="10" />
           <Property Name="ESTATUS" Type="nchar" MaxLength="2" />
           <Property Name="EREKZ" Type="nchar" MaxLength="1" />
+          <Property Name="NETWR" Type="decimal" Precision="13" Scale="2" />
         </EntityType>
         <EntityType Name="EKPO_DUMMY">
           <Key>
@@ -642,6 +695,7 @@ warning 6002: The table/view 'PAGOS0.dbo.CONDICIONES_PAGO' does not have a prima
           <Property Name="STEP_AUTO" Type="int" />
           <Property Name="VERSIONC1" Type="int" Nullable="false" />
           <Property Name="VERSIONC2" Type="int" Nullable="false" />
+          <Property Name="FECHACON" Type="datetime" />
         </EntityType>
         <EntityType Name="FORMATO">
           <Key>
@@ -676,7 +730,7 @@ warning 6002: The table/view 'PAGOS0.dbo.CONDICIONES_PAGO' does not have a prima
           <Property Name="MAIL" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS0.dbo.IIMPUESTO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOSI.dbo.IIMPUESTO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="IIMPUESTO">
           <Key>
             <PropertyRef Name="MWSKZ" />
@@ -780,7 +834,7 @@ warning 6002: The table/view 'PAGOS0.dbo.IIMPUESTO' does not have a primary key 
           <Property Name="ADRNR" Type="nchar" MaxLength="10" />
           <Property Name="STCD1" Type="nchar" MaxLength="16" />
           <Property Name="STCD2" Type="nchar" MaxLength="11" />
-          <Property Name="ACTIVO" Type="bit" Nullable="false" />
+          <Property Name="ACTIVO" Type="bit" />
         </EntityType>
         <EntityType Name="PROVEEDOR_BANCO">
           <Key>
@@ -908,6 +962,27 @@ warning 6002: The table/view 'PAGOS0.dbo.IIMPUESTO' does not have a primary key 
           <Property Name="REGION" Type="nchar" MaxLength="10" />
           <Property Name="STCD1" Type="nchar" MaxLength="16" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'PAGOSI.dbo.SOCIEDAD$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SOCIEDAD$">
+          <Property Name="BURKS" Type="nchar" MaxLength="4" />
+          <Property Name="BUTXT" Type="nvarchar" MaxLength="100" />
+          <Property Name="RFC" Type="nchar" MaxLength="16" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'PAGOSI.dbo.SPFIRMA' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="SPFIRMA">
+          <Property Name="fasen" Type="int" />
+          <Property Name="num_doc" Type="numeric" Precision="10" Scale="0" />
+          <Property Name="faseletrero" Type="char" MaxLength="20" />
+          <Property Name="loop" Type="int" />
+          <Property Name="usuariocadena" Type="nvarchar" MaxLength="16" />
+          <Property Name="usuarioa_id" Type="nvarchar" MaxLength="16" />
+          <Property Name="usuariod_id" Type="nvarchar" MaxLength="16" />
+          <Property Name="estatus" Type="nchar" MaxLength="1" />
+          <Property Name="fechac" Type="datetime" />
+          <Property Name="fecham" Type="datetime" />
+        </EntityType>-->
         <EntityType Name="SPRAS">
           <Key>
             <PropertyRef Name="ID" />
@@ -1012,9 +1087,18 @@ warning 6002: The table/view 'PAGOS0.dbo.IIMPUESTO' does not have a primary key 
           <Property Name="PUESTO_ID" Type="int" />
           <Property Name="MANAGER" Type="nvarchar" MaxLength="16" />
           <Property Name="BACKUP_ID" Type="nvarchar" MaxLength="16" />
-          <Property Name="BUNIT" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="BUNIT" Type="nchar" MaxLength="4" />
           <Property Name="FIRMA" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'PAGOSI.dbo.USUARIOS$' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="USUARIOS$">
+          <Property Name="ID_USUARIO" Type="nvarchar" MaxLength="16" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="50" />
+          <Property Name="APELLIDO_P" Type="nvarchar" MaxLength="50" />
+          <Property Name="APELLIDO_M" Type="nvarchar" MaxLength="50" />
+          <Property Name="EMAIL" Type="nvarchar" MaxLength="256" />
+        </EntityType>-->
         <EntityType Name="WARNING">
           <Key>
             <PropertyRef Name="PAGINA_ID" />
@@ -1090,7 +1174,7 @@ warning 6002: The table/view 'PAGOS0.dbo.IIMPUESTO' does not have a primary key 
           <Property Name="FECHAC" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS0.dbo.ASIGN_PROY_SOC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOSI.dbo.ASIGN_PROY_SOC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ASIGN_PROY_SOC">
           <Key>
             <PropertyRef Name="ID_PSPNR" />
@@ -1100,7 +1184,7 @@ warning 6002: The table/view 'PAGOS0.dbo.ASIGN_PROY_SOC' does not have a primary
           <Property Name="ID_BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS0.dbo.CARPETAV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOSI.dbo.CARPETAV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="CARPETAV">
           <Key>
             <PropertyRef Name="USUARIO_ID" />
@@ -1113,7 +1197,67 @@ warning 6002: The table/view 'PAGOS0.dbo.CARPETAV' does not have a primary key d
           <Property Name="ICON" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS0.dbo.DET_APROBV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOSI.dbo.DET_AGENTECAV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DET_AGENTECAV">
+          <Key>
+            <PropertyRef Name="ID_RUTA_AGENTE" />
+            <PropertyRef Name="VERSION" />
+            <PropertyRef Name="STEP_FASE" />
+            <PropertyRef Name="STEP_ACCION" />
+            <PropertyRef Name="LIM_SUP" />
+            <PropertyRef Name="AGENTE_SIG" />
+            <PropertyRef Name="USUARIO" />
+          </Key>
+          <Property Name="ID_RUTA_AGENTE" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="VERSION" Type="int" Nullable="false" />
+          <Property Name="STEP_FASE" Type="int" Nullable="false" />
+          <Property Name="STEP_ACCION" Type="int" Nullable="false" />
+          <Property Name="LIM_SUP" Type="decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="AGENTE_SIG" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="USUARIO" Type="nvarchar" MaxLength="171" Nullable="false" />
+          <Property Name="OVERRIDE" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PAGOSI.dbo.DET_AGENTECCV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DET_AGENTECCV">
+          <Key>
+            <PropertyRef Name="VERSION" />
+            <PropertyRef Name="USUARIOC_ID" />
+            <PropertyRef Name="USUARIOC" />
+            <PropertyRef Name="ID_RUTA_AGENTE" />
+            <PropertyRef Name="USUARIOA_ID" />
+            <PropertyRef Name="USUARIOCA" />
+            <PropertyRef Name="FECHAC" />
+          </Key>
+          <Property Name="VERSION" Type="int" Nullable="false" />
+          <Property Name="USUARIOC_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="USUARIOC" Type="nvarchar" MaxLength="171" Nullable="false" />
+          <Property Name="ID_RUTA_AGENTE" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="nchar" MaxLength="40" />
+          <Property Name="USUARIOA_ID" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="USUARIOCA" Type="nvarchar" MaxLength="171" Nullable="false" />
+          <Property Name="FECHAC" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PAGOSI.dbo.DET_APROB0V' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DET_APROB0V">
+          <Key>
+            <PropertyRef Name="VERSION" />
+            <PropertyRef Name="ID_SOCIEDAD" />
+            <PropertyRef Name="SOCIEDAD" />
+            <PropertyRef Name="ID_USUARIO" />
+            <PropertyRef Name="USUARIO" />
+            <PropertyRef Name="STEP_FASE" />
+          </Key>
+          <Property Name="VERSION" Type="int" Nullable="false" />
+          <Property Name="ID_SOCIEDAD" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="SOCIEDAD" Type="nvarchar" MaxLength="107" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="USUARIO" Type="nvarchar" MaxLength="171" Nullable="false" />
+          <Property Name="STEP_FASE" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PAGOSI.dbo.DET_APROBV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DET_APROBV">
           <Key>
             <PropertyRef Name="VERSION" />
@@ -1131,7 +1275,7 @@ warning 6002: The table/view 'PAGOS0.dbo.DET_APROBV' does not have a primary key
           <Property Name="STEP_FASE" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS0.dbo.DET_PROVEEDORV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOSI.dbo.DET_PROVEEDORV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DET_PROVEEDORV">
           <Key>
             <PropertyRef Name="ID_LIFNR" />
@@ -1142,7 +1286,7 @@ warning 6002: The table/view 'PAGOS0.dbo.DET_PROVEEDORV' does not have a primary
           <Property Name="COND_PAGO" Type="nchar" MaxLength="4" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS0.dbo.DET_PROYECTO_DEC_V' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOSI.dbo.DET_PROYECTO_DEC_V' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DET_PROYECTO_DEC_V">
           <Key>
             <PropertyRef Name="ID_PSPNR" />
@@ -1151,12 +1295,12 @@ warning 6002: The table/view 'PAGOS0.dbo.DET_PROYECTO_DEC_V' does not have a pri
             <PropertyRef Name="BUTXT" />
           </Key>
           <Property Name="ID_PSPNR" Type="nvarchar" MaxLength="8" Nullable="false" />
-          <Property Name="NOMBRE" Type="nvarchar" MaxLength="61" Nullable="false" />
+          <Property Name="NOMBRE" Type="nvarchar" MaxLength="91" Nullable="false" />
           <Property Name="ID_BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
           <Property Name="BUTXT" Type="nvarchar" MaxLength="107" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS0.dbo.DET_PROYECTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOSI.dbo.DET_PROYECTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DET_PROYECTOV">
           <Key>
             <PropertyRef Name="ID_PSPNR" />
@@ -1166,7 +1310,7 @@ warning 6002: The table/view 'PAGOS0.dbo.DET_PROYECTOV' does not have a primary 
           <Property Name="ID_BUKRS" Type="nchar" MaxLength="4" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS0.dbo.DET_TIPOPRESUPUESTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOSI.dbo.DET_TIPOPRESUPUESTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DET_TIPOPRESUPUESTOV">
           <Key>
             <PropertyRef Name="BUKRS" />
@@ -1183,7 +1327,7 @@ warning 6002: The table/view 'PAGOS0.dbo.DET_TIPOPRESUPUESTOV' does not have a p
           <Property Name="DESC" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS0.dbo.DOCUMENTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOSI.dbo.DOCUMENTOV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="DOCUMENTOV">
           <Key>
             <PropertyRef Name="POS" />
@@ -1211,12 +1355,12 @@ warning 6002: The table/view 'PAGOS0.dbo.DOCUMENTOV' does not have a primary key
           <Property Name="DOCUMENTO_REF" Type="decimal" Precision="10" Scale="0" />
           <Property Name="CONCEPTO" Type="nvarchar" MaxLength="100" />
           <Property Name="NOTAS" Type="nvarchar" MaxLength="255" />
-          <Property Name="MONTO_DOC_MD" Type="decimal" Precision="13" Scale="2" />
-          <Property Name="MONTO_FIJO_MD" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="MONTO_DOC_MD" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="MONTO_FIJO_MD" Type="decimal" Precision="18" Scale="5" />
           <Property Name="MONTO_BASE_GS_PCT_MD" Type="decimal" Precision="13" Scale="2" />
           <Property Name="MONTO_BASE_NS_PCT_MD" Type="decimal" Precision="13" Scale="2" />
-          <Property Name="MONTO_DOC_ML" Type="decimal" Precision="13" Scale="2" />
-          <Property Name="MONTO_FIJO_ML" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="MONTO_DOC_ML" Type="decimal" Precision="18" Scale="5" />
+          <Property Name="MONTO_FIJO_ML" Type="decimal" Precision="18" Scale="5" />
           <Property Name="MONTO_BASE_GS_PCT_ML" Type="decimal" Precision="13" Scale="2" />
           <Property Name="MONTO_BASE_NS_PCT_ML" Type="decimal" Precision="13" Scale="2" />
           <Property Name="MONTO_DOC_ML2" Type="decimal" Precision="13" Scale="2" />
@@ -1244,7 +1388,7 @@ warning 6002: The table/view 'PAGOS0.dbo.DOCUMENTOV' does not have a primary key
           <Property Name="EXPR2" Type="nchar" MaxLength="1" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS0.dbo.PAGINAV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOSI.dbo.PAGINAV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="PAGINAV">
           <Key>
             <PropertyRef Name="ID" />
@@ -1265,7 +1409,7 @@ warning 6002: The table/view 'PAGOS0.dbo.PAGINAV' does not have a primary key de
           <Property Name="USUARIO_SPRAS" Type="nchar" MaxLength="2" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'PAGOSI.dbo.WARNINGV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="WARNINGV">
           <Key>
             <PropertyRef Name="PAGINA_ID" />
@@ -1281,6 +1425,32 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="POSICION" Type="nvarchar" MaxLength="10" />
           <Property Name="ACTIVO" Type="bit" />
         </EntityType>
+        <Association Name="FK_AMOR_ANT_DOCUMENTO">
+          <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+          <End Role="AMOR_ANT" Type="Self.AMOR_ANT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTO">
+              <PropertyRef Name="NUM_DOC" />
+            </Principal>
+            <Dependent Role="AMOR_ANT">
+              <PropertyRef Name="NUM_DOC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AMOR_ANT_EKPO">
+          <End Role="EKPO" Type="Self.EKPO" Multiplicity="0..1" />
+          <End Role="AMOR_ANT" Type="Self.AMOR_ANT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EKPO">
+              <PropertyRef Name="EBELN" />
+              <PropertyRef Name="EBELP" />
+            </Principal>
+            <Dependent Role="AMOR_ANT">
+              <PropertyRef Name="EBELN" />
+              <PropertyRef Name="EBELP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_CAMPOS_PAGINA">
           <End Role="PAGINA" Type="Self.PAGINA" Multiplicity="1" />
           <End Role="CAMPOS" Type="Self.CAMPOS" Multiplicity="*" />
@@ -1568,6 +1738,20 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
             </Principal>
             <Dependent Role="DOCUMENTOAS">
               <PropertyRef Name="NUM_DOC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DOCUMENTOCOC_DOCUMENTOP">
+          <End Role="DOCUMENTOP" Type="Self.DOCUMENTOP" Multiplicity="1" />
+          <End Role="DOCUMENTOCOC" Type="Self.DOCUMENTOCOC" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTOP">
+              <PropertyRef Name="NUM_DOC" />
+              <PropertyRef Name="POS" />
+            </Principal>
+            <Dependent Role="DOCUMENTOCOC">
+              <PropertyRef Name="NUM_DOC" />
+              <PropertyRef Name="POSD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2251,8 +2435,24 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SP_CABECERA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NUM_DOC" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="SP_DETALLE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NUM_DOC" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="SP_FIRMAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NUM_DOC" Type="numeric" Mode="In" />
+        </Function>
+        <Function Name="SP_REPORTESOLS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NUM_DOC" Type="numeric" Mode="In" />
+          <Parameter Name="BUKRS" Type="nchar" Mode="In" />
+          <Parameter Name="USER" Type="nvarchar" Mode="In" />
+          <Parameter Name="num" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="WFARTHAModelStoreContainer">
           <EntitySet Name="ACCION" EntityType="Self.ACCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AMOR_ANT" EntityType="Self.AMOR_ANT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="APPSETTING" EntityType="Self.APPSETTING" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BANCOS" EntityType="Self.BANCOS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CAMPOS" EntityType="Self.CAMPOS" Schema="dbo" store:Type="Tables" />
@@ -2261,6 +2461,7 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <EntitySet Name="CECO" EntityType="Self.CECO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CLAVES_CONTA" EntityType="Self.CLAVES_CONTA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONCEPTO" EntityType="Self.CONCEPTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONMAIL" EntityType="Self.CONMAIL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DELEGAR" EntityType="Self.DELEGAR" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DET_AGENTEC" EntityType="Self.DET_AGENTEC" Schema="dbo" store:Type="Tables" />
@@ -2278,6 +2479,7 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <EntitySet Name="DOCUMENTO" EntityType="Self.DOCUMENTO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DOCUMENTOA" EntityType="Self.DOCUMENTOA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DOCUMENTOAS" EntityType="Self.DOCUMENTOAS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DOCUMENTOCOC" EntityType="Self.DOCUMENTOCOC" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DOCUMENTOLOG" EntityType="Self.DOCUMENTOLOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DOCUMENTOP" EntityType="Self.DOCUMENTOP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DOCUMENTOPRE" EntityType="Self.DOCUMENTOPRE" Schema="dbo" store:Type="Tables" />
@@ -2332,13 +2534,6 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <EntitySet Name="WORKFP" EntityType="Self.WORKFP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WORKFT" EntityType="Self.WORKFT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WORKFV" EntityType="Self.WORKFV" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [CONDICIONES_PAGO].[COND_PAGO] AS [COND_PAGO], 
-    [CONDICIONES_PAGO].[TEXT] AS [TEXT], 
-    [CONDICIONES_PAGO].[ACTIVO] AS [ACTIVO]
-    FROM [dbo].[CONDICIONES_PAGO] AS [CONDICIONES_PAGO]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="IIMPUESTO" EntityType="Self.IIMPUESTO" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [IIMPUESTO].[MWSKZ] AS [MWSKZ], 
@@ -2361,6 +2556,40 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
     [CARPETAV].[TXT50] AS [TXT50], 
     [CARPETAV].[ICON] AS [ICON]
     FROM [dbo].[CARPETAV] AS [CARPETAV]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DET_AGENTECAV" EntityType="Self.DET_AGENTECAV" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DET_AGENTECAV].[ID_RUTA_AGENTE] AS [ID_RUTA_AGENTE], 
+    [DET_AGENTECAV].[VERSION] AS [VERSION], 
+    [DET_AGENTECAV].[STEP_FASE] AS [STEP_FASE], 
+    [DET_AGENTECAV].[STEP_ACCION] AS [STEP_ACCION], 
+    [DET_AGENTECAV].[LIM_SUP] AS [LIM_SUP], 
+    [DET_AGENTECAV].[AGENTE_SIG] AS [AGENTE_SIG], 
+    [DET_AGENTECAV].[USUARIO] AS [USUARIO], 
+    [DET_AGENTECAV].[OVERRIDE] AS [OVERRIDE]
+    FROM [dbo].[DET_AGENTECAV] AS [DET_AGENTECAV]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DET_AGENTECCV" EntityType="Self.DET_AGENTECCV" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DET_AGENTECCV].[VERSION] AS [VERSION], 
+    [DET_AGENTECCV].[USUARIOC_ID] AS [USUARIOC_ID], 
+    [DET_AGENTECCV].[USUARIOC] AS [USUARIOC], 
+    [DET_AGENTECCV].[ID_RUTA_AGENTE] AS [ID_RUTA_AGENTE], 
+    [DET_AGENTECCV].[DESCRIPCION] AS [DESCRIPCION], 
+    [DET_AGENTECCV].[USUARIOA_ID] AS [USUARIOA_ID], 
+    [DET_AGENTECCV].[USUARIOCA] AS [USUARIOCA], 
+    [DET_AGENTECCV].[FECHAC] AS [FECHAC]
+    FROM [dbo].[DET_AGENTECCV] AS [DET_AGENTECCV]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DET_APROB0V" EntityType="Self.DET_APROB0V" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DET_APROB0V].[VERSION] AS [VERSION], 
+    [DET_APROB0V].[ID_SOCIEDAD] AS [ID_SOCIEDAD], 
+    [DET_APROB0V].[SOCIEDAD] AS [SOCIEDAD], 
+    [DET_APROB0V].[ID_USUARIO] AS [ID_USUARIO], 
+    [DET_APROB0V].[USUARIO] AS [USUARIO], 
+    [DET_APROB0V].[STEP_FASE] AS [STEP_FASE]
+    FROM [dbo].[DET_APROB0V] AS [DET_APROB0V]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="DET_APROBV" EntityType="Self.DET_APROBV" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2486,6 +2715,14 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
     [WARNINGV].[ACTIVO] AS [ACTIVO]
     FROM [dbo].[WARNINGV] AS [WARNINGV]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_AMOR_ANT_DOCUMENTO" Association="Self.FK_AMOR_ANT_DOCUMENTO">
+            <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
+            <End Role="AMOR_ANT" EntitySet="AMOR_ANT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AMOR_ANT_EKPO" Association="Self.FK_AMOR_ANT_EKPO">
+            <End Role="EKPO" EntitySet="EKPO" />
+            <End Role="AMOR_ANT" EntitySet="AMOR_ANT" />
+          </AssociationSet>
           <AssociationSet Name="FK_CAMPOS_PAGINA" Association="Self.FK_CAMPOS_PAGINA">
             <End Role="PAGINA" EntitySet="PAGINA" />
             <End Role="CAMPOS" EntitySet="CAMPOS" />
@@ -2581,6 +2818,10 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <AssociationSet Name="FK_DOCUMENTOAS_DOCUMENTO" Association="Self.FK_DOCUMENTOAS_DOCUMENTO">
             <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
             <End Role="DOCUMENTOAS" EntitySet="DOCUMENTOAS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DOCUMENTOCOC_DOCUMENTOP" Association="Self.FK_DOCUMENTOCOC_DOCUMENTOP">
+            <End Role="DOCUMENTOP" EntitySet="DOCUMENTOP" />
+            <End Role="DOCUMENTOCOC" EntitySet="DOCUMENTOCOC" />
           </AssociationSet>
           <AssociationSet Name="FK_DOCUMENTOP_DOCUMENTO" Association="Self.FK_DOCUMENTOP_DOCUMENTO">
             <End Role="DOCUMENTO" EntitySet="DOCUMENTO" />
@@ -2817,6 +3058,26 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="TIPO" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="WORKFPs" Relationship="Self.FK_WORKFP_ACCION" FromRole="ACCION" ToRole="WORKFP" />
         </EntityType>
+        <EntityType Name="AMOR_ANT">
+          <Key>
+            <PropertyRef Name="POS" />
+            <PropertyRef Name="NUM_DOC" />
+          </Key>
+          <Property Name="POS" Type="Int32" Nullable="false" />
+          <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="EBELN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="EBELP" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="BELNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="GJAHR" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="BUZEI" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="ANTAMOR" Type="Decimal" Precision="13" Scale="0" />
+          <Property Name="TANT" Type="Decimal" Precision="13" Scale="0" />
+          <Property Name="WAERS" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="ANTTRANS" Type="Decimal" Precision="13" Scale="0" />
+          <Property Name="ANTXAMORT" Type="Decimal" Precision="13" Scale="0" />
+          <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_AMOR_ANT_DOCUMENTO" FromRole="AMOR_ANT" ToRole="DOCUMENTO" />
+          <NavigationProperty Name="EKPO" Relationship="Self.FK_AMOR_ANT_EKPO" FromRole="AMOR_ANT" ToRole="EKPO" />
+        </EntityType>
         <EntityType Name="APPSETTING">
           <Key>
             <PropertyRef Name="ID" />
@@ -2903,6 +3164,14 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="ID_PRESUPUESTO" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
           <Property Name="TIPO_PRESUPUESTO" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="CUENTA" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CONDICIONES_PAGO">
+          <Key>
+            <PropertyRef Name="COND_PAGO" />
+          </Key>
+          <Property Name="COND_PAGO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="TEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="CONMAIL">
@@ -3132,6 +3401,13 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="EJERCICIO_PRE" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
           <Property Name="ESTATUS_PRE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="ID_PSPNR" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="EBELN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AMOR_ANT" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="RETPC" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="DPPCT" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="TOAD" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="ANTR" Type="Decimal" Precision="13" Scale="2" />
+          <NavigationProperty Name="AMOR_ANT1" Relationship="Self.FK_AMOR_ANT_DOCUMENTO" FromRole="DOCUMENTO" ToRole="AMOR_ANT" />
           <NavigationProperty Name="SOCIEDAD" Relationship="Self.FK_DOCUMENTO_SOCIEDAD" FromRole="DOCUMENTO" ToRole="SOCIEDAD" />
           <NavigationProperty Name="TSOL" Relationship="Self.FK_DOCUMENTO_TSOL" FromRole="DOCUMENTO" ToRole="TSOL" />
           <NavigationProperty Name="USUARIO" Relationship="Self.FK_DOCUMENTO_USUARIO" FromRole="DOCUMENTO" ToRole="USUARIO" />
@@ -3179,6 +3455,21 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="ACTIVO" Type="Boolean" />
           <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOAS_DOCUMENTO" FromRole="DOCUMENTOAS" ToRole="DOCUMENTO" />
         </EntityType>
+        <EntityType Name="DOCUMENTOCOC">
+          <Key>
+            <PropertyRef Name="NUM_DOC" />
+            <PropertyRef Name="POSD" />
+          </Key>
+          <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="POSD" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+          <Property Name="POS" Type="Int32" />
+          <Property Name="MATNR" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="PS_PSP_PNR" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="WAERS" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="MENGE_BIL" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="MEINS" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DOCUMENTOP" Relationship="Self.FK_DOCUMENTOCOC_DOCUMENTOP" FromRole="DOCUMENTOCOC" ToRole="DOCUMENTOP" />
+        </EntityType>
         <EntityType Name="DOCUMENTOLOG">
           <Key>
             <PropertyRef Name="NUM_DOC" />
@@ -3215,6 +3506,7 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="TEXTO" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOP_DOCUMENTO" FromRole="DOCUMENTOP" ToRole="DOCUMENTO" />
           <NavigationProperty Name="DOCUMENTOAs" Relationship="Self.FK_DOCUMENTOA_DOCUMENTOP" FromRole="DOCUMENTOP" ToRole="DOCUMENTOA" />
+          <NavigationProperty Name="DOCUMENTOCOC" Relationship="Self.FK_DOCUMENTOCOC_DOCUMENTOP" FromRole="DOCUMENTOP" ToRole="DOCUMENTOCOC" />
           <NavigationProperty Name="IMPUESTO" Relationship="Self.FK_DOCUMENTOP_IMPUESTO" FromRole="DOCUMENTOP" ToRole="IMPUESTO" />
           <NavigationProperty Name="DOCUMENTORPs" Relationship="Self.FK_DOCUMENTORP_DOCUMENTOP" FromRole="DOCUMENTOP" ToRole="DOCUMENTORP" />
         </EntityType>
@@ -3312,8 +3604,18 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="WAERS" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
           <Property Name="DMBTR" Type="Decimal" Precision="13" Scale="2" />
           <Property Name="WRBTR" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="SHKZG" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="BUDAT" Type="DateTime" Precision="0" />
           <Property Name="XBLNR" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="REBZG" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="REBZJ" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="REBZZ" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="XREVERSED" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="XREVERSEING" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="STJAAH" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+          <Property Name="STBLG" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AUDT" Type="DateTime" Precision="0" />
+          <Property Name="AUGBL" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="EKBE_DUMMY">
           <Key>
@@ -3398,6 +3700,8 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="KOSTL" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ESTATUS" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
           <Property Name="EREKZ" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="NETWR" Type="Decimal" Precision="13" Scale="2" />
+          <NavigationProperty Name="AMOR_ANT" Relationship="Self.FK_AMOR_ANT_EKPO" FromRole="EKPO" ToRole="AMOR_ANT" />
         </EntityType>
         <EntityType Name="EKPO_DUMMY">
           <Key>
@@ -3471,6 +3775,7 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="STEP_AUTO" Type="Int32" />
           <Property Name="VERSIONC1" Type="Int32" Nullable="false" />
           <Property Name="VERSIONC2" Type="Int32" Nullable="false" />
+          <Property Name="FECHACON" Type="DateTime" Precision="3" />
           <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="FLUJO" ToRole="DOCUMENTO" />
           <NavigationProperty Name="USUARIO" Relationship="Self.FK_FLUJO_USUARIO" FromRole="FLUJO" ToRole="USUARIO" />
           <NavigationProperty Name="USUARIO1" Relationship="Self.FK_FLUJO_USUARIO1" FromRole="FLUJO" ToRole="USUARIO" />
@@ -3623,7 +3928,7 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="ADRNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="STCD1" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
           <Property Name="STCD2" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
-          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+          <Property Name="ACTIVO" Type="Boolean" />
           <NavigationProperty Name="DET_PROVEEDOR" Relationship="Self.FK_DET_PROVEEDOR_PROYECTO" FromRole="PROVEEDOR" ToRole="DET_PROVEEDOR" />
           <NavigationProperty Name="RETENCION_PROV" Relationship="Self.FK_RETENCION_PROV_PROVEEDOR" FromRole="PROVEEDOR" ToRole="RETENCION_PROV" />
         </EntityType>
@@ -3910,7 +4215,7 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="PUESTO_ID" Type="Int32" />
           <Property Name="MANAGER" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="BACKUP_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="BUNIT" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="BUNIT" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
           <Property Name="FIRMA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DELEGARs" Relationship="Self.FK_DELEGAR_USUARIO" FromRole="USUARIO" ToRole="DELEGAR" />
           <NavigationProperty Name="DELEGARs1" Relationship="Self.FK_DELEGAR_USUARIO1" FromRole="USUARIO" ToRole="DELEGAR" />
@@ -4016,15 +4321,6 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <NavigationProperty Name="WORKFPs" Relationship="Self.FK_WORKFP_WORKFV" FromRole="WORKFV" ToRole="WORKFP" />
           <NavigationProperty Name="WORKFTs" Relationship="Self.FK_WORKFT_WORKFV" FromRole="WORKFV" ToRole="WORKFT" />
         </EntityType>
-        <EntityType Name="CONDICIONES_PAGO">
-          <Key>
-            <PropertyRef Name="COND_PAGO" />
-            <PropertyRef Name="ACTIVO" />
-          </Key>
-          <Property Name="COND_PAGO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="TEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
-        </EntityType>
         <EntityType Name="IIMPUESTO">
           <Key>
             <PropertyRef Name="MWSKZ" />
@@ -4054,6 +4350,60 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TXT50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ICON" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DET_AGENTECAV">
+          <Key>
+            <PropertyRef Name="ID_RUTA_AGENTE" />
+            <PropertyRef Name="VERSION" />
+            <PropertyRef Name="STEP_FASE" />
+            <PropertyRef Name="STEP_ACCION" />
+            <PropertyRef Name="LIM_SUP" />
+            <PropertyRef Name="AGENTE_SIG" />
+            <PropertyRef Name="USUARIO" />
+          </Key>
+          <Property Name="ID_RUTA_AGENTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="VERSION" Type="Int32" Nullable="false" />
+          <Property Name="STEP_FASE" Type="Int32" Nullable="false" />
+          <Property Name="STEP_ACCION" Type="Int32" Nullable="false" />
+          <Property Name="LIM_SUP" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+          <Property Name="AGENTE_SIG" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USUARIO" Type="String" MaxLength="171" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OVERRIDE" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="DET_AGENTECCV">
+          <Key>
+            <PropertyRef Name="VERSION" />
+            <PropertyRef Name="USUARIOC_ID" />
+            <PropertyRef Name="USUARIOC" />
+            <PropertyRef Name="ID_RUTA_AGENTE" />
+            <PropertyRef Name="USUARIOA_ID" />
+            <PropertyRef Name="USUARIOCA" />
+            <PropertyRef Name="FECHAC" />
+          </Key>
+          <Property Name="VERSION" Type="Int32" Nullable="false" />
+          <Property Name="USUARIOC_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USUARIOC" Type="String" MaxLength="171" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_RUTA_AGENTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="USUARIOA_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USUARIOCA" Type="String" MaxLength="171" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FECHAC" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="DET_APROB0V">
+          <Key>
+            <PropertyRef Name="VERSION" />
+            <PropertyRef Name="ID_SOCIEDAD" />
+            <PropertyRef Name="SOCIEDAD" />
+            <PropertyRef Name="ID_USUARIO" />
+            <PropertyRef Name="USUARIO" />
+            <PropertyRef Name="STEP_FASE" />
+          </Key>
+          <Property Name="VERSION" Type="Int32" Nullable="false" />
+          <Property Name="ID_SOCIEDAD" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="SOCIEDAD" Type="String" MaxLength="107" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_USUARIO" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="USUARIO" Type="String" MaxLength="171" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="STEP_FASE" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DET_APROBV">
           <Key>
@@ -4088,7 +4438,7 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
             <PropertyRef Name="BUTXT" />
           </Key>
           <Property Name="ID_PSPNR" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NOMBRE" Type="String" MaxLength="61" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="91" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ID_BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="BUTXT" Type="String" MaxLength="107" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
@@ -4142,12 +4492,12 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <Property Name="DOCUMENTO_REF" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="CONCEPTO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NOTAS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="MONTO_DOC_MD" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="MONTO_FIJO_MD" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="MONTO_DOC_MD" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="MONTO_FIJO_MD" Type="Decimal" Precision="18" Scale="5" />
           <Property Name="MONTO_BASE_GS_PCT_MD" Type="Decimal" Precision="13" Scale="2" />
           <Property Name="MONTO_BASE_NS_PCT_MD" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="MONTO_DOC_ML" Type="Decimal" Precision="13" Scale="2" />
-          <Property Name="MONTO_FIJO_ML" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="MONTO_DOC_ML" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="MONTO_FIJO_ML" Type="Decimal" Precision="18" Scale="5" />
           <Property Name="MONTO_BASE_GS_PCT_ML" Type="Decimal" Precision="13" Scale="2" />
           <Property Name="MONTO_BASE_NS_PCT_ML" Type="Decimal" Precision="13" Scale="2" />
           <Property Name="MONTO_DOC_ML2" Type="Decimal" Precision="13" Scale="2" />
@@ -4217,6 +4567,32 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
             </Principal>
             <Dependent Role="WORKFP">
               <PropertyRef Name="ACCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AMOR_ANT_DOCUMENTO">
+          <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+          <End Role="AMOR_ANT" Type="Self.AMOR_ANT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTO">
+              <PropertyRef Name="NUM_DOC" />
+            </Principal>
+            <Dependent Role="AMOR_ANT">
+              <PropertyRef Name="NUM_DOC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AMOR_ANT_EKPO">
+          <End Role="EKPO" Type="Self.EKPO" Multiplicity="0..1" />
+          <End Role="AMOR_ANT" Type="Self.AMOR_ANT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EKPO">
+              <PropertyRef Name="EBELN" />
+              <PropertyRef Name="EBELP" />
+            </Principal>
+            <Dependent Role="AMOR_ANT">
+              <PropertyRef Name="EBELN" />
+              <PropertyRef Name="EBELP" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4607,6 +4983,20 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
             </Principal>
             <Dependent Role="DOCUMENTOA">
               <PropertyRef Name="CLASE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DOCUMENTOCOC_DOCUMENTOP">
+          <End Role="DOCUMENTOP" Type="Self.DOCUMENTOP" Multiplicity="1" />
+          <End Role="DOCUMENTOCOC" Type="Self.DOCUMENTOCOC" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="DOCUMENTOP">
+              <PropertyRef Name="NUM_DOC" />
+              <PropertyRef Name="POS" />
+            </Principal>
+            <Dependent Role="DOCUMENTOCOC">
+              <PropertyRef Name="NUM_DOC" />
+              <PropertyRef Name="POSD" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5160,6 +5550,7 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
         </Association>
         <EntityContainer Name="WFARTHAEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ACCIONs" EntityType="Self.ACCION" />
+          <EntitySet Name="AMOR_ANT" EntityType="Self.AMOR_ANT" />
           <EntitySet Name="APPSETTINGs" EntityType="Self.APPSETTING" />
           <EntitySet Name="BANCOS" EntityType="Self.BANCO" />
           <EntitySet Name="CAMPOS" EntityType="Self.CAMPOS" />
@@ -5168,6 +5559,7 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <EntitySet Name="CECOes" EntityType="Self.CECO" />
           <EntitySet Name="CLAVES_CONTA" EntityType="Self.CLAVES_CONTA" />
           <EntitySet Name="CONCEPTOes" EntityType="Self.CONCEPTO" />
+          <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" />
           <EntitySet Name="CONMAILs" EntityType="Self.CONMAIL" />
           <EntitySet Name="DELEGARs" EntityType="Self.DELEGAR" />
           <EntitySet Name="DET_AGENTEC" EntityType="Self.DET_AGENTEC" />
@@ -5184,6 +5576,7 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <EntitySet Name="DOCUMENTOes" EntityType="Self.DOCUMENTO" />
           <EntitySet Name="DOCUMENTOAs" EntityType="Self.DOCUMENTOA" />
           <EntitySet Name="DOCUMENTOAS1" EntityType="Self.DOCUMENTOA1" />
+          <EntitySet Name="DOCUMENTOCOCs" EntityType="Self.DOCUMENTOCOC" />
           <EntitySet Name="DOCUMENTOLOGs" EntityType="Self.DOCUMENTOLOG" />
           <EntitySet Name="DOCUMENTOPs" EntityType="Self.DOCUMENTOP" />
           <EntitySet Name="DOCUMENTOPREs" EntityType="Self.DOCUMENTOPRE" />
@@ -5238,10 +5631,12 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <EntitySet Name="WORKFPs" EntityType="Self.WORKFP" />
           <EntitySet Name="WORKFTs" EntityType="Self.WORKFT" />
           <EntitySet Name="WORKFVs" EntityType="Self.WORKFV" />
-          <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" />
           <EntitySet Name="IIMPUESTOes" EntityType="Self.IIMPUESTO" />
           <EntitySet Name="ASIGN_PROY_SOC" EntityType="Self.ASIGN_PROY_SOC" />
           <EntitySet Name="CARPETAVs" EntityType="Self.CARPETAV" />
+          <EntitySet Name="DET_AGENTECAV" EntityType="Self.DET_AGENTECAV" />
+          <EntitySet Name="DET_AGENTECCV" EntityType="Self.DET_AGENTECCV" />
+          <EntitySet Name="DET_APROB0V" EntityType="Self.DET_APROB0V" />
           <EntitySet Name="DET_APROBV" EntityType="Self.DET_APROBV" />
           <EntitySet Name="DET_PROVEEDORV" EntityType="Self.DET_PROVEEDORV" />
           <EntitySet Name="DET_PROYECTO_DEC_V" EntityType="Self.DET_PROYECTO_DEC_V" />
@@ -5253,6 +5648,14 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <AssociationSet Name="FK_WORKFP_ACCION" Association="Self.FK_WORKFP_ACCION">
             <End Role="ACCION" EntitySet="ACCIONs" />
             <End Role="WORKFP" EntitySet="WORKFPs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AMOR_ANT_DOCUMENTO" Association="Self.FK_AMOR_ANT_DOCUMENTO">
+            <End Role="DOCUMENTO" EntitySet="DOCUMENTOes" />
+            <End Role="AMOR_ANT" EntitySet="AMOR_ANT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AMOR_ANT_EKPO" Association="Self.FK_AMOR_ANT_EKPO">
+            <End Role="EKPO" EntitySet="EKPOes" />
+            <End Role="AMOR_ANT" EntitySet="AMOR_ANT" />
           </AssociationSet>
           <AssociationSet Name="FK_CAMPOS_PAGINA" Association="Self.FK_CAMPOS_PAGINA">
             <End Role="PAGINA" EntitySet="PAGINAs" />
@@ -5381,6 +5784,10 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
           <AssociationSet Name="FK_DOCUMENTOA_TSOPORTE" Association="Self.FK_DOCUMENTOA_TSOPORTE">
             <End Role="TSOPORTE" EntitySet="TSOPORTEs" />
             <End Role="DOCUMENTOA" EntitySet="DOCUMENTOAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DOCUMENTOCOC_DOCUMENTOP" Association="Self.FK_DOCUMENTOCOC_DOCUMENTOP">
+            <End Role="DOCUMENTOP" EntitySet="DOCUMENTOPs" />
+            <End Role="DOCUMENTOCOC" EntitySet="DOCUMENTOCOCs" />
           </AssociationSet>
           <AssociationSet Name="FK_DOCUMENTOP_IMPUESTO" Association="Self.FK_DOCUMENTOP_IMPUESTO">
             <End Role="IMPUESTO" EntitySet="IMPUESTOes" />
@@ -5562,7 +5969,68 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
             <End Role="PROYECTO" EntitySet="PROYECTOes" />
             <End Role="SOCIEDAD" EntitySet="SOCIEDADs" />
           </AssociationSet>
+          <FunctionImport Name="SP_CABECERA" ReturnType="Collection(WFARTHAModel.SP_CABECERA_Result)">
+            <Parameter Name="NUM_DOC" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DETALLE" ReturnType="Collection(WFARTHAModel.SP_DETALLE_Result)">
+            <Parameter Name="NUM_DOC" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_FIRMAS">
+            <Parameter Name="NUM_DOC" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_REPORTESOLS">
+            <Parameter Name="NUM_DOC" Mode="In" Type="Decimal" />
+            <Parameter Name="BUKRS" Mode="In" Type="String" />
+            <Parameter Name="USER" Mode="In" Type="String" />
+            <Parameter Name="num" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="SP_CABECERA_Result">
+          <Property Type="Decimal" Name="NUM_DOC" Nullable="false" Precision="10" Scale="0" />
+          <Property Type="String" Name="NUM_PRE" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="SOCIEDAD_ID" Nullable="true" MaxLength="4" />
+          <Property Type="DateTime" Name="FECHAC" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="MONTO_DOC_MD" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="String" Name="MONEDA_ID" Nullable="true" MaxLength="3" />
+          <Property Type="DateTime" Name="FECHACON" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PAYER_ID" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="CONDICIONES_ID" Nullable="true" MaxLength="4" />
+          <Property Type="String" Name="ID_PSPNR" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="CONCEPTO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ID_PSPNR_NOMBRE" Nullable="true" MaxLength="80" />
+          <Property Type="String" Name="CONDICIONES_TEXT" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PAYER_NAME1" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="SOCIEDAD_TEXT" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="FECHACF" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="FECHACONF" Nullable="true" MaxLength="18" />
+          <Property Type="String" Name="SOCIEDAD" Nullable="false" MaxLength="105" />
+          <Property Type="String" Name="MONTOLETRA" Nullable="false" MaxLength="4000" />
+          <Property Type="String" Name="PROVEEDOR" Nullable="false" MaxLength="46" />
+          <Property Type="String" Name="PROYECTO" Nullable="false" MaxLength="89" />
+          <Property Type="String" Name="CONDICIONES" Nullable="false" MaxLength="55" />
+        </ComplexType>
+        <ComplexType Name="SP_DETALLE_Result">
+          <Property Type="Decimal" Name="NUM_DOC" Nullable="true" Precision="10" Scale="0" />
+          <Property Type="Decimal" Name="POS" Nullable="false" Precision="5" Scale="0" />
+          <Property Type="Decimal" Name="POSH" Nullable="false" Precision="5" Scale="0" />
+          <Property Type="String" Name="OPER" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="CONCEPTO" Nullable="true" MaxLength="59" />
+          <Property Type="String" Name="DESCRIPCION" Nullable="true" MaxLength="165" />
+          <Property Type="Decimal" Name="IMPORTE" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Int64" Name="ORD" Nullable="true" />
+          <Property Type="String" Name="FACTURA" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TCONCEPTO" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="GRUPO" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="CUENTA" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TIPOIMP" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="IMPUTACION" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CCOSTO" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="IVA" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="IVAMONTO" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="MONTO" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="Decimal" Name="TOTAL" Nullable="true" Precision="18" Scale="5" />
+          <Property Type="String" Name="TEXTO" Nullable="true" MaxLength="500" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5575,6 +6043,24 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="DESCCRIPCION" ColumnName="DESCCRIPCION" />
                 <ScalarProperty Name="TIPO" ColumnName="TIPO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AMOR_ANT">
+            <EntityTypeMapping TypeName="WFARTHAModel.AMOR_ANT">
+              <MappingFragment StoreEntitySet="AMOR_ANT">
+                <ScalarProperty Name="POS" ColumnName="POS" />
+                <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+                <ScalarProperty Name="EBELN" ColumnName="EBELN" />
+                <ScalarProperty Name="EBELP" ColumnName="EBELP" />
+                <ScalarProperty Name="BELNR" ColumnName="BELNR" />
+                <ScalarProperty Name="GJAHR" ColumnName="GJAHR" />
+                <ScalarProperty Name="BUZEI" ColumnName="BUZEI" />
+                <ScalarProperty Name="ANTAMOR" ColumnName="ANTAMOR" />
+                <ScalarProperty Name="TANT" ColumnName="TANT" />
+                <ScalarProperty Name="WAERS" ColumnName="WAERS" />
+                <ScalarProperty Name="ANTTRANS" ColumnName="ANTTRANS" />
+                <ScalarProperty Name="ANTXAMORT" ColumnName="ANTXAMORT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5657,6 +6143,15 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
                 <ScalarProperty Name="ID_PRESUPUESTO" ColumnName="ID_PRESUPUESTO" />
                 <ScalarProperty Name="TIPO_PRESUPUESTO" ColumnName="TIPO_PRESUPUESTO" />
                 <ScalarProperty Name="CUENTA" ColumnName="CUENTA" />
+                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONDICIONES_PAGO">
+            <EntityTypeMapping TypeName="WFARTHAModel.CONDICIONES_PAGO">
+              <MappingFragment StoreEntitySet="CONDICIONES_PAGO">
+                <ScalarProperty Name="COND_PAGO" ColumnName="COND_PAGO" />
+                <ScalarProperty Name="TEXT" ColumnName="TEXT" />
                 <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -5866,6 +6361,12 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
                 <ScalarProperty Name="EJERCICIO_PRE" ColumnName="EJERCICIO_PRE" />
                 <ScalarProperty Name="ESTATUS_PRE" ColumnName="ESTATUS_PRE" />
                 <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
+                <ScalarProperty Name="EBELN" ColumnName="EBELN" />
+                <ScalarProperty Name="AMOR_ANT" ColumnName="AMOR_ANT" />
+                <ScalarProperty Name="RETPC" ColumnName="RETPC" />
+                <ScalarProperty Name="DPPCT" ColumnName="DPPCT" />
+                <ScalarProperty Name="TOAD" ColumnName="TOAD" />
+                <ScalarProperty Name="ANTR" ColumnName="ANTR" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5897,6 +6398,20 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
                 <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
                 <ScalarProperty Name="PATH" ColumnName="PATH" />
                 <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DOCUMENTOCOCs">
+            <EntityTypeMapping TypeName="WFARTHAModel.DOCUMENTOCOC">
+              <MappingFragment StoreEntitySet="DOCUMENTOCOC">
+                <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+                <ScalarProperty Name="POSD" ColumnName="POSD" />
+                <ScalarProperty Name="POS" ColumnName="POS" />
+                <ScalarProperty Name="MATNR" ColumnName="MATNR" />
+                <ScalarProperty Name="PS_PSP_PNR" ColumnName="PS_PSP_PNR" />
+                <ScalarProperty Name="WAERS" ColumnName="WAERS" />
+                <ScalarProperty Name="MENGE_BIL" ColumnName="MENGE_BIL" />
+                <ScalarProperty Name="MEINS" ColumnName="MEINS" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6014,8 +6529,18 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
                 <ScalarProperty Name="WAERS" ColumnName="WAERS" />
                 <ScalarProperty Name="DMBTR" ColumnName="DMBTR" />
                 <ScalarProperty Name="WRBTR" ColumnName="WRBTR" />
+                <ScalarProperty Name="SHKZG" ColumnName="SHKZG" />
                 <ScalarProperty Name="BUDAT" ColumnName="BUDAT" />
                 <ScalarProperty Name="XBLNR" ColumnName="XBLNR" />
+                <ScalarProperty Name="REBZG" ColumnName="REBZG" />
+                <ScalarProperty Name="REBZJ" ColumnName="REBZJ" />
+                <ScalarProperty Name="REBZZ" ColumnName="REBZZ" />
+                <ScalarProperty Name="XREVERSED" ColumnName="XREVERSED" />
+                <ScalarProperty Name="XREVERSEING" ColumnName="XREVERSEING" />
+                <ScalarProperty Name="STJAAH" ColumnName="STJAAH" />
+                <ScalarProperty Name="STBLG" ColumnName="STBLG" />
+                <ScalarProperty Name="AUDT" ColumnName="AUDT" />
+                <ScalarProperty Name="AUGBL" ColumnName="AUGBL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6097,6 +6622,7 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
                 <ScalarProperty Name="KOSTL" ColumnName="KOSTL" />
                 <ScalarProperty Name="ESTATUS" ColumnName="ESTATUS" />
                 <ScalarProperty Name="EREKZ" ColumnName="EREKZ" />
+                <ScalarProperty Name="NETWR" ColumnName="NETWR" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6164,6 +6690,7 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
                 <ScalarProperty Name="STEP_AUTO" ColumnName="STEP_AUTO" />
                 <ScalarProperty Name="VERSIONC1" ColumnName="VERSIONC1" />
                 <ScalarProperty Name="VERSIONC2" ColumnName="VERSIONC2" />
+                <ScalarProperty Name="FECHACON" ColumnName="FECHACON" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6611,15 +7138,6 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CONDICIONES_PAGO">
-            <EntityTypeMapping TypeName="WFARTHAModel.CONDICIONES_PAGO">
-              <MappingFragment StoreEntitySet="CONDICIONES_PAGO">
-                <ScalarProperty Name="COND_PAGO" ColumnName="COND_PAGO" />
-                <ScalarProperty Name="TEXT" ColumnName="TEXT" />
-                <ScalarProperty Name="ACTIVO" ColumnName="ACTIVO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="IIMPUESTOes">
             <EntityTypeMapping TypeName="WFARTHAModel.IIMPUESTO">
               <MappingFragment StoreEntitySet="IIMPUESTO">
@@ -6646,6 +7164,46 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
                 <ScalarProperty Name="URL" ColumnName="URL" />
                 <ScalarProperty Name="TXT50" ColumnName="TXT50" />
                 <ScalarProperty Name="ICON" ColumnName="ICON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DET_AGENTECAV">
+            <EntityTypeMapping TypeName="WFARTHAModel.DET_AGENTECAV">
+              <MappingFragment StoreEntitySet="DET_AGENTECAV">
+                <ScalarProperty Name="ID_RUTA_AGENTE" ColumnName="ID_RUTA_AGENTE" />
+                <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+                <ScalarProperty Name="STEP_FASE" ColumnName="STEP_FASE" />
+                <ScalarProperty Name="STEP_ACCION" ColumnName="STEP_ACCION" />
+                <ScalarProperty Name="LIM_SUP" ColumnName="LIM_SUP" />
+                <ScalarProperty Name="AGENTE_SIG" ColumnName="AGENTE_SIG" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="OVERRIDE" ColumnName="OVERRIDE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DET_AGENTECCV">
+            <EntityTypeMapping TypeName="WFARTHAModel.DET_AGENTECCV">
+              <MappingFragment StoreEntitySet="DET_AGENTECCV">
+                <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+                <ScalarProperty Name="USUARIOC_ID" ColumnName="USUARIOC_ID" />
+                <ScalarProperty Name="USUARIOC" ColumnName="USUARIOC" />
+                <ScalarProperty Name="ID_RUTA_AGENTE" ColumnName="ID_RUTA_AGENTE" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="USUARIOA_ID" ColumnName="USUARIOA_ID" />
+                <ScalarProperty Name="USUARIOCA" ColumnName="USUARIOCA" />
+                <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DET_APROB0V">
+            <EntityTypeMapping TypeName="WFARTHAModel.DET_APROB0V">
+              <MappingFragment StoreEntitySet="DET_APROB0V">
+                <ScalarProperty Name="VERSION" ColumnName="VERSION" />
+                <ScalarProperty Name="ID_SOCIEDAD" ColumnName="ID_SOCIEDAD" />
+                <ScalarProperty Name="SOCIEDAD" ColumnName="SOCIEDAD" />
+                <ScalarProperty Name="ID_USUARIO" ColumnName="ID_USUARIO" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="STEP_FASE" ColumnName="STEP_FASE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6797,6 +7355,62 @@ warning 6002: The table/view 'PAGOS0.dbo.WARNINGV' does not have a primary key d
               <ScalarProperty Name="BUKRS" ColumnName="ID_BUKRS" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="SP_CABECERA" FunctionName="WFARTHAModel.Store.SP_CABECERA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WFARTHAModel.SP_CABECERA_Result">
+                <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+                <ScalarProperty Name="NUM_PRE" ColumnName="NUM_PRE" />
+                <ScalarProperty Name="SOCIEDAD_ID" ColumnName="SOCIEDAD_ID" />
+                <ScalarProperty Name="FECHAC" ColumnName="FECHAC" />
+                <ScalarProperty Name="MONTO_DOC_MD" ColumnName="MONTO_DOC_MD" />
+                <ScalarProperty Name="MONEDA_ID" ColumnName="MONEDA_ID" />
+                <ScalarProperty Name="FECHACON" ColumnName="FECHACON" />
+                <ScalarProperty Name="PAYER_ID" ColumnName="PAYER_ID" />
+                <ScalarProperty Name="CONDICIONES_ID" ColumnName="CONDICIONES_ID" />
+                <ScalarProperty Name="ID_PSPNR" ColumnName="ID_PSPNR" />
+                <ScalarProperty Name="CONCEPTO" ColumnName="CONCEPTO" />
+                <ScalarProperty Name="ID_PSPNR_NOMBRE" ColumnName="ID_PSPNR_NOMBRE" />
+                <ScalarProperty Name="CONDICIONES_TEXT" ColumnName="CONDICIONES_TEXT" />
+                <ScalarProperty Name="PAYER_NAME1" ColumnName="PAYER_NAME1" />
+                <ScalarProperty Name="SOCIEDAD_TEXT" ColumnName="SOCIEDAD_TEXT" />
+                <ScalarProperty Name="FECHACF" ColumnName="FECHACF" />
+                <ScalarProperty Name="FECHACONF" ColumnName="FECHACONF" />
+                <ScalarProperty Name="SOCIEDAD" ColumnName="SOCIEDAD" />
+                <ScalarProperty Name="MONTOLETRA" ColumnName="MONTOLETRA" />
+                <ScalarProperty Name="PROVEEDOR" ColumnName="PROVEEDOR" />
+                <ScalarProperty Name="PROYECTO" ColumnName="PROYECTO" />
+                <ScalarProperty Name="CONDICIONES" ColumnName="CONDICIONES" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_DETALLE" FunctionName="WFARTHAModel.Store.SP_DETALLE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WFARTHAModel.SP_DETALLE_Result">
+                <ScalarProperty Name="NUM_DOC" ColumnName="NUM_DOC" />
+                <ScalarProperty Name="POS" ColumnName="POS" />
+                <ScalarProperty Name="POSH" ColumnName="POSH" />
+                <ScalarProperty Name="OPER" ColumnName="OPER" />
+                <ScalarProperty Name="CONCEPTO" ColumnName="CONCEPTO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="IMPORTE" ColumnName="IMPORTE" />
+                <ScalarProperty Name="ORD" ColumnName="ORD" />
+                <ScalarProperty Name="FACTURA" ColumnName="FACTURA" />
+                <ScalarProperty Name="TCONCEPTO" ColumnName="TCONCEPTO" />
+                <ScalarProperty Name="GRUPO" ColumnName="GRUPO" />
+                <ScalarProperty Name="CUENTA" ColumnName="CUENTA" />
+                <ScalarProperty Name="TIPOIMP" ColumnName="TIPOIMP" />
+                <ScalarProperty Name="IMPUTACION" ColumnName="IMPUTACION" />
+                <ScalarProperty Name="CCOSTO" ColumnName="CCOSTO" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="IVAMONTO" ColumnName="IVAMONTO" />
+                <ScalarProperty Name="MONTO" ColumnName="MONTO" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="TEXTO" ColumnName="TEXTO" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_FIRMAS" FunctionName="WFARTHAModel.Store.SP_FIRMAS" />
+          <FunctionImportMapping FunctionImportName="SP_REPORTESOLS" FunctionName="WFARTHAModel.Store.SP_REPORTESOLS" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

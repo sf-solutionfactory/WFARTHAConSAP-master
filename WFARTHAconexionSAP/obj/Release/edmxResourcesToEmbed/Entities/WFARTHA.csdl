@@ -9,6 +9,26 @@
     <Property Name="TIPO" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
     <NavigationProperty Name="WORKFPs" Relationship="Self.FK_WORKFP_ACCION" FromRole="ACCION" ToRole="WORKFP" />
   </EntityType>
+  <EntityType Name="AMOR_ANT">
+    <Key>
+      <PropertyRef Name="POS" />
+      <PropertyRef Name="NUM_DOC" />
+    </Key>
+    <Property Name="POS" Type="Int32" Nullable="false" />
+    <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="EBELN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="EBELP" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="BELNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="GJAHR" Type="Decimal" Precision="4" Scale="0" />
+    <Property Name="BUZEI" Type="Decimal" Precision="4" Scale="0" />
+    <Property Name="ANTAMOR" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="TANT" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="WAERS" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="ANTTRANS" Type="Decimal" Precision="13" Scale="0" />
+    <Property Name="ANTXAMORT" Type="Decimal" Precision="13" Scale="0" />
+    <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_AMOR_ANT_DOCUMENTO" FromRole="AMOR_ANT" ToRole="DOCUMENTO" />
+    <NavigationProperty Name="EKPO" Relationship="Self.FK_AMOR_ANT_EKPO" FromRole="AMOR_ANT" ToRole="EKPO" />
+  </EntityType>
   <EntityType Name="APPSETTING">
     <Key>
       <PropertyRef Name="ID" />
@@ -95,6 +115,14 @@
     <Property Name="ID_PRESUPUESTO" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
     <Property Name="TIPO_PRESUPUESTO" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="CUENTA" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CONDICIONES_PAGO">
+    <Key>
+      <PropertyRef Name="COND_PAGO" />
+    </Key>
+    <Property Name="COND_PAGO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
   </EntityType>
   <EntityType Name="CONMAIL">
@@ -324,6 +352,13 @@
     <Property Name="EJERCICIO_PRE" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
     <Property Name="ESTATUS_PRE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="ID_PSPNR" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="EBELN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="AMOR_ANT" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="RETPC" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="DPPCT" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="TOAD" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="ANTR" Type="Decimal" Precision="13" Scale="2" />
+    <NavigationProperty Name="AMOR_ANT1" Relationship="Self.FK_AMOR_ANT_DOCUMENTO" FromRole="DOCUMENTO" ToRole="AMOR_ANT" />
     <NavigationProperty Name="SOCIEDAD" Relationship="Self.FK_DOCUMENTO_SOCIEDAD" FromRole="DOCUMENTO" ToRole="SOCIEDAD" />
     <NavigationProperty Name="TSOL" Relationship="Self.FK_DOCUMENTO_TSOL" FromRole="DOCUMENTO" ToRole="TSOL" />
     <NavigationProperty Name="USUARIO" Relationship="Self.FK_DOCUMENTO_USUARIO" FromRole="DOCUMENTO" ToRole="USUARIO" />
@@ -371,6 +406,21 @@
     <Property Name="ACTIVO" Type="Boolean" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOAS_DOCUMENTO" FromRole="DOCUMENTOAS" ToRole="DOCUMENTO" />
   </EntityType>
+  <EntityType Name="DOCUMENTOCOC">
+    <Key>
+      <PropertyRef Name="NUM_DOC" />
+      <PropertyRef Name="POSD" />
+    </Key>
+    <Property Name="NUM_DOC" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+    <Property Name="POSD" Type="Decimal" Precision="5" Scale="0" Nullable="false" />
+    <Property Name="POS" Type="Int32" />
+    <Property Name="MATNR" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="PS_PSP_PNR" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="WAERS" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="MENGE_BIL" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="MEINS" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DOCUMENTOP" Relationship="Self.FK_DOCUMENTOCOC_DOCUMENTOP" FromRole="DOCUMENTOCOC" ToRole="DOCUMENTOP" />
+  </EntityType>
   <EntityType Name="DOCUMENTOLOG">
     <Key>
       <PropertyRef Name="NUM_DOC" />
@@ -407,6 +457,7 @@
     <Property Name="TEXTO" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_DOCUMENTOP_DOCUMENTO" FromRole="DOCUMENTOP" ToRole="DOCUMENTO" />
     <NavigationProperty Name="DOCUMENTOAs" Relationship="Self.FK_DOCUMENTOA_DOCUMENTOP" FromRole="DOCUMENTOP" ToRole="DOCUMENTOA" />
+    <NavigationProperty Name="DOCUMENTOCOC" Relationship="Self.FK_DOCUMENTOCOC_DOCUMENTOP" FromRole="DOCUMENTOP" ToRole="DOCUMENTOCOC" />
     <NavigationProperty Name="IMPUESTO" Relationship="Self.FK_DOCUMENTOP_IMPUESTO" FromRole="DOCUMENTOP" ToRole="IMPUESTO" />
     <NavigationProperty Name="DOCUMENTORPs" Relationship="Self.FK_DOCUMENTORP_DOCUMENTOP" FromRole="DOCUMENTOP" ToRole="DOCUMENTORP" />
   </EntityType>
@@ -504,8 +555,18 @@
     <Property Name="WAERS" Type="String" MaxLength="3" FixedLength="true" Unicode="true" />
     <Property Name="DMBTR" Type="Decimal" Precision="13" Scale="2" />
     <Property Name="WRBTR" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="SHKZG" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
     <Property Name="BUDAT" Type="DateTime" Precision="0" />
     <Property Name="XBLNR" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+    <Property Name="REBZG" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="REBZJ" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="REBZZ" Type="Decimal" Precision="4" Scale="0" />
+    <Property Name="XREVERSED" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="XREVERSEING" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="STJAAH" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
+    <Property Name="STBLG" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="AUDT" Type="DateTime" Precision="0" />
+    <Property Name="AUGBL" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="EKBE_DUMMY">
     <Key>
@@ -590,6 +651,8 @@
     <Property Name="KOSTL" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="ESTATUS" Type="String" MaxLength="2" FixedLength="true" Unicode="true" />
     <Property Name="EREKZ" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+    <Property Name="NETWR" Type="Decimal" Precision="13" Scale="2" />
+    <NavigationProperty Name="AMOR_ANT" Relationship="Self.FK_AMOR_ANT_EKPO" FromRole="EKPO" ToRole="AMOR_ANT" />
   </EntityType>
   <EntityType Name="EKPO_DUMMY">
     <Key>
@@ -663,6 +726,7 @@
     <Property Name="STEP_AUTO" Type="Int32" />
     <Property Name="VERSIONC1" Type="Int32" Nullable="false" />
     <Property Name="VERSIONC2" Type="Int32" Nullable="false" />
+    <Property Name="FECHACON" Type="DateTime" Precision="3" />
     <NavigationProperty Name="DOCUMENTO" Relationship="Self.FK_FLUJO_DOCUMENTO" FromRole="FLUJO" ToRole="DOCUMENTO" />
     <NavigationProperty Name="USUARIO" Relationship="Self.FK_FLUJO_USUARIO" FromRole="FLUJO" ToRole="USUARIO" />
     <NavigationProperty Name="USUARIO1" Relationship="Self.FK_FLUJO_USUARIO1" FromRole="FLUJO" ToRole="USUARIO" />
@@ -815,7 +879,7 @@
     <Property Name="ADRNR" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="STCD1" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
     <Property Name="STCD2" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
-    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
+    <Property Name="ACTIVO" Type="Boolean" />
     <NavigationProperty Name="DET_PROVEEDOR" Relationship="Self.FK_DET_PROVEEDOR_PROYECTO" FromRole="PROVEEDOR" ToRole="DET_PROVEEDOR" />
     <NavigationProperty Name="RETENCION_PROV" Relationship="Self.FK_RETENCION_PROV_PROVEEDOR" FromRole="PROVEEDOR" ToRole="RETENCION_PROV" />
   </EntityType>
@@ -1102,7 +1166,7 @@
     <Property Name="PUESTO_ID" Type="Int32" />
     <Property Name="MANAGER" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
     <Property Name="BACKUP_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-    <Property Name="BUNIT" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="BUNIT" Type="String" MaxLength="4" FixedLength="true" Unicode="true" />
     <Property Name="FIRMA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DELEGARs" Relationship="Self.FK_DELEGAR_USUARIO" FromRole="USUARIO" ToRole="DELEGAR" />
     <NavigationProperty Name="DELEGARs1" Relationship="Self.FK_DELEGAR_USUARIO1" FromRole="USUARIO" ToRole="DELEGAR" />
@@ -1208,15 +1272,6 @@
     <NavigationProperty Name="WORKFPs" Relationship="Self.FK_WORKFP_WORKFV" FromRole="WORKFV" ToRole="WORKFP" />
     <NavigationProperty Name="WORKFTs" Relationship="Self.FK_WORKFT_WORKFV" FromRole="WORKFV" ToRole="WORKFT" />
   </EntityType>
-  <EntityType Name="CONDICIONES_PAGO">
-    <Key>
-      <PropertyRef Name="COND_PAGO" />
-      <PropertyRef Name="ACTIVO" />
-    </Key>
-    <Property Name="COND_PAGO" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="TEXT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="ACTIVO" Type="Boolean" Nullable="false" />
-  </EntityType>
   <EntityType Name="IIMPUESTO">
     <Key>
       <PropertyRef Name="MWSKZ" />
@@ -1246,6 +1301,60 @@
     <Property Name="URL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="TXT50" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ICON" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="DET_AGENTECAV">
+    <Key>
+      <PropertyRef Name="ID_RUTA_AGENTE" />
+      <PropertyRef Name="VERSION" />
+      <PropertyRef Name="STEP_FASE" />
+      <PropertyRef Name="STEP_ACCION" />
+      <PropertyRef Name="LIM_SUP" />
+      <PropertyRef Name="AGENTE_SIG" />
+      <PropertyRef Name="USUARIO" />
+    </Key>
+    <Property Name="ID_RUTA_AGENTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="VERSION" Type="Int32" Nullable="false" />
+    <Property Name="STEP_FASE" Type="Int32" Nullable="false" />
+    <Property Name="STEP_ACCION" Type="Int32" Nullable="false" />
+    <Property Name="LIM_SUP" Type="Decimal" Precision="18" Scale="5" Nullable="false" />
+    <Property Name="AGENTE_SIG" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="USUARIO" Type="String" MaxLength="171" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="OVERRIDE" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="DET_AGENTECCV">
+    <Key>
+      <PropertyRef Name="VERSION" />
+      <PropertyRef Name="USUARIOC_ID" />
+      <PropertyRef Name="USUARIOC" />
+      <PropertyRef Name="ID_RUTA_AGENTE" />
+      <PropertyRef Name="USUARIOA_ID" />
+      <PropertyRef Name="USUARIOCA" />
+      <PropertyRef Name="FECHAC" />
+    </Key>
+    <Property Name="VERSION" Type="Int32" Nullable="false" />
+    <Property Name="USUARIOC_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="USUARIOC" Type="String" MaxLength="171" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_RUTA_AGENTE" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="DESCRIPCION" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="USUARIOA_ID" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="USUARIOCA" Type="String" MaxLength="171" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FECHAC" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="DET_APROB0V">
+    <Key>
+      <PropertyRef Name="VERSION" />
+      <PropertyRef Name="ID_SOCIEDAD" />
+      <PropertyRef Name="SOCIEDAD" />
+      <PropertyRef Name="ID_USUARIO" />
+      <PropertyRef Name="USUARIO" />
+      <PropertyRef Name="STEP_FASE" />
+    </Key>
+    <Property Name="VERSION" Type="Int32" Nullable="false" />
+    <Property Name="ID_SOCIEDAD" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="SOCIEDAD" Type="String" MaxLength="107" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_USUARIO" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="USUARIO" Type="String" MaxLength="171" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="STEP_FASE" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="DET_APROBV">
     <Key>
@@ -1280,7 +1389,7 @@
       <PropertyRef Name="BUTXT" />
     </Key>
     <Property Name="ID_PSPNR" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="NOMBRE" Type="String" MaxLength="61" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NOMBRE" Type="String" MaxLength="91" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ID_BUKRS" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="BUTXT" Type="String" MaxLength="107" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
@@ -1334,12 +1443,12 @@
     <Property Name="DOCUMENTO_REF" Type="Decimal" Precision="10" Scale="0" />
     <Property Name="CONCEPTO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="NOTAS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="MONTO_DOC_MD" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_FIJO_MD" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_DOC_MD" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="MONTO_FIJO_MD" Type="Decimal" Precision="18" Scale="5" />
     <Property Name="MONTO_BASE_GS_PCT_MD" Type="Decimal" Precision="13" Scale="2" />
     <Property Name="MONTO_BASE_NS_PCT_MD" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_DOC_ML" Type="Decimal" Precision="13" Scale="2" />
-    <Property Name="MONTO_FIJO_ML" Type="Decimal" Precision="13" Scale="2" />
+    <Property Name="MONTO_DOC_ML" Type="Decimal" Precision="18" Scale="5" />
+    <Property Name="MONTO_FIJO_ML" Type="Decimal" Precision="18" Scale="5" />
     <Property Name="MONTO_BASE_GS_PCT_ML" Type="Decimal" Precision="13" Scale="2" />
     <Property Name="MONTO_BASE_NS_PCT_ML" Type="Decimal" Precision="13" Scale="2" />
     <Property Name="MONTO_DOC_ML2" Type="Decimal" Precision="13" Scale="2" />
@@ -1409,6 +1518,32 @@
       </Principal>
       <Dependent Role="WORKFP">
         <PropertyRef Name="ACCION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AMOR_ANT_DOCUMENTO">
+    <End Role="DOCUMENTO" Type="Self.DOCUMENTO" Multiplicity="1" />
+    <End Role="AMOR_ANT" Type="Self.AMOR_ANT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTO">
+        <PropertyRef Name="NUM_DOC" />
+      </Principal>
+      <Dependent Role="AMOR_ANT">
+        <PropertyRef Name="NUM_DOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AMOR_ANT_EKPO">
+    <End Role="EKPO" Type="Self.EKPO" Multiplicity="0..1" />
+    <End Role="AMOR_ANT" Type="Self.AMOR_ANT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EKPO">
+        <PropertyRef Name="EBELN" />
+        <PropertyRef Name="EBELP" />
+      </Principal>
+      <Dependent Role="AMOR_ANT">
+        <PropertyRef Name="EBELN" />
+        <PropertyRef Name="EBELP" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1799,6 +1934,20 @@
       </Principal>
       <Dependent Role="DOCUMENTOA">
         <PropertyRef Name="CLASE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DOCUMENTOCOC_DOCUMENTOP">
+    <End Role="DOCUMENTOP" Type="Self.DOCUMENTOP" Multiplicity="1" />
+    <End Role="DOCUMENTOCOC" Type="Self.DOCUMENTOCOC" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="DOCUMENTOP">
+        <PropertyRef Name="NUM_DOC" />
+        <PropertyRef Name="POS" />
+      </Principal>
+      <Dependent Role="DOCUMENTOCOC">
+        <PropertyRef Name="NUM_DOC" />
+        <PropertyRef Name="POSD" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2352,6 +2501,7 @@
   </Association>
   <EntityContainer Name="WFARTHAEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ACCIONs" EntityType="Self.ACCION" />
+    <EntitySet Name="AMOR_ANT" EntityType="Self.AMOR_ANT" />
     <EntitySet Name="APPSETTINGs" EntityType="Self.APPSETTING" />
     <EntitySet Name="BANCOS" EntityType="Self.BANCO" />
     <EntitySet Name="CAMPOS" EntityType="Self.CAMPOS" />
@@ -2360,6 +2510,7 @@
     <EntitySet Name="CECOes" EntityType="Self.CECO" />
     <EntitySet Name="CLAVES_CONTA" EntityType="Self.CLAVES_CONTA" />
     <EntitySet Name="CONCEPTOes" EntityType="Self.CONCEPTO" />
+    <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" />
     <EntitySet Name="CONMAILs" EntityType="Self.CONMAIL" />
     <EntitySet Name="DELEGARs" EntityType="Self.DELEGAR" />
     <EntitySet Name="DET_AGENTEC" EntityType="Self.DET_AGENTEC" />
@@ -2376,6 +2527,7 @@
     <EntitySet Name="DOCUMENTOes" EntityType="Self.DOCUMENTO" />
     <EntitySet Name="DOCUMENTOAs" EntityType="Self.DOCUMENTOA" />
     <EntitySet Name="DOCUMENTOAS1" EntityType="Self.DOCUMENTOA1" />
+    <EntitySet Name="DOCUMENTOCOCs" EntityType="Self.DOCUMENTOCOC" />
     <EntitySet Name="DOCUMENTOLOGs" EntityType="Self.DOCUMENTOLOG" />
     <EntitySet Name="DOCUMENTOPs" EntityType="Self.DOCUMENTOP" />
     <EntitySet Name="DOCUMENTOPREs" EntityType="Self.DOCUMENTOPRE" />
@@ -2430,10 +2582,12 @@
     <EntitySet Name="WORKFPs" EntityType="Self.WORKFP" />
     <EntitySet Name="WORKFTs" EntityType="Self.WORKFT" />
     <EntitySet Name="WORKFVs" EntityType="Self.WORKFV" />
-    <EntitySet Name="CONDICIONES_PAGO" EntityType="Self.CONDICIONES_PAGO" />
     <EntitySet Name="IIMPUESTOes" EntityType="Self.IIMPUESTO" />
     <EntitySet Name="ASIGN_PROY_SOC" EntityType="Self.ASIGN_PROY_SOC" />
     <EntitySet Name="CARPETAVs" EntityType="Self.CARPETAV" />
+    <EntitySet Name="DET_AGENTECAV" EntityType="Self.DET_AGENTECAV" />
+    <EntitySet Name="DET_AGENTECCV" EntityType="Self.DET_AGENTECCV" />
+    <EntitySet Name="DET_APROB0V" EntityType="Self.DET_APROB0V" />
     <EntitySet Name="DET_APROBV" EntityType="Self.DET_APROBV" />
     <EntitySet Name="DET_PROVEEDORV" EntityType="Self.DET_PROVEEDORV" />
     <EntitySet Name="DET_PROYECTO_DEC_V" EntityType="Self.DET_PROYECTO_DEC_V" />
@@ -2445,6 +2599,14 @@
     <AssociationSet Name="FK_WORKFP_ACCION" Association="Self.FK_WORKFP_ACCION">
       <End Role="ACCION" EntitySet="ACCIONs" />
       <End Role="WORKFP" EntitySet="WORKFPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AMOR_ANT_DOCUMENTO" Association="Self.FK_AMOR_ANT_DOCUMENTO">
+      <End Role="DOCUMENTO" EntitySet="DOCUMENTOes" />
+      <End Role="AMOR_ANT" EntitySet="AMOR_ANT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AMOR_ANT_EKPO" Association="Self.FK_AMOR_ANT_EKPO">
+      <End Role="EKPO" EntitySet="EKPOes" />
+      <End Role="AMOR_ANT" EntitySet="AMOR_ANT" />
     </AssociationSet>
     <AssociationSet Name="FK_CAMPOS_PAGINA" Association="Self.FK_CAMPOS_PAGINA">
       <End Role="PAGINA" EntitySet="PAGINAs" />
@@ -2573,6 +2735,10 @@
     <AssociationSet Name="FK_DOCUMENTOA_TSOPORTE" Association="Self.FK_DOCUMENTOA_TSOPORTE">
       <End Role="TSOPORTE" EntitySet="TSOPORTEs" />
       <End Role="DOCUMENTOA" EntitySet="DOCUMENTOAs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DOCUMENTOCOC_DOCUMENTOP" Association="Self.FK_DOCUMENTOCOC_DOCUMENTOP">
+      <End Role="DOCUMENTOP" EntitySet="DOCUMENTOPs" />
+      <End Role="DOCUMENTOCOC" EntitySet="DOCUMENTOCOCs" />
     </AssociationSet>
     <AssociationSet Name="FK_DOCUMENTOP_IMPUESTO" Association="Self.FK_DOCUMENTOP_IMPUESTO">
       <End Role="IMPUESTO" EntitySet="IMPUESTOes" />
@@ -2754,5 +2920,66 @@
       <End Role="PROYECTO" EntitySet="PROYECTOes" />
       <End Role="SOCIEDAD" EntitySet="SOCIEDADs" />
     </AssociationSet>
+    <FunctionImport Name="SP_CABECERA" ReturnType="Collection(WFARTHAModel.SP_CABECERA_Result)">
+      <Parameter Name="NUM_DOC" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_DETALLE" ReturnType="Collection(WFARTHAModel.SP_DETALLE_Result)">
+      <Parameter Name="NUM_DOC" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_FIRMAS">
+      <Parameter Name="NUM_DOC" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_REPORTESOLS">
+      <Parameter Name="NUM_DOC" Mode="In" Type="Decimal" />
+      <Parameter Name="BUKRS" Mode="In" Type="String" />
+      <Parameter Name="USER" Mode="In" Type="String" />
+      <Parameter Name="num" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="SP_CABECERA_Result">
+    <Property Type="Decimal" Name="NUM_DOC" Nullable="false" Precision="10" Scale="0" />
+    <Property Type="String" Name="NUM_PRE" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="SOCIEDAD_ID" Nullable="true" MaxLength="4" />
+    <Property Type="DateTime" Name="FECHAC" Nullable="true" Precision="23" />
+    <Property Type="Decimal" Name="MONTO_DOC_MD" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="String" Name="MONEDA_ID" Nullable="true" MaxLength="3" />
+    <Property Type="DateTime" Name="FECHACON" Nullable="true" Precision="23" />
+    <Property Type="String" Name="PAYER_ID" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="CONDICIONES_ID" Nullable="true" MaxLength="4" />
+    <Property Type="String" Name="ID_PSPNR" Nullable="true" MaxLength="8" />
+    <Property Type="String" Name="CONCEPTO" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="ID_PSPNR_NOMBRE" Nullable="true" MaxLength="80" />
+    <Property Type="String" Name="CONDICIONES_TEXT" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="PAYER_NAME1" Nullable="true" MaxLength="35" />
+    <Property Type="String" Name="SOCIEDAD_TEXT" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="FECHACF" Nullable="true" MaxLength="18" />
+    <Property Type="String" Name="FECHACONF" Nullable="true" MaxLength="18" />
+    <Property Type="String" Name="SOCIEDAD" Nullable="false" MaxLength="105" />
+    <Property Type="String" Name="MONTOLETRA" Nullable="false" MaxLength="4000" />
+    <Property Type="String" Name="PROVEEDOR" Nullable="false" MaxLength="46" />
+    <Property Type="String" Name="PROYECTO" Nullable="false" MaxLength="89" />
+    <Property Type="String" Name="CONDICIONES" Nullable="false" MaxLength="55" />
+  </ComplexType>
+  <ComplexType Name="SP_DETALLE_Result">
+    <Property Type="Decimal" Name="NUM_DOC" Nullable="true" Precision="10" Scale="0" />
+    <Property Type="Decimal" Name="POS" Nullable="false" Precision="5" Scale="0" />
+    <Property Type="Decimal" Name="POSH" Nullable="false" Precision="5" Scale="0" />
+    <Property Type="String" Name="OPER" Nullable="false" MaxLength="3" />
+    <Property Type="String" Name="CONCEPTO" Nullable="true" MaxLength="59" />
+    <Property Type="String" Name="DESCRIPCION" Nullable="true" MaxLength="165" />
+    <Property Type="Decimal" Name="IMPORTE" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Int64" Name="ORD" Nullable="true" />
+    <Property Type="String" Name="FACTURA" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="TCONCEPTO" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="GRUPO" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="CUENTA" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="TIPOIMP" Nullable="true" MaxLength="1" />
+    <Property Type="String" Name="IMPUTACION" Nullable="true" MaxLength="30" />
+    <Property Type="String" Name="CCOSTO" Nullable="true" MaxLength="20" />
+    <Property Type="Decimal" Name="IVA" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="IVAMONTO" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="MONTO" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="Decimal" Name="TOTAL" Nullable="true" Precision="18" Scale="5" />
+    <Property Type="String" Name="TEXTO" Nullable="true" MaxLength="500" />
+  </ComplexType>
 </Schema>

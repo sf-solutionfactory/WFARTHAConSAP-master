@@ -485,6 +485,7 @@ namespace TATconexionSAP.Services
                                 dA.ESTATUS = "C";
                                 dA.ESTATUS_SAP = "E";
                                 dA.ESTATUS_WF = "A";
+                                dA.ESTATUS_PRE = "G";
                                 db.Entry(dA).State = EntityState.Modified;
 
                                 dp.MESSAGE = "Error contabilización SAP";
@@ -848,8 +849,8 @@ namespace TATconexionSAP.Services
 
                 try
                 {
-                    using (Impersonation.LogonUser(dom, user, pass, LogonType.NewCredentials))
-                    {
+                    //using (Impersonation.LogonUser(dom, user, pass, LogonType.NewCredentials))
+                    //{
 
                         var from = Path.Combine(archivo);
                         var arc2 = archivo.Replace(datasync, dataproc);
@@ -860,7 +861,7 @@ namespace TATconexionSAP.Services
                         }
 
                         File.Move(from, to); // Try to move
-                    }
+                    //}
                 }
                 catch (IOException ex)
                 {
@@ -906,8 +907,8 @@ namespace TATconexionSAP.Services
             //string[] archivos = Directory.GetFiles(dirFile, "*", SearchOption.AllDirectories);
             List<string> larchivos = new List<string>();
 
-            using (Impersonation.LogonUser(dom, user, pass, LogonType.NewCredentials))
-            {
+            //using (Impersonation.LogonUser(dom, user, pass, LogonType.NewCredentials))
+            //{
                 string[] archivosl = Directory.GetFiles(dirFile, "*", SearchOption.AllDirectories);
 
                 if(archivosl != null)
@@ -918,7 +919,7 @@ namespace TATconexionSAP.Services
                     }
                 }
 
-            }
+            //}
 
             return larchivos;
             
